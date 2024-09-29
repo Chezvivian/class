@@ -2,15 +2,15 @@
 title:            Class resources
 longtitle:        Class resources
 author:           Huang Jie
-email:            sighingnow@gmail.com
+email:            chezvivian@outlook.com
 description: >
-  Build Jekyll site with the GitBook style.
+  Publishing class resources in my personal website. 
 
 version:          1.0
 gitbook_version:  3.2.3
 
-url:              'https://sighingnow.github.io'
-baseurl:          '/jekyll-gitbook'
+url:              'https://chezvivian.github.io'
+baseurl:          '/class'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
