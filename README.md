@@ -15,7 +15,6 @@ permalink: /
 - Microsoft office 365 (office全家桶，使用贸大邮箱即可注册订阅的教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的word, ppt功能）
 - Microsoft Onenote (笔记软件，[可电脑可平板](https://www.onenote.com/download)，有OCR，适合整理各科笔记)
 - Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做all-in-one工具)
-- 
 
 ## 推荐的AI工具
 
