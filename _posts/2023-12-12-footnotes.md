@@ -1,7 +1,7 @@
 ---
 title: Using Footnotes
 author: Tao He
-date: 2023-12-12
+date: 
 category: Jekyll
 layout: post
 mermaid: true
