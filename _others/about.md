@@ -1,9 +1,9 @@
 ---
-title: About others
-author: Tao He
-date: 2022-02-04
+title: Back to Jie Huang
+author: Jie Huang
+date: 2024-11-03
 category: Jekyll
 layout: post
 ---
 
-This is an about page for "others" in the collections.
+Back to the Main side: [Jie Huang](https://chezvivian.github.io)
