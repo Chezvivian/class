@@ -14,10 +14,10 @@ layout: post
 
 **slides**: [Unit 1 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit1_companies_Github.pdf)
 
-**Detailed reading**: [Unit 1 课文精读](https://chezvivian.github.io/class/BE_pdf/Unit1_detailed_reading.pdf)
+**Detailed reading**: [Unit 1 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit1_detailed_reading.pdf)
 
 ## Unit 2 Leadership
 
-**slides**: [Unit 2 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit2_leadership_Github.pdf)
+**slides**: [Unit 2 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit2_all_content.pdf)
 
-**Detailed reading**: [Unit 2 课文精读](https://chezvivian.github.io/class/BE_pdf/Unit2_detailed_reading.pdf)
+**Detailed reading**: [Unit 2 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit2_detailed_reading.pdf)
