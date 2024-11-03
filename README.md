@@ -8,11 +8,11 @@ permalink: /
 2024秋季学期资源如下：
 
 - [计算机辅助翻译](https://chezvivian.github.io/class/slides/2024-09-29-CAT.html)
-- [大学商务英语（一）](https://chezvivian.github.io/class/note/2024-09-29-Note.html)
+- [大学商务英语（一）](https://chezvivian.github.io/class/note/2024-09-29-BusinessEnglish.html)
 
 ## 推荐的基础软件
 
-- Microsoft office 365 (office全家桶，使用贸大邮箱即可注册订阅的教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的word, ppt功能）
+- Microsoft office 365 (office全家桶)，使用贸大邮箱即可注册订阅的教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的word, ppt功能）
 - Microsoft Onenote (笔记软件，[可电脑可平板](https://www.onenote.com/download)，有OCR，适合整理各科笔记)
 - Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做all-in-one工具)
 
@@ -24,9 +24,4 @@ permalink: /
 - [sider](https://sider.ai/download) 浏览器侧边栏工具，综合能力强，集合ChatGPT, claude等最新引擎，付费版体验极佳，推荐给氪金玩家
 
 
-[10]: https://github.com/sighingnow/jekyll-gitbook/blob/master/gitbook/custom.css
-[11]: https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas
-[12]: https://rubygems.org/gems/jekyll-remote-theme
-[13]: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
-[14]: https://github.com/sighingnow/jekyll-gitbook/blob/master/_config.yml
-[15]: https://jekyllrb.com/docs/collections/
+
