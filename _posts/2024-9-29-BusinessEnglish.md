@@ -21,3 +21,9 @@ layout: post
 **slides**: [Unit 2 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit2_all_content.pdf)
 
 **Detailed reading**: [Unit 2 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit2_detailed_reading.pdf)
+
+## Unit 3 Strategy
+
+**slide**: [Unit 3 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit3_all_content.pdf)
+
+**Detailed reading**: [Unit 3 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit3_detailed_reading.pdf)
