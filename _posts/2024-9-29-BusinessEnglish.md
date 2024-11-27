@@ -27,3 +27,7 @@ layout: post
 **slide**: [Unit 3 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit3_all_content.pdf)
 
 **Detailed reading**: [Unit 3 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit3_detailed_reading.pdf)
+
+## Unit 4 Pay
+
+**slide**: [Unit 4 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit4_all_content.pdf)
