@@ -10,7 +10,7 @@ layout: post
 
 教材：新标准商务英语综合教程(1)，外语教学与研究出版社
 
-转载请注明出处：
+转载请注明出处：chezvivian
 
 ## Unit 1 Companies
 
