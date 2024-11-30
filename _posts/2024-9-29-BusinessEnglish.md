@@ -31,3 +31,5 @@ layout: post
 ## Unit 4 Pay
 
 **slide**: [Unit 4 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit4_all_content.pdf)
+
+**Detailed reading**: [Unit 4 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit4_detailed_reading.pdf)
