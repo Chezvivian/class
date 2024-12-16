@@ -10,6 +10,8 @@ layout: post
 
 教材：新标准商务英语综合教程(1)，外语教学与研究出版社
 
+转载请注明出处：chezvivian
+
 ## Unit 1 Companies
 
 **slides**: [Unit 1 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit1_companies_Github.pdf)
@@ -31,3 +33,11 @@ layout: post
 ## Unit 4 Pay
 
 **slide**: [Unit 4 all content.pdf](https://chezvivian.github.io/class/BE_pdf/Unit4_all_content.pdf)
+
+**Detailed reading**: [Unit 4 课文精读.pdf](https://chezvivian.github.io/class/BE_pdf/Unit4_detailed_reading.pdf)
+
+
+
+
+
+
