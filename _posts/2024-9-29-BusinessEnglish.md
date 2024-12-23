@@ -10,7 +10,9 @@ layout: post
 
 教材：新标准商务英语综合教程(1)，外语教学与研究出版社
 
-转载请注明出处：chezvivian
+授课单位：对外经济贸易大学英语学院
+
+转载请注明出处：chezvivian.github.io
 
 ## Unit 1 Companies
 
