@@ -6,4 +6,4 @@ category: Jekyll
 layout: post
 ---
 
-Back to the Main side: [Jie Huang](https://chezvivian.github.io)
+Back to the Main site: [Jie Huang](https://chezvivian.github.io)
