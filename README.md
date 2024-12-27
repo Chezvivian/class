@@ -8,7 +8,7 @@ permalink: /
 2024秋季学期资源如下：
 
 - [计算机辅助翻译](https://chezvivian.github.io/class/slides/2024-autumn-CAT.html)
-- [大学商务英语（一）](https://chezvivian.github.io/class/slides/2024-09-29-BusinessEnglish.html)
+- [大学商务英语（一）](https://chezvivian.github.io/class/note/2024-09-29-BusinessEnglish.html)
 
 ## 推荐的基础软件
 
