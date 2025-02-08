@@ -23,5 +23,7 @@ permalink: /
 - [讯飞星火大模型](https://xinghuo.xfyun.cn/desk) 同样是中文语境，在语音识别上有特长，免费开放基础API，可做大语言模型测试用
 - [sider](https://sider.ai/download) 浏览器侧边栏工具，综合能力强，集合ChatGPT, claude等最新引擎，付费版体验极佳，推荐给氪金玩家
 
+## 智能助教（测试中）
+
 
 
