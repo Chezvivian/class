@@ -1,9 +1,9 @@
 ---
-title: 2024秋-大学商务英语一
+title: 2024秋-大学商务英语（一）
 author: Huang Jie
 date: 2024-09-29
-category: slides
-layout: posts
+category: note
+layout: post
 ---
 
 课程：大学商务英语(一)
