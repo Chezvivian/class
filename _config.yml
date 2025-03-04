@@ -41,7 +41,7 @@ syntax_highlighter_style: colorful
 markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
-permalink:                /:categories/:title/
+permalink:                /:title/
 
 # Disqus comments
 # disqushandler:            sighingnow
@@ -58,7 +58,7 @@ collections:
     permalink: /:collection/:path/
   courses:
     output: true
-    permalink: /:collection/:name
+    permalink: /:collection/:name/
 
 ordered_collections:
   - posts
