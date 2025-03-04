@@ -2,7 +2,6 @@
 title: 2024秋-大学商务英语一
 author: Huang Jie
 date: 2024-09-29
-slug: BusinessEnglish-1
 category: slides
 layout: posts
 ---
