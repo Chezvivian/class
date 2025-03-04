@@ -4,7 +4,7 @@ longtitle:        Class resources
 author:           Huang Jie
 email:            chezvivian@outlook.com
 description: >
-  Publishing class resources on my personal website. 
+  Publishing class resources in my personal website. 
 
 version:          1.0
 gitbook_version:  3.2.3
@@ -41,7 +41,7 @@ syntax_highlighter_style: colorful
 markdown_ext:             markdown,mkdown,mkdn,mkd,md
 
 # Permalinks
-permalink:                /:categories/:title/
+permalink:                /:categories/:year-:month-:day-:title:output_ext
 
 # Disqus comments
 # disqushandler:            sighingnow
@@ -56,9 +56,6 @@ collections:
   others:
     output: true
     permalink: /:collection/:path/
-  courses:
-    output: true
-    permalink: /:collection/:name
 
 ordered_collections:
   - posts
