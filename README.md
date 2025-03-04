@@ -25,7 +25,7 @@ permalink: /
 
 ## 智能助教（测试中）
 
-*内核为DeepSeek + 本课程知识库
+* 目前测试版本的内核为DeepSeek + 本课程知识库
 
 **网页登陆：[CAT课程智能助教_2.0](https://udify.app/chat/cowvutHCzOFeVfaw)**
 
