@@ -25,8 +25,14 @@ permalink: /
 
 ## 智能助教（测试中）
 
-[CAT课程智能助教_2.0 (内核为DeepSeek + 本课程知识库)](https://udify.app/chat/cowvutHCzOFeVfaw)
+*内核为DeepSeek + 本课程知识库
 
-![智能助教](https://chezvivian.github.io/class/assets/CAT助教_2.0.png)
+网页登陆：[CAT课程智能助教_2.0](https://udify.app/chat/cowvutHCzOFeVfaw)
+
+手机端使用请扫二维码：![智能助教](https://chezvivian.github.io/class/assets/CAT助教_2.0.png)
+
+使用中若出现问题，可以邮件和我沟通：chezvivian@outlook.com
+
+
 
 
