@@ -7,8 +7,8 @@ permalink: /
 大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。
 2024秋季学期资源如下：
 
-- [计算机辅助翻译](https://chezvivian.github.io/class/slides/CAT.html)
-- [大学商务英语（一）](https://chezvivian.github.io/class/slides/BusinessEnglish.html)
+- [计算机辅助翻译](https://chezvivian.github.io/class/slides/2024-09-29-CAT.html)
+- [大学商务英语（一）](https://chezvivian.github.io/class/note/2024-09-29-BusinessEnglish.html)
 
 ## 推荐的基础软件
 
