@@ -1,4 +1,19 @@
 <div class="book-summary">  
+    <div style="font-size:10px; padding:5px; color:#666; display:none;" id="debug-files">  
+        <p><strong>所有文件({{ site.posts.size }}):</strong></p>  
+        <ul>  
+        {% for post in site.posts %}  
+            <li>{{ post.title }} - 课程:{{ post.course }} - 学期:{{ post.semester }} - 日期:{{ post.date }}</li>  
+        {% endfor %}  
+        </ul>  
+        <button onclick="this.parentNode.style.display='none'">关闭</button>  
+    </div>  
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {  
+            document.getElementById('debug-files').style.display = 'block';  
+        });  
+    </script>  
+    
     <script type="text/javascript">  
         // Fixes the page links scroll problem on both desktop and mobile browsers  
         function pageScrollToTop(element) {  
