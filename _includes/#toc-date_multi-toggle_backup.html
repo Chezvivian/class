@@ -1,0 +1,291 @@
+<div class="book-summary">  
+
+    <script type="text/javascript">  
+        // Fixes the page links scroll problem on both desktop and mobile browsers  
+        function pageScrollToTop(element) {  
+            // both mobile and non-mobile  
+            $('div.body-inner').animate({scrollTop: 0});  
+            $(element).parent().find('li>ul>li').removeClass('active');  
+            return true;  // propagate  
+        }  
+        // Fixes the anchor links scroll problem on mobile browsers  
+        function mobilePageScrollToAnchor(element) {  
+            $(element).closest('li.chapter').find('ul>li').removeClass('active');  
+            $(element).parent().addClass('active');  
+            if ($(document).width() <= 1240) {  
+                let target = $($(element).attr('href'));  
+                if (target.length) {  
+                    $('div.body-inner').animate({  
+                        scrollTop: target.get(0).offsetTop,  
+                    });  
+                }  
+            }  
+            return true;  
+        }  
+    </script>  
+
+    <nav role="navigation">  
+        <div id="book-search-input" role="search">  
+            <input type="text" placeholder="Type to search" />  
+        </div>  
+        <div id="book-search-input-link" role="search">  
+            <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>  
+        </div>  
+        <ul class="summary">  
+            {% if page.url == "/index.html" or page.url == "/" %}  
+            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">  
+            {% else %}  
+            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">  
+            {% endif %}  
+                <a href="{{site.baseurl}}/" onclick="pageScrollToTop(this)">  
+                    {{ site.title | escape }}  
+                </a>  
+                {% if site.toc.enabled %}  
+                    {% if site.toc.enabled_index %}  
+                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                    {% endif %}  
+                {% endif %}  
+            </li>  
+
+            <li class="divider"></li>  
+
+            {% if site.ordered_collections %}  
+                {% for label in site.ordered_collections %}  
+                    {% assign collection = site.collections | where: "label", label | first %}  
+                    <!-- <p>{{ collection.label }}</p> -->  
+                    {% if collection.output %}  
+                        {% if collection.label == "posts" %}  
+                            {% assign all_posts = site[collection.label] %}  
+                            
+                            <!-- 按课程分组 -->  
+                            {% assign posts_by_course = all_posts | group_by: "course" %}  
+                            {% for course_group in posts_by_course %}  
+                                {% assign first_post = course_group.items | sort: "course_order" | first %}  
+                                {% assign course_group.order = first_post.course_order %}  
+                            {% endfor %}  
+                            {% assign posts_by_course = posts_by_course | sort: "order" %}  
+                            
+                            {% for course in posts_by_course %}  
+                                {% assign course_posts = course.items | sort: "date" | reverse %} 
+                                <!-- 检查是否有多个学期版本 -->  
+                                {% assign semesters = course_posts | map: "semester" | uniq %}                          
+
+                                {% if semesters.size > 1 %}  
+                                    <!-- 多学期课程显示为可折叠菜单 -->  
+                                    <li class="chapter chapter-course">  
+                                        <a href="javascript:void(0)" class="course-toggle expanded">  
+                                            {{ course.name }}  
+                                        </a>  
+                                        <ul class="semester-group" style="display: block;">  
+                                            {% for post in course_posts %}  
+                                                {% comment %}显示学期的debug信息{% endcomment %}  
+                                                {% comment %}{{ post.title }} - {{ post.semester }}{% endcomment %}  
+
+                                                {% if page.url == post.url %}  
+                                                <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                                {% else %}  
+                                                <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                                {% endif %}  
+                                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                                        {{ post.semester }}  
+                                                    </a>  
+                                                    {% if site.toc.enabled %}  
+                                                        {% if page.url == post.url %}  
+                                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                                        {% endif %}  
+                                                    {% endif %}  
+                                                </li>  
+                                            {% endfor %}  
+                                        </ul>  
+                                    </li>  
+                                {% else %}  
+                                    <!-- 单学期课程直接显示 -->  
+                                    {% assign post = course_posts[0] %}  
+                                    {% if page.url == post.url %}  
+                                    <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                    {% else %}  
+                                    <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                    {% endif %}  
+                                        <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                            {{ course.name }}  
+                                        </a>  
+                                        {% if site.toc.enabled %}  
+                                            {% if page.url == post.url %}  
+                                                {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                            {% endif %}  
+                                        {% endif %}  
+                                    </li>  
+                                {% endif %}  
+                            {% endfor %}  
+                        {% else %}  
+                            {% assign reversed_posts = site[collection.label] %}  
+                            {% for post in reversed_posts %}  
+                                {% if page.url == post.url %}  
+                                <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                {% else %}  
+                                <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                {% endif %}  
+                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                        {{ post.title | escape }}  
+                                    </a>  
+                                    {% if site.toc.enabled %}  
+                                        {% if page.url == post.url %}  
+                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                        {% endif %}  
+                                    {% endif %}  
+                                </li>  
+                            {% endfor %}  
+                        {% endif %}  
+
+                        {% if collection.label == "posts" %}  
+                            {% if all_posts.size > 0 %}  
+                                <li class="divider"></li>  
+                            {% endif %}  
+                        {% else %}  
+                            {% if reversed_posts.size > 0 %}  
+                                <li class="divider"></li>  
+                            {% endif %}  
+                        {% endif %}  
+                    {% endif %}  
+                {% endfor %}  
+            {% else %}  
+                {% for collection in site.collections %}  
+                    <!-- <p>{{ collection.label }}</p> -->  
+                    {% if collection.output %}  
+                        {% if collection.label == "posts" %}  
+                            {% assign all_posts = site[collection.label] %}  
+                            
+                            <!-- 按课程分组 -->  
+                            {% assign posts_by_course = all_posts | group_by: "course" %}  
+                            {% assign posts_by_course = posts_by_course | sort: "name" %}  
+                            
+                            {% for course in posts_by_course %}  
+                                {% assign course_posts = course.items | sort: "date" | reverse %}  
+                                
+                                <!-- 检查是否有多个学期版本 -->  
+                                {% assign semesters = course_posts | map: "semester" | uniq %}  
+                                
+                                {% if semesters.size > 1 %}  
+                                    <!-- 多学期课程显示为可折叠菜单 -->  
+                                    <li class="chapter chapter-course">  
+                                        <a href="javascript:void(0)" class="course-toggle expanded">  
+                                            {{ course.name }}  
+                                        </a>  
+                                        <ul class="semester-group" style="display: block;">  
+                                            {% for post in course_posts %}  
+                                                {% if page.url == post.url %}  
+                                                <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                                {% else %}  
+                                                <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                                {% endif %}  
+                                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                                        {{ post.semester }}  
+                                                    </a>  
+                                                    {% if site.toc.enabled %}  
+                                                        {% if page.url == post.url %}  
+                                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                                        {% endif %}  
+                                                    {% endif %}  
+                                                </li>  
+                                            {% endfor %}  
+                                        </ul>  
+                                    </li>  
+                                {% else %}  
+                                    <!-- 单学期课程直接显示 -->  
+                                    {% assign post = course_posts[0] %}  
+                                    {% if page.url == post.url %}  
+                                    <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                    {% else %}  
+                                    <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                    {% endif %}  
+                                        <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                            {{ course.name }}  
+                                        </a>  
+                                        {% if site.toc.enabled %}  
+                                            {% if page.url == post.url %}  
+                                                {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                            {% endif %}  
+                                        {% endif %}  
+                                    </li>  
+                                {% endif %}  
+                            {% endfor %}  
+                        {% else %}  
+                            {% assign reversed_posts = site[collection.label] %}  
+                            {% for post in reversed_posts %}  
+                                {% if page.url == post.url %}  
+                                <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
+                                {% else %}  
+                                <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">  
+                                {% endif %}  
+                                    <a href="{{site.baseurl}}{{post.url}}" onclick="pageScrollToTop(this)">  
+                                        {{ post.title | escape }}  
+                                    </a>  
+                                    {% if site.toc.enabled %}  
+                                        {% if page.url == post.url %}  
+                                            {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                        {% endif %}  
+                                    {% endif %}  
+                                </li>  
+                            {% endfor %}  
+                        {% endif %}  
+
+                        {% if collection.label == "posts" %}  
+                            {% if all_posts.size > 0 %}  
+                                <li class="divider"></li>  
+                            {% endif %}  
+                        {% else %}  
+                            {% if reversed_posts.size > 0 %}  
+                                <li class="divider"></li>  
+                            {% endif %}  
+                        {% endif %}  
+                    {% endif %}  
+                {% endfor %}  
+            {% endif %}  
+        </ul>  
+    </nav>  
+
+    <style>  
+        .chapter-course > a {  
+            font-weight: bold;  
+        }  
+        .course-toggle {  
+            cursor: pointer;  
+            position: relative;  
+            padding-right: 20px;  
+        }  
+        .course-toggle:after {  
+            content: '▼';  
+            position: absolute;  
+            right: 10px;  
+            top: 50%;  
+            transform: translateY(-50%);  
+            font-size: 10px;  
+        }  
+        .course-toggle.collapsed:after {  
+            content: '►';  
+        }  
+        .semester-group {  
+            margin-left: 15px;  
+        }  
+    </style>  
+
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {  
+            var toggleButtons = document.querySelectorAll('.course-toggle');  
+            toggleButtons.forEach(function(button) {  
+                button.addEventListener('click', function() {  
+                    var semesterGroup = this.nextElementSibling;  
+                    if (this.classList.contains('collapsed')) {  
+                        semesterGroup.style.display = 'block';  
+                        this.classList.remove('collapsed');  
+                        this.classList.add('expanded');  
+                    } else {  
+                        semesterGroup.style.display = 'none';  
+                        this.classList.remove('expanded');  
+                        this.classList.add('collapsed');  
+                    }  
+                });  
+            });  
+        });  
+    </script>  
+</div>  
