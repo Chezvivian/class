@@ -1,18 +1,24 @@
 <div class="book-summary">  
-    <div style="font-size:10px; padding:5px; color:#666; display:none;" id="debug-files">  
-        <p><strong>所有文件({{ site.posts.size }}):</strong></p>  
+    <div style="background:#f1f1f1; padding:10px; margin:10px; font-size:12px; border:1px solid #ddd;" id="debug-info">  
+        <h4>调试信息</h4>  
+        <p><strong>所有文章 ({{ site.posts.size }}):</strong></p>  
         <ul>  
         {% for post in site.posts %}  
-            <li>{{ post.title }} - 课程:{{ post.course }} - 学期:{{ post.semester }} - 日期:{{ post.date }}</li>  
+          <li>{{ post.title }} | 日期: {{ post.date | date: "%Y-%m-%d" }} | 课程: {{ post.course }} | 学期: {{ post.semester }}</li>  
         {% endfor %}  
         </ul>  
+        
+        <p><strong>计算机辅助翻译课程文章:</strong></p>  
+        <ul>  
+        {% assign cat_posts = site.posts | where: "course", "计算机辅助翻译" %}  
+        {% for post in cat_posts %}  
+          <li>{{ post.title }} | 日期: {{ post.date | date: "%Y-%m-%d" }} | 课程: {{ post.course }} | 学期: {{ post.semester }}</li>  
+        {% endfor %}  
+        </ul>  
+        <p><strong>计算机辅助翻译课程文章数: {{ cat_posts.size }}</strong></p>  
+        
         <button onclick="this.parentNode.style.display='none'">关闭</button>  
-    </div>  
-    <script>  
-        document.addEventListener('DOMContentLoaded', function() {  
-            document.getElementById('debug-files').style.display = 'block';  
-        });  
-    </script>  
+      </div>  
     
     <script type="text/javascript">  
         // Fixes the page links scroll problem on both desktop and mobile browsers  
