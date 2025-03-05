@@ -1,25 +1,5 @@
 <div class="book-summary">  
-    <div style="background:#f1f1f1; padding:10px; margin:10px; font-size:12px; border:1px solid #ddd;" id="debug-info">  
-        <h4>调试信息</h4>  
-        <p><strong>所有文章 ({{ site.posts.size }}):</strong></p>  
-        <ul>  
-        {% for post in site.posts %}  
-          <li>{{ post.title }} | 日期: {{ post.date | date: "%Y-%m-%d" }} | 课程: {{ post.course }} | 学期: {{ post.semester }}</li>  
-        {% endfor %}  
-        </ul>  
-        
-        <p><strong>计算机辅助翻译课程文章:</strong></p>  
-        <ul>  
-        {% assign cat_posts = site.posts | where: "course", "计算机辅助翻译" %}  
-        {% for post in cat_posts %}  
-          <li>{{ post.title }} | 日期: {{ post.date | date: "%Y-%m-%d" }} | 课程: {{ post.course }} | 学期: {{ post.semester }}</li>  
-        {% endfor %}  
-        </ul>  
-        <p><strong>计算机辅助翻译课程文章数: {{ cat_posts.size }}</strong></p>  
-        
-        <button onclick="this.parentNode.style.display='none'">关闭</button>  
-      </div>  
-    
+
     <script type="text/javascript">  
         // Fixes the page links scroll problem on both desktop and mobile browsers  
         function pageScrollToTop(element) {  
@@ -88,17 +68,7 @@
                             {% for course in posts_by_course %}  
                                 {% assign course_posts = course.items | sort: "date" | reverse %} 
                                 <!-- 检查是否有多个学期版本 -->  
-                                {% assign semesters = course_posts | map: "semester" | uniq %}  
-                                
-                                <!--调试信息放这里-->
-                                <li class="debug-info" style="color: #999; font-size: 12px; list-style: none;">  
-                                    <strong>课程:</strong> {{ course.name }} |   
-                                    <strong>学期数:</strong> {{ semesters.size }} |   
-                                    <strong>学期:</strong>   
-                                    {% for sem in semesters %}  
-                                        {{ sem }}{% unless forloop.last %}, {% endunless %}  
-                                    {% endfor %}  
-                                </li>  
+                                {% assign semesters = course_posts | map: "semester" | uniq %}                          
 
                                 {% if semesters.size > 1 %}  
                                     <!-- 多学期课程显示为可折叠菜单 -->  
