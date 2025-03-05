@@ -53,7 +53,43 @@
                     {% assign collection = site.collections | where: "label", label | first %}
                     <!-- <p>{{ collection.label }}</p> -->
                     {% if collection.output %}
-                        {% if collection.label == "posts" %}
+                            
+                    {% if collection.label == "posts" %}  
+                        {% assign all_posts = site[collection.label] %}  
+                        
+                        <!-- 按课程分组 -->  
+                        {% assign posts_by_course = all_posts | group_by: "course" %}  
+                        
+                        <!-- 对每个课程组应用course_order排序 -->  
+                        {% for course_group in posts_by_course %}  
+                            {% assign first_post = course_group.items | sort: "date" | reverse | first %}  
+                            {% assign course_group.order = first_post.course_order | default: 999 %}  
+                        {% endfor %}  
+                        {% assign posts_by_course = posts_by_course | sort: "order" %}  
+                        
+                        <!-- 只显示每个课程的最新学期 -->  
+                        {% for course in posts_by_course %}  
+                            {% assign latest_post = course.items | sort: "date" | reverse | first %}  
+                            {% if page.url == latest_post.url %}  
+                            <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{latest_post.url}}">  
+                            {% else %}  
+                            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{latest_post.url}}">  
+                            {% endif %}  
+                                <a href="{{site.baseurl}}{{latest_post.url}}" onclick="pageScrollToTop(this)">  
+                                    {{ course.name }}  
+                                </a>  
+                                {% if site.toc.enabled %}  
+                                    {% if page.url == latest_post.url %}  
+                                        {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}  
+                                    {% endif %}  
+                                {% endif %}  
+                            </li>  
+                        {% endfor %}  
+                    {% else %}  
+                        {% assign reversed_posts = site[collection.label] %}  
+                    {% endif %}  
+
+
                             {% assign reversed_posts = site[collection.label] | reverse %}
                         {% else %}
                             {% assign reversed_posts = site[collection.label] %}
