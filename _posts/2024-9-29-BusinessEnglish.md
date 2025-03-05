@@ -1,16 +1,18 @@
 ---
-title: 2024秋-大学商务英语（一）
+title: 大学商务英语一
 author: Huang Jie
 date: 2024-09-29
-category: note
+category: slides
 layout: post
 ---
 
 课程：大学商务英语(一)
 
-教材：新标准商务英语综合教程(1)，外语教学与研究出版社
+授课学期：2024秋
 
 授课单位：对外经济贸易大学英语学院
+
+教材：新标准商务英语综合教程(1)，外语教学与研究出版社
 
 转载请注明出处：chezvivian.github.io
 
