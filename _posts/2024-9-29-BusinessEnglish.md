@@ -2,13 +2,16 @@
 title: 大学商务英语一
 author: Huang Jie
 date: 2024-09-29
-category: slides
 layout: post
+course: 大学商务英语一
+semester: 2024秋
 ---
 
 课程：大学商务英语(一)
 
 授课学期：2024秋
+
+教师：黄婕
 
 授课单位：对外经济贸易大学英语学院
 
