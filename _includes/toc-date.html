@@ -65,11 +65,20 @@
                             {% assign posts_by_course = posts_by_course | sort: "order" %}  
                             
                             {% for course in posts_by_course %}  
-                                {% assign course_posts = course.items | sort: "date" | reverse %}  
-                                
+                                {% assign course_posts = course.items | sort: "date" | reverse %} 
                                 <!-- 检查是否有多个学期版本 -->  
                                 {% assign semesters = course_posts | map: "semester" | uniq %}  
                                 
+                                <!--调试信息放这里-->
+                                <li class="debug-info" style="color: #999; font-size: 12px; list-style: none;">  
+                                    <strong>课程:</strong> {{ course.name }} |   
+                                    <strong>学期数:</strong> {{ semesters.size }} |   
+                                    <strong>学期:</strong>   
+                                    {% for sem in semesters %}  
+                                        {{ sem }}{% unless forloop.last %}, {% endunless %}  
+                                    {% endfor %}  
+                                </li>  
+
                                 {% if semesters.size > 1 %}  
                                     <!-- 多学期课程显示为可折叠菜单 -->  
                                     <li class="chapter chapter-course">  
@@ -78,6 +87,9 @@
                                         </a>  
                                         <ul class="semester-group" style="display: block;">  
                                             {% for post in course_posts %}  
+                                                {% comment %}显示学期的debug信息{% endcomment %}  
+                                                {% comment %}{{ post.title }} - {{ post.semester }}{% endcomment %}  
+
                                                 {% if page.url == post.url %}  
                                                 <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">  
                                                 {% else %}  
