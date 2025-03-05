@@ -8,7 +8,8 @@ permalink: /
 2025春季学期资源如下：
 
 - [计算机辅助翻译](https://chezvivian.github.io/class/CAT.html)
-- [大学商务英语（一）](https://chezvivian.github.io/class/BusinessEnglish.html)
+- [本地化翻译](https://chezvivian.github.io/class/localization.html)
+- [翻译创业管理]
 
 ## 推荐的基础软件
 
