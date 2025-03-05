@@ -58,7 +58,11 @@
                             
                             <!-- 按课程分组 -->  
                             {% assign posts_by_course = all_posts | group_by: "course" %}  
-                            {% assign posts_by_course = posts_by_course | sort: "name" %}  
+                            {% for course_group in posts_by_course %}  
+                                {% assign first_post = course_group.items | sort: "course_order" | first %}  
+                                {% assign course_group.order = first_post.course_order %}  
+                            {% endfor %}  
+                            {% assign posts_by_course = posts_by_course | sort: "order" %}  
                             
                             {% for course in posts_by_course %}  
                                 {% assign course_posts = course.items | sort: "date" | reverse %}  
