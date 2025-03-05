@@ -35,23 +35,6 @@
                 <div class="body-inner">
                     {%- include body.html -%}
 
-                    {% if page.course %}  
-                        {% assign course_posts = site.posts | where: "course", page.course | sort: "date" | reverse %}  
-                        {% if course_posts.size > 1 %}  
-                            <div class="history-semesters" style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">  
-                                <h3>历史学期课程</h3>  
-                                <ul style="list-style-type: disc; padding-left: 20px;">  
-                                {% for post in course_posts %}  
-                                    {% if post.url != page.url %}  
-                                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.semester }}</a></li>  
-                                    {% endif %}  
-                                {% endfor %}  
-                                </ul>  
-                            </div>  
-                        {% endif %}  
-                    {% endif %}  
-
-
                     {% if page.previous %}
                         <a href="{{site.baseurl}}{{page.previous.url}}" class="navigation navigation-prev navigation-unique" aria-label="Previous page: {{page.previous.title}}">
                             <i class="fa fa-angle-left"></i>
