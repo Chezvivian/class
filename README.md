@@ -9,7 +9,7 @@ permalink: /
 
 - [计算机辅助翻译](https://chezvivian.github.io/class/CAT.html)
 - [本地化翻译](https://chezvivian.github.io/class/localization.html)
-- [翻译创业管理]
+- [翻译创业管理](https://chezvivian.github.io/class/entrepreneur.html)
 
 ## 推荐的基础软件
 
@@ -29,7 +29,7 @@ permalink: /
 
 
 
-使用中若出现问题，可以邮件和我沟通：chezvivian@outlook.com
+使用中若出现问题，欢饮邮件和我沟通：chezvivian@outlook.com
 
 
 
