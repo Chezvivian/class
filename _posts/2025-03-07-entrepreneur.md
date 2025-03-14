@@ -24,3 +24,7 @@ course_order: 3
 ## 第1讲 翻译创业管理概论
 
 课件：[第1讲 翻译创业管理概论.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第1讲_翻译创业管理概论.pdf)
+
+## 第2讲 创业思维与企业家精神
+
+课件：[第2讲 创业思维与企业家精神.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf)
