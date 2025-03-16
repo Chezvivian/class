@@ -3,9 +3,6 @@ title: 本地化翻译
 author: Huang Jie
 date: 2025-03-04
 layout: post
-course: 本地化翻译
-semester: 2025春
-course_order: 2  # 第二显示  
 ---
 
 课程：本地化翻译

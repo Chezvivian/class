@@ -3,9 +3,6 @@ title: 翻译创业管理
 author: Huang Jie
 date: 2025-03-07
 layout: post
-course: 本地化翻译
-semester: 2025春
-course_order: 3  
 ---
 
 课程：翻译创业管理

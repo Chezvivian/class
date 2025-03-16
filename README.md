@@ -13,14 +13,14 @@ permalink: /
 
 ## 推荐的基础软件
 
-- Microsoft office 365 (office全家桶)，使用贸大邮箱即可注册订阅教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的word, ppt功能）
-- Microsoft Onenote (笔记软件，[可电脑可平板](https://www.onenote.com/download)，有OCR，适合整理各科笔记)
-- Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做all-in-one工具)
+- Microsoft office 365 (office 全家桶)，使用贸大邮箱即可注册订阅教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的 word, ppt 功能）
+- Microsoft Onenote (笔记软件，[可电脑可平板](https://www.onenote.com/download)，有 OCR，适合整理各科笔记)
+- Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做 all-in-one 工具)
 
 
 ## 智能助教（测试中）
 
-* 目前测试版本的内核为DeepSeek + 本课程知识库
+* 目前测试版本的内核为 DeepSeek + 本课程知识库
 
 **网页登陆：[CAT课程智能助教_2.0](https://udify.app/chat/cowvutHCzOFeVfaw)**
 
@@ -29,7 +29,7 @@ permalink: /
 
 
 
-使用中若出现问题，欢饮邮件和我沟通：chezvivian@outlook.com
+使用中若出现问题，欢迎邮件和我沟通：chezvivian@outlook.com
 
 
 
