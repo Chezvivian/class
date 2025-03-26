@@ -1,6 +1,6 @@
 ---
 layout: home
-title: 课程资源分享
+title: 课程资源主页
 permalink: /
 ---
 

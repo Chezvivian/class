@@ -1,9 +1,9 @@
 ---
-title: Back to Jie Huang
+title: 黄婕主页
 author: Jie Huang
 date: 2024-11-03
 category: Jekyll
 layout: post
 ---
 
-Back to the Main site: [Jie Huang](https://chezvivian.github.io)
+回到黄婕主页: [Jie Huang](https://chezvivian.github.io)
