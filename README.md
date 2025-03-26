@@ -11,9 +11,10 @@ permalink: /
 - [本地化翻译](https://chezvivian.github.io/class/localization.html)
 - [翻译创业管理](https://chezvivian.github.io/class/entrepreneur.html)
 
-历史学期的课程课件如下：
+历史学期的完整课件如下：
 
-- [大学商务英语（一）](/class/archive/BusinessEnglish-2024/)
+- [2024秋：大学商务英语（一）](/class/archive/BusinessEnglish-2024/)
+- [2024秋：计算机辅助翻译](/class/archive/CAT-2024/)
 
 ## 推荐的基础软件
 

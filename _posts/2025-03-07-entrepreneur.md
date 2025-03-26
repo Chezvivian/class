@@ -25,3 +25,7 @@ layout: post
 ## 第2讲 创业思维与企业家精神
 
 课件：[第2讲 创业思维与企业家精神.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf)
+
+## 第3讲 翻译与语言服务市场概览
+
+课件：[第3讲 翻译与语言服务市场概览.pdf](/class/entrepreneur_pdf/第3讲_翻译与语言服务市场概览.pdf)
