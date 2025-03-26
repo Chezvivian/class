@@ -26,8 +26,8 @@ layout: post
 
 ## 第3讲 产品本地化流程
 
-课件：[第3讲 产品本地化流程.pdf](/class/l10n_pdf/第3讲_产品本地化流程.pdf)
+课件：[第3讲 产品本地化流程.pdf](https://chezvivian.github.io/class/l10n_pdf/第3讲_产品本地化流程.pdf)
 
 ## 第4讲 Trados Studio在翻译中的应用
 
-课件：[第4讲 Trados Studio在翻译中的应用.pdf](/class/l10n_pdf/第4讲_Trados_Studio在翻译中的应用.pdf)
+课件：[第4讲 Trados Studio在翻译中的应用.pdf](https://chezvivian.github.io/class/l10n_pdf/第4讲_Trados_Studio在翻译中的应用.pdf)

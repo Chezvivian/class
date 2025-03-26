@@ -28,4 +28,4 @@ layout: post
 
 ## 第3讲 翻译与语言服务市场概览
 
-课件：[第3讲 翻译与语言服务市场概览.pdf](/class/entrepreneur_pdf/第3讲_翻译与语言服务市场概览.pdf)
+课件：[第3讲 翻译与语言服务市场概览.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第3讲_翻译与语言服务市场概览.pdf)
