@@ -11,6 +11,10 @@ permalink: /
 - [本地化翻译](https://chezvivian.github.io/class/localization.html)
 - [翻译创业管理](https://chezvivian.github.io/class/entrepreneur.html)
 
+历史学期的课程课件如下：
+
+- [大学商务英语（一）](/class/archive/BusinessEnglish-2024/)
+
 ## 推荐的基础软件
 
 - Microsoft office 365 (office 全家桶)，使用贸大邮箱即可注册订阅教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的 word, ppt 功能）
