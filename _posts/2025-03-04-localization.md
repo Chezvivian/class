@@ -31,3 +31,7 @@ layout: post
 ## 第4讲 Trados Studio在翻译中的应用
 
 课件：[第4讲 Trados Studio在翻译中的应用.pdf](https://chezvivian.github.io/class/l10n_pdf/第4讲_Trados_Studio在翻译中的应用.pdf)
+
+## 第5讲 翻译中的术语应用与管理
+
+课件：[第5讲 翻译中的术语应用与管理.pdf](https://chezvivian.github.io/class/l10n_pdf/第5讲_翻译中的术语应用与管理.pdf)
