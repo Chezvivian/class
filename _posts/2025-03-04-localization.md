@@ -35,3 +35,7 @@ layout: post
 ## 第5讲 翻译中的术语应用与管理
 
 课件：[第5讲 翻译中的术语应用与管理.pdf](https://chezvivian.github.io/class/l10n_pdf/第5讲_翻译中的术语应用与管理.pdf)
+
+## 第6讲 软件用户界面的本地化翻译
+
+课件：[第6讲 软件用户界面的本地化翻译.pdf](https://chezvivian.github.io/class/l10n_pdf/第6讲_软件用户界面的本地化翻译.pdf)
