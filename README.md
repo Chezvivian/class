@@ -23,7 +23,7 @@ permalink: /
 - Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做 all-in-one 工具)
 
 
-## 智能助教（测试中）
+## CAT 2.0 智能助教（已上线惠园AI平台）
 
 * 目前测试版本的内核为 DeepSeek + 本课程知识库
 
@@ -31,9 +31,23 @@ permalink: /
 
 **手机端使用请扫二维码：![智能助教](https://chezvivian.github.io/class/assets/CAT助教_2.0.png)**
 
-## 商务英语数字人助理 
+## 商务英语数字人助理 (点击右下角动态头像)
 
-* 技术来源：D-ID
+欢迎使用商务英语数字人助手！这是一位专业的商务顾问，旨在帮助你更好地理解《大学商务英语一》课程中的核心商务概念和专业术语。
+
+数字人助手精通以下课程主题：
+
+- 公司类型与组织结构（Types of Companies & Organizational Structure）
+- 领导风格与管理策略（Leadership Styles）
+- 企业战略制定与SWOT分析（Strategic Planning & SWOT Analysis）
+- 品牌管理与市场营销（Brand Management，如Nike's Goddess案例）
+- 跨文化商务沟通（Cross-cultural Communication）
+- 商业环境与可持续发展（Business Environment & Sustainability）
+
+**提问方式：直接在对话框中输入你的问题**
+
+注意：主要使用英语提问以提升你的商务英语能力。如遇到困难，可以使用中文提问，助手会尽量用英语回答并在必要时提供中文解释。
+
 
 <script
     type="module"
