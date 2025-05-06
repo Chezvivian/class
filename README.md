@@ -31,7 +31,20 @@ permalink: /
 
 **手机端使用请扫二维码：![智能助教](https://chezvivian.github.io/class/assets/CAT助教_2.0.png)**
 
+## 商务英语数字人助理 
 
+* 技术来源：D-ID
+
+<script
+    type="module"
+    src="https://agent.d-id.com/v1/index.js"
+    data-name="did-agent"
+    data-mode="fabio"
+    data-client-key="YXV0aDB8NjgxYTAxYmEyZGNhMTc1NDdkZmYxNDc1OlhvaWFYbmZpdkt5NDRKRFZSRURjYw=="
+    data-agent-id="agt_AARr0Q-v"
+    data-monitor="true">
+</script>
+    
 
 
 使用中若出现问题，欢迎邮件和我沟通：chezvivian@outlook.com
