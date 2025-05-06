@@ -16,8 +16,6 @@ layout: post
 转载请注明出处：chezvivian.github.io
 
 
-
-
 ## 第1讲 翻译创业管理概论
 
 课件：[第1讲 翻译创业管理概论.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第1讲_翻译创业管理概论.pdf)
