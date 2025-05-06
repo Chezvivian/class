@@ -16,14 +16,8 @@ permalink: /
 - [2024秋：大学商务英语（一）](/class/archive/BusinessEnglish-2024/)
 - [2024秋：计算机辅助翻译](/class/archive/CAT-2024/)
 
-## 推荐的基础软件
 
-- Microsoft office 365 (office 全家桶)，使用贸大邮箱即可注册订阅教育版[学生账号](https://signup.microsoft.com/signup?sku=Education)，该版本有许多额外的 word, ppt 功能）
-- Microsoft Onenote (笔记软件，[可电脑可平板](https://www.onenote.com/download)，有 OCR，适合整理各科笔记)
-- Notion ([日程管理、笔记软件](https://www.notion.so/desktop)，有一定学习门槛，熟练使用之后功能强大，可以做 all-in-one 工具)
-
-
-## CAT 2.0 智能助教（已上线惠园AI平台）
+### CAT 2.0 智能助教（已上线惠园AI平台）
 
 > * 目前测试版本的内核为 DeepSeek + 本课程知识库
 > 
@@ -31,7 +25,7 @@ permalink: /
 > 
 > **手机端使用请扫二维码：![智能助教](https://chezvivian.github.io/class/assets/CAT助教_2.0.png)**
 
-## 商务英语数字人助理 (点击右下角动态头像)
+### 大学商务英语--数字人助理 (点击右下角动态头像)
 
 > 欢迎使用商务英语数字人助手！这是一位专业的商务顾问，旨在帮助你更好地理解《大学商务英语一》课程中的核心商务概念和专业术语。
 > 
@@ -57,8 +51,6 @@ permalink: /
     data-monitor="true">
 </script>
     
-
-
 **使用中若出现问题，欢迎邮件和我沟通：chezvivian@outlook.com**
 
 
