@@ -39,3 +39,19 @@ layout: post
 ## 第6讲 软件用户界面的本地化翻译
 
 课件：[第6讲 软件用户界面的本地化翻译.pdf](https://chezvivian.github.io/class/l10n_pdf/第6讲_软件用户界面的本地化翻译.pdf)
+
+## 第7讲 文档本地化翻译
+
+课件：[第7讲 文档本地化翻译.pdf](https://chezvivian.github.io/class/l10n_pdf/第7讲_文档本地化翻译.pdf)
+
+## 第8讲 游戏本地化翻译方法与策略
+
+课件：[第8讲 游戏本地化翻译方法与策略.pdf](https://chezvivian.github.io/class/l10n_pdf/第8讲_游戏本地化翻译方法与策略.pdf)
+
+## 第9讲 网站本地化翻译
+
+课件：[第9讲 网站本地化翻译.pdf](https://chezvivian.github.io/class/l10n_pdf/第9讲_网站本地化翻译.pdf)
+
+## 第10讲 视频本地化翻译与技术
+
+课件：[第10讲 视频本地化翻译与技术.pdf](https://chezvivian.github.io/class/l10n_pdf/第10讲_视频本地化翻译与技术.pdf)
