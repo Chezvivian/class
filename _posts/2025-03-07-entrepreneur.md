@@ -65,3 +65,19 @@ Handout: [课堂练习：创业机会评估.pdf](https://chezvivian.github.io/cl
 课件：[第8讲 创业融资.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第8讲_创业融资.pdf)
 
 > 介绍了创业融资的三类渠道：私人、机构和政府融资。鼓励同学们调查研究不同地区政府的创业创新政策。
+
+## 第9讲 创建企业
+
+课件：[第9讲 创建企业.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第9讲_创建企业.pdf)
+
+> 介绍了企业的基本类型、不同类型企业的注册流程、企业基本的税务和财务知识。最后用西南财经大学的一个虚拟仿真实验平台，让同学们测验一下关于企业的基础知识。
+
+## 第10讲 新创企业的生存和管理
+
+课件：[第10讲 新创企业的生存和管理.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_新创企业的生存和管理.pdf)
+
+Handout: [课堂练习：VRIO核心竞争力评估.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_VRIO核心竞争力评估_handout.pdf) 
+
+** 课堂练习：评估各个创业团队目前的核心竞争力分布及强弱情况，可以用来有针对性地解决问题、加强团队建设。
+
+> 包括新创企业的常见问题，如何构建企业的核心竞争力。介绍了几个经典的竞争力模型，也引入翻译和语言服务行业的报告，用来推断翻译行业的核心竞争力。
