@@ -15,110 +15,97 @@ layout: post
 
 转载请注明出处：chezvivian.github.io
 
-<!-- 学期计划与资源（可视化表格） -->
-<h2>学期计划与资源</h2>
+<!-- 本地化翻译课程学期计划与资源（可视化表格） -->
+<h2>本地化翻译课程学期计划与资源</h2>
 <table style="width:100%; border-collapse:collapse; text-align:center; font-size:1em;">
   <tr style="background:#4472c4; color:#fff;">
-    <th style="border:1px solid #ccc; padding:8px; width:10%;">课次</th>
-    <th style="border:1px solid #ccc; padding:8px; width:45%;">主题与课件</th>
-    <th style="border:1px solid #ccc; padding:8px; width:35%;">简介</th>
-    <th style="border:1px solid #ccc; padding:8px; width:10%;">模块</th>
+    <th style="border:1px solid #ccc; padding:8px;">课次</th>
+    <th style="border:1px solid #ccc; padding:8px;">主题与课件</th>
+    <th style="border:1px solid #ccc; padding:8px;">简介</th>
+    <th style="border:1px solid #ccc; padding:8px;">模块</th>
   </tr>
   <tr style="background:#d9e1f2;">
     <td style="border:1px solid #ccc; padding:8px;">第1讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第1讲_本地化行业与市场概述.pdf" target="_blank">本地化行业与市场概述</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>了解本地化行业发展与趋势。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">本地化翻译入门知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">了解本地化行业发展与趋势。</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="3"><b>本地化翻译入门知识</b></td>
   </tr>
   <tr style="background:#d9e1f2;">
     <td style="border:1px solid #ccc; padding:8px;">第2讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第2讲_本地化翻译文本类型与翻译规则.pdf" target="_blank">本地化翻译文本类型与翻译规则</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>掌握常见文本类型及翻译规则。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">本地化翻译入门知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">掌握常见文本类型及翻译规则。</td>
   </tr>
   <tr style="background:#d9e1f2;">
     <td style="border:1px solid #ccc; padding:8px;">第3讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第3讲_产品本地化流程.pdf" target="_blank">产品本地化流程</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>介绍产品本地化的标准流程。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">本地化翻译入门知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">介绍产品本地化的标准流程。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第4讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第4讲_Trados_Studio在翻译中的应用.pdf" target="_blank">Trados Studio在翻译中的应用</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>掌握Trados Studio的基本操作与应用。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">掌握Trados Studio的基本操作与应用。</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="9"><b>各类本地化流程与实践</b></td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第5讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第5讲_翻译中的术语应用与管理.pdf" target="_blank">翻译中的术语应用与管理</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>了解术语管理的重要性与工具。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">了解术语管理的重要性与工具。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第6讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第6讲_软件用户界面的本地化翻译.pdf" target="_blank">软件用户界面的本地化翻译</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>讲解软件界面本地化流程与案例。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">讲解软件界面本地化流程与案例。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第7讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第7讲_文档本地化翻译.pdf" target="_blank">文档本地化翻译</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>提升文档本地化的专业性与规范性。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">提升文档本地化的专业性与规范性。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第8讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第8讲_游戏本地化翻译方法与策略.pdf" target="_blank">游戏本地化翻译方法与策略</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>了解游戏本地化的特殊需求与策略。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">了解游戏本地化的特殊需求与策略。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第9讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第9讲_网站本地化翻译.pdf" target="_blank">网站本地化翻译</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>掌握网站内容的本地化方法。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">掌握网站内容的本地化方法。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第10讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第10讲_视频本地化翻译与技术.pdf" target="_blank">视频本地化翻译与技术</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>提升多媒体内容本地化能力。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">提升多媒体内容本地化能力。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第11讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第11讲_移动应用程序APP本地化翻译.pdf" target="_blank">移动应用程序APP本地化翻译</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>掌握移动端内容的本地化方法。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">掌握移动端内容的本地化方法。</td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第12讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第12讲_本地化翻译作业讲评.pdf" target="_blank">本地化翻译作业讲评</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>总结作业常见问题与改进建议。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">总结作业常见问题与改进建议。</td>
   </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第13讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第13讲_本地化翻译的语言资产管理.pdf" target="_blank">本地化翻译的语言资产管理</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>提升语言资产管理与应用能力。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">项目管理知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">提升语言资产管理与应用能力。</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="4"><b>项目管理知识</b></td>
   </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第14讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第14讲_本地化项目管理概述.pdf" target="_blank">本地化项目管理概述</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>掌握本地化项目管理的核心要点。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">项目管理知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">掌握本地化项目管理的核心要点。</td>
   </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第15讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第15讲_AI智能体设计技术.pdf" target="_blank">AI智能体设计技术</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>了解AI智能体在本地化中的应用。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">项目管理知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">了解AI智能体在本地化中的应用。</td>
   </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第16讲</td>
     <td style="border:1px solid #ccc; padding:8px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第16讲_本地化课程总结与职业发展.pdf" target="_blank">本地化课程总结与职业发展</a></td>
-    <td style="border:1px solid #ccc; padding:8px;"><div style='background:#f5f7fa; border-radius:6px; padding:8px;'>课程总结与职业发展讨论。</div></td>
-    <td style="border:1px solid #ccc; padding:8px;">项目管理知识</td>
+    <td style="border:1px solid #ccc; padding:8px;">课程总结与职业发展讨论。</td>
   </tr>
 </table>
 
