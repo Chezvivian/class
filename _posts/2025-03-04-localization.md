@@ -15,6 +15,103 @@ layout: post
 
 转载请注明出处：chezvivian.github.io
 
+<!-- 本地化翻译课程学期计划（可视化表格） -->
+<h2>本地化翻译课程学期计划</h2>
+<table style="width:100%; border-collapse:collapse; text-align:center; font-size:1em;">
+  <tr style="background:#4472c4; color:#fff;">
+    <th style="border:1px solid #ccc; padding:8px;">课次</th>
+    <th style="border:1px solid #ccc; padding:8px;">主题</th>
+    <th style="border:1px solid #ccc; padding:8px;">模块</th>
+  </tr>
+  <tr style="background:#d9e1f2;">
+    <td style="border:1px solid #ccc; padding:8px;">第1讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">本地化行业与市场概述</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="3"><b>本地化翻译入门知识</b></td>
+  </tr>
+  <tr style="background:#d9e1f2;">
+    <td style="border:1px solid #ccc; padding:8px;">第2讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">本地化翻译文本类型与翻译规则</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#d9e1f2;">
+    <td style="border:1px solid #ccc; padding:8px;">第3讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">产品本地化流程</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#c00000; color:#fff;">
+    <td style="border:1px solid #ccc; padding:8px;" colspan="3"><b>各类本地化流程与实践</b></td>
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第4讲</td>
+    <td style="border:1px solid #ccc; padding:8px;"><b>SDL Trados在翻译中的应用</b></td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="9">各类本地化流程与实践</td>
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第5讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">翻译术语工具应用与管理</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第6讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">软件用户界面的本地化翻译</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第7讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">文档本地化翻译</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第8讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">游戏本地化翻译方法与策略</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第9讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">网站本地化翻译</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第10讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">视频本地化翻译与技术</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第11讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">APP本地化翻译</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#f4cccc;">
+    <td style="border:1px solid #ccc; padding:8px;">第12讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">网站本地化翻译作业点评</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#92d050;">
+    <td style="border:1px solid #ccc; padding:8px;" colspan="3"><b>项目管理知识</b></td>
+  </tr>
+  <tr style="background:#e2efda;">
+    <td style="border:1px solid #ccc; padding:8px;">第13讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">翻译语言资产管理</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="4">项目管理知识</td>
+  </tr>
+  <tr style="background:#e2efda;">
+    <td style="border:1px solid #ccc; padding:8px;">第14讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">本地化项目管理概述</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#e2efda;">
+    <td style="border:1px solid #ccc; padding:8px;">第15讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">智能体设计</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+  <tr style="background:#e2efda;">
+    <td style="border:1px solid #ccc; padding:8px;">第16讲</td>
+    <td style="border:1px solid #ccc; padding:8px;">课程总结与本地化职业发展</td>
+    <!-- 模块单元格合并 -->
+  </tr>
+</table>
+
+
 
 ## 第1讲 本地化行业与市场概述
 
