@@ -38,13 +38,10 @@ layout: post
     <td style="border:1px solid #ccc; padding:8px;">产品本地化流程</td>
     <!-- 模块单元格合并 -->
   </tr>
-  <tr style="background:#c00000; color:#fff;">
-    <td style="border:1px solid #ccc; padding:8px;" colspan="3"><b>各类本地化流程与实践</b></td>
-  </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第4讲</td>
-    <td style="border:1px solid #ccc; padding:8px;"><b>SDL Trados在翻译中的应用</b></td>
-    <td style="border:1px solid #ccc; padding:8px;" rowspan="9">各类本地化流程与实践</td>
+    <td style="border:1px solid #ccc; padding:8px;">SDL Trados在翻译中的应用</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="9"><b>各类本地化流程与实践</b></td>
   </tr>
   <tr style="background:#f4cccc;">
     <td style="border:1px solid #ccc; padding:8px;">第5讲</td>
@@ -86,13 +83,10 @@ layout: post
     <td style="border:1px solid #ccc; padding:8px;">网站本地化翻译作业点评</td>
     <!-- 模块单元格合并 -->
   </tr>
-  <tr style="background:#92d050;">
-    <td style="border:1px solid #ccc; padding:8px;" colspan="3"><b>项目管理知识</b></td>
-  </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第13讲</td>
     <td style="border:1px solid #ccc; padding:8px;">翻译语言资产管理</td>
-    <td style="border:1px solid #ccc; padding:8px;" rowspan="4">项目管理知识</td>
+    <td style="border:1px solid #ccc; padding:8px;" rowspan="4"><b>项目管理知识</b></td>
   </tr>
   <tr style="background:#e2efda;">
     <td style="border:1px solid #ccc; padding:8px;">第14讲</td>
