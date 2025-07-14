@@ -15,7 +15,8 @@ layout: post
 </div>
 
 <!-- 本地化翻译课程学期计划与资源（可视化表格） -->
-<h2>本地化翻译课程学期计划与资源</h2>
+## 学期计划与资源
+
 <table style="width:100%; border-collapse:collapse; text-align:center; font-size:1em;">
   <tr style="background:#4472c4; color:#fff;">
     <th style="border:1px solid #ccc; padding:8px;">课次</th>
@@ -109,8 +110,9 @@ layout: post
 </table>
 
 <!-- 结课感想美化区块 -->
+## 结课感想
+
 <div style="background:#f9f6f2; border-left:6px solid #4472c4; border-radius:8px; box-shadow:0 2px 8px #eee; padding:24px 24px 24px 32px; margin:32px 0;">
-  <h3 style="color:#c00000; margin-top:0;">结课感想 <span style="font-size:1.2em;">🎓</span></h3>
   <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年7月13日</p>
   <p style="font-size:1.1em; line-height:1.8;">
     2025春的《本地化翻译》是我第一轮教这门课，同样是崔启亮老师作为课程负责人，我教授一个平行班的形式。这一学期班级有9名同学，是一个少见的小班，也带给了我全新的上课体验。<br><br>
