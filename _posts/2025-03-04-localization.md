@@ -5,15 +5,14 @@ date: 2025-03-04
 layout: post
 ---
 
-课程：本地化翻译（研究生）
-
-授课学期：2025春
-
-教师：黄婕
-
-授课单位：对外经济贸易大学英语学院
-
-转载请注明出处：chezvivian.github.io
+<!-- 课程简介区块 -->
+<div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
+<strong>课程：</strong>本地化翻译（研究生）<br>
+<strong>授课学期：</strong>2025春<br>
+<strong>教师：</strong>黄婕<br>
+<strong>授课单位：</strong>对外经济贸易大学英语学院<br>
+<strong>转载请注明出处：</strong>chezvivian.github.io
+</div>
 
 <!-- 本地化翻译课程学期计划与资源（可视化表格） -->
 <h2>本地化翻译课程学期计划与资源</h2>
@@ -112,6 +111,7 @@ layout: post
 <!-- 结课感想美化区块 -->
 <div style="background:#f9f6f2; border-left:6px solid #4472c4; border-radius:8px; box-shadow:0 2px 8px #eee; padding:24px 24px 24px 32px; margin:32px 0;">
   <h3 style="color:#c00000; margin-top:0;">结课感想 <span style="font-size:1.2em;">🎓</span></h3>
+  <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年7月13日</p>
   <p style="font-size:1.1em; line-height:1.8;">
     2025春的《本地化翻译》是我第一轮教这门课，同样是崔启亮老师作为课程负责人，我教授一个平行班的形式。这一学期班级有9名同学，是一个少见的小班，也带给了我全新的上课体验。<br><br>
     <b>体验1：挑战性和新意。</b> 本学期16讲的正课内容，虽然有大概2-3次的内容和《计算机辅助翻译》有一定的交叉，但可能由于这是我的一门新课，且课程范围覆盖了本地化的方方面面，甚至大于我之前读书、实习中所涉及的范围，所以从备课和上课来说都有一定的挑战性，以及充满未知和新意的地方。<br><br>
