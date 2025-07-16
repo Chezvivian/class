@@ -11,7 +11,7 @@ layout: post
 <strong>授课学期：</strong>2025春<br>
 <strong>教师：</strong>黄婕<br>
 <strong>授课单位：</strong>对外经济贸易大学英语学院<br>
-<strong>转载请注明出处：</strong>chezvivian.github.io
+<strong>转载请注明出处：</strong>https://chezvivian.github.io/class
 </div>
 
 <!-- 本地化翻译课程学期计划与资源（可视化表格） -->
@@ -86,23 +86,23 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第12讲_本地化翻译作业讲评.pdf" target="_blank">本地化翻译作业讲评</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">总结作业常见问题与改进建议。</td>
   </tr>
-  <tr style="background:#e2efda; color:#2d3a4a;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第13讲</td>
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第13讲_本地化翻译的语言资产管理.pdf" target="_blank">本地化翻译的语言资产管理</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">提升语言资产管理与应用能力。</td>
     <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="4"><b>项目管理知识</b></td>
   </tr>
-  <tr style="background:#e2efda; color:#2d3a4a;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第14讲</td>
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第14讲_本地化项目管理概述.pdf" target="_blank">本地化项目管理概述</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握本地化项目管理的核心要点。</td>
   </tr>
-  <tr style="background:#e2efda; color:#2d3a4a;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第15讲</td>
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第15讲_AI智能体设计技术.pdf" target="_blank">AI智能体设计技术</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解AI智能体在本地化中的应用。</td>
   </tr>
-  <tr style="background:#e2efda; color:#2d3a4a;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第16讲</td>
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/第16讲_本地化课程总结与职业发展.pdf" target="_blank">本地化课程总结与职业发展</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">课程总结与职业发展讨论。</td>

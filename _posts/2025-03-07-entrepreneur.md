@@ -5,97 +5,116 @@ date: 2025-03-07
 layout: post
 ---
 
-课程：翻译创业管理
+<!-- 课程简介区块 -->
+<div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
+<strong>课程：</strong>翻译创业管理<br>
+<strong>授课学期：</strong>2025春<br>
+<strong>教师：</strong>黄婕<br>
+<strong>授课单位：</strong>对外经济贸易大学英语学院<br>
+<strong>转载请注明出处：</strong>https://chezvivian.github.io/class
+</div>
 
-授课学期：2025春
+<!-- 学期计划与资源表格 -->
+## 学期计划与资源
 
-教师：黄婕
+<table class="cat-table" style="width:100%; border-collapse:collapse; text-align:center; font-size:1em; background:#fff;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <th style="border:1px solid #e0e0e0; padding:10px 24px; width:90px;">课次</th>
+    <th style="border:1px solid #e0e0e0; padding:10px 40px; width:300px;">主题与课件</th>
+    <th style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em; width:220px;">简介</th>
+    <th style="border:1px solid #e0e0e0; padding:10px 24px; width:150px;">模块</th>
+  </tr>
+  <!-- 认知准备模块 -->
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第1讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第1讲_翻译创业管理概论.pdf" target="_blank">翻译创业管理概论</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">课程整体介绍，理解翻译创业的基本框架。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="3"><b>认知准备</b></td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第2讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf" target="_blank">创业思维与企业家精神</a><br><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维测试问卷_handout.pdf" target="_blank" style="font-size:0.9em;">创业思维测试问卷</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">理解创业思维类型，评估自身思维模式。</td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第3讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第3讲_翻译与语言服务市场概览.pdf" target="_blank">翻译与语言服务市场概览</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解翻译与语言服务行业的市场现状与趋势。</td>
+  </tr>
+  <!-- 机会识别模块 -->
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第4讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会与识别.pdf" target="_blank">创业机会与识别</a><br><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会评估_handout.pdf" target="_blank" style="font-size:0.9em;">创业机会评估</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">识别创业机会类型，提升创业警觉性。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="3"><b>机会识别</b></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第5讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第5讲_创业者与创业团队.pdf" target="_blank">创业者与创业团队</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">团队组建与冲突管理，理解团队互补性。</td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第6讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第6讲_小组创业机会+创业大赛介绍.pdf" target="_blank">小组创业机会+创业大赛介绍</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解创新创业大赛，初步体验商业计划书撰写。</td>
+  </tr>
+  <!-- 计划制定模块 -->
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第7讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第7讲_商业计划书和商业模式.pdf" target="_blank">商业计划书和商业模式</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握商业计划书撰写与商业模式设计工具。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="5"><b>计划制定</b></td>
+  </tr>
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第8讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第8讲_创业融资.pdf" target="_blank">创业融资</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解创业融资渠道与政策。</td>
+  </tr>
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第9讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第9讲_创建企业.pdf" target="_blank">创建企业</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握企业注册、税务与财务基础。</td>
+  </tr>
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第10讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_新创企业的生存与管理.pdf" target="_blank">新创企业的生存和管理</a><br><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_VRIO核心竞争力评估_handout.pdf" target="_blank" style="font-size:0.9em;">VRIO核心竞争力评估</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">理解企业核心竞争力与管理问题。</td>
+  </tr>
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第11讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第11讲_翻译创业公司的创新与管理.pdf" target="_blank">翻译创业公司的创新与管理</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">创新战略与管理体系优化。</td>
+  </tr>
+  <!-- 决策优化模块 -->
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第12讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第12讲_创业决策.pdf" target="_blank">创业决策</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">分析创业过程中的关键决策点。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="4"><b>决策优化</b></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第13讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第13讲_创业机制.pdf" target="_blank">创业机制</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">机制设计与管理，提升创业成功率。</td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第14讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课程总结与作业讲评</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">课程总结与作业反馈。</td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第15讲</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课程总结</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">课程收尾与展望。</td>
+  </tr>
+</table>
 
-授课单位：对外经济贸易大学英语学院
+<!-- 结课感想美化区块 -->
+## 结课感想（2025春季学期）
 
-转载请注明出处：chezvivian.github.io
-
-
-## 第1讲 翻译创业管理概论
-
-课件：[第1讲 翻译创业管理概论.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第1讲_翻译创业管理概论.pdf)
-
-## 第2讲 创业思维与企业家精神
-
-课件：[第2讲 创业思维与企业家精神.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf)
-
-Handout: [课堂练习：创业思维测试问卷.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维测试问卷_handout.pdf) **创业思维的测试问卷，帮助判断你的思维模式倾向。**
-
-> 这节课讲到了创业的效果逻辑和因果逻辑，很有意思。评估自己的思维模式和有意识地锻炼某种思维模式，有助于找到适合当下资源状况、创业阶段的行事方法。
-
-## 第3讲 翻译与语言服务市场概览
-
-课件：[第3讲 翻译与语言服务市场概览.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第3讲_翻译与语言服务市场概览.pdf)
-
-> 对2025年翻译和语言服务市场的一个最新总览。同时对比语言服务业和其他第三产业的体量，更好地把握潜在市场规模和发展路径。
-
-## 第4讲 创业机会与识别
-
-课件：[第4讲 创业机会与识别.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会与识别.pdf)
-
-Handout: [课堂练习：创业机会评估.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会评估_handout.pdf) **一个问卷小练习，用来评估自己的创业想法，考量客户、市场、资源各个方面的因素。**
-
-> 创业机会有哪些类型？是解决问题，还是应用技术，还是探索新的市场，还是梦想创造？可按照解决方案导向（手段）和问题导向（目的）来进行划分。对于提高机会识别的能力，还有有趣的"结构洞"概念：要努力成为结构洞的发现者、抢占者，避免认知僵化，训练自己的创业警觉性。
-
-## 第5讲 创业者与创业团队
-
-课件：[第5讲 创业者与创业团队.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第5讲_创业者与创业团队.pdf)
-
-> 团队组建时要侧重于相似性还是互补性？团队成员之间发生意见冲突怎么办？很有趣的托马斯——基尔曼冲突模型，给出可以借鉴到各个场合的冲突处理机制。
-
-## 第6讲 小组创业机会+创业大赛介绍
-
-课件：[第6讲 小组创业机会+创业大赛介绍.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第6讲_小组创业机会+创业大赛介绍.pdf)
-
-> 介绍国内主流的大学生创新创业大赛。鼓励同学们报名参加此类比赛，从撰写商业计划书开始，了解初创公司的商业模式和运营逻辑，为真正创业打下基础。同时也有更大希望获取融资。
-
-## 第7讲 商业计划书和商业模式
-
-课件：[第7讲 商业计划书和商业模式.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第7讲_商业计划书和商业模式.pdf)
-
-> 讲述了商业计划书的撰写方法。后半部分拓展商业模式的概念和一些工具，比如神奇三角模型、商业模式画布，用来帮助创业者厘清盈利和管理思路。
-
-## 第8讲 创业融资
-
-课件：[第8讲 创业融资.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第8讲_创业融资.pdf)
-
-> 介绍了创业融资的三类渠道：私人、机构和政府融资。鼓励同学们调查研究不同地区政府的创业创新政策。
-
-## 第9讲 创建企业
-
-课件：[第9讲 创建企业.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第9讲_创建企业.pdf)
-
-> 介绍了企业的基本类型、不同类型企业的注册流程、企业基本的税务和财务知识。最后用西南财经大学的一个虚拟仿真实验平台，让同学们测验一下关于企业的基础知识。
-
-## 第10讲 新创企业的生存和管理
-
-课件：[第10讲 新创企业的生存和管理.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_新创企业的生存和管理.pdf)
-
-Handout: [课堂练习：VRIO核心竞争力评估.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_VRIO核心竞争力评估_handout.pdf) 
-
-** 课堂练习：评估各个创业团队目前的核心竞争力分布及强弱情况，可以用来有针对性地解决问题、加强团队建设。
-
-> 包括新创企业的常见问题，如何构建企业的核心竞争力。介绍了几个经典的竞争力模型，也引入翻译和语言服务行业的报告，用来推断翻译行业的核心竞争力。
-
-## 第11讲 翻译创业公司的创新与管理
-
-课件：[第11讲 翻译创业公司的创新与管理.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第11讲_翻译创业公司的创新与管理.pdf)
-
-> 探讨翻译创业公司如何在竞争激烈的市场中保持创新活力，以及如何建立有效的管理体系。包括创新战略的制定、创新文化的培育、以及管理体系的优化等内容。
-
-## 第12讲 创业决策
-
-课件：[第12讲 创业决策.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第12讲_创业决策.pdf)
-
-> 分析创业过程中的关键决策点，包括市场进入决策、产品定位决策、团队组建决策等。通过案例研究，帮助创业者提高决策能力，降低决策风险。
-
-## 第13讲 创业机制
-
-课件：[第13讲 创业机制.pdf](https://chezvivian.github.io/class/entrepreneur_pdf/第13讲_创业机制.pdf)
-
-> 深入探讨创业过程中的各种机制设计，包括激励机制、约束机制、协调机制等。帮助创业者建立科学的管理机制，提高创业成功率。
+<div style="background:#f9f6f2; border-left:6px solid #4472c4; border-radius:8px; box-shadow:0 2px 8px #eee; padding:24px 24px 24px 32px; margin:32px 0;">
+  <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年7月</p>
+  <p style="font-size:1.1em; line-height:1.8;">
+    （此处可填写课程结课感想、教学反思或学生寄语等内容）
+  </p>
+</div>
