@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var btn = document.getElementById('toggle-summary-btn');
   var summary = document.querySelector('.book-summary');
   var body = document.querySelector('.book-body');
 
@@ -21,11 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     expandBtn.style.display = 'none';
   }
 
-  if (btn && summary && body) {
-    btn.addEventListener('click', function() {
-      hideSidebar();
-    });
-  }
   expandBtn.addEventListener('click', function() {
     showSidebar();
   });
