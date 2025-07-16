@@ -9,8 +9,6 @@ permalink: /
   <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b><br>
 </div>
 
-## 📚 课程资源导航
-
 <b>2025春季学期：</b>
 
 - <a href="CAT.html" style="color:#4472c4; font-weight:bold;">计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
@@ -26,6 +24,7 @@ permalink: /
 
 <div style="display:flex; flex-wrap:wrap; gap:24px; margin:32px 0 0 0; justify-content:space-between;">
   <div style="flex:1 1 320px; max-width:48%; background:#e3e8ef; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+    <span style="font-size:2.2em;">🧑‍💻</span><br>
     <b>CAT 2.0 智能助教</b><br>
     <span style="color:#555;">翻译技术课程专属AI助手，支持答疑、资料检索、作业批改等。</span><br>
     <a href="https://udify.app/chat/cowvutHCzOFeVfaw" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
