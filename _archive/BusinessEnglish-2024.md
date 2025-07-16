@@ -12,7 +12,7 @@ layout: post
 <strong>教师：</strong>黄婕<br>
 <strong>授课单位：</strong>对外经济贸易大学英语学院<br>
 <strong>教材：</strong>新标准商务英语综合教程(1)，外语教学与研究出版社<br>
-<strong>转载请注明出处：</strong>chezvivian.github.io
+<strong>转载请注明出处：</strong>https://chezvivian.github.io/class
 </div>
 
 <!-- 课件与精读表格 -->
