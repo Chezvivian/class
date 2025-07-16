@@ -10,3 +10,9 @@
   .cat-table th:nth-child(3), .cat-table td:nth-child(3) { min-width: 220px; }
   .cat-table th:nth-child(4), .cat-table td:nth-child(4) { min-width: 180px; }
 }
+#toggle-summary-btn {
+  box-shadow: 0 2px 8px #ccc;
+}
+@media (max-width: 600px) {
+  #toggle-summary-btn { left: 8px; top: 8px; }
+}
