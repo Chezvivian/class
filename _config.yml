@@ -66,7 +66,7 @@ ordered_collections:
   - history
   - others
 
-page_width: 800px
+page_width: 1100px
 
 destination:      ./_site
 incremental:      false
