@@ -110,7 +110,7 @@ layout: post
 </table>
 
 <!-- 结课感想美化区块 -->
-## 结课感想
+## 结课感想（2025春季学期）
 
 <div style="background:#f9f6f2; border-left:6px solid #4472c4; border-radius:8px; box-shadow:0 2px 8px #eee; padding:24px 24px 24px 32px; margin:32px 0;">
   <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年7月13日</p>
