@@ -3,3 +3,10 @@
  * Its purpose is for users of the theme to be able to add css rules from a blank file
  *   these get simply added to the ones already active in the layout.
  */
+
+/* CAT课程表格响应式宽度 */
+@media (min-width: 900px) {
+  .cat-table th:nth-child(2), .cat-table td:nth-child(2) { min-width: 340px; }
+  .cat-table th:nth-child(3), .cat-table td:nth-child(3) { min-width: 220px; }
+  .cat-table th:nth-child(4), .cat-table td:nth-child(4) { min-width: 180px; }
+}
