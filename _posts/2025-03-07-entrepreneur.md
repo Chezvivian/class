@@ -33,8 +33,8 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第2讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><b><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf" target="_blank">创业思维与企业家精神</a></b><br>
-    <span style="color:#555;font-weight:normal;"><span style="font-size:1.1em;">📦</span> 辅助资料：</span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维测试问卷_handout.pdf" target="_blank" style="color:#555;">创业思维测试问卷</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维与企业家精神.pdf" target="_blank">创业思维与企业家精神</a><br>
+    <span style="color:#555;font-weight:normal;"><span style="font-size:0.8em;">📦</span></span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第2讲_创业思维测试问卷_handout.pdf" target="_blank" style="color:#555;"> 辅助资料：创业思维测试问卷</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">理解创业思维类型，评估自身思维模式。</td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
@@ -45,8 +45,8 @@ layout: post
   <!-- 机会识别模块 -->
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第4讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><b><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会与识别.pdf" target="_blank">创业机会与识别</a></b><br>
-    <span style="color:#555;font-weight:normal;"><span style="font-size:1.1em;">📦</span> 辅助资料：</span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会评估_handout.pdf" target="_blank" style="color:#555;">创业机会评估</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会与识别.pdf" target="_blank">创业机会与识别</a><br>
+    <span style="color:#555;font-weight:normal;"><span style="font-size:0.8em;">📦</span></span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第4讲_创业机会评估_handout.pdf" target="_blank" style="color:#555;"> 辅助资料：创业机会评估</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">识别创业机会类型，提升创业警觉性。</td>
     <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="3"><b>机会识别</b></td>
   </tr>
@@ -79,8 +79,8 @@ layout: post
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第10讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><b><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_新创企业的生存与管理.pdf" target="_blank">新创企业的生存和管理</a></b><br>
-    <span style="color:#555;font-weight:normal;"><span style="font-size:1.1em;">📦</span> 辅助资料：</span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_VRIO核心竞争力评估_handout.pdf" target="_blank" style="color:#555;">VRIO核心竞争力评估</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_新创企业的生存与管理.pdf" target="_blank">新创企业的生存和管理</a><br>
+    <span style="color:#555;font-weight:normal;"><span style="font-size:0.8em;">📦</span></span><a href="https://chezvivian.github.io/class/entrepreneur_pdf/第10讲_VRIO核心竞争力评估_handout.pdf" target="_blank" style="color:#555;"> 辅助资料：VRIO核心竞争力评估</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">理解企业核心竞争力与管理问题。</td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
