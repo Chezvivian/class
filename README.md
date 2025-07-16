@@ -19,7 +19,7 @@ permalink: /
 
 <b>历史学期：</b>
 
-- <a href="/class/archive/BE_pdf/" style="color:#4472c4; font-weight:bold;">2024秋：大学商务英语（一）</a>
+- <a href="/class/archive/BusinessEnglish-2024/" style="color:#4472c4; font-weight:bold;">2024秋：大学商务英语（一）</a>
 - <a href="/class/archive/CAT-2024/" style="color:#4472c4; font-weight:bold;">2024秋：计算机辅助翻译</a>
 
 <!-- 智能助教专区 -->
