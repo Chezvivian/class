@@ -59,10 +59,14 @@ collections:
   archive:  
     output: true  
     permalink: /:collection/:path/
+  podcast:
+    output: true
+    permalink: /:collection/:path/
 
 ordered_collections:
   - posts
   - pages
+  - podcast
   - history
   - others
 
@@ -87,7 +91,8 @@ navbar:
     url: "/"
   - title: "播客小镇"
     url: "/podcast/"
-  - title: "我的主页"
+  - title: "回到黄婕主页"
     url: "https://chezvivian.github.io"
+    target: "_blank"
 
 
