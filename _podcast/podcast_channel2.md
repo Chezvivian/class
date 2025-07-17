@@ -1,7 +1,6 @@
 ---
-layout: page
+layout: post
 title: "播客频道二（占位）"
-permalink: /podcast/channel2/
 ---
 
 # 播客频道二（占位）
