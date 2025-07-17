@@ -79,4 +79,15 @@ plugins:
 
 future: true
 
+# 在导航栏增加播客小镇入口（如无导航栏配置，后续补充）
+navbar:
+  - title: "首页"
+    url: "/"
+  - title: "课程资源"
+    url: "/"
+  - title: "播客小镇"
+    url: "/podcast/"
+  - title: "我的主页"
+    url: "https://chezvivian.github.io"
+
 
