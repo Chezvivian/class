@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "Vivian's 播客小镇"
 permalink: /podcast/
 ---

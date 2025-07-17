@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "播客频道三（占位）"
 permalink: /podcast/channel3/
 ---
