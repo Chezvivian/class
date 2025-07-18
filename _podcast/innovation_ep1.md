@@ -3,8 +3,6 @@ layout: post
 title: "第一话：创新？是不是很虚啊？"
 ---
 
-# 第一话：创新？是不是很虚啊？
-
 <div style="margin-bottom: 1.5em;">
   <audio id="audio-ep1" controls style="width: 100%; max-width: 700px;">
     <source src="/class/assets/podcasts/innovation_ep1.wav" type="audio/wav">

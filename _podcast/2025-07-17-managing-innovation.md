@@ -4,14 +4,31 @@ title: "创新管理的自学播客"
 ---
 
 <div style="display: flex; flex-direction: row; width: 100%; min-height: 500px; box-sizing: border-box;">
-  <!-- 左侧目录 -->
+  <!-- 左侧目录（色块包裹） -->
   <div style="width: 50%; min-width: 260px; padding: 32px 24px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start;">
-    <h2 style="margin-top:0;">播客内容</h2>
-    <ul style="list-style: none; padding: 0; font-size: 1.15em;">
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep1" style="text-decoration: none; color: #2a3b4d;">第一话：创新？是不是很虚啊？</a></li>
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep2" style="text-decoration: none; color: #2a3b4d;">第二话：数字创新又是什么？</a></li>
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep3" style="text-decoration: none; color: #2a3b4d;">第三话：创新……还可以订制！</a></li>
-    </ul>
+    <div style="background: linear-gradient(90deg, #e3f0fa 0%, #f5f7fa 100%); border-radius: 12px; padding: 28px 24px; box-shadow: 0 2px 8px rgba(44,62,80,0.04);">
+      <h2 style="margin-top:0; margin-bottom: 1.2em; color: #2a3b4d;">播客内容</h2>
+      <ul style="list-style: none; padding: 0; font-size: 1.15em; margin: 0;">
+        <li style="margin-bottom: 1.5em; display: flex; align-items: center;">
+          <span style="display:inline-block; width: 1.5em; height: 1.5em; margin-right: 0.5em; vertical-align: middle;">
+            <svg viewBox="0 0 24 24" fill="#2a3b4d" width="1.3em" height="1.3em" style="display:block;"><path d="M12 3v18c-4.97 0-9-4.03-9-9s4.03-9 9-9zm1 0c4.97 0 9 4.03 9 9s-4.03 9-9 9V3zm-1 2.18C7.16 5.7 4 9.13 4 13c0 3.87 3.16 7.3 7 7.82V5.18zm2 0v15.64c3.84-.52 7-3.95 7-7.82 0-3.87-3.16-7.3-7-7.82z"></path></svg>
+          </span>
+          <a href="innovation_ep1" class="podcast-link">第一话：创新？是不是很虚啊？</a>
+        </li>
+        <li style="margin-bottom: 1.5em; display: flex; align-items: center;">
+          <span style="display:inline-block; width: 1.5em; height: 1.5em; margin-right: 0.5em; vertical-align: middle;">
+            <svg viewBox="0 0 24 24" fill="#2a3b4d" width="1.3em" height="1.3em" style="display:block;"><path d="M12 3v18c-4.97 0-9-4.03-9-9s4.03-9 9-9zm1 0c4.97 0 9 4.03 9 9s-4.03 9-9 9V3zm-1 2.18C7.16 5.7 4 9.13 4 13c0 3.87 3.16 7.3 7 7.82V5.18zm2 0v15.64c3.84-.52 7-3.95 7-7.82 0-3.87-3.16-7.3-7-7.82z"></path></svg>
+          </span>
+          <a href="innovation_ep2" class="podcast-link">第二话：数字创新又是什么？</a>
+        </li>
+        <li style="margin-bottom: 1.5em; display: flex; align-items: center;">
+          <span style="display:inline-block; width: 1.5em; height: 1.5em; margin-right: 0.5em; vertical-align: middle;">
+            <svg viewBox="0 0 24 24" fill="#2a3b4d" width="1.3em" height="1.3em" style="display:block;"><path d="M12 3v18c-4.97 0-9-4.03-9-9s4.03-9 9-9zm1 0c4.97 0 9 4.03 9 9s-4.03 9-9 9V3zm-1 2.18C7.16 5.7 4 9.13 4 13c0 3.87 3.16 7.3 7 7.82V5.18zm2 0v15.64c3.84-.52 7-3.95 7-7.82 0-3.87-3.16-7.3-7-7.82z"></path></svg>
+          </span>
+          <a href="innovation_ep3" class="podcast-link">第三话：创新……还可以订制！</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <!-- 右侧三色块区块 -->
   <div style="width: 50%; display: flex; flex-direction: column; gap: 24px; padding: 32px 0 32px 24px; box-sizing: border-box;">
@@ -29,5 +46,18 @@ title: "创新管理的自学播客"
     </div>
   </div>
 </div>
+
+<style>
+.podcast-link {
+  color: #1a355e;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+.podcast-link:hover {
+  color: #0d2340;
+  text-decoration: underline;
+}
+</style>
 
 

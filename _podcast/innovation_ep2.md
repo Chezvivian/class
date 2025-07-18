@@ -3,7 +3,6 @@ layout: post
 title: "第二话：数字创新又是什么？"
 ---
 
-# 第二话：数字创新又是什么？
 
 <div style="margin-bottom: 1.5em;">
   <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">

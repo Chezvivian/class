@@ -3,7 +3,6 @@ layout: post
 title: "第三话：创新……还可以订制！"
 ---
 
-# 第三话：创新……还可以订制！
 
 <div style="margin-bottom: 1.5em;">
   <audio id="audio-ep3" controls style="width: 100%; max-width: 700px;">
