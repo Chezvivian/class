@@ -3,7 +3,15 @@ layout: post
 title: "创新管理的自学播客"
 ---
 
-# 第一话：创新？是不是很虚啊？
+## 目录
+
+- [第一话：创新？是不是很虚啊？](#ep1)
+- [第二话：数字创新又是什么？](#ep2)
+- [第三话：创新……还可以订制！](#ep3)
+
+---
+
+<h2 id="ep1">第一话：创新？是不是很虚啊？</h2>
 
 <div style="display: flex; flex-direction: row; align-items: flex-start; width: 100%; box-sizing: border-box;">
   <!-- 左侧2/3：音频+字幕 -->
@@ -14,8 +22,10 @@ title: "创新管理的自学播客"
         您的浏览器不支持 audio 元素。
       </audio>
     </div>
-    <div id="lrc-container-ep1" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 1em; background: #fafbfc;">
-      <ul id="lrc-list-ep1" style="margin:0; padding:0;"></ul>
+    <div id="lrc-container-ep1-wrap" style="width: 100%; max-width: 700px; max-height: 0; min-height: 0; overflow: hidden; border: 1px solid #ccc; padding: 0 10px; margin-top: 1em; background: #fafbfc; transition: max-height 0.5s, padding 0.5s;">
+      <div id="lrc-container-ep1" style="width: 100%;">
+        <ul id="lrc-list-ep1" style="margin:0; padding:0;"></ul>
+      </div>
     </div>
   </div>
   <!-- 竖分隔符和右侧知识点区域 -->
@@ -76,12 +86,28 @@ function syncLRC(audio, lrcArr) {
     }
   });
 }
-(async function() {
-  const lrcText = await fetchLRC('/class/assets/podcasts/innovation_ep1.txt');
-  const lrcArr = parseLRC(lrcText);
-  renderLRC(lrcArr);
+(function() {
   const audio = document.getElementById('audio-ep1');
-  syncLRC(audio, lrcArr);
+  const lrcWrap = document.getElementById('lrc-container-ep1-wrap');
+  let lrcLoaded = false;
+  audio.addEventListener('play', async () => {
+    // 展开字幕框
+    lrcWrap.style.maxHeight = '240px';
+    lrcWrap.style.padding = '10px';
+    // 只加载一次字幕
+    if (!lrcLoaded) {
+      const lrcText = await fetchLRC('/class/assets/podcasts/innovation_ep1.txt');
+      const lrcArr = parseLRC(lrcText);
+      renderLRC(lrcArr);
+      syncLRC(audio, lrcArr);
+      lrcLoaded = true;
+    }
+  });
+  // 可选：暂停时折叠字幕框
+  // audio.addEventListener('pause', () => {
+  //   lrcWrap.style.maxHeight = '0';
+  //   lrcWrap.style.padding = '0 10px';
+  // });
 })();
 </script>
 <style>
@@ -100,7 +126,7 @@ function syncLRC(audio, lrcArr) {
 
 ---
 
-# 第二话：数字创新又是什么？
+<h2 id="ep2">第二话：数字创新又是什么？</h2>
 
 <audio controls>
   <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
@@ -111,7 +137,7 @@ function syncLRC(audio, lrcArr) {
 
 ---
 
-# 第三话：创新……还可以订制！
+<h2 id="ep3">第三话：创新……还可以订制！</h2>
 
 <audio controls>
   <source src="/class/assets/podcasts/innovation_ep3.wav" type="audio/wav">
