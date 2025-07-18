@@ -1,18 +1,31 @@
 ---
 layout: post
-title: "创新管理"
+title: "创新管理的自学播客"
 ---
 
 # 第一话：创新？是不是很虚啊？
 
-<div id="audio-player-ep1">
-  <audio id="audio-ep1" controls>
-    <source src="/class/assets/podcasts/innovation_ep1.wav" type="audio/wav">
-    您的浏览器不支持 audio 元素。
-  </audio>
-</div>
-<div id="lrc-container-ep1" style="max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 1em;">
-  <ul id="lrc-list-ep1"></ul>
+<div style="display: flex; flex-direction: row; align-items: flex-start; width: 100%; box-sizing: border-box;">
+  <!-- 左侧2/3：音频+字幕 -->
+  <div style="width: 66.66%; display: flex; flex-direction: column; align-items: flex-end;">
+    <div id="audio-player-ep1" style="width: 100%; display: flex; justify-content: flex-end;">
+      <audio id="audio-ep1" controls style="width: 100%; max-width: 700px;">
+        <source src="/class/assets/podcasts/innovation_ep1.wav" type="audio/wav">
+        您的浏览器不支持 audio 元素。
+      </audio>
+    </div>
+    <div id="lrc-container-ep1" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 1em; background: #fafbfc;">
+      <ul id="lrc-list-ep1" style="margin:0; padding:0;"></ul>
+    </div>
+  </div>
+  <!-- 竖分隔符和右侧知识点区域 -->
+  <div style="width: 33.33%; display: flex; flex-direction: row; align-items: stretch; min-height: 240px;">
+    <div style="width: 1px; background: #e0e0e0; margin: 0 18px;"></div>
+    <div style="flex: 1; padding-left: 10px;">
+      <div style="font-weight: bold; margin-bottom: 8px;">知识点拓展</div>
+      <div style="color: #888;">（此处为知识点内容占位，后续可补充相关解释、案例或链接）</div>
+    </div>
+  </div>
 </div>
 <script>
 async function fetchLRC(url) {
@@ -42,6 +55,7 @@ function renderLRC(lrcArr) {
     const li = document.createElement('li');
     li.textContent = item.text;
     li.setAttribute('data-idx', idx);
+    li.style.listStyle = 'none';
     ul.appendChild(li);
   });
 }
@@ -79,6 +93,8 @@ function syncLRC(audio, lrcArr) {
 #lrc-list-ep1 li {
   padding: 2px 0;
   transition: background 0.2s;
+  font-size: 1.08em;
+  line-height: 1.7;
 }
 </style>
 
