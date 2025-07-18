@@ -11,9 +11,9 @@ permalink: /
 
 <b>2025春季学期：</b>
 
-- <a href="CAT.html" style="color:#4472c4; font-weight:bold;">计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
-- <a href="localization.html" style="color:#4472c4; font-weight:bold;">本地化翻译</a>：软件/网站/游戏本地化
-- <a href="entrepreneur.html" style="color:#4472c4; font-weight:bold;">翻译创业管理</a>：创业理论与实操
+- <a href="/class/posts/2025-03-06-CAT/" style="color:#4472c4; font-weight:bold;">计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
+- <a href="/class/posts/2025-03-04-localization/" style="color:#4472c4; font-weight:bold;">本地化翻译</a>：软件/网站/游戏本地化
+- <a href="/class/posts/2025-03-07-entrepreneur/" style="color:#4472c4; font-weight:bold;">翻译创业管理</a>：创业理论与实操
 
 <b>历史学期：</b>
 
