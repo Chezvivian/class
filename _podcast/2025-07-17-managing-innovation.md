@@ -8,9 +8,9 @@ title: "创新管理的自学播客"
   <div style="width: 50%; min-width: 260px; padding: 32px 24px 32px 0; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start;">
     <h2 style="margin-top:0;">播客内容</h2>
     <ul style="list-style: none; padding: 0; font-size: 1.15em;">
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep1.md" style="text-decoration: none; color: #2a3b4d;">第一话：创新？是不是很虚啊？</a></li>
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep2.md" style="text-decoration: none; color: #2a3b4d;">第二话：数字创新又是什么？</a></li>
-      <li style="margin-bottom: 1.2em;"><a href="innovation_ep3.md" style="text-decoration: none; color: #2a3b4d;">第三话：创新……还可以订制！</a></li>
+      <li style="margin-bottom: 1.2em;"><a href="innovation_ep1" style="text-decoration: none; color: #2a3b4d;">第一话：创新？是不是很虚啊？</a></li>
+      <li style="margin-bottom: 1.2em;"><a href="innovation_ep2" style="text-decoration: none; color: #2a3b4d;">第二话：数字创新又是什么？</a></li>
+      <li style="margin-bottom: 1.2em;"><a href="innovation_ep3" style="text-decoration: none; color: #2a3b4d;">第三话：创新……还可以订制！</a></li>
     </ul>
   </div>
   <!-- 右侧三色块区块 -->
