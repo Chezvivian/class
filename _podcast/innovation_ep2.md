@@ -17,7 +17,7 @@ title: "第二话：数字创新又是什么？"
   </div>
   <!-- 右上：灵光一现 -->
   <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; display: flex; flex-direction: column;">
-    <h3 style="margin-top:0;">灵光一现 (Eureka!)</h3>
+    <h3 style="margin-top:0;">Vivian 的灵光一现 (Eureka!)</h3>
     <div style="flex:1; height: 100%; overflow-y: auto; min-height: 120px; color: #888;">
       <p>暑假一个工作日上午，我在开车去顺义山姆的路上仔细听了这个播客，印象中播放了两遍。因为路上很畅通，天气也很好，所以我能聚精会神地听两位主持人的对话。虽然这个播客是经过我手，让AI生成出来的，但是这种“人造”的内容，也能让我出现 Eureka 的感觉，实在是太奇妙了！</p>
       <p>所以我当时就有一个想法，要把这个播客带给更多人听，以及做出更好的效果，让大家在接收灵感的同时，还能即时确认一下知识点，并且看到资料的来源。这就是本播客网页的构思来源。</p>
