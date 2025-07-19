@@ -220,9 +220,4 @@ function syncLRC(audio, lrcArr) {
   font-size: 1.08em;
   line-height: 1.7;
 }
-html, body {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: auto;
-}
 </style>
