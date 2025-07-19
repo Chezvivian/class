@@ -4,9 +4,9 @@ title: "第二话：数字创新又是什么？"
 ---
 
 <!-- 上方：音频+字幕 | 灵光一现 -->
-<div style="display: flex; gap: 24px; margin-bottom: 2em;">
+<div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px;">
   <!-- 左上：音频+字幕 -->
-  <div style="flex: 2 1 0;">
+  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
     <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
       <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
       您的浏览器不支持 audio 元素。
@@ -16,9 +16,9 @@ title: "第二话：数字创新又是什么？"
     </div>
   </div>
   <!-- 右上：灵光一现 -->
-  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px;">
+  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; display: flex; flex-direction: column;">
     <h3 style="margin-top:0;">灵光一现 (Eureka!)</h3>
-    <div style="min-height: 120px; color: #888;">
+    <div style="flex:1; height: 100%; overflow-y: auto; min-height: 120px; color: #888;">
       暑假一个工作日上午，我在开车去顺义山姆的路上仔细听了这个播客，印象中播放了两遍。因为路上很畅通，天气也很好，所以我能聚精会神地听两位主持人的对话。虽然这个播客是经过我手，让AI生成出来的，但是这种“人造”的内容，也能让我出现 Eureka 的感觉，实在是太奇妙了！
 
       所以我当时就有一个想法，要把这个播客带给更多人听，以及做出更好的效果，让大家在接收灵感的同时，还能即时确认一下知识点，并且看到资料的来源。这就是本播客网页的构思来源。
@@ -26,7 +26,7 @@ title: "第二话：数字创新又是什么？"
       回到“数字创新”这一话的内容来，我受到触动的点是“涌现性”、“长引信大爆炸”，以及创新管理的几个阶段——找想法、搜索、筛选想法、实施、捕获价值。这其中蕴含的长期努力以达到质变，以及积累做事习惯的 routines，都让我有极大的共鸣。原来我认为对的事情真的可以在理论里，甚至是《创新管理》看起来这么务虚的理论里得到印证。
 
       我觉得好的东西，也想分享给大家。共勉。
-
+    </div>
   </div>
 </div>
 
