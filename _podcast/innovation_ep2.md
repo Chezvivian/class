@@ -4,14 +4,24 @@ title: "第二话：数字创新又是什么？"
 ---
 
 
-<div style="margin-bottom: 1.5em;">
-  <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
-    <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
-    您的浏览器不支持 audio 元素。
-  </audio>
-</div>
-<div id="lrc-container-ep2" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
-  <ul id="lrc-list-ep2" style="margin:0; padding:0;"></ul>
+<div style="display: flex; gap: 24px; margin-bottom: 1.5em;">
+  <!-- 左侧音频和歌词 -->
+  <div style="flex: 2 1 0;">
+    <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
+      <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
+      您的浏览器不支持 audio 元素。
+    </audio>
+    <div id="lrc-container-ep2" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
+      <ul id="lrc-list-ep2" style="margin:0; padding:0;"></ul>
+    </div>
+  </div>
+  <!-- 右侧灵光一现 -->
+  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff;">
+    <h3 style="margin-top:0;">灵光一现 (Eureka!)</h3>
+    <div style="min-height: 120px; color: #888;">
+      在这里写下你的感想或灵感……
+    </div>
+  </div>
 </div>
 <script>
 async function fetchLRC(url) {
@@ -86,6 +96,25 @@ function syncLRC(audio, lrcArr) {
 
 ---
 
-## 知识点拓展
+## 关键术语词汇表
 
-（此处为知识点拓展内容占位，后续可补充相关解释、案例或链接） 
+- **数字创新 (Digital Innovation)**: 围绕信息的创建、捕获、存储/检索、处理和通信，以及将它们组合成具有涌现属性的高级系统的一系列技术。
+- **涌现属性 (Emergent Properties)**: 系统作为一个整体所具备的、其各个组成部分单独不具备的特性。在数字系统中，通过集成和连接，能产生超出各部分总和的功能和价值。
+- **摩尔定律 (Moore's Law)**: 一种观察，指出集成电路上可容纳的晶体管数量大约每两年翻一番，导致电子设备性能呈指数级增长，同时成本下降。
+- **物联网 (Internet of Things, IoT)**: 物理设备、车辆、家用电器及其他物品嵌入传感器、软件以及其他技术，通过网络连接，使这些物品能够交换数据。
+- **长波理论 (Long Waves)**: 由尼古拉·康德拉季耶夫提出的经济周期理论，认为经济活动存在50-60年的长期周期，由重大技术变革和创新驱动。
+- **技术经济范式 (Techno-Economic Paradigm, TEP)**: 克里斯·弗里曼和卡洛塔·佩雷斯提出的概念，指一种在特定历史时期影响整个经济和技术体系的通用技术体系和组织原则。
+- **生产力悖论 (Productivity Paradox)**: 指对信息技术进行大量投资后，并未观察到宏观经济层面的生产力显著提升的现象，通常归因于学习曲线和组织适应所需的时间。
+- **平台 (Platform)**: 一种数字基础设施，将不同的参与者（如生产者和消费者）连接起来，使他们能够以传统方式无法实现的方式进行创新或互动，并具有非线性增长的潜力。
+- **生态系统 (Ecosystem)**: 指围绕平台或核心技术形成的相互依赖的组织、个体和技术集合，共同创造和交付价值。
+- **众包 (Crowdsourcing)**: 将原先由内部员工完成的任务，通过开放的呼吁形式，外包给一大群非特定（通常是兼职或志愿）的个体。
+- **创新竞赛 (Innovation Contests)**: 一种开放创新工具，通过提供奖励，邀请大量参与者提交解决方案或想法。
+- **创新市场 (Innovation Markets)**: 将“寻求者”（有创新挑战的企业）和“解决者”（能够提供解决方案的个体或组织）通过在线平台进行匹配。
+- **协作平台 (Collaboration Platforms)**: 旨在促进团队或社区成员之间共享信息、想法和工作成果的在线工具或系统，常用于内部或外部创新活动。
+- **大数据 (Big Data)**: 指规模巨大、增长速度快、类型多样的信息资产，需要创新处理技术才能实现对其的深入分析，以帮助决策和获取洞察。通常用“3V”来概括：容量（Volume）、速度（Velocity）和多样性（Variety）。
+- **人工智能 (Artificial Intelligence, AI) / 机器学习 (Machine Learning)**: 计算机系统能够执行通常需要人类智能的任务，如学习、解决问题和决策。机器学习是AI的一个子集，使系统能够从数据中学习而无需明确编程。
+- **负责任创新 (Responsible Innovation)**: 一种创新方法，强调在技术开发和扩散过程中，预测更广泛的社会、环境和伦理后果，并灵活设计以确保技术的适应性和可控性。
+
+## 资料来源
+
+<iframe src="/class/assets/podcasts/Chapter_2.pdf" width="100%" height="500px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
