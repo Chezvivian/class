@@ -3,12 +3,6 @@ layout: post
 title: "第二话：数字创新又是什么？"
 ---
 
-<<<<<<< HEAD
-=======
-<!-- 页面标题 -->
-<h1 style="margin-top: 0;">第二话：数字创新又是什么？</h1>
->>>>>>> parent of 5dce38a (Update innovation_ep2.md)
-
 <!-- 上方：音频+字幕 | 灵光一现 -->
 <div style="display: flex; gap: 24px; margin-bottom: 2em;">
   <!-- 左上：音频+字幕 -->
@@ -34,7 +28,7 @@ title: "第二话：数字创新又是什么？"
 <div style="display: flex; gap: 32px; margin-bottom: 2em;">
   <!-- 左下：关键术语表 -->
   <div style="flex: 1 1 0; min-width: 320px; max-height: 70vh; overflow-y: auto;">
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="position: sticky; top: 0; z-index: 2; background: #fff; display: flex; align-items: center; gap: 12px;">
       <h2 style="margin: 0;">关键术语词汇表</h2>
       <button id="toggle-all-terms" style="padding: 4px 12px; font-size: 0.95em; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全部展开</button>
     </div>
