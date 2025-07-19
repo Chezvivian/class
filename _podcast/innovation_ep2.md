@@ -3,17 +3,24 @@ layout: post
 title: "第二话：数字创新又是什么？"
 ---
 
-<!-- 页面标题 -->
-<h1 style="margin-top: 0;">第二话：数字创新又是什么？</h1>
-
 <!-- 上方：音频+字幕 | 灵光一现 -->
 <div style="display: flex; gap: 24px; margin-bottom: 2em;">
   <!-- 左上：音频+字幕 -->
   <div style="flex: 2 1 0;">
-    <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
-      <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
-      您的浏览器不支持 audio 元素。
-    </audio>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
+        <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
+        您的浏览器不支持 audio 元素。
+      </audio>
+      <label for="audio-speed" style="font-size:0.95em;">倍速</label>
+      <select id="audio-speed" style="font-size:0.95em;">
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+    </div>
     <div id="lrc-container-ep2" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
       <ul id="lrc-list-ep2" style="margin:0; padding:0;"></ul>
     </div>
@@ -31,7 +38,7 @@ title: "第二话：数字创新又是什么？"
 <div style="display: flex; gap: 32px; margin-bottom: 2em;">
   <!-- 左下：关键术语表 -->
   <div style="flex: 1 1 0; min-width: 320px; max-height: 70vh; overflow-y: auto;">
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="position: sticky; top: 0; z-index: 2; background: #fff; display: flex; align-items: center; gap: 12px;">
       <h2 style="margin: 0;">关键术语词汇表</h2>
       <button id="toggle-all-terms" style="padding: 4px 12px; font-size: 0.95em; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全部展开</button>
     </div>
@@ -40,9 +47,26 @@ title: "第二话：数字创新又是什么？"
   <!-- 右下：资料来源 -->
   <div style="flex: 1 1 0; min-width: 320px;">
     <h2 style="margin-top: 0;">资料来源</h2>
-    <iframe src="/class/assets/podcasts/Chapter_2.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
+    <div id="pdf-container" style="resize: both; overflow: auto; min-width: 300px; min-height: 300px; width: 100%; height: 600px; position: relative; border-radius:8px; border:1px solid #ccc;">
+      <button id="pdf-fullscreen" style="position: absolute; right: 12px; bottom: 12px; z-index: 3; padding: 4px 10px; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全屏</button>
+      <iframe src="/class/assets/podcasts/Chapter_2.pdf" width="100%" height="100%" style="border:none; border-radius:8px;"></iframe>
+    </div>
   </div>
 </div>
+
+<script>
+document.getElementById('audio-speed').onchange = function() {
+  document.getElementById('audio-ep2').playbackRate = parseFloat(this.value);
+};
+
+document.getElementById('pdf-fullscreen').onclick = function() {
+  var el = document.getElementById('pdf-container');
+  if (el.requestFullscreen) el.requestFullscreen();
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+  else if (el.msRequestFullscreen) el.msRequestFullscreen();
+};
+</script>
 
 <script>
 const terms = [
@@ -212,6 +236,11 @@ function syncLRC(audio, lrcArr) {
 })();
 </script>
 <style>
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+}
 #lrc-list-ep2 li.active {
   color: #fff;
   background: #0078d7;
