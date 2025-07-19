@@ -221,17 +221,8 @@ function syncLRC(audio, lrcArr) {
   line-height: 1.7;
 }
 html, body {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  position: static !important;
-  height: auto !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
 }
 </style>
-<script>
-document.getElementById('audio-ep2').addEventListener('play', function() {
-  document.body.style.overflowY = 'auto';
-  document.body.style.position = 'static';
-  document.documentElement.style.overflowY = 'auto';
-  document.documentElement.style.position = 'static';
-});
-</script>
