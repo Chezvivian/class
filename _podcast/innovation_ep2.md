@@ -3,20 +3,44 @@ layout: post
 title: "第二话：数字创新又是什么？"
 ---
 
+<!-- 页面标题 -->
+<h1 style="margin-top: 0;">第二话：数字创新又是什么？</h1>
 
+<!-- 上方：音频+字幕 | 灵光一现 -->
+<div style="display: flex; gap: 24px; margin-bottom: 2em;">
+  <!-- 左上：音频+字幕 -->
+  <div style="flex: 2 1 0;">
+    <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
+      <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
+      您的浏览器不支持 audio 元素。
+    </audio>
+    <div id="lrc-container-ep2" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
+      <ul id="lrc-list-ep2" style="margin:0; padding:0;"></ul>
+    </div>
+  </div>
+  <!-- 右上：灵光一现 -->
+  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px;">
+    <h3 style="margin-top:0;">灵光一现 (Eureka!)</h3>
+    <div style="min-height: 120px; color: #888;">
+      在这里写下你的感想或灵感……
+    </div>
+  </div>
+</div>
+
+<!-- 下方：关键术语表 | 资料来源 -->
 <div style="display: flex; gap: 32px; margin-bottom: 2em;">
-  <!-- 左侧：关键术语表 -->
-  <div style="flex: 1 1 0; min-width: 320px;">
+  <!-- 左下：关键术语表 -->
+  <div style="flex: 1 1 0; min-width: 320px; max-height: 70vh; overflow-y: auto;">
     <div style="display: flex; align-items: center; gap: 12px;">
       <h2 style="margin: 0;">关键术语词汇表</h2>
       <button id="toggle-all-terms" style="padding: 4px 12px; font-size: 0.95em; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全部展开</button>
     </div>
     <ul id="term-list" style="list-style: none; padding: 0; margin-top: 1em;"></ul>
   </div>
-  <!-- 右侧：资料来源 -->
+  <!-- 右下：资料来源 -->
   <div style="flex: 1 1 0; min-width: 320px;">
     <h2 style="margin-top: 0;">资料来源</h2>
-    <iframe src="/class/assets/podcasts/Chapter_2.pdf" width="100%" height="80vh" style="border:1px solid #ccc; border-radius:8px;"></iframe>
+    <iframe src="/class/assets/podcasts/Chapter_2.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
   </div>
 </div>
 
@@ -130,27 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
----
-
-<div style="display: flex; gap: 24px; margin-bottom: 1.5em;">
-  <!-- 左侧音频和歌词 -->
-  <div style="flex: 2 1 0;">
-    <audio id="audio-ep2" controls style="width: 100%; max-width: 700px;">
-      <source src="/class/assets/podcasts/innovation_ep2.wav" type="audio/wav">
-      您的浏览器不支持 audio 元素。
-    </audio>
-    <div id="lrc-container-ep2" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
-      <ul id="lrc-list-ep2" style="margin:0; padding:0;"></ul>
-    </div>
-  </div>
-  <!-- 右侧灵光一现 -->
-  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff;">
-    <h3 style="margin-top:0;">灵光一现 (Eureka!)</h3>
-    <div style="min-height: 120px; color: #888;">
-      在这里写下你的感想或灵感……
-    </div>
-  </div>
-</div>
 <script>
 async function fetchLRC(url) {
   const res = await fetch(url);
