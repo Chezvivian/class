@@ -28,4 +28,4 @@ title: "实证研究数据处理的过程标准化探索"
 
 和 Claude 聊了一下，把原始数据类型列出来，并给出处理思路，再导入到 napkin 中生成一个脑图，如下。
 
-![思路：数据整理与清理流程](/class/assets/podcats/empirical-data/1_data_type_process.png)
+<img src="{{chezvivian.github.io}}/class/assets/podcasts/empirical-data/1_data_type_process.png" alt="思路：数据类型和处理思路" width="500"/>  
