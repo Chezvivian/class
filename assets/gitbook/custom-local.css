@@ -94,22 +94,41 @@
 }
 .podcast-channel-link {
   display: inline-block;
-  padding: 0.7em 2.2em;
-  background: #fff;
-  border: 2px solid #bbb;
-  border-radius: 14px;
+  padding: 1em 2.8em;
+  background: #e3f0fb; /* 默认淡蓝色，后续用nth-child覆盖 */
+  border: none;
+  border-radius: 18px;
   color: #222;
-  font-weight: 600;
-  font-size: 1.1em;
+  font-weight: 700;
+  font-size: 1.35em;
   text-decoration: none;
-  transition: border 0.2s, color 0.2s, background 0.2s;
+  transition: box-shadow 0.2s, color 0.2s, background 0.2s;
   box-shadow: 0 2px 8px rgba(180,180,180,0.06);
   margin-top: 12px;
+  letter-spacing: 0.02em;
 }
 .podcast-channel-link:hover {
-  border-color: #333;
   color: #007acc;
-  background: #f7f7f7;
+  background: #d0e7f7;
+  box-shadow: 0 4px 16px rgba(120,160,220,0.10);
+}
+.podcast-channel-block:nth-child(1) .podcast-channel-link {
+  background: #e3f0fb; /* 淡蓝色 */
+}
+.podcast-channel-block:nth-child(2) .podcast-channel-link {
+  background: #e6f6f7; /* 淡青色 */
+}
+.podcast-channel-block:nth-child(3) .podcast-channel-link {
+  background: #ede6f7; /* 淡紫色 */
+}
+.podcast-channel-block:nth-child(1) .podcast-channel-link:hover {
+  background: #d0e7f7;
+}
+.podcast-channel-block:nth-child(2) .podcast-channel-link:hover {
+  background: #c9ecee;
+}
+.podcast-channel-block:nth-child(3) .podcast-channel-link:hover {
+  background: #e0d6f2;
 }
 
 @media (max-width: 900px) {
