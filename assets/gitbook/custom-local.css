@@ -16,3 +16,43 @@
 @media (max-width: 600px) {
   #toggle-summary-btn { left: 8px; top: 8px; }
 }
+
+/* 播客频道块状按钮样式 */
+.podcast-btns {
+  margin-bottom: 1.5em;
+}
+.podcast-btn {
+  display: inline-block;
+  padding: 0.8em 2em;
+  margin: 0.5em 0;
+  background: #fff;
+  border: 2px solid #bbb;
+  border-radius: 16px;
+  color: #222;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: border 0.2s, color 0.2s, background 0.2s;
+  box-shadow: 0 2px 8px rgba(180,180,180,0.08);
+}
+.podcast-btn:hover {
+  border-color: #333;
+  color: #007acc;
+  background: #f7f7f7;
+}
+.podcast-title-link {
+  text-decoration: none;
+  color: #222;
+  line-height: 1.2;
+  font-weight: 600;
+}
+.podcast-title-link:hover {
+  color: #007acc;
+  text-decoration: underline;
+}
+
+/* 导航栏标题行距修正（如有需要可加） */
+.summary .chapter a {
+  line-height: 1.3 !important;
+  margin-bottom: 0 !important;
+}
