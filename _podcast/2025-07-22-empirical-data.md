@@ -3,7 +3,6 @@ layout: post
 title: "实证研究数据处理的过程标准化探索"
 ---
 
-## 目录
 * TOC
 {:toc}
 
