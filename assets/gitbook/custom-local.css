@@ -145,8 +145,8 @@
 /* 还原主内容区宽度限制 */
 .body-inner, .page-wrapper, .page-inner, .markdown-section {
   max-width: 1100px !important;
-  margin-left: 100px !important;
-  margin-right: 100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   box-sizing: border-box;
 }
 
@@ -157,7 +157,14 @@
     padding-left: 8px;
     padding-right: 8px;
   }
-  .navigation.navigation-prev, .navigation.navigation-next {
+  .navigation.navigation-prev {
+    left: 8px !important;   /* 更靠左 */
+    top: auto;
+    bottom: 24px;
+    transform: none;
+  }
+  .navigation.navigation-next {
+    right: 8px !important;  /* 更靠右 */
     top: auto;
     bottom: 24px;
     transform: none;
