@@ -6,7 +6,7 @@ title: "第一话：创新？是不是很虚啊？"
 <!-- 上方：音频+字幕 | Vivian 的灵光一现 -->
 <div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px;">
   <!-- 左上：音频+字幕 -->
-  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
+  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid #222; border-radius: 12px; padding: 18px; background: #fff;">
     <audio id="audio-ep1" controls style="width: 100%; max-width: 700px;">
       <source src="/class/assets/podcasts/innovation_ep1.wav" type="audio/wav">
       您的浏览器不支持 audio 元素。
@@ -16,7 +16,7 @@ title: "第一话：创新？是不是很虚啊？"
     </div>
   </div>
   <!-- 右上：Vivian 的灵光一现 -->
-  <div style="flex: 1 1 0; border: 1.5px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; display: flex; flex-direction: column;">
+  <div style="flex: 1 1 0; border: 1px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; max-height: 340px; display: flex; flex-direction: column;">
     <h3 style="margin-top:0;">Vivian 的灵光一现 (Eureka!)</h3>
     <div style="flex:1; height: 100%; overflow-y: auto; min-height: 120px; color: #888;">
       <p>（此处为灵光一现内容占位，后续可补充个人感想或灵感）</p>
