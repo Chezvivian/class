@@ -170,9 +170,9 @@
 
 @media (max-width: 950px) {
   .body-inner, .page-wrapper, .page-inner, .markdown-section {
-    max-width: 90% !important;
-    padding-left: 8px;
-    padding-right: 8px;
+    max-width: 100% !important;
+    padding-left: auto;
+    padding-right: auto;
   }
 
   .navigation.navigation-prev {
