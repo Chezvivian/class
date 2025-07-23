@@ -142,12 +142,28 @@
   }
 }
 
-/* 限制主内容区最大宽度并居中，防止内容过宽 */
+/* 还原主内容区宽度限制 */
 .body-inner, .page-wrapper, .page-inner, .markdown-section {
-  max-width: 900px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   box-sizing: border-box;
+}
+
+/* 调整上一页、下一页按钮更靠边 */
+.navigation.navigation-prev {
+  left: 12px !important;
+  position: fixed !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+.navigation.navigation-next {
+  right: 12px !important;
+  position: fixed !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
 }
 
 @media (max-width: 950px) {
@@ -155,5 +171,10 @@
     max-width: 100% !important;
     padding-left: 8px;
     padding-right: 8px;
+  }
+  .navigation.navigation-prev, .navigation.navigation-next {
+    top: auto;
+    bottom: 24px;
+    transform: none;
   }
 }
