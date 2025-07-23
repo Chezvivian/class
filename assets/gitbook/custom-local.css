@@ -144,27 +144,12 @@
 
 /* 还原主内容区宽度限制 */
 .body-inner, .page-wrapper, .page-inner, .markdown-section {
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  max-width: 1100px !important;
+  margin-left: 100px !important;
+  margin-right: 100px !important;
   box-sizing: border-box;
 }
 
-/* 调整上一页、下一页按钮更靠边 */
-.navigation.navigation-prev {
-  left: 12px !important;
-  position: fixed !important;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-}
-.navigation.navigation-next {
-  right: 12px !important;
-  position: fixed !important;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-}
 
 @media (max-width: 950px) {
   .body-inner, .page-wrapper, .page-inner, .markdown-section {
