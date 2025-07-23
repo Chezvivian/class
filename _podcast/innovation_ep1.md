@@ -4,7 +4,7 @@ title: "第一话：创新？是不是很虚啊？"
 ---
 
 <!-- 上方：音频+字幕 | Vivian 的灵光一现 -->
-<div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px;">
+<div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px; max-width: 1000 px">
   <!-- 左上：音频+字幕 -->
   <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid #222; border-radius: 12px; padding: 18px 36px; background: #fff;">
     <audio id="audio-ep1" controls style="width: 100%; max-width: 700px;">
@@ -17,7 +17,7 @@ title: "第一话：创新？是不是很虚啊？"
   </div>
   <!-- 右上：Vivian 的灵光一现 -->
   <div style="flex: 1 1 0; border: 1px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; max-height: 340px; display: flex; flex-direction: column;">
-    <h3 style="margin-top:0;">Vivian 的灵光一现 (Eureka!)</h3>
+    <h3 style="margin-top:0;">Vivian的灵光一现 (Eureka!)</h3>
     <div style="flex:1; height: 100%; overflow-y: auto; min-height: 120px; color: #888;">
       <p>（此处为灵光一现内容占位，后续可补充个人感想或灵感）</p>
     </div>
@@ -25,7 +25,7 @@ title: "第一话：创新？是不是很虚啊？"
 </div>
 
 <!-- 关键术语词汇表模块 -->
-<div style="margin-bottom:2em; border:1.5px solid #bbb; border-radius:12px; background:#fff; padding:24px 18px; max-width:900px;">
+<div style="margin-bottom:2em; border:1.5px solid #bbb; border-radius:12px; background:#fff; padding:24px 18px; max-width:1000px;">
   <h2 style="margin-top:0;">关键术语词汇表</h2>
   <ul style="list-style:none; padding:0; margin-top:1em;">
     <li style="margin-bottom:10px;">
@@ -176,7 +176,7 @@ title: "第一话：创新？是不是很虚啊？"
 </div>
 
 <!-- 资料来源模块 -->
-<div style="margin-bottom: 2em; border: 1.5px solid #bbb; border-radius: 12px; background: #fff; padding: 24px 18px; max-width: 900px;">
+<div style="margin-bottom: 2em; border: 1.5px solid #bbb; border-radius: 12px; background: #fff; padding: 24px 18px; max-width: 1000px; max-height: 1100px;">
   <h2 style="margin-top: 0;">资料来源</h2>
   <iframe src="/class/assets/podcasts/Chapter 1.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
 </div>
