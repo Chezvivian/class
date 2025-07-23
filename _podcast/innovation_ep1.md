@@ -30,7 +30,6 @@ title: "第一话：创新？是不是很虚啊？"
   <div style="flex: 1 1 0; min-width: 320px; max-height: 70vh; overflow-y: auto;">
     <div style="position: sticky; top: 0; z-index: 2; background: #fff; display: flex; align-items: center; gap: 12px;">
       <h2 style="margin: 0;">关键术语词汇表</h2>
-      <button id="toggle-all-terms" style="padding: 4px 12px; font-size: 0.95em; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全部展开</button>
     </div>
     <ul id="term-list" style="list-style: none; padding: 0; margin-top: 1em;"></ul>
   </div>
@@ -70,44 +69,26 @@ const terms = [
   { name: "商业模式创新 (Business Model Innovation)", desc: "改变组织创造、交付和捕获价值的底层逻辑和方式。" }
 ];
 
-function renderTerms(expandAll = false) {
+function renderTerms() {
   const ul = document.getElementById('term-list');
   ul.innerHTML = '';
-  terms.forEach((term, idx) => {
+  terms.forEach((term) => {
     const li = document.createElement('li');
     li.style.marginBottom = '10px';
     li.innerHTML = `
-      <div class="term-title" style="font-weight:bold; cursor:pointer; display:flex; align-items:center;">
+      <div class="term-title" style="font-weight:bold; display:flex; align-items:center;">
         <span style="flex:1;">${term.name}</span>
-        <span class="arrow" style="transition:transform 0.2s;">${expandAll ? '▼' : '▶'}</span>
       </div>
-      <div class="term-desc" style="display:${expandAll ? 'block' : 'none'}; margin-top:6px; color:#444; background:#f8f8f8; border-radius:6px; padding:8px 12px;">
+      <div class="term-desc" style="margin-top:6px; color:#444; background:#f8f8f8; border-radius:6px; padding:8px 12px;">
         ${term.desc}
       </div>
     `;
-    li.querySelector('.term-title').onclick = function() {
-      const desc = li.querySelector('.term-desc');
-      const arrow = li.querySelector('.arrow');
-      if (desc.style.display === 'none') {
-        desc.style.display = 'block';
-        arrow.textContent = '▼';
-      } else {
-        desc.style.display = 'none';
-        arrow.textContent = '▶';
-      }
-    };
     ul.appendChild(li);
   });
 }
 
-let allExpanded = false;
 document.addEventListener('DOMContentLoaded', function() {
-  renderTerms(false);
-  document.getElementById('toggle-all-terms').onclick = function() {
-    allExpanded = !allExpanded;
-    renderTerms(allExpanded);
-    this.textContent = allExpanded ? '全部折叠' : '全部展开';
-  };
+  renderTerms();
 });
 </script>
 
