@@ -6,17 +6,11 @@ title: "第一话：创新？是不是很虚啊？"
 <!-- 上方：音频+字幕 | Vivian 的灵光一现 -->
 <div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px;">
   <!-- 左上：音频+字幕 -->
-  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid #222; border-radius: 12px; padding: 18px; background: #fff;">
-    <audio id="audio-ep1" controls style="width: 100%; max-width: 700px; transform: scaleY(2.5); margin-bottom: 24px;">
+  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid #222; border-radius: 12px; padding: 18px 36px; background: #fff;">
+    <audio id="audio-ep1" controls style="width: 100%; max-width: 700px;">
       <source src="/class/assets/podcasts/innovation_ep1.wav" type="audio/wav">
       您的浏览器不支持 audio 元素。
     </audio>
-    <div style="margin: 10px 0;">
-      <button onclick="setAudioSpeed(0.75)">0.75x</button>
-      <button onclick="setAudioSpeed(1)">1x</button>
-      <button onclick="setAudioSpeed(1.5)">1.5x</button>
-      <button onclick="setAudioSpeed(2)">2x</button>
-    </div>
     <div id="lrc-container-ep1" style="width: 100%; max-width: 700px; max-height: 240px; min-height: 180px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #fafbfc; margin-bottom: 1.5em;">
       <ul id="lrc-list-ep1" style="margin:0; padding:0;"></ul>
     </div>
