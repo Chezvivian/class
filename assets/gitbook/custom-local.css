@@ -200,52 +200,48 @@ ul.term-list li {
   border: none;
   background: none;
   box-shadow: none;
+  color: #444;
+  font-size: 1em;
+  line-height: 1.7;
 }
 ul.term-list li strong {
-  display: block;
   font-weight: bold;
   color: #222;
-  margin-bottom: 0;
   font-size: 1.08em;
+  display: inline;
+  margin-right: 8px;
 }
-/* 让解释部分自动识别并美化 */
-ul.term-list li strong + br + span,
-ul.term-list li strong + br + em,
-ul.term-list li strong + br + div,
-ul.term-list li strong + br + p,
+/* 让解释部分始终有灰色背景且不换行 */
 ul.term-list li strong + br {
-  /* 兼容不同写法 */
+  display: none;
 }
 ul.term-list li strong + br + span,
 ul.term-list li strong + br + em,
 ul.term-list li strong + br + div,
-ul.term-list li strong + br + p,
-ul.term-list li strong + br + text {
-  display: block;
-  margin-top: 6px;
+ul.term-list li strong + br + p {
+  display: inline;
+  margin-top: 0;
+  margin-left: 0;
   color: #444;
   background: #f8f8f8;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 4px 10px;
 }
 /* 兼容直接文本解释 */
-ul.term-list li strong + br {
-  /* nothing, for structure */
-}
-ul.term-list li strong + br + text {
-  display: block;
-  margin-top: 6px;
+ul.term-list li strong + br + text,
+ul.term-list li strong + br + *:not(strong) {
+  display: inline;
   color: #444;
   background: #f8f8f8;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 4px 10px;
 }
 /* 兼容 span.term-desc 写法 */
 ul.term-list li .term-desc {
-  display: block;
-  margin-top: 6px;
+  display: inline;
   color: #444;
   background: #f8f8f8;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 4px 10px;
+  margin-left: 0;
 }
