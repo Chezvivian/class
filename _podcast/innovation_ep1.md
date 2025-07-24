@@ -19,12 +19,13 @@ title: "第一话：创新？是不是很虚啊？"
   <div style="flex: 1 1 0; border: 1px solid #222; border-radius: 12px; padding: 18px; background: #fff; min-width: 220px; max-height: 340px; display: flex; flex-direction: column;">
     <h3 style="margin-top:0;">Vivian的灵光一现 (Eureka!)</h3>
     <div style="flex:1; height: 100%; overflow-y: auto; min-height: 120px; color: #888;">
-      <p>（此处为灵光一现内容占位，后续可补充个人感想或灵感）</p>
+      <p> 创新不仅是高科技。我确实更喜欢“颠覆性创新”，但是也知道这种机会可遇不可求。也许更重要的是“感知到的新颖性”，用增量创新来撑起一个能持续发展的商业机会和模式。</p> 
+      <p>认知改变是实践和创新的起点。</p>
     </div>
   </div>
 </div>
 
-<!-- 关键术语词汇表模块 -->
+<!-- 下方：关键术语表 | 资料来源 -->
 <div style="margin-bottom:2em; border:1.5px solid #bbb; border-radius:12px; background:#fff; padding:24px 18px; max-width:1000px;">
   <h2 style="margin-top:0;">关键术语词汇表</h2>
   <ul style="list-style:none; padding:0; margin-top:1em;">
@@ -178,7 +179,7 @@ title: "第一话：创新？是不是很虚啊？"
 <!-- 资料来源模块 -->
 <div style="margin-bottom: 2em; border: 1.5px solid #bbb; border-radius: 12px; background: #fff; padding: 24px 18px; max-width: 1000px; max-height: 1100px;">
   <h2 style="margin-top: 0;">资料来源</h2>
-  <iframe src="/class/assets/podcasts/Chapter 1.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
+  <iframe src="/class/assets/podcasts/Chapter 1.pdf" width="100%" height="900px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
 </div>
 
 <script>
