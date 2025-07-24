@@ -136,3 +136,17 @@ function syncLRC(audio, lrcArr) {
   syncLRC(audio, lrcArr);
 })();
 </script> 
+
+<style>
+#lrc-list-ep6 li.active {
+  color: #fff;
+  background: #0078d7;
+  font-weight: bold;
+}
+#lrc-list-ep6 li {
+  padding: 2px 0;
+  transition: background 0.2s;
+  font-size: 1.08em;
+  line-height: 1.7;
+}
+</style>
