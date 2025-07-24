@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "第五话：请填写标题"
+title: "第五话：怕什么失败？干就完了"
 ---
 
 <!-- 上方：音频+字幕 | Vivian 的灵光一现 -->
-<div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px;">
+<div style="display: flex; gap: 24px; margin-bottom: 2em; align-items: stretch; max-height: 340px; min-height: 240px; max-width: 1000 px;">
   <!-- 左上：音频+字幕 -->
-  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start;">
+  <div style="flex: 2 1 0; display: flex; flex-direction: column; justify-content: flex-start; border: 1px solid #222; border-radius: 12px; padding: 18px 36px; background: #fff;">
     <audio id="audio-ep5" controls style="width: 100%; max-width: 700px;">
       <source src="/class/assets/podcasts/innovation_ep5.wav" type="audio/wav">
       您的浏览器不支持 audio 元素。
@@ -25,21 +25,9 @@ title: "第五话：请填写标题"
 </div>
 
 <!-- 下方：关键术语词汇表 | 资料来源 -->
-<div style="display: flex; gap: 32px; margin-bottom: 2em;">
-  <!-- 左下：关键术语词汇表 -->
-  <div style="flex: 1 1 0; min-width: 320px; max-height: 70vh; overflow-y: auto;">
-    <div style="position: sticky; top: 0; z-index: 2; background: #fff; display: flex; align-items: center; gap: 12px;">
-      <h2 style="margin: 0;">关键术语词汇表</h2>
-      <button id="toggle-all-terms" style="padding: 4px 12px; font-size: 0.95em; border-radius: 6px; border: 1px solid #888; background: #f5f5f5; cursor: pointer;">全部展开</button>
-    </div>
-    <ul id="term-list" style="list-style: none; padding: 0; margin-top: 1em;"></ul>
-  </div>
-  <!-- 右下：资料来源 -->
-  <div style="flex: 1 1 0; min-width: 320px;">
-    <h2 style="margin-top: 0;">资料来源</h2>
-    <iframe src="/class/assets/podcasts/Chapter 5.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
-  </div>
-</div>
+<div style="margin-bottom:2em; border:1.5px solid #bbb; border-radius:12px; background:#fff; padding:24px 18px; max-width:1000px;">
+  <h2 style="margin: 0;">关键术语词汇表</h2>
+    <ul style="list-style:none; padding:0; margin-top:1em;">
 
 <script>
 const terms = [
@@ -84,46 +72,13 @@ const terms = [
   { name: "供应链学习 (Supply Chain Learning, SCL)", desc: "供应链中各方通过信息共享、协作和共同解决问题来获取知识和提升能力的过程。" }
 ];
 
-function renderTerms(expandAll = false) {
-  const ul = document.getElementById('term-list');
-  ul.innerHTML = '';
-  terms.forEach((term, idx) => {
-    const li = document.createElement('li');
-    li.style.marginBottom = '10px';
-    li.innerHTML = `
-      <div class=\"term-title\" style=\"font-weight:bold; cursor:pointer; display:flex; align-items:center;\">
-        <span style=\"flex:1;\">${term.name}</span>
-        <span class=\"arrow\" style=\"transition:transform 0.2s;\">${expandAll ? '▼' : '▶'}</span>
-      </div>
-      <div class=\"term-desc\" style=\"display:${expandAll ? 'block' : 'none'}; margin-top:6px; color:#444; background:#f8f8f8; border-radius:6px; padding:8px 12px;\">
-        ${term.desc}
-      </div>
-    `;
-    li.querySelector('.term-title').onclick = function() {
-      const desc = li.querySelector('.term-desc');
-      const arrow = li.querySelector('.arrow');
-      if (desc.style.display === 'none') {
-        desc.style.display = 'block';
-        arrow.textContent = '▼';
-      } else {
-        desc.style.display = 'none';
-        arrow.textContent = '▶';
-      }
-    };
-    ul.appendChild(li);
-  });
-}
+  <!-- 右下：资料来源 -->
+  <div style="flex: 1 1 0; min-width: 320px;">
+    <h2 style="margin-top: 0;">资料来源</h2>
+    <iframe src="/class/assets/podcasts/Chapter 5.pdf" width="100%" height="600px" style="border:1px solid #ccc; border-radius:8px;"></iframe>
+  </div>
+</div>
 
-let allExpanded = false;
-document.addEventListener('DOMContentLoaded', function() {
-  renderTerms(false);
-  document.getElementById('toggle-all-terms').onclick = function() {
-    allExpanded = !allExpanded;
-    renderTerms(allExpanded);
-    this.textContent = allExpanded ? '全部折叠' : '全部展开';
-  };
-});
-</script>
 
 <script>
 async function fetchLRC(url) {
