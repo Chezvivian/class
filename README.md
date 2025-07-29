@@ -9,6 +9,13 @@ permalink: /
   <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b><br>
 </div>
 
+<!-- 个人主页链接 -->
+<div style="text-align:center; margin:0 0 32px 0;">
+  <a href="https://chezvivian.github.io" style="display:inline-block; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:10px 24px; text-decoration:none; font-size:1.1em; box-shadow:0 2px 4px rgba(68,114,196,0.2); transition:all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px rgba(68,114,196,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(68,114,196,0.2)'">
+    🏠 回到个人主页
+  </a>
+</div>
+
 <b>2025春季学期：</b>
 
 - <a href="/class/posts/2025-03-06-CAT/" style="color:#4472c4; font-weight:bold;">计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
