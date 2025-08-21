@@ -5,8 +5,15 @@ permalink: /
 ---
 
 <!-- 顶部简介区块 -->
-<div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
-  <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b><br>
+<div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2; display:flex; justify-content:space-between; align-items:center;">
+  <div>
+    <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b>
+  </div>
+  <div style="margin-left:20px;">
+    <a href="https://chezvivian.github.io" style="display:inline-block; color:#555; background:transparent; font-weight:bold; border:2px solid #555; border-radius:6px; padding:8px 20px; text-decoration:none; font-size:0.95em; transition:all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#555';">
+      🏠 回到个人主页
+    </a>
+  </div>
 </div>
 
 <b>2025秋季（当前学期）：</b>
