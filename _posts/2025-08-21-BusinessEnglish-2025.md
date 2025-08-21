@@ -26,32 +26,32 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 1 Brands</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 1 all content.pdf (to be uploaded)</a></td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 1 课文精读.pdf(to be uploaded)</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 2 Media</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 2 all content.pdf</a></td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 2 课文精读.pdf(to be uploaded)</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 3 Innovation</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 3 all content.pdf(to be uploaded)</a></td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 3 课文精读.pdf(to be uploaded)(to be uploaded)</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 4 Advertising</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 4 all content.pdf(to be uploaded)</a></td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 4 课文精读.pdf(to be uploaded)</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 5 Environment</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 5 all content.pdf(to be uploaded)</a></td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">Unit 5 课文精读.pdf(to be uploaded)</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;">Summary - Class 17</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="" target="_blank">To be uploaded</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;">Summary</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">-</td>
   </tr>
 </table>
@@ -60,7 +60,7 @@ layout: post
 ## 学期初的准备
 
 <div style="background:#f9f6f2; border-left:6px solid #4472c4; border-radius:8px; box-shadow:0 2px 8px #eee; padding:24px 24px 24px 32px; margin:32px 0;">
-  <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年8月21日</p>
+  <p style="font-style:italic; color:#666; margin-bottom:20px;">写于2025年8月</p>
   <p style="font-size:1.1em; line-height:1.8;">
     <br><br>
     <br><br>
