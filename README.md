@@ -9,14 +9,18 @@ permalink: /
   <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b><br>
 </div>
 
-<b>2025春季学期：</b>
+<b>2025秋季（当前学期）：</b>
 
-- <a href="/class/posts/2025-03-06-CAT/" style="color:#4472c4; font-weight:bold;">计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
-- <a href="/class/posts/2025-03-04-localization/" style="color:#4472c4; font-weight:bold;">本地化翻译</a>：软件/网站/游戏本地化
-- <a href="/class/posts/2025-03-07-entrepreneur/" style="color:#4472c4; font-weight:bold;">翻译创业管理</a>：创业理论与实操
+- <a href="/class/posts/2025-08-21-BusinessEnglish-2025/" style="color:#4472c4; font-weight:bold;">大学商务英语（一）</a>：新教材
+
+
 
 <b>历史学期：</b>
 
+
+- <a href="/class/archive/CAT-2025-spring/" style="color:#4472c4; font-weight:bold;">2025春：计算机辅助翻译（CAT）</a>：翻译技术与工具全流程
+- <a href="/class/archive/Localization-2025-spring/" style="color:#4472c4; font-weight:bold;">2025春：本地化翻译</a>：软件/网站/游戏本地化
+- <a href="/class/archive/Entrepreneur-2025-spring/" style="color:#4472c4; font-weight:bold;">2025春：翻译创业管理</a>：创业理论与实操
 - <a href="/class/archive/BusinessEnglish-2024/" style="color:#4472c4; font-weight:bold;">2024秋：大学商务英语（一）</a>
 - <a href="/class/archive/CAT-2024/" style="color:#4472c4; font-weight:bold;">2024秋：计算机辅助翻译</a>
 
