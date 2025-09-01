@@ -19,6 +19,7 @@ permalink: /
 <b>2025秋季（当前学期）：</b>
 
 - <a href="/class/posts/2025-08-21-BusinessEnglish-2025/" style="color:#4472c4; font-weight:bold;">大学商务英语（一）</a>：新教材
+- <a href="/class/posts/2025-08-21-CAT-2025-autumn/" style="color:#4472c4; font-weight:bold;">计算机辅助翻译AI+</a>
 
 <b>历史学期：</b>
 
