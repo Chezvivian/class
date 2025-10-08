@@ -16,21 +16,24 @@ layout: post
 </div>
 
 <!-- 课件与精读表格 -->
-## 学期课件与精读资源
+## 学期课件与视频资源
 
 <table style="width:100%; border-collapse:collapse; text-align:center; font-size:1em; background:#fff; margin-bottom:32px;">
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <th style="border:1px solid #e0e0e0; padding:10px 24px;">单元</th>
     <th style="border:1px solid #e0e0e0; padding:10px 32px;">课件</th>
-    <th style="border:1px solid #e0e0e0; padding:10px 32px;">课文精读</th>
+    <th style="border:1px solid #e0e0e0; padding:10px 32px;">Lead-in Video</th>
+    <th style="border:1px solid #e0e0e0; padding:10px 32px;">Audio</th>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 1 Brands</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="https://pan.baidu.com/s/1KnrQ9kWHLDKZ3XUQwQhQew?pwd=UIBE" target="_blank" style="color:#2d3a4a; text-decoration:none;">点击播放</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;"><a href="https://pan.baidu.com/s/1aY9Ur9yZmguloueClTRKuQ?pwd=UIBE" target="_blank" style="color:#2d3a4a; text-decoration:none;">点击播放</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 2 Media</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
@@ -38,9 +41,11 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 3 Innovation</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 4 Advertising</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
@@ -48,9 +53,11 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Unit 5 Environment</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">Summary</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:10px 32px;">To be uploaded</td>
   </tr>
@@ -59,7 +66,8 @@ layout: post
 <!-- 结课感想美化区块 -->
 ## 学期初的准备
 
-### 9月5日：
+<details>
+<summary style="cursor: pointer; font-weight: bold; font-size: 1.1em; color: #2d3a4a; padding: 10px 0; border-bottom: 1px solid #e0e0e0; margin-bottom: 15px;">📅 9月5日</summary>
 
 前两天稍微准备了一下这学期的课件模板，以动物图标作为各个小节的封面页，希望能活泼一点，吸引同学们的注意力。 
 
@@ -97,6 +105,8 @@ Step 3. 增加AI辅助英语学习的方法分享。这部分主要集中在第�
   - 课文精读文档编制：小组合作整理每个单元的课文精读PDF.  
 
 接下来从 Unit 1 开始准备。记录一下备课过程，帮助之后形成工作流，提高效率，反思各个环节。
+
+</details>
 ---
 
 
