@@ -125,7 +125,8 @@ layout: post
 
 今天测试上线的内容有：
 
-1. <a href="https://studio.d-id.com/agents/share?id=agt_AARr0Q-v&utm_source=copy&key=WVhWMGFEQjhOamd4WVRBeFltRXlaR05oTVRjMU5EZGtabVl4TkRjMU9saHZhV0ZZYm1acGRrdDVORFJLUkZaU1JVUmpZdz09" target="_blank">商务英语助理数字人</a>：使用 D-ID 的数字人技术，付年费2000元，来获取每个月30分钟的交互时长，以及数字人视频的制作。使用场景在于给学生们提供24小时沉浸式口语、听力练习的环境，相当于一个私人订制、课程专属的英文外教。
+1. <a href="https://studio.d-id.com/agents/share?id=agt_AARr0Q-v&utm_source=copy&key=WVhWMGFEQjhOamd4WVRBeFltRXlaR05oTVRjMU5EZGtabVl4TkRjMU9saHZhV0ZZYm1acGRrdDVORFJLUkZaU1JVUmpZdz09" target="_blank">商务英语助理数字人（交互式视频对话）</a>：使用 D-ID 的数字人技术，付年费2000元，来获取每个月30分钟的交互时长，以及数字人视频的制作。使用场景在于给学生们提供24小时沉浸式口语、听力练习的环境，相当于一个私人订制、课程专属的英文外教。
 
-2. <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank">每单元的单词学习播客</a>：这个是我精加工，进行了私人定制的一个小产品。初始形态是 NotebookLM 根据我上传的每单元核心词汇和课文，生成的两名主持人对话讲授单元新词的一段音频。我选择了较短的形态，约6分钟左右（较长的形态是30多分钟），大概应该适合同学们进行预习。但是，从我个人的体验来说，之前见过瀑布流形式的音频字幕，非常喜欢，所以暑假期间探索了一下，最近在剪映中可以加上了瀑布流字幕，从而把音频变成了一个可以更加抓住人注意力的视频（想起来剪映也刚购买了一个年度会员，399元）。这里的链接是第一单元的测试播客，我把其中音频转录的字幕文字进行了一遍人工筛查，修改了一些错误转录的字符，算是一次小小的精加工。
+2. <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank">每单元的单词学习播客（瀑布流视频）</a>：这个是我精加工，进行了私人定制的一个小产品。初始形态是 NotebookLM 根据我上传的每单元核心词汇和课文，生成的两名主持人对话讲授单元新词的一段音频。我选择了较短的形态，约6分钟左右（较长的形态是30多分钟），大概应该适合同学们进行预习。但是，从我个人的体验来说，之前见过瀑布流形式的音频字幕，非常喜欢，所以暑假期间探索了一下，最近在剪映中可以加上了瀑布流字幕，从而把音频变成了一个可以更加抓住人注意力的视频（想起来剪映也刚购买了一个年度会员，399元）。这里的链接是第一单元的测试播客，我把其中音频转录的字幕文字进行了一遍人工筛查，修改了一些错误转录的字符，算是一次小小的精加工。
 
+3. 每单元的课文讲解课件。这部分是课堂教学的内容，今天已经使用 Claude 生成了课文讲解的大纲，包括丰富版和精简版，然后依次测试了PPT生成工具：天工AI, AIPPT, Gemini
