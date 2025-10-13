@@ -143,15 +143,15 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:12px 16px;">Unit 1 词汇</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b</a></td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 中文讲解</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Text-2-28b5a9c7a66680c49541d012e37b5bc0?pvs=74</a></td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-28b5a9c7a66680c49541d012e37b5bc0?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 英文讲解</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Text-2-explanation-28b5a9c7a66680d58a54e5363fa1ac24?pvs=74</a></td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-explanation-28b5a9c7a66680d58a54e5363fa1ac24?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 1 中文讲解</td>
