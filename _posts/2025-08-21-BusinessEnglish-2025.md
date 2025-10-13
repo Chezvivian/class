@@ -28,7 +28,10 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 1 Brands</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋-商英一-introduction.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Introduction</a> | 
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋-商英一-Unit1_Text2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a>
+    </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">点击播放视频</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">点击播放音频</a></td>
   </tr>
