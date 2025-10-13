@@ -130,3 +130,37 @@ layout: post
 2. <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank">每单元的单词学习播客（瀑布流视频）</a>：这个是我精加工，进行了私人定制的一个小产品。初始形态是 NotebookLM 根据我上传的每单元核心词汇和课文，生成的两名主持人对话讲授单元新词的一段音频。我选择了较短的形态，约6分钟左右（较长的形态是30多分钟），大概应该适合同学们进行预习。但是，从我个人的体验来说，之前见过瀑布流形式的音频字幕，非常喜欢，所以暑假期间探索了一下，最近在剪映中可以加上了瀑布流字幕，从而把音频变成了一个可以更加抓住人注意力的视频（想起来剪映也刚购买了一个年度会员，399元）。这里的链接是第一单元的测试播客，我把其中音频转录的字幕文字进行了一遍人工筛查，修改了一些错误转录的字符，算是一次小小的精加工。
 
 3. 每单元的课文讲解课件。这部分是课堂教学的内容，今天已经使用 Claude 生成了课文讲解的大纲，包括丰富版和精简版，然后依次测试了PPT生成工具：天工AI, AIPPT, Gemini
+
+### 10月13日
+
+#### Unit 1 音频概览素材
+
+<div style="overflow-x: auto; margin-bottom: 32px;">
+<table style="width:100%; min-width: 400px; border-collapse:collapse; text-align:left; font-size:0.9em; background:#fff;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">音频素材名称</th>
+    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">链接</th>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Unit 1 词汇</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b</a></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 中文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Text-2-28b5a9c7a66680c49541d012e37b5bc0?pvs=74</a></td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 英文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">https://verbose-temple-e01.notion.site/Unit-1-Text-2-explanation-28b5a9c7a66680d58a54e5363fa1ac24?pvs=74</a></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 1 中文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">待添加链接</a></td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 1 英文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="#" target="_blank" style="color:#0066cc; text-decoration:underline;">待添加链接</a></td>
+  </tr>
+</table>
+</div>
+
