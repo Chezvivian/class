@@ -55,13 +55,13 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 4 Advertising</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 5 Environment</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 7 Job Hunting</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
