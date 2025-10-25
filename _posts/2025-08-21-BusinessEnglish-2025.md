@@ -23,17 +23,24 @@ layout: post
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:80px;">单元</th>
     <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:100px;">课件</th>
-    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">Lead-in Video</th>
-    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:100px;">Audio</th>
+    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">词汇、课文</th>
+    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">Lead-in</th>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 1 Brands</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋-商英一-introduction.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Introduction</a> | 
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋-商英一-Unit1_Text2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a>
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-introduction.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Introduction</a> | 
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit1_Text1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1</a> | 
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit1_Text2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a> | 
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit1_Language.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Language</a>
     </td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">点击播放视频</a></td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">点击播放音频</a></td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit1_brands_词汇闪卡_更新音标.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 1 词汇闪卡</a> 
+    </td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Video</a> | 
+      <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead in Podcast</a>
+    </td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 2 Media</td>
