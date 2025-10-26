@@ -440,9 +440,9 @@ async function synthesizeSpeech(text) {
     console.log('调用阿里云TTS API，参数:', {
       text: text,
       voice: voiceSelect.value,
-      speech_rate: parseInt(speedSelect.value),
-      pitch_rate: parseInt(pitchSelect.value),
-      volume: parseInt(volumeSelect.value)
+      speech_rate: parseInt(speedSlider.value),
+      pitch_rate: parseInt(pitchSlider.value),
+      volume: parseInt(volumeSlider.value)
     });
     
     // 使用 Vercel API 端点
