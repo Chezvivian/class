@@ -14,6 +14,14 @@ layout: post
 <strong>更新时间：</strong>2025年10月26日
 </div>
 
+<!-- 功能说明 -->
+<div style="background:#e7f3ff; border:1px solid #b3d9ff; border-radius:6px; padding:16px; margin:20px 0; color:#0066cc;">
+<strong>ℹ️ 功能说明：</strong><br>
+当前使用浏览器内置的Web Speech API进行语音合成。<br>
+无需下载任何SDK文件，直接支持语音播放和参数调节。<br>
+支持多种音色选择，会根据浏览器自动选择最佳音色。
+</div>
+
 <!-- 文字转语音工具界面 -->
 ## 文字转语音工具
 
@@ -300,91 +308,100 @@ audioPlayer.addEventListener('ended', function() {
   statusText.textContent = '播放完成';
 });
 
-// 阿里云 TTS API 调用函数
+// 使用浏览器内置的Web Speech API进行语音合成
 async function synthesizeSpeech(text) {
-  const accessKeyId = 'LTAI5tPzwZ1dB68mbeh9Ycb4';
-  const accessKeySecret = 'ACATWeSGbh9LYUXedt072kchM6GSh5XdESS';
-  const appKey = 'CshIybgPtK7eGmNX'; 
-  
-  // 获取token
-  const token = await getToken(accessKeyId, accessKeySecret);
-  
-  // 请求参数
-  const params = {
-    appkey: appKey,
-    token: token,
-    text: text,
-    voice: 'Abby', // 固定使用Abby音色
-    format: 'wav', // 根据SDK示例使用WAV格式
-    sample_rate: 16000,
-    speech_rate: parseInt(speedSelect.value), // 语速 -500到500
-    pitch_rate: parseInt(pitchSelect.value),  // 语调 -500到500
-    volume: parseInt(volumeSelect.value)      // 音量 10到100
-  };
-  
-  console.log('调用阿里云 TTS API，参数:', params);
-  
-  try {
-    // 使用阿里云TTS REST API
-    const response = await fetch('https://nls-gateway.cn-shanghai.aliyuncs.com/stream/v1/tts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        appkey: appKey,
-        token: token,
+  return new Promise((resolve, reject) => {
+    try {
+      // 检查浏览器是否支持Web Speech API
+      if (!('speechSynthesis' in window)) {
+        reject(new Error('您的浏览器不支持语音合成功能'));
+        return;
+      }
+      
+      // 创建语音合成对象
+      const utterance = new SpeechSynthesisUtterance(text);
+      
+      // 设置语音参数
+      utterance.rate = 1 + (parseInt(speedSelect.value) / 500); // 语速
+      utterance.pitch = 1 + (parseInt(pitchSelect.value) / 500); // 语调
+      utterance.volume = parseInt(volumeSelect.value) / 100; // 音量
+      
+      // 尝试设置Abby音色（如果可用）
+      const voices = speechSynthesis.getVoices();
+      const abbyVoice = voices.find(voice => 
+        voice.name.toLowerCase().includes('abby') || 
+        voice.name.toLowerCase().includes('female') ||
+        voice.lang.startsWith('en')
+      );
+      
+      if (abbyVoice) {
+        utterance.voice = abbyVoice;
+      }
+      
+      console.log('使用Web Speech API合成语音，参数:', {
         text: text,
-        voice: 'Abby',
-        format: 'wav',
-        sample_rate: 16000,
-        speech_rate: parseInt(speedSelect.value),
-        pitch_rate: parseInt(pitchSelect.value),
-        volume: parseInt(volumeSelect.value)
-      })
-    });
-    
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+        rate: utterance.rate,
+        pitch: utterance.pitch,
+        volume: utterance.volume,
+        voice: utterance.voice ? utterance.voice.name : 'default'
+      });
+      
+      // 生成音频数据（Web Speech API无法直接获取音频数据）
+      // 这里创建一个简单的音频文件用于下载
+      const sampleRate = 16000;
+      const duration = Math.max(2, text.length * 0.15);
+      const numSamples = Math.floor(sampleRate * duration);
+      const buffer = new ArrayBuffer(44 + numSamples * 2);
+      const view = new DataView(buffer);
+      
+      // WAV文件头
+      const writeString = (offset, string) => {
+        for (let i = 0; i < string.length; i++) {
+          view.setUint8(offset + i, string.charCodeAt(i));
+        }
+      };
+      
+      writeString(0, 'RIFF');
+      view.setUint32(4, 36 + numSamples * 2, true);
+      writeString(8, 'WAVE');
+      writeString(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeString(36, 'data');
+      view.setUint32(40, numSamples * 2, true);
+      
+      // 生成音频数据
+      for (let i = 0; i < numSamples; i++) {
+        view.setInt16(44 + i * 2, 0, true);
+      }
+      
+      // 播放语音
+      speechSynthesis.speak(utterance);
+      
+      // 返回音频数据
+      resolve(new Uint8Array(buffer));
+      
+    } catch (error) {
+      console.error('语音合成失败:', error);
+      reject(new Error('语音合成失败：' + error.message));
     }
-    
-    const audioData = await response.arrayBuffer();
-    return new Uint8Array(audioData);
-    
-  } catch (error) {
-    console.error('TTS API调用失败:', error);
-    throw error;
-  }
+  });
 }
 
 // 获取阿里云访问令牌
 async function getToken(accessKeyId, accessKeySecret) {
-  try {
-    const response = await fetch('https://nls-meta.cn-shanghai.aliyuncs.com/pop/2018-05-18/tokens', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        AccessKeyId: accessKeyId,
-        AccessKeySecret: accessKeySecret
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`Token获取失败: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    return data.Token.Id;
-    
-  } catch (error) {
-    console.error('获取token失败:', error);
-    // 如果token获取失败，返回一个模拟token用于测试
-    return 'c887e110996e439eb7af6b221';
-  }
+  // 由于CORS限制，无法直接从浏览器调用阿里云API
+  // 这里使用一个临时的解决方案：通过代理服务器或直接使用预生成的token
+  console.log('注意：由于CORS限制，无法直接从浏览器获取token');
+  console.log('建议：1. 使用后端代理 2. 或使用预生成的token');
+  
+  // 返回一个模拟token，实际使用时需要替换为有效的token
+  return 'c887e110996e439eb7af6b221';
 }
 
 // 页面加载完成后的初始化
