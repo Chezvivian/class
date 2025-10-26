@@ -37,7 +37,7 @@ module.exports = async function handler(req, res) {
     }
 
     // 获取访问令牌
-    const tokenResponse = await axios.post(`${req.headers.origin || 'https://your-domain.vercel.app'}/api/token`, {}, {
+    const tokenResponse = await axios.post('https://vercel-tts.vercel.app/api/token', {}, {
       timeout: 10000
     });
     
