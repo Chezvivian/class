@@ -46,7 +46,8 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 2 Media</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+          <a href="https://verbose-temple-e01.notion.site/Unit-2-Media-Lead-in-Video-2985a9c7a666808186b9f2007203af9f?source=copy_link" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead_in Video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
