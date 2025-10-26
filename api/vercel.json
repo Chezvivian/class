@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "functions": {
+    "api/tts.js": {
+      "maxDuration": 30
+    },
+    "api/token.js": {
+      "maxDuration": 10
+    }
+  },
+  "env": {
+    "ALIYUN_AK_ID": "@aliyun_ak_id",
+    "ALIYUN_AK_SECRET": "@aliyun_ak_secret", 
+    "NLS_APP_KEY": "@nls_app_key"
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    }
+  ]
+}

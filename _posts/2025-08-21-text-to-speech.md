@@ -315,20 +315,21 @@ downloadBtn.addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
   statusText.textContent = '请输入文字内容开始合成语音';
   
-  // 检查后端代理服务器是否运行
-  fetch('http://localhost:3001/api/token', { method: 'POST' })
+  // 检查 Vercel API 是否可用
+  const apiBaseUrl = window.location.origin;
+  fetch(`${apiBaseUrl}/api/token`, { method: 'POST' })
     .then(response => {
       if (response.ok) {
-        statusText.textContent = '后端代理服务器已连接，可以开始使用';
-        console.log('后端代理服务器连接成功');
+        statusText.textContent = 'TTS服务已就绪，可以开始使用';
+        console.log('Vercel API 连接成功');
       } else {
-        statusText.textContent = '后端代理服务器未运行，请先启动服务器';
-        console.warn('后端代理服务器未运行');
+        statusText.textContent = 'TTS服务暂时不可用，请稍后重试';
+        console.warn('Vercel API 响应异常');
       }
     })
     .catch(error => {
-      statusText.textContent = '无法连接到后端代理服务器，请检查服务器是否启动';
-      console.error('后端代理服务器连接失败:', error);
+      statusText.textContent = 'TTS服务连接失败，请检查网络连接';
+      console.error('Vercel API 连接失败:', error);
     });
 });
 
@@ -346,8 +347,9 @@ async function synthesizeSpeech(text) {
       volume: parseInt(volumeSelect.value)
     });
     
-    // 调用后端代理API
-    const response = await fetch('http://localhost:3001/api/tts', {
+    // 使用 Vercel API 端点
+    const apiBaseUrl = window.location.origin; // 自动检测当前域名
+    const response = await fetch(`${apiBaseUrl}/api/tts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
