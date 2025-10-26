@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS API 测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        button { padding: 10px 20px; margin: 10px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0051a2; }
+        .result { margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 4px; }
+        .error { background: #ffe6e6; color: #d00; }
+        .success { background: #e6ffe6; color: #060; }
+    </style>
+</head>
+<body>
+    <h1>TTS API 测试页面</h1>
+    
+    <div class="test-section">
+        <h2>1. 测试 Token API</h2>
+        <button onclick="testTokenAPI()">测试 Token API</button>
+        <div id="tokenResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 测试 TTS API</h2>
+        <button onclick="testTTSAPI()">测试 TTS API</button>
+        <div id="ttsResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 环境变量检查</h2>
+        <p>请确保在 Vercel Dashboard 中设置了以下环境变量：</p>
+        <ul>
+            <li>ALIYUN_AK_ID</li>
+            <li>ALIYUN_AK_SECRET</li>
+            <li>NLS_APP_KEY</li>
+        </ul>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+        
+        async function testTokenAPI() {
+            const resultDiv = document.getElementById('tokenResult');
+            resultDiv.innerHTML = '正在测试 Token API...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/token`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Token API 成功！<br>Token: ${data.token ? data.token.substring(0, 20) + '...' : 'N/A'}</div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Token API 失败：${data.error || data.details || '未知错误'}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ 网络错误：${error.message}</div>`;
+            }
+        }
+        
+        async function testTTSAPI() {
+            const resultDiv = document.getElementById('ttsResult');
+            resultDiv.innerHTML = '正在测试 TTS API...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: "Hello World",
+                        voice: "Abby",
+                        speed: 0,
+                        pitch: 0,
+                        volume: 50
+                    })
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    resultDiv.innerHTML = `<div class="success">✅ TTS API 成功！<br>音频文件大小: ${blob.size} bytes<br>类型: ${blob.type}</div>`;
+                } else {
+                    const data = await response.text();
+                    resultDiv.innerHTML = `<div class="error">❌ TTS API 失败：${data}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ 网络错误：${error.message}</div>`;
+            }
+        }
+        
+        // 页面加载时自动测试
+        window.onload = function() {
+            console.log('API Base URL:', API_BASE);
+            testTokenAPI();
+        };
+    </script>
+</body>
+</html>

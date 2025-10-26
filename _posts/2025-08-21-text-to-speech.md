@@ -5,8 +5,6 @@ date: 2025-8-21
 layout: post
 ---
 
-<script src="/class/assets/nls.js"></script>
-
 <!-- 工具简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
 <strong>工具名称：</strong>文字转语音工具<br>
@@ -316,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
   statusText.textContent = '请输入文字内容开始合成语音';
   
   // 检查 Vercel API 是否可用
-  const apiBaseUrl = window.location.origin;
+  const apiBaseUrl = 'https://your-project-name.vercel.app'; // 替换为您的 Vercel 项目 URL
   fetch(`${apiBaseUrl}/api/token`, { method: 'POST' })
     .then(response => {
       if (response.ok) {
@@ -348,7 +346,7 @@ async function synthesizeSpeech(text) {
     });
     
     // 使用 Vercel API 端点
-    const apiBaseUrl = window.location.origin; // 自动检测当前域名
+    const apiBaseUrl = 'https://your-project-name.vercel.app'; // 替换为您的 Vercel 项目 URL
     const response = await fetch(`${apiBaseUrl}/api/tts`, {
       method: 'POST',
       headers: {
