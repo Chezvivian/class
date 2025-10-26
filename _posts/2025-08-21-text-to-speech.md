@@ -16,35 +16,6 @@ layout: post
 <strong>更新时间：</strong>2025年10月26日
 </div>
 
-<!-- 功能说明 -->
-<div style="background:#e7f3ff; border:1px solid #b3d9ff; border-radius:6px; padding:16px; margin:20px 0; color:#0066cc;">
-<strong>ℹ️ 功能说明：</strong><br>
-使用阿里云智能语音交互服务进行真实语音合成。<br>
-支持Abby音色和完整的参数调节功能。<br>
-需要配置后端代理服务器以绕过CORS限制。
-</div>
-
-<!-- 配置说明 -->
-<div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin:20px 0;">
-<h4>📋 配置步骤：</h4>
-<ol style="margin:0; padding-left:20px; color:#666; font-size:14px; line-height:1.8;">
-  <li>下载阿里云NLS JavaScript SDK并上传到 <code>assets/nls-sdk.min.js</code></li>
-  <li>安装Node.js后端代理服务器：<code>npm install</code></li>
-  <li>启动代理服务器：<code>npm start</code></li>
-  <li>在页面中引入SDK：<code>&lt;script src="/class/assets/nls-sdk.min.js"&gt;&lt;/script&gt;</code></li>
-</ol>
-
-<h4>🔧 快速启动：</h4>
-<pre style="background:#f1f3f4; padding:12px; border-radius:4px; font-size:12px; margin:8px 0;">
-# 1. 安装依赖
-npm install
-
-# 2. 启动代理服务器
-npm start
-
-# 3. 访问网页测试
-</pre>
-</div>
 
 <!-- 文字转语音工具界面 -->
 ## 文字转语音工具

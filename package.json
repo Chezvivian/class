@@ -5,12 +5,14 @@
   "main": "backend-proxy.js",
   "scripts": {
     "start": "node backend-proxy.js",
-    "dev": "nodemon backend-proxy.js"
+    "dev": "nodemon backend-proxy.js",
+    "start:env": "ALIYUN_AK_ID=LTAI5tPzwZ1dB68mbeh9Ycb4 ALIYUN_AK_SECRET=ACATWeSGbh9LYUXedt072kchM6GSh5XdESS NLS_APP_KEY=CshIybgPtK7eGmNX node backend-proxy.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "ws": "^8.14.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
