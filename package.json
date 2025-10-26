@@ -5,7 +5,8 @@
   "main": "backend-proxy.js",
   "scripts": {
     "start": "node backend-proxy.js",
-    "dev": "nodemon backend-proxy.js"
+    "dev": "nodemon backend-proxy.js",
+    "start:env": "ALIYUN_AK_ID=LTAI5tPzwZ1dB68mbeh9Ycb4 ALIYUN_AK_SECRET=你的AccessKeySecret NLS_APP_KEY=CshIybgPtK7eGmNX node backend-proxy.js"
   },
   "dependencies": {
     "express": "^4.18.2",
