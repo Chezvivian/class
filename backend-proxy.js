@@ -8,7 +8,7 @@ const PORT = 3001;
 
 // 阿里云配置 - 使用环境变量
 const ACCESS_KEY_ID = process.env.ALIYUN_AK_ID || 'LTAI5tPzwZ1dB68mbeh9Ycb4';
-const ACCESS_KEY_SECRET = process.env.ALIYUN_AK_SECRET || 'ACATWeSGbh9LYUXedt072kchM6GSh5XdESS';
+const ACCESS_KEY_SECRET = process.env.ALIYUN_AK_SECRET || 'ATWeSGbh9LYUXedt072kchM6GSh5Xd';
 const APP_KEY = process.env.NLS_APP_KEY || 'CshIybgPtK7eGmNX';
 
 console.log('阿里云配置:');
