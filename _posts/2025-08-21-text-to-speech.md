@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
   statusText.textContent = '请输入文字内容开始合成语音';
   
   // 检查 Vercel API 是否可用
-  const apiBaseUrl = 'https://your-project-name.vercel.app'; // 替换为您的 Vercel 项目 URL
+  const apiBaseUrl = 'https://vercel-tts.vercel.app';
   fetch(`${apiBaseUrl}/api/token`, { method: 'POST' })
     .then(response => {
       if (response.ok) {
@@ -346,7 +346,7 @@ async function synthesizeSpeech(text) {
     });
     
     // 使用 Vercel API 端点
-    const apiBaseUrl = 'https://your-project-name.vercel.app'; // 替换为您的 Vercel 项目 URL
+    const apiBaseUrl = 'https://vercel-tts.vercel.app';
     const response = await fetch(`${apiBaseUrl}/api/tts`, {
       method: 'POST',
       headers: {
