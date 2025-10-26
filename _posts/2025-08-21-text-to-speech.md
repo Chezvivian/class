@@ -30,27 +30,21 @@ layout: post
 
 <!-- 语音设置区域 -->
 <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
-  <div style="flex:1; min-width:200px;">
-    <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">选择音色：</label>
-     <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="Abby" selected>Abby（美音女声）</option>
-       <option value="xiaoyun">小云（女声，温柔）</option>
-       <option value="xiaogang">小刚（男声，稳重）</option>
-       <option value="xiaofeng">小枫（女声，活泼）</option>
-       <option value="xiaomei">小美（女声，甜美）</option>
-       <option value="xiaoli">小丽（女声，知性）</option>
-       <option value="xiaokun">小坤（男声，磁性）</option>
-     </select>
-  </div>
+   <div style="flex:1; min-width:200px;">
+     <label style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色：</label>
+     <div style="padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; background:#f8f9fa; color:#666;">
+       Abby（美音女声）
+     </div>
+   </div>
   
   <div style="flex:1; min-width:200px;">
     <label for="speedSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语速：</label>
      <select id="speedSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="-2">-2（很慢）</option>
-       <option value="-1">-1（较慢）</option>
+       <option value="-500">-500（很慢）</option>
+       <option value="-200">-200（较慢）</option>
        <option value="0" selected>0（正常）</option>
-       <option value="1">1（较快）</option>
-       <option value="2">2（很快）</option>
+       <option value="200">200（较快）</option>
+       <option value="500">500（很快）</option>
      </select>
   </div>
   
@@ -68,11 +62,11 @@ layout: post
    <div style="flex:1; min-width:200px;">
      <label for="pitchSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语调：</label>
      <select id="pitchSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="-2">-2（很低）</option>
-       <option value="-1">-1（较低）</option>
+       <option value="-500">-500（很低）</option>
+       <option value="-200">-200（较低）</option>
        <option value="0" selected>0（正常）</option>
-       <option value="1">1（较高）</option>
-       <option value="2">2（很高）</option>
+       <option value="200">200（较高）</option>
+       <option value="500">500（很高）</option>
      </select>
    </div>
  </div>
@@ -140,7 +134,6 @@ let audioUrl = null;
 // DOM 元素
 const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
- const voiceSelect = document.getElementById('voiceSelect');
  const speedSelect = document.getElementById('speedSelect');
  const volumeSelect = document.getElementById('volumeSelect');
  const pitchSelect = document.getElementById('pitchSelect');
@@ -224,10 +217,10 @@ synthesizeBtn.addEventListener('click', async function() {
     progressBar.style.width = '100%';
     progressText.textContent = '100%';
     
-    // 创建音频对象
-    audioBlob = new Blob([audioData], { type: 'audio/mp3' });
-    audioUrl = URL.createObjectURL(audioBlob);
-    audioPlayer.src = audioUrl;
+     // 创建音频对象
+     audioBlob = new Blob([audioData], { type: 'audio/wav' });
+     audioUrl = URL.createObjectURL(audioBlob);
+     audioPlayer.src = audioUrl;
     
     // 更新按钮状态
     playBtn.disabled = false;
@@ -277,7 +270,7 @@ downloadBtn.addEventListener('click', function() {
     const url = URL.createObjectURL(audioBlob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `语音合成_${new Date().getTime()}.mp3`;
+     a.download = `语音合成_${new Date().getTime()}.wav`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -309,33 +302,57 @@ audioPlayer.addEventListener('ended', function() {
 
 // 阿里云 TTS API 调用函数
 async function synthesizeSpeech(text) {
-  // TODO: 替换为实际的阿里云 AccessKey
   const accessKeyId = 'LTAI5tPzwZ1dB68mbeh9Ycb4';
-  const accessKeySecret = 'YOUR_ACATWeSGbh9LYUXedt072kchM6GSh5XdESS_KEY_SECRET';
+  const accessKeySecret = 'ACATWeSGbh9LYUXedt072kchM6GSh5XdESS';
   
-   // 请求参数
-   const params = {
-     text: text,
-     voice: voiceSelect.value,
-     speed: parseInt(speedSelect.value),
-     volume: parseInt(volumeSelect.value),
-     pitch: parseInt(pitchSelect.value),
-     format: 'mp3',
-     sample_rate: 16000
-   };
+  // 获取token
+  const token = await getToken(accessKeyId, accessKeySecret);
   
-  // 这里需要实现阿里云 TTS API 的调用
-  // 由于涉及 API 密钥，这里提供一个模拟实现
+  // 请求参数
+  const params = {
+    appkey: appKey,
+    token: token,
+    text: text,
+    voice: 'Abby', // 固定使用Abby音色
+    format: 'wav', // 根据SDK示例使用WAV格式
+    sample_rate: 16000,
+    speech_rate: parseInt(speedSelect.value), // 语速 -500到500
+    pitch_rate: parseInt(pitchSelect.value),  // 语调 -500到500
+    volume: parseInt(volumeSelect.value)      // 音量 10到100
+  };
+  
   console.log('调用阿里云 TTS API，参数:', params);
   
-  // 模拟 API 调用延迟
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  
-  // 模拟返回音频数据（实际应该返回真实的音频二进制数据）
-  // 这里返回一个模拟的音频数据
-  const mockAudioData = new Uint8Array(1024); // 实际应该是真实的音频数据
-  
-  return mockAudioData;
+  try {
+    // 调用阿里云TTS API
+    const response = await fetch('https://nls-gateway.cn-shanghai.aliyuncs.com/stream/v1/tts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-NLS-Token': token
+      },
+      body: JSON.stringify(params)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const audioData = await response.arrayBuffer();
+    return new Uint8Array(audioData);
+    
+  } catch (error) {
+    console.error('TTS API调用失败:', error);
+    throw error;
+  }
+}
+
+// 获取阿里云访问令牌
+async function getToken(accessKeyId, accessKeySecret) {
+  // 这里需要实现获取token的逻辑
+  // 由于涉及签名算法，建议在后端实现
+  // 这里返回一个模拟token，实际使用时需要替换
+  return 'c887e110996e439eb7af6b221';
 }
 
 // 页面加载完成后的初始化
@@ -344,28 +361,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<!-- 技术说明 -->
-## 技术实现说明
-
-<div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin:20px 0;">
-
-### 功能特性
-- **实时合成**：基于阿里云智能语音交互服务
-- **多音色支持**：默认 Abby（美音女声），支持多种中英文音色
-- **参数调节**：支持语速（-2到2）、音量（10%-100%）、语调（-2到2）自定义
-- **在线播放**：合成后可直接在浏览器中播放
-- **音频下载**：支持将合成音频下载到本地
-
-### 技术架构
-- **前端**：HTML5 + CSS3 + JavaScript
-- **后端**：阿里云智能语音交互 API
-- **音频格式**：MP3，采样率 16kHz
-- **字符限制**：单次最多 5000 字符
-- **默认配置**：Abby 美音女声，语速0，音量50%，语调0
-
-### 使用限制
-- 需要有效的阿里云 AccessKey
-- 受阿里云 API 调用频率限制
-- 音频文件大小受文本长度影响
-
-</div>
