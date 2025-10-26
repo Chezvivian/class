@@ -7,9 +7,19 @@ const app = express();
 const PORT = 3001;
 
 // 阿里云配置 - 使用环境变量
-const ACCESS_KEY_ID = process.env.ALIYUN_AK_ID || 'LTAI5tPzwZ1dB68mbeh9Ycb4';
-const ACCESS_KEY_SECRET = process.env.ALIYUN_AK_SECRET || 'ATWeSGbh9LYUXedt072kchM6GSh5Xd';
-const APP_KEY = process.env.NLS_APP_KEY || 'CshIybgPtK7eGmNX';
+const ACCESS_KEY_ID = process.env.ALIYUN_AK_ID;
+const ACCESS_KEY_SECRET = process.env.ALIYUN_AK_SECRET;
+const APP_KEY = process.env.NLS_APP_KEY;
+
+// 检查环境变量是否设置
+if (!ACCESS_KEY_ID || !ACCESS_KEY_SECRET || !APP_KEY) {
+  console.error('❌ 缺少必要的环境变量！');
+  console.error('请设置以下环境变量：');
+  console.error('  ALIYUN_AK_ID=你的AccessKeyId');
+  console.error('  ALIYUN_AK_SECRET=你的AccessKeySecret');
+  console.error('  NLS_APP_KEY=你的AppKey');
+  process.exit(1);
+}
 
 console.log('阿里云配置:');
 console.log('ACCESS_KEY_ID:', ACCESS_KEY_ID);
