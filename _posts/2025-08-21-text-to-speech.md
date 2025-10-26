@@ -304,6 +304,7 @@ audioPlayer.addEventListener('ended', function() {
 async function synthesizeSpeech(text) {
   const accessKeyId = 'LTAI5tPzwZ1dB68mbeh9Ycb4';
   const accessKeySecret = 'ACATWeSGbh9LYUXedt072kchM6GSh5XdESS';
+  const appKey = 'CshIybgPtK7eGmNX'; 
   
   // 获取token
   const token = await getToken(accessKeyId, accessKeySecret);
@@ -324,18 +325,29 @@ async function synthesizeSpeech(text) {
   console.log('调用阿里云 TTS API，参数:', params);
   
   try {
-    // 调用阿里云TTS API
+    // 使用阿里云TTS REST API
     const response = await fetch('https://nls-gateway.cn-shanghai.aliyuncs.com/stream/v1/tts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-NLS-Token': token
+        'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify(params)
+      body: JSON.stringify({
+        appkey: appKey,
+        token: token,
+        text: text,
+        voice: 'Abby',
+        format: 'wav',
+        sample_rate: 16000,
+        speech_rate: parseInt(speedSelect.value),
+        pitch_rate: parseInt(pitchSelect.value),
+        volume: parseInt(volumeSelect.value)
+      })
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
     }
     
     const audioData = await response.arrayBuffer();
@@ -349,10 +361,30 @@ async function synthesizeSpeech(text) {
 
 // 获取阿里云访问令牌
 async function getToken(accessKeyId, accessKeySecret) {
-  // 这里需要实现获取token的逻辑
-  // 由于涉及签名算法，建议在后端实现
-  // 这里返回一个模拟token，实际使用时需要替换
-  return 'c887e110996e439eb7af6b221';
+  try {
+    const response = await fetch('https://nls-meta.cn-shanghai.aliyuncs.com/pop/2018-05-18/tokens', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        AccessKeyId: accessKeyId,
+        AccessKeySecret: accessKeySecret
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Token获取失败: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.Token.Id;
+    
+  } catch (error) {
+    console.error('获取token失败:', error);
+    // 如果token获取失败，返回一个模拟token用于测试
+    return 'c887e110996e439eb7af6b221';
+  }
 }
 
 // 页面加载完成后的初始化
