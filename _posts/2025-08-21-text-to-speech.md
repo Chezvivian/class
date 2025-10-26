@@ -16,14 +16,13 @@ layout: post
 
 
 <!-- 文字转语音工具界面 -->
-## 文字转语音工具
 
 <div style="background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:24px; margin:20px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
 
 <!-- 输入区域 -->
 <div style="margin-bottom:24px;">
   <label for="textInput" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">输入文本：</label>
-  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:120px; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:14px; line-height:1.5; resize:vertical; font-family:inherit;"></textarea>
+  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:16px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
     字符数：<span id="charCount">0</span> / 5000
   </div>
@@ -153,7 +152,7 @@ layout: post
 <div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:16px; margin-top:24px;">
   <h4 style="margin:0 0 12px 0; color:#2d3a4a;">使用说明：</h4>
   <ul style="margin:0; padding-left:20px; color:#666; font-size:14px; line-height:1.6;">
-    <li>输入要转换的文字内容（最多5000字符）</li>
+    <li>输入要转换的文字内容</li>
     <li>选择合适的音色、语速和音量</li>
     <li>点击"开始合成"按钮生成语音</li>
     <li>合成完成后可以播放、暂停、停止或下载音频</li>
