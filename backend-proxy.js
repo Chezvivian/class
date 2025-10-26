@@ -36,26 +36,46 @@ app.use((req, res, next) => {
   next();
 });
 
-// 获取访问令牌 - 使用阿里云官方方式
+// 获取访问令牌 - 修复签名算法
 async function getAccessToken() {
   try {
     console.log('正在获取访问令牌...');
     
-    // 使用阿里云官方推荐的REST API获取token
-    const response = await axios.post('https://nls-meta.cn-shanghai.aliyuncs.com/', {
+    // 使用正确的签名算法获取token
+    const crypto = require('crypto');
+    const timestamp = new Date().toISOString();
+    const nonce = Math.random().toString(36).substring(2);
+    
+    const params = {
       AccessKeyId: ACCESS_KEY_ID,
       Action: 'CreateToken',
       Format: 'JSON',
       RegionId: 'cn-shanghai',
       SignatureMethod: 'HMAC-SHA1',
-      SignatureNonce: Math.random().toString(36).substring(2),
+      SignatureNonce: nonce,
       SignatureVersion: '1.0',
-      Timestamp: new Date().toISOString(),
+      Timestamp: timestamp,
       Version: '2019-02-28'
-    }, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+    };
+    
+    // 生成签名
+    const sortedKeys = Object.keys(params).sort();
+    const queryString = sortedKeys
+      .map(key => `${key}=${encodeURIComponent(params[key])}`)
+      .join('&');
+    
+    const stringToSign = `GET&${encodeURIComponent('/')}&${encodeURIComponent(queryString)}`;
+    const signature = crypto
+      .createHmac('sha1', ACCESS_KEY_SECRET + '&')
+      .update(stringToSign)
+      .digest('base64');
+    
+    params.Signature = signature;
+    
+    console.log('Token请求参数:', params);
+    
+    const response = await axios.get('https://nls-meta.cn-shanghai.aliyuncs.com/', {
+      params: params,
       timeout: 10000
     });
     
@@ -64,10 +84,8 @@ async function getAccessToken() {
     
   } catch (error) {
     console.error('获取token失败:', error.message);
-    // 如果获取token失败，返回一个模拟token用于测试
-    const mockToken = 'mock_token_' + Math.random().toString(36).substring(2);
-    console.log('使用模拟token:', mockToken);
-    return mockToken;
+    console.error('错误详情:', error.response?.data);
+    throw new Error('无法获取访问令牌: ' + error.message);
   }
 }
 
@@ -95,7 +113,7 @@ app.post('/api/tts', async (req, res) => {
       appkey: APP_KEY,
       token: token,
       text: text,
-      voice: voice || 'Abby',
+      voice: voice || 'Abby', // 支持音色切换
       format: 'wav',
       sample_rate: 16000,
       speech_rate: speed || 0,

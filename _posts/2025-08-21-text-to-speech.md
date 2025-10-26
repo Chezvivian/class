@@ -34,10 +34,19 @@ layout: post
 <!-- 语音设置区域 -->
 <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
    <div style="flex:1; min-width:200px;">
-     <label style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色：</label>
-     <div style="padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px; background:#f8f9fa; color:#666;">
-       Abby（美音女声）
-     </div>
+     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色：</label>
+     <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+       <option value="Abby" selected>Abby（美式英语女声）</option>
+       <option value="Andy">Andy（美式英语男声）</option>
+       <option value="William">William（英式英语男声）</option>
+       <option value="Lydia">Lydia（美式英语女声）</option>
+       <option value="Emma">Emma（英式英语女声）</option>
+       <option value="Sophia">Sophia（美式英语女声）</option>
+       <option value="Olivia">Olivia（美式英语女声）</option>
+       <option value="Isabella">Isabella（美式英语女声）</option>
+       <option value="Ava">Ava（美式英语女声）</option>
+       <option value="Mia">Mia（美式英语女声）</option>
+     </select>
    </div>
   
   <div style="flex:1; min-width:200px;">
@@ -137,9 +146,10 @@ let audioUrl = null;
 // DOM 元素
 const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
- const speedSelect = document.getElementById('speedSelect');
- const volumeSelect = document.getElementById('volumeSelect');
- const pitchSelect = document.getElementById('pitchSelect');
+const voiceSelect = document.getElementById('voiceSelect');
+const speedSelect = document.getElementById('speedSelect');
+const volumeSelect = document.getElementById('volumeSelect');
+const pitchSelect = document.getElementById('pitchSelect');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
 const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
@@ -330,7 +340,7 @@ async function synthesizeSpeech(text) {
   try {
     console.log('调用阿里云TTS API，参数:', {
       text: text,
-      voice: 'Abby',
+      voice: voiceSelect.value,
       speech_rate: parseInt(speedSelect.value),
       pitch_rate: parseInt(pitchSelect.value),
       volume: parseInt(volumeSelect.value)
@@ -344,7 +354,7 @@ async function synthesizeSpeech(text) {
       },
       body: JSON.stringify({
         text: text,
-        voice: 'Abby',
+        voice: voiceSelect.value,
         speed: parseInt(speedSelect.value),
         pitch: parseInt(pitchSelect.value),
         volume: parseInt(volumeSelect.value)
