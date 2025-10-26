@@ -1,0 +1,18 @@
+{
+  "name": "aliyun-tts-proxy",
+  "version": "1.0.0",
+  "description": "阿里云TTS后端代理服务器",
+  "main": "backend-proxy.js",
+  "scripts": {
+    "start": "node backend-proxy.js",
+    "dev": "nodemon backend-proxy.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

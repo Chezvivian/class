@@ -5,6 +5,8 @@ date: 2025-8-21
 layout: post
 ---
 
+<script src="/class/assets/nls.js"></script>
+
 <!-- 工具简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
 <strong>工具名称：</strong>文字转语音工具<br>
@@ -17,9 +19,31 @@ layout: post
 <!-- 功能说明 -->
 <div style="background:#e7f3ff; border:1px solid #b3d9ff; border-radius:6px; padding:16px; margin:20px 0; color:#0066cc;">
 <strong>ℹ️ 功能说明：</strong><br>
-当前使用浏览器内置的Web Speech API进行语音合成。<br>
-无需下载任何SDK文件，直接支持语音播放和参数调节。<br>
-支持多种音色选择，会根据浏览器自动选择最佳音色。
+使用阿里云智能语音交互服务进行真实语音合成。<br>
+支持Abby音色和完整的参数调节功能。<br>
+需要配置后端代理服务器以绕过CORS限制。
+</div>
+
+<!-- 配置说明 -->
+<div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin:20px 0;">
+<h4>📋 配置步骤：</h4>
+<ol style="margin:0; padding-left:20px; color:#666; font-size:14px; line-height:1.8;">
+  <li>下载阿里云NLS JavaScript SDK并上传到 <code>assets/nls-sdk.min.js</code></li>
+  <li>安装Node.js后端代理服务器：<code>npm install</code></li>
+  <li>启动代理服务器：<code>npm start</code></li>
+  <li>在页面中引入SDK：<code>&lt;script src="/class/assets/nls-sdk.min.js"&gt;&lt;/script&gt;</code></li>
+</ol>
+
+<h4>🔧 快速启动：</h4>
+<pre style="background:#f1f3f4; padding:12px; border-radius:4px; font-size:12px; margin:8px 0;">
+# 1. 安装依赖
+npm install
+
+# 2. 启动代理服务器
+npm start
+
+# 3. 访问网页测试
+</pre>
 </div>
 
 <!-- 文字转语音工具界面 -->
@@ -272,21 +296,6 @@ stopBtn.addEventListener('click', function() {
   statusText.textContent = '已停止';
 });
 
-// 下载音频
-downloadBtn.addEventListener('click', function() {
-  if (audioBlob) {
-    const url = URL.createObjectURL(audioBlob);
-    const a = document.createElement('a');
-    a.href = url;
-     a.download = `语音合成_${new Date().getTime()}.wav`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    statusText.textContent = '音频下载完成！';
-  }
-});
-
 // 音频播放事件监听
 audioPlayer.addEventListener('play', function() {
   playBtn.disabled = true;
@@ -308,89 +317,94 @@ audioPlayer.addEventListener('ended', function() {
   statusText.textContent = '播放完成';
 });
 
-// 使用浏览器内置的Web Speech API进行语音合成
+// 下载音频
+downloadBtn.addEventListener('click', function() {
+  if (audioPlayer.src) {
+    const a = document.createElement('a');
+    a.href = audioPlayer.src;
+    a.download = `Abby语音合成_${new Date().getTime()}.wav`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    statusText.textContent = '音频下载完成！';
+  }
+});
+
+// 页面加载完成后的初始化
+document.addEventListener('DOMContentLoaded', function() {
+  statusText.textContent = '请输入文字内容开始合成语音';
+  
+  // 检查后端代理服务器是否运行
+  fetch('http://localhost:3001/api/token', { method: 'POST' })
+    .then(response => {
+      if (response.ok) {
+        statusText.textContent = '后端代理服务器已连接，可以开始使用';
+        console.log('后端代理服务器连接成功');
+      } else {
+        statusText.textContent = '后端代理服务器未运行，请先启动服务器';
+        console.warn('后端代理服务器未运行');
+      }
+    })
+    .catch(error => {
+      statusText.textContent = '无法连接到后端代理服务器，请检查服务器是否启动';
+      console.error('后端代理服务器连接失败:', error);
+    });
+});
+
+// 全局语音合成对象
+let currentUtterance = null;
+
+// 使用阿里云TTS API进行语音合成
 async function synthesizeSpeech(text) {
-  return new Promise((resolve, reject) => {
-    try {
-      // 检查浏览器是否支持Web Speech API
-      if (!('speechSynthesis' in window)) {
-        reject(new Error('您的浏览器不支持语音合成功能'));
-        return;
-      }
-      
-      // 创建语音合成对象
-      const utterance = new SpeechSynthesisUtterance(text);
-      
-      // 设置语音参数
-      utterance.rate = 1 + (parseInt(speedSelect.value) / 500); // 语速
-      utterance.pitch = 1 + (parseInt(pitchSelect.value) / 500); // 语调
-      utterance.volume = parseInt(volumeSelect.value) / 100; // 音量
-      
-      // 尝试设置Abby音色（如果可用）
-      const voices = speechSynthesis.getVoices();
-      const abbyVoice = voices.find(voice => 
-        voice.name.toLowerCase().includes('abby') || 
-        voice.name.toLowerCase().includes('female') ||
-        voice.lang.startsWith('en')
-      );
-      
-      if (abbyVoice) {
-        utterance.voice = abbyVoice;
-      }
-      
-      console.log('使用Web Speech API合成语音，参数:', {
+  try {
+    console.log('调用阿里云TTS API，参数:', {
+      text: text,
+      voice: 'Abby',
+      speech_rate: parseInt(speedSelect.value),
+      pitch_rate: parseInt(pitchSelect.value),
+      volume: parseInt(volumeSelect.value)
+    });
+    
+    // 调用后端代理API
+    const response = await fetch('http://localhost:3001/api/tts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         text: text,
-        rate: utterance.rate,
-        pitch: utterance.pitch,
-        volume: utterance.volume,
-        voice: utterance.voice ? utterance.voice.name : 'default'
-      });
-      
-      // 生成音频数据（Web Speech API无法直接获取音频数据）
-      // 这里创建一个简单的音频文件用于下载
-      const sampleRate = 16000;
-      const duration = Math.max(2, text.length * 0.15);
-      const numSamples = Math.floor(sampleRate * duration);
-      const buffer = new ArrayBuffer(44 + numSamples * 2);
-      const view = new DataView(buffer);
-      
-      // WAV文件头
-      const writeString = (offset, string) => {
-        for (let i = 0; i < string.length; i++) {
-          view.setUint8(offset + i, string.charCodeAt(i));
-        }
-      };
-      
-      writeString(0, 'RIFF');
-      view.setUint32(4, 36 + numSamples * 2, true);
-      writeString(8, 'WAVE');
-      writeString(12, 'fmt ');
-      view.setUint32(16, 16, true);
-      view.setUint16(20, 1, true);
-      view.setUint16(22, 1, true);
-      view.setUint32(24, sampleRate, true);
-      view.setUint32(28, sampleRate * 2, true);
-      view.setUint16(32, 2, true);
-      view.setUint16(34, 16, true);
-      writeString(36, 'data');
-      view.setUint32(40, numSamples * 2, true);
-      
-      // 生成音频数据
-      for (let i = 0; i < numSamples; i++) {
-        view.setInt16(44 + i * 2, 0, true);
-      }
-      
-      // 播放语音
-      speechSynthesis.speak(utterance);
-      
-      // 返回音频数据
-      resolve(new Uint8Array(buffer));
-      
-    } catch (error) {
-      console.error('语音合成失败:', error);
-      reject(new Error('语音合成失败：' + error.message));
+        voice: 'Abby',
+        speed: parseInt(speedSelect.value),
+        pitch: parseInt(pitchSelect.value),
+        volume: parseInt(volumeSelect.value)
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  });
+    
+    // 获取音频数据
+    const audioData = await response.arrayBuffer();
+    const audioBlob = new Blob([audioData], { type: 'audio/wav' });
+    const audioUrl = URL.createObjectURL(audioBlob);
+    
+    // 更新音频播放器
+    audioPlayer.src = audioUrl;
+    audioContainer.style.display = 'block';
+    
+    // 更新按钮状态
+    playBtn.disabled = false;
+    downloadBtn.disabled = false;
+    
+    statusText.textContent = '语音合成完成！';
+    
+    return new Uint8Array(audioData);
+    
+  } catch (error) {
+    console.error('TTS API调用失败:', error);
+    throw new Error('语音合成失败：' + error.message);
+  }
 }
 
 // 获取阿里云访问令牌
