@@ -103,8 +103,6 @@ layout: post
      <select id="sampleRateSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
        <option value="8000">8000 Hz（电话质量）</option>
        <option value="16000" selected>16000 Hz（标准质量）</option>
-       <option value="22050">22050 Hz（CD质量）</option>
-       <option value="44100">44100 Hz（高音质）</option>
      </select>
    </div>
    
@@ -113,7 +111,6 @@ layout: post
      <select id="formatSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
        <option value="wav" selected>WAV（无损）</option>
        <option value="mp3">MP3（压缩）</option>
-       <option value="pcm">PCM（原始）</option>
      </select>
    </div>
  </div>
@@ -260,7 +257,7 @@ textInput.addEventListener('input', function() {
   } else {
     charCount.style.color = '#666';
     synthesizeBtn.disabled = false;
-    synthesizeBtn.style.background = '#0066cc';
+    synthesizeBtn.style.background = '#4a90e2';
   }
 });
 
