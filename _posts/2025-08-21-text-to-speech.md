@@ -34,69 +34,100 @@ layout: post
    <div style="flex:1; min-width:200px;">
      <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色：</label>
      <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="Abby" selected>Abby（美式英语女声）</option>
-       <option value="Andy">Andy（美式英语男声）</option>
-       <option value="William">William（英式英语男声）</option>
-       <option value="Lydia">Lydia（美式英语女声）</option>
-       <option value="Emma">Emma（英式英语女声）</option>
-       <option value="Sophia">Sophia（美式英语女声）</option>
-       <option value="Olivia">Olivia（美式英语女声）</option>
-       <option value="Isabella">Isabella（美式英语女声）</option>
-       <option value="Ava">Ava（美式英语女声）</option>
-       <option value="Mia">Mia（美式英语女声）</option>
+       <option value="Betty" selected>Betty（美式英文女声）</option>
+       <option value="ava">ava（美式女声）</option>
+       <option value="Andy">Andy（美音男声）</option>
+       <option value="Beth">Beth（美式英文女声）</option>
+       <option value="Luca">Luca（英音男声）</option>
+       <option value="William">William（英音男声）</option>
+       <option value="Cindy">Cindy（美式英文女声）</option>
+       <option value="Luna">Luna（英音女声）</option>
+       <option value="Abby">Abby（美音女声）</option>
+       <option value="Donna">Donna（美式英文女声）</option>
+       <option value="Emily">Emily（英音女声）</option>
+       <option value="Lydia">Lydia（英中双语）</option>
+       <option value="Eva">Eva（美式英文女声）</option>
+       <option value="Eric">Eric（英音男声）</option>
+       <option value="Olivia">Olivia（英音女声）</option>
+       <option value="Brian">Brian（美式英文男声）</option>
+       <option value="Annie">Annie（美语女声）</option>
+       <option value="Wendy">Wendy（英音女声）</option>
+       <option value="Harry">Harry（英音男声）</option>
      </select>
    </div>
   
   <div style="flex:1; min-width:200px;">
-    <label for="speedSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语速：</label>
-     <select id="speedSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="-500">-500（很慢）</option>
-       <option value="-200">-200（较慢）</option>
-       <option value="0" selected>0（正常）</option>
-       <option value="200">200（较快）</option>
-       <option value="500">500（很快）</option>
-     </select>
+    <label for="speedSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语速：</label>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size:12px; color:#666; min-width:30px;">-500</span>
+      <input type="range" id="speedSlider" min="-500" max="500" value="0" step="10" 
+             style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
+      <span style="font-size:12px; color:#666; min-width:30px;">500</span>
+    </div>
+    <div style="text-align:center; margin-top:4px;">
+      <span id="speedValue" style="font-size:12px; color:#4a90e2; font-weight:500;">0（正常）</span>
+    </div>
   </div>
   
    <div style="flex:1; min-width:200px;">
-     <label for="volumeSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音量：</label>
-     <select id="volumeSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="10">10%</option>
-       <option value="30">30%</option>
-       <option value="50" selected>50%</option>
-       <option value="70">70%</option>
-       <option value="100">100%</option>
+     <label for="volumeSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音量：</label>
+     <div style="display:flex; align-items:center; gap:12px;">
+       <span style="font-size:12px; color:#666; min-width:30px;">1</span>
+       <input type="range" id="volumeSlider" min="1" max="100" value="50" step="1" 
+              style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
+       <span style="font-size:12px; color:#666; min-width:30px;">100</span>
+     </div>
+     <div style="text-align:center; margin-top:4px;">
+       <span id="volumeValue" style="font-size:12px; color:#4a90e2; font-weight:500;">50%</span>
+     </div>
+   </div>
+   
+   <div style="flex:1; min-width:200px;">
+     <label for="pitchSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语调：</label>
+     <div style="display:flex; align-items:center; gap:12px;">
+       <span style="font-size:12px; color:#666; min-width:30px;">-500</span>
+       <input type="range" id="pitchSlider" min="-500" max="500" value="0" step="10" 
+              style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
+       <span style="font-size:12px; color:#666; min-width:30px;">500</span>
+     </div>
+     <div style="text-align:center; margin-top:4px;">
+       <span id="pitchValue" style="font-size:12px; color:#4a90e2; font-weight:500;">0（正常）</span>
+     </div>
+   </div>
+ </div>
+
+<!-- 高级设置区域 -->
+<div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
+   <div style="flex:1; min-width:200px;">
+     <label for="sampleRateSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">采样率：</label>
+     <select id="sampleRateSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+       <option value="8000">8000 Hz（电话质量）</option>
+       <option value="16000" selected>16000 Hz（标准质量）</option>
+       <option value="22050">22050 Hz（CD质量）</option>
+       <option value="44100">44100 Hz（高音质）</option>
      </select>
    </div>
    
    <div style="flex:1; min-width:200px;">
-     <label for="pitchSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语调：</label>
-     <select id="pitchSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="-500">-500（很低）</option>
-       <option value="-200">-200（较低）</option>
-       <option value="0" selected>0（正常）</option>
-       <option value="200">200（较高）</option>
-       <option value="500">500（很高）</option>
+     <label for="formatSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">格式：</label>
+     <select id="formatSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+       <option value="wav" selected>WAV（无损）</option>
+       <option value="mp3">MP3（压缩）</option>
+       <option value="pcm">PCM（原始）</option>
      </select>
    </div>
  </div>
 
 <!-- 控制按钮区域 -->
-<div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
-  <button id="synthesizeBtn" style="background:#0066cc; color:white; border:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.3s;">
-    🎵 开始合成
+<div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
+  <button id="synthesizeBtn" style="background:#4a90e2; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    ▶️ 开始合成
   </button>
-  <button id="playBtn" style="background:#28a745; color:white; border:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.3s;" disabled>
-    ▶️ 播放
+  <button id="playBtn" style="background:#52c41a; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
+    ⏯️ 播放
   </button>
-  <button id="pauseBtn" style="background:#ffc107; color:#333; border:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.3s;" disabled>
-    ⏸️ 暂停
-  </button>
-  <button id="stopBtn" style="background:#dc3545; color:white; border:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.3s;" disabled>
-    ⏹️ 停止
-  </button>
-  <button id="downloadBtn" style="background:#6c757d; color:white; border:none; padding:12px 24px; border-radius:6px; font-size:14px; font-weight:bold; cursor:pointer; transition:background 0.3s;" disabled>
-    💾 下载音频
+  <button id="downloadBtn" style="background:#8c8c8c; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
+    ⬇️ 下载音频
   </button>
 </div>
 
@@ -135,6 +166,60 @@ layout: post
 
 </div>
 
+<!-- 滑块样式 -->
+<style>
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: #ddd;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #4a90e2;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #357abd;
+  transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-track {
+  background: #ddd;
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: #4a90e2;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #357abd;
+}
+</style>
+
 <!-- JavaScript 代码 -->
 <script>
 // 全局变量
@@ -145,13 +230,16 @@ let audioUrl = null;
 const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
 const voiceSelect = document.getElementById('voiceSelect');
-const speedSelect = document.getElementById('speedSelect');
-const volumeSelect = document.getElementById('volumeSelect');
-const pitchSelect = document.getElementById('pitchSelect');
+const speedSlider = document.getElementById('speedSlider');
+const speedValue = document.getElementById('speedValue');
+const volumeSlider = document.getElementById('volumeSlider');
+const volumeValue = document.getElementById('volumeValue');
+const pitchSlider = document.getElementById('pitchSlider');
+const pitchValue = document.getElementById('pitchValue');
+const sampleRateSelect = document.getElementById('sampleRateSelect');
+const formatSelect = document.getElementById('formatSelect');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
 const playBtn = document.getElementById('playBtn');
-const pauseBtn = document.getElementById('pauseBtn');
-const stopBtn = document.getElementById('stopBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const progressContainer = document.getElementById('progressContainer');
 const progressBar = document.getElementById('progressBar');
@@ -176,19 +264,51 @@ textInput.addEventListener('input', function() {
   }
 });
 
+// 滑块事件监听
+speedSlider.addEventListener('input', function() {
+  const value = parseInt(this.value);
+  let description = '';
+  if (value < -200) description = '（很慢）';
+  else if (value < -100) description = '（较慢）';
+  else if (value < 0) description = '（稍慢）';
+  else if (value === 0) description = '（正常）';
+  else if (value <= 100) description = '（稍快）';
+  else if (value <= 300) description = '（较快）';
+  else description = '（很快）';
+  speedValue.textContent = `${value}${description}`;
+});
+
+volumeSlider.addEventListener('input', function() {
+  const value = parseInt(this.value);
+  volumeValue.textContent = `${value}%`;
+});
+
+pitchSlider.addEventListener('input', function() {
+  const value = parseInt(this.value);
+  let description = '';
+  if (value < -200) description = '（很低）';
+  else if (value < -100) description = '（较低）';
+  else if (value < 0) description = '（稍低）';
+  else if (value === 0) description = '（正常）';
+  else if (value <= 100) description = '（稍高）';
+  else if (value <= 300) description = '（较高）';
+  else description = '（很高）';
+  pitchValue.textContent = `${value}${description}`;
+});
+
 // 按钮悬停效果
-const buttons = [synthesizeBtn, playBtn, pauseBtn, stopBtn, downloadBtn];
+const buttons = [synthesizeBtn, playBtn, downloadBtn];
 buttons.forEach(btn => {
   btn.addEventListener('mouseenter', function() {
     if (!this.disabled) {
-      this.style.transform = 'translateY(-1px)';
-      this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      this.style.transform = 'translateY(-2px)';
+      this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
     }
   });
   
   btn.addEventListener('mouseleave', function() {
     this.style.transform = 'translateY(0)';
-    this.style.boxShadow = 'none';
+    this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
   });
 });
 
@@ -237,7 +357,7 @@ synthesizeBtn.addEventListener('click', async function() {
     playBtn.disabled = false;
     downloadBtn.disabled = false;
     synthesizeBtn.disabled = false;
-    synthesizeBtn.textContent = '🎵 开始合成';
+    synthesizeBtn.innerHTML = '▶️ 开始合成';
     
     statusText.textContent = '语音合成完成！';
     audioContainer.style.display = 'block';
@@ -246,53 +366,36 @@ synthesizeBtn.addEventListener('click', async function() {
     console.error('合成失败:', error);
     statusText.textContent = '合成失败：' + error.message;
     synthesizeBtn.disabled = false;
-    synthesizeBtn.textContent = '🎵 开始合成';
+    synthesizeBtn.innerHTML = '▶️ 开始合成';
   }
 });
 
 // 播放控制
 playBtn.addEventListener('click', function() {
-  audioPlayer.play();
-  playBtn.disabled = true;
-  pauseBtn.disabled = false;
-  stopBtn.disabled = false;
-  statusText.textContent = '正在播放...';
-});
-
-pauseBtn.addEventListener('click', function() {
-  audioPlayer.pause();
-  playBtn.disabled = false;
-  pauseBtn.disabled = true;
-  statusText.textContent = '已暂停';
-});
-
-stopBtn.addEventListener('click', function() {
-  audioPlayer.pause();
-  audioPlayer.currentTime = 0;
-  playBtn.disabled = false;
-  pauseBtn.disabled = true;
-  stopBtn.disabled = true;
-  statusText.textContent = '已停止';
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+    playBtn.innerHTML = '⏸️ 暂停';
+    statusText.textContent = '正在播放...';
+  } else {
+    audioPlayer.pause();
+    playBtn.innerHTML = '⏯️ 播放';
+    statusText.textContent = '已暂停';
+  }
 });
 
 // 音频播放事件监听
 audioPlayer.addEventListener('play', function() {
-  playBtn.disabled = true;
-  pauseBtn.disabled = false;
-  stopBtn.disabled = false;
+  playBtn.innerHTML = '⏸️ 暂停';
   statusText.textContent = '正在播放...';
 });
 
 audioPlayer.addEventListener('pause', function() {
-  playBtn.disabled = false;
-  pauseBtn.disabled = true;
+  playBtn.innerHTML = '⏯️ 播放';
   statusText.textContent = '已暂停';
 });
 
 audioPlayer.addEventListener('ended', function() {
-  playBtn.disabled = false;
-  pauseBtn.disabled = true;
-  stopBtn.disabled = true;
+  playBtn.innerHTML = '⏯️ 播放';
   statusText.textContent = '播放完成';
 });
 
@@ -301,7 +404,7 @@ downloadBtn.addEventListener('click', function() {
   if (audioPlayer.src) {
     const a = document.createElement('a');
     a.href = audioPlayer.src;
-    a.download = `Abby语音合成_${new Date().getTime()}.wav`;
+    a.download = `语音合成_${voiceSelect.value}_${new Date().getTime()}.${formatSelect.value}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -355,9 +458,11 @@ async function synthesizeSpeech(text) {
       body: JSON.stringify({
         text: text,
         voice: voiceSelect.value,
-        speed: parseInt(speedSelect.value),
-        pitch: parseInt(pitchSelect.value),
-        volume: parseInt(volumeSelect.value)
+        speed: parseInt(speedSlider.value),
+        pitch: parseInt(pitchSlider.value),
+        volume: parseInt(volumeSlider.value),
+        sample_rate: parseInt(sampleRateSelect.value),
+        format: formatSelect.value
       })
     });
     

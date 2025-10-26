@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
   try {
     console.log('收到TTS请求:', req.body);
     
-    const { text, voice, speed, pitch, volume } = req.body;
+    const { text, voice, speed, pitch, volume, sample_rate, format } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: '缺少文本参数' });
@@ -53,9 +53,9 @@ module.exports = async function handler(req, res) {
       appkey: APP_KEY,
       token: token,
       text: text,
-      voice: voice || 'Abby',
-      format: 'wav',
-      sample_rate: 16000,
+      voice: voice || 'Betty',
+      format: format || 'wav',
+      sample_rate: parseInt(sample_rate) || 16000,
       speech_rate: parseInt(speed) || 0,
       pitch_rate: parseInt(pitch) || 0,
       volume: parseInt(volume) || 50
