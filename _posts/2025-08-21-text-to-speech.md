@@ -11,9 +11,20 @@ layout: post
 <strong>技术平台：</strong>阿里云智能语音交互<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
-<strong>更新时间：</strong>2025年10月26日
+<strong>更新时间：</strong>2025年10月26日<br>
+<strong>新功能：</strong>支持长文本自动分段合成，解决音频截断问题
 </div>
 
+
+<!-- 使用说明 -->
+<div style="background:#e8f4fd; border:1px solid #b3d9ff; border-radius:8px; padding:16px; margin:20px 0; font-size:14px; line-height:1.6;">
+<strong>📝 使用说明：</strong><br>
+• <strong>短文本（≤2000字符）</strong>：直接合成，速度较快<br>
+• <strong>长文本（>2000字符）</strong>：自动分段合成，每段约2000字符，然后拼接成完整音频<br>
+• <strong>分段策略</strong>：按句号、感叹号、问号等标点符号智能分割，保持语义完整<br>
+• <strong>音频拼接</strong>：使用Web Audio API精确拼接，确保音频质量<br>
+• <strong>最大支持</strong>：10000字符的长文本合成
+</div>
 
 <!-- 文字转语音工具界面 -->
 
@@ -24,7 +35,8 @@ layout: post
   <label for="textInput" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">输入文本：</label>
   <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:16px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
-    字符数：<span id="charCount">0</span> / 5000
+    字符数：<span id="charCount">0</span> / 10000
+    <span style="margin-left:10px; color:#4a90e2;">💡 支持长文本自动分段合成</span>
   </div>
 </div>
 
@@ -249,7 +261,7 @@ textInput.addEventListener('input', function() {
   const count = this.value.length;
   charCount.textContent = count;
   
-  if (count > 5000) {
+  if (count > 10000) {
     charCount.style.color = '#dc3545';
     synthesizeBtn.disabled = true;
     synthesizeBtn.style.background = '#6c757d';
@@ -316,8 +328,8 @@ synthesizeBtn.addEventListener('click', async function() {
     return;
   }
   
-  if (text.length > 5000) {
-    alert('文字内容不能超过5000字符！');
+  if (text.length > 10000) {
+    alert('文字内容不能超过10000字符！');
     return;
   }
   
@@ -433,42 +445,218 @@ document.addEventListener('DOMContentLoaded', function() {
 // 全局语音合成对象
 let currentUtterance = null;
 
-// 使用阿里云TTS API进行语音合成
-async function synthesizeSpeech(text) {
+// 文本分段函数 - 智能分割长文本
+function splitTextIntoSegments(text, maxLength = 2000) {
+  const segments = [];
+  const sentences = text.split(/[。！？.!?]/);
+  let currentSegment = '';
+  
+  for (let i = 0; i < sentences.length; i++) {
+    const sentence = sentences[i].trim();
+    if (!sentence) continue;
+    
+    // 如果当前句子加上标点符号后超过限制，先保存当前段落
+    if (currentSegment.length + sentence.length + 1 > maxLength && currentSegment.length > 0) {
+      segments.push(currentSegment.trim());
+      currentSegment = sentence;
+    } else {
+      currentSegment += (currentSegment ? '。' : '') + sentence;
+    }
+  }
+  
+  // 添加最后一个段落
+  if (currentSegment.trim()) {
+    segments.push(currentSegment.trim());
+  }
+  
+  return segments;
+}
+
+// 音频拼接函数 - 将多个音频片段合并（改进版）
+async function concatenateAudioBuffers(audioBuffers) {
+  if (audioBuffers.length === 1) {
+    return audioBuffers[0];
+  }
+  
+  console.log(`开始拼接 ${audioBuffers.length} 个音频片段`);
+  
   try {
-    console.log('调用阿里云TTS API，参数:', {
-      text: text,
-      voice: voiceSelect.value,
-      speech_rate: parseInt(speedSlider.value),
-      pitch_rate: parseInt(pitchSlider.value),
-      volume: parseInt(volumeSlider.value)
-    });
+    // 使用Web Audio API进行更精确的音频拼接
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const audioSources = [];
     
-    // 使用 Vercel API 端点
-    const apiBaseUrl = 'https://vercel-tts.vercel.app';
-    const response = await fetch(`${apiBaseUrl}/api/tts`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        text: text,
-        voice: voiceSelect.value,
-        speed: parseInt(speedSlider.value),
-        pitch: parseInt(pitchSlider.value),
-        volume: parseInt(volumeSlider.value),
-        sample_rate: parseInt(sampleRateSelect.value),
-        format: formatSelect.value
-      })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    // 解码所有音频片段
+    for (let i = 0; i < audioBuffers.length; i++) {
+      try {
+        const audioBuffer = await audioContext.decodeAudioData(audioBuffers[i].slice());
+        audioSources.push(audioBuffer);
+        console.log(`第 ${i + 1} 个音频片段解码完成，时长: ${audioBuffer.duration.toFixed(2)}秒`);
+      } catch (error) {
+        console.warn(`第 ${i + 1} 个音频片段解码失败，使用简单拼接:`, error);
+        // 如果解码失败，回退到简单拼接
+        return simpleConcatenateAudioBuffers(audioBuffers);
+      }
     }
     
-    // 获取音频数据
-    const audioData = await response.arrayBuffer();
-    const audioBlob = new Blob([audioData], { type: 'audio/wav' });
+    // 计算总时长
+    let totalDuration = 0;
+    for (const source of audioSources) {
+      totalDuration += source.duration;
+    }
+    
+    console.log(`总音频时长: ${totalDuration.toFixed(2)}秒`);
+    
+    // 创建目标音频缓冲区
+    const numberOfChannels = audioSources[0].numberOfChannels;
+    const sampleRate = audioSources[0].sampleRate;
+    const totalLength = Math.floor(totalDuration * sampleRate);
+    
+    const mergedBuffer = audioContext.createBuffer(numberOfChannels, totalLength, sampleRate);
+    
+    // 复制音频数据
+    let offset = 0;
+    for (let i = 0; i < audioSources.length; i++) {
+      const source = audioSources[i];
+      const sourceLength = source.length;
+      
+      for (let channel = 0; channel < numberOfChannels; channel++) {
+        const sourceData = source.getChannelData(channel);
+        const mergedData = mergedBuffer.getChannelData(channel);
+        mergedData.set(sourceData, offset);
+      }
+      
+      offset += sourceLength;
+    }
+    
+    // 转换为WAV格式
+    const wavBuffer = audioBufferToWav(mergedBuffer);
+    console.log('音频拼接完成，最终大小:', wavBuffer.byteLength);
+    
+    return wavBuffer;
+    
+  } catch (error) {
+    console.warn('Web Audio API拼接失败，使用简单拼接:', error);
+    return simpleConcatenateAudioBuffers(audioBuffers);
+  }
+}
+
+// 简单音频拼接函数（备用方案）
+function simpleConcatenateAudioBuffers(audioBuffers) {
+  console.log('使用简单拼接方法');
+  
+  // 计算总长度
+  let totalLength = 0;
+  for (const buffer of audioBuffers) {
+    totalLength += buffer.byteLength;
+  }
+  
+  // 创建合并后的ArrayBuffer
+  const mergedBuffer = new ArrayBuffer(totalLength);
+  const mergedView = new Uint8Array(mergedBuffer);
+  
+  let offset = 0;
+  for (const buffer of audioBuffers) {
+    mergedView.set(new Uint8Array(buffer), offset);
+    offset += buffer.byteLength;
+  }
+  
+  return mergedBuffer;
+}
+
+// 将AudioBuffer转换为WAV格式
+function audioBufferToWav(buffer) {
+  const numberOfChannels = buffer.numberOfChannels;
+  const sampleRate = buffer.sampleRate;
+  const length = buffer.length;
+  
+  // WAV文件头
+  const arrayBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
+  const view = new DataView(arrayBuffer);
+  
+  // WAV文件头写入
+  const writeString = (offset, string) => {
+    for (let i = 0; i < string.length; i++) {
+      view.setUint8(offset + i, string.charCodeAt(i));
+    }
+  };
+  
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + length * numberOfChannels * 2, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, numberOfChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * numberOfChannels * 2, true);
+  view.setUint16(32, numberOfChannels * 2, true);
+  view.setUint16(34, 16, true);
+  writeString(36, 'data');
+  view.setUint32(40, length * numberOfChannels * 2, true);
+  
+  // 写入音频数据
+  let offset = 44;
+  for (let i = 0; i < length; i++) {
+    for (let channel = 0; channel < numberOfChannels; channel++) {
+      const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]));
+      view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+      offset += 2;
+    }
+  }
+  
+  return arrayBuffer;
+}
+
+// 使用阿里云TTS API进行语音合成（支持长文本）
+async function synthesizeSpeech(text) {
+  try {
+    console.log('开始语音合成，文本长度:', text.length);
+    
+    // 如果文本较短，直接合成
+    if (text.length <= 2000) {
+      return await synthesizeSingleSegment(text);
+    }
+    
+    // 长文本分段处理
+    const segments = splitTextIntoSegments(text, 2000);
+    console.log(`文本已分为 ${segments.length} 段进行合成`);
+    
+    const audioBuffers = [];
+    const totalSegments = segments.length;
+    
+    // 逐段合成
+    for (let i = 0; i < segments.length; i++) {
+      const segment = segments[i];
+      console.log(`正在合成第 ${i + 1}/${totalSegments} 段，长度: ${segment.length}`);
+      
+      // 更新进度
+      const progress = Math.round(((i + 1) / totalSegments) * 90);
+      progressBar.style.width = progress + '%';
+      progressText.textContent = progress + '%';
+      statusText.textContent = `正在合成第 ${i + 1}/${totalSegments} 段...`;
+      
+      try {
+        const segmentAudio = await synthesizeSingleSegment(segment);
+        audioBuffers.push(segmentAudio);
+        
+        // 添加短暂延迟，避免API限制
+        if (i < segments.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+      } catch (error) {
+        console.error(`第 ${i + 1} 段合成失败:`, error);
+        throw new Error(`第 ${i + 1} 段合成失败: ${error.message}`);
+      }
+    }
+    
+    console.log('所有段落合成完成，开始拼接音频...');
+    statusText.textContent = '正在拼接音频片段...';
+    
+    // 拼接音频
+    const mergedAudio = await concatenateAudioBuffers(audioBuffers);
+    
+    // 创建最终的音频对象
+    const audioBlob = new Blob([mergedAudio], { type: 'audio/wav' });
     const audioUrl = URL.createObjectURL(audioBlob);
     
     // 更新音频播放器
@@ -479,14 +667,54 @@ async function synthesizeSpeech(text) {
     playBtn.disabled = false;
     downloadBtn.disabled = false;
     
-    statusText.textContent = '语音合成完成！';
+    statusText.textContent = `语音合成完成！共合成 ${totalSegments} 段音频`;
+    console.log('长文本语音合成完成');
     
-    return new Uint8Array(audioData);
+    return new Uint8Array(mergedAudio);
     
   } catch (error) {
     console.error('TTS API调用失败:', error);
     throw new Error('语音合成失败：' + error.message);
   }
+}
+
+// 单段文本合成函数
+async function synthesizeSingleSegment(text) {
+  console.log('调用阿里云TTS API，参数:', {
+    text: text,
+    voice: voiceSelect.value,
+    speech_rate: parseInt(speedSlider.value),
+    pitch_rate: parseInt(pitchSlider.value),
+    volume: parseInt(volumeSlider.value)
+  });
+  
+  // 使用 Vercel API 端点
+  const apiBaseUrl = 'https://vercel-tts.vercel.app';
+  const response = await fetch(`${apiBaseUrl}/api/tts`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      text: text,
+      voice: voiceSelect.value,
+      speed: parseInt(speedSlider.value),
+      pitch: parseInt(pitchSlider.value),
+      volume: parseInt(volumeSlider.value),
+      sample_rate: parseInt(sampleRateSelect.value),
+      format: formatSelect.value
+    })
+  });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  // 获取音频数据
+  const audioData = await response.arrayBuffer();
+  console.log('单段音频数据大小:', audioData.byteLength);
+  
+  return audioData;
 }
 
 // 获取阿里云访问令牌
