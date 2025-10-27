@@ -12,18 +12,19 @@ layout: post
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
 <strong>更新时间：</strong>2025年10月26日<br>
-<strong>新功能：</strong>支持长文本自动分段合成，解决音频截断问题
+<strong>新功能：</strong>支持长文本自动分段合成，解决300字符限制问题
 </div>
 
 
 <!-- 使用说明 -->
 <div style="background:#e8f4fd; border:1px solid #b3d9ff; border-radius:8px; padding:16px; margin:20px 0; font-size:14px; line-height:1.6;">
 <strong>📝 使用说明：</strong><br>
-• <strong>短文本（≤2000字符）</strong>：直接合成，速度较快<br>
-• <strong>长文本（>2000字符）</strong>：自动分段合成，每段约2000字符，然后拼接成完整音频<br>
-• <strong>分段策略</strong>：按句号、感叹号、问号等标点符号智能分割，保持语义完整<br>
+• <strong>短文本（≤300字符）</strong>：直接合成，速度较快<br>
+• <strong>长文本（>300字符）</strong>：自动分段合成，每段≤300字符，然后拼接成完整音频<br>
+• <strong>分段策略</strong>：按句号、逗号等标点符号智能分割，保持语义完整<br>
 • <strong>音频拼接</strong>：使用Web Audio API精确拼接，确保音频质量<br>
-• <strong>最大支持</strong>：10000字符的长文本合成
+• <strong>最大支持</strong>：10000字符的长文本合成<br>
+• <strong>⚠️ 注意</strong>：阿里云TTS单次请求限制300字符，超长文本会自动分段处理
 </div>
 
 <!-- 文字转语音工具界面 -->
@@ -36,7 +37,7 @@ layout: post
   <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:16px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
     字符数：<span id="charCount">0</span> / 10000
-    <span style="margin-left:10px; color:#4a90e2;">💡 支持长文本自动分段合成</span>
+    <span style="margin-left:10px; color:#4a90e2;">💡 支持长文本自动分段合成（每段≤300字符）</span>
   </div>
 </div>
 
@@ -130,6 +131,9 @@ layout: post
 <div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
   <button id="synthesizeBtn" style="background:#4a90e2; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
     ▶️ 开始合成
+  </button>
+  <button id="previewBtn" style="background:#6f42c1; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    👁️ 预览分段
   </button>
   <button id="playBtn" style="background:#52c41a; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
     ⏯️ 播放
@@ -247,6 +251,7 @@ const pitchValue = document.getElementById('pitchValue');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
+const previewBtn = document.getElementById('previewBtn');
 const playBtn = document.getElementById('playBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const progressContainer = document.getElementById('progressContainer');
@@ -304,8 +309,13 @@ pitchSlider.addEventListener('input', function() {
   pitchValue.textContent = `${value}${description}`;
 });
 
+// 预览分段按钮事件
+previewBtn.addEventListener('click', function() {
+  showSegmentPreview();
+});
+
 // 按钮悬停效果
-const buttons = [synthesizeBtn, playBtn, downloadBtn];
+const buttons = [synthesizeBtn, previewBtn, playBtn, downloadBtn];
 buttons.forEach(btn => {
   btn.addEventListener('mouseenter', function() {
     if (!this.disabled) {
@@ -442,11 +452,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 全局语音合成对象
-let currentUtterance = null;
+// 预览分段结果
+function previewSegments(text) {
+  if (text.length <= 300) {
+    return [`完整文本（${text.length}字符）: ${text}`];
+  }
+  
+  const segments = splitTextIntoSegments(text, 300);
+  const preview = [];
+  
+  for (let i = 0; i < segments.length; i++) {
+    preview.push(`第${i + 1}段（${segments[i].length}字符）: ${segments[i]}`);
+  }
+  
+  return preview;
+}
 
-// 文本分段函数 - 智能分割长文本
-function splitTextIntoSegments(text, maxLength = 2000) {
+// 显示分段预览
+function showSegmentPreview() {
+  const text = textInput.value.trim();
+  if (!text) return;
+  
+  const segments = previewSegments(text);
+  const previewText = segments.join('\n\n');
+  
+  alert(`文本分段预览：\n\n${previewText}`);
+}
+
+// 文本分段函数 - 根据阿里云300字符限制智能分割
+function splitTextIntoSegments(text, maxLength = 300) {
   const segments = [];
   const sentences = text.split(/[。！？.!?]/);
   let currentSegment = '';
@@ -454,6 +488,20 @@ function splitTextIntoSegments(text, maxLength = 2000) {
   for (let i = 0; i < sentences.length; i++) {
     const sentence = sentences[i].trim();
     if (!sentence) continue;
+    
+    // 如果单个句子就超过限制，需要进一步分割
+    if (sentence.length > maxLength) {
+      // 先保存当前段落（如果有内容）
+      if (currentSegment.trim()) {
+        segments.push(currentSegment.trim());
+        currentSegment = '';
+      }
+      
+      // 对超长句子进行强制分割
+      const subSegments = forceSplitLongSentence(sentence, maxLength);
+      segments.push(...subSegments);
+      continue;
+    }
     
     // 如果当前句子加上标点符号后超过限制，先保存当前段落
     if (currentSegment.length + sentence.length + 1 > maxLength && currentSegment.length > 0) {
@@ -467,6 +515,40 @@ function splitTextIntoSegments(text, maxLength = 2000) {
   // 添加最后一个段落
   if (currentSegment.trim()) {
     segments.push(currentSegment.trim());
+  }
+  
+  return segments;
+}
+
+// 强制分割超长句子
+function forceSplitLongSentence(sentence, maxLength) {
+  const segments = [];
+  let remaining = sentence;
+  
+  while (remaining.length > maxLength) {
+    // 尝试在逗号、分号等位置分割
+    let splitPoint = -1;
+    const splitChars = ['，', ',', '；', ';', '、', ' '];
+    
+    for (let i = maxLength - 1; i >= Math.floor(maxLength * 0.7); i--) {
+      if (splitChars.includes(remaining[i])) {
+        splitPoint = i;
+        break;
+      }
+    }
+    
+    // 如果找不到合适的分割点，强制在maxLength处分割
+    if (splitPoint === -1) {
+      splitPoint = maxLength - 1;
+    }
+    
+    segments.push(remaining.substring(0, splitPoint + 1).trim());
+    remaining = remaining.substring(splitPoint + 1).trim();
+  }
+  
+  // 添加剩余部分
+  if (remaining.trim()) {
+    segments.push(remaining.trim());
   }
   
   return segments;
@@ -607,19 +689,26 @@ function audioBufferToWav(buffer) {
   return arrayBuffer;
 }
 
-// 使用阿里云TTS API进行语音合成（支持长文本）
+// 使用阿里云TTS API进行语音合成（支持长文本，300字符限制）
 async function synthesizeSpeech(text) {
   try {
     console.log('开始语音合成，文本长度:', text.length);
     
-    // 如果文本较短，直接合成
-    if (text.length <= 2000) {
+    // 如果文本较短（≤300字符），直接合成
+    if (text.length <= 300) {
       return await synthesizeSingleSegment(text);
     }
     
-    // 长文本分段处理
-    const segments = splitTextIntoSegments(text, 2000);
-    console.log(`文本已分为 ${segments.length} 段进行合成`);
+    // 长文本分段处理（每段≤300字符）
+    const segments = splitTextIntoSegments(text, 300);
+    console.log(`文本已分为 ${segments.length} 段进行合成（每段≤300字符）`);
+    
+    // 验证分段结果
+    for (let i = 0; i < segments.length; i++) {
+      if (segments[i].length > 300) {
+        console.warn(`警告：第 ${i + 1} 段长度 ${segments[i].length} 超过300字符限制`);
+      }
+    }
     
     const audioBuffers = [];
     const totalSegments = segments.length;
@@ -627,13 +716,13 @@ async function synthesizeSpeech(text) {
     // 逐段合成
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
-      console.log(`正在合成第 ${i + 1}/${totalSegments} 段，长度: ${segment.length}`);
+      console.log(`正在合成第 ${i + 1}/${totalSegments} 段，长度: ${segment.length}字符`);
       
       // 更新进度
       const progress = Math.round(((i + 1) / totalSegments) * 90);
       progressBar.style.width = progress + '%';
       progressText.textContent = progress + '%';
-      statusText.textContent = `正在合成第 ${i + 1}/${totalSegments} 段...`;
+      statusText.textContent = `正在合成第 ${i + 1}/${totalSegments} 段（${segment.length}字符）...`;
       
       try {
         const segmentAudio = await synthesizeSingleSegment(segment);
@@ -641,7 +730,7 @@ async function synthesizeSpeech(text) {
         
         // 添加短暂延迟，避免API限制
         if (i < segments.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise(resolve => setTimeout(resolve, 800));
         }
       } catch (error) {
         console.error(`第 ${i + 1} 段合成失败:`, error);
