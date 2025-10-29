@@ -35,7 +35,8 @@ layout: post
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit1_Language.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Language</a>
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit1_brands_词汇闪卡_更新音标.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 1 词汇闪卡</a> 
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit1_brands_词汇闪卡_更新音标.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 1 词汇闪卡</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit1_brands_text_analysis.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 1 课文精读</a> 
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Video</a> | 
