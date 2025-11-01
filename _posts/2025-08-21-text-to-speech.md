@@ -11,7 +11,7 @@ layout: post
 <strong>技术平台：</strong>微软Azure AI Speech Service<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
-<strong>更新时间：</strong>2025年1月26日
+<strong>更新时间：</strong>2025年11月1日
 </div>
 
 
@@ -40,51 +40,37 @@ layout: post
 
 <!-- 语音设置区域 -->
 <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
+   <!-- 语言选择 -->
    <div style="flex:1; min-width:200px;">
-     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色：</label>
-     <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="en-US-JennyNeural" selected>正在加载语音列表...</option>
+     <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语言（Language）：</label>
+     <select id="languageSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+       <option value="">正在加载...</option>
+     </select>
+   </div>
+   
+   <!-- 音色选择 -->
+   <div style="flex:1; min-width:200px;">
+     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色（Voice）：</label>
+     <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+       <option value="">请先选择语言</option>
      </select>
      <div id="voiceLoadingStatus" style="font-size:12px; color:#666; margin-top:4px;"></div>
    </div>
-  
-  <div style="flex:1; min-width:200px;">
-    <label for="speedSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语速：</label>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <span style="font-size:12px; color:#666; min-width:30px;">-500</span>
-      <input type="range" id="speedSlider" min="-500" max="500" value="0" step="10" 
-             style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
-      <span style="font-size:12px; color:#666; min-width:30px;">500</span>
-    </div>
-    <div style="text-align:center; margin-top:4px;">
-      <span id="speedValue" style="font-size:12px; color:#4a90e2; font-weight:500;">0（正常）</span>
-    </div>
-  </div>
-  
+   
+   <!-- Personality选择 -->
    <div style="flex:1; min-width:200px;">
-     <label for="volumeSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音量：</label>
-     <div style="display:flex; align-items:center; gap:12px;">
-       <span style="font-size:12px; color:#666; min-width:30px;">1</span>
-       <input type="range" id="volumeSlider" min="1" max="100" value="50" step="1" 
-              style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
-       <span style="font-size:12px; color:#666; min-width:30px;">100</span>
-     </div>
-     <div style="text-align:center; margin-top:4px;">
-       <span id="volumeValue" style="font-size:12px; color:#4a90e2; font-weight:500;">50%</span>
-     </div>
+     <label for="personalitySelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">性格（Personality）：</label>
+     <select id="personalitySelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+       <option value="">请先选择音色</option>
+     </select>
    </div>
    
+   <!-- Speaking Style选择 -->
    <div style="flex:1; min-width:200px;">
-     <label for="pitchSlider" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语调：</label>
-     <div style="display:flex; align-items:center; gap:12px;">
-       <span style="font-size:12px; color:#666; min-width:30px;">-500</span>
-       <input type="range" id="pitchSlider" min="-500" max="500" value="0" step="10" 
-              style="flex:1; height:6px; background:#ddd; border-radius:3px; outline:none; cursor:pointer;">
-       <span style="font-size:12px; color:#666; min-width:30px;">500</span>
-     </div>
-     <div style="text-align:center; margin-top:4px;">
-       <span id="pitchValue" style="font-size:12px; color:#4a90e2; font-weight:500;">0（正常）</span>
-     </div>
+     <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">说话风格（Speaking Style）：</label>
+     <select id="styleSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+       <option value="">请先选择音色</option>
+     </select>
    </div>
  </div>
 
@@ -221,13 +207,10 @@ let audioUrl = null;
 // DOM 元素
 const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
+const languageSelect = document.getElementById('languageSelect');
 const voiceSelect = document.getElementById('voiceSelect');
-const speedSlider = document.getElementById('speedSlider');
-const speedValue = document.getElementById('speedValue');
-const volumeSlider = document.getElementById('volumeSlider');
-const volumeValue = document.getElementById('volumeValue');
-const pitchSlider = document.getElementById('pitchSlider');
-const pitchValue = document.getElementById('pitchValue');
+const personalitySelect = document.getElementById('personalitySelect');
+const styleSelect = document.getElementById('styleSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
@@ -240,6 +223,10 @@ const progressText = document.getElementById('progressText');
 const statusText = document.getElementById('statusText');
 const audioContainer = document.getElementById('audioContainer');
 const audioPlayer = document.getElementById('audioPlayer');
+
+// 存储语音数据
+let voicesData = null;
+let currentVoiceInfo = null;
 
 // 字符计数
 textInput.addEventListener('input', function() {
@@ -257,39 +244,17 @@ textInput.addEventListener('input', function() {
   }
 });
 
-// 滑块事件监听
-speedSlider.addEventListener('input', function() {
-  const value = parseInt(this.value);
-  let description = '';
-  if (value < -200) description = '（很慢）';
-  else if (value < -100) description = '（较慢）';
-  else if (value < 0) description = '（稍慢）';
-  else if (value === 0) description = '（正常）';
-  else if (value <= 100) description = '（稍快）';
-  else if (value <= 300) description = '（较快）';
-  else description = '（很快）';
-  speedValue.textContent = `${value}${description}`;
+// 语言选择改变时，更新音色列表
+languageSelect.addEventListener('change', function() {
+  updateVoicesByLanguage(this.value);
 });
 
-volumeSlider.addEventListener('input', function() {
-  const value = parseInt(this.value);
-  volumeValue.textContent = `${value}%`;
+// 音色选择改变时，更新Personality和Speaking styles
+voiceSelect.addEventListener('change', function() {
+  updatePersonalityAndStyles(this.value);
 });
 
-pitchSlider.addEventListener('input', function() {
-  const value = parseInt(this.value);
-  let description = '';
-  if (value < -200) description = '（很低）';
-  else if (value < -100) description = '（较低）';
-  else if (value < 0) description = '（稍低）';
-  else if (value === 0) description = '（正常）';
-  else if (value <= 100) description = '（稍高）';
-  else if (value <= 300) description = '（较高）';
-  else description = '（很高）';
-  pitchValue.textContent = `${value}${description}`;
-});
-
-// 预览分段按钮事件
+// 预览文本按钮事件
 previewBtn.addEventListener('click', function() {
   showSegmentPreview();
 });
@@ -425,7 +390,7 @@ downloadBtn.addEventListener('click', function() {
 
 // 加载Azure语音列表
 async function loadVoices() {
-  const voiceSelect = document.getElementById('voiceSelect');
+  const languageSelect = document.getElementById('languageSelect');
   const voiceLoadingStatus = document.getElementById('voiceLoadingStatus');
   const apiBaseUrl = 'https://vercel-tts.vercel.app';
   
@@ -441,64 +406,157 @@ async function loadVoices() {
     const data = await response.json();
     console.log('语音列表API响应:', data);
     
-    if (data.success && data.voices) {
-      // 清空现有选项
-      voiceSelect.innerHTML = '';
+    if (data.success && data.voices && data.languages) {
+      // 存储语音数据供后续使用
+      voicesData = data;
       
-      // 添加美式英语语音
-      if (data.voices['en-US'] && data.voices['en-US'].length > 0) {
-        const usGroup = document.createElement('optgroup');
-        usGroup.label = '美式英语 (en-US)';
-        data.voices['en-US'].forEach(voice => {
-          const option = document.createElement('option');
-          option.value = voice.name;
-          const genderText = voice.gender === 'Male' ? '男声' : voice.gender === 'Female' ? '女声' : '';
-          option.textContent = `${voice.friendlyName || voice.name} ${genderText}`;
-          usGroup.appendChild(option);
-        });
-        voiceSelect.appendChild(usGroup);
+      // 清空语言选择器
+      languageSelect.innerHTML = '<option value="">请选择语言</option>';
+      
+      // 添加所有英语语言选项
+      data.languages.forEach(lang => {
+        const option = document.createElement('option');
+        option.value = lang.code;
+        option.textContent = lang.name;
+        languageSelect.appendChild(option);
+      });
+      
+      // 设置默认选中第一个语言
+      if (languageSelect.options.length > 1) {
+        languageSelect.selectedIndex = 1;
+        updateVoicesByLanguage(languageSelect.value);
       }
       
-      // 添加英式英语语音
-      if (data.voices['en-GB'] && data.voices['en-GB'].length > 0) {
-        const gbGroup = document.createElement('optgroup');
-        gbGroup.label = '英式英语 (en-GB)';
-        data.voices['en-GB'].forEach(voice => {
-          const option = document.createElement('option');
-          option.value = voice.name;
-          const genderText = voice.gender === 'Male' ? '男声' : voice.gender === 'Female' ? '女声' : '';
-          option.textContent = `${voice.friendlyName || voice.name} ${genderText}`;
-          gbGroup.appendChild(option);
-        });
-        voiceSelect.appendChild(gbGroup);
-      }
-      
-      // 设置默认选中第一个
-      if (voiceSelect.options.length > 0) {
-        voiceSelect.selectedIndex = 0;
-      }
-      
-      voiceLoadingStatus.textContent = `已加载 ${data.total} 个语音`;
+      voiceLoadingStatus.textContent = `已加载 ${data.total} 个语音，${data.languages.length} 种英语语言`;
       console.log('语音列表加载成功:', data);
     } else {
       throw new Error('无法获取语音列表');
     }
   } catch (error) {
     console.error('加载语音列表失败:', error);
-    voiceLoadingStatus.textContent = `加载失败: ${error.message}，使用默认语音`;
+    voiceLoadingStatus.textContent = `加载失败: ${error.message}`;
     voiceLoadingStatus.style.color = '#dc3545';
     
-    // 使用一些常用的默认语音
-    voiceSelect.innerHTML = `
-      <option value="en-US-JennyNeural" selected>Jenny（美式英文女声）</option>
-      <option value="en-US-AndrewNeural">Andrew（美式英文男声）</option>
-      <option value="en-US-AmandaNeural">Amanda（美式英文女声）</option>
-      <option value="en-US-PhoebeNeural">Phoebe（美式英文女声）</option>
-      <option value="en-US-AriaNeural">Aria（美式英文女声）</option>
-      <option value="en-US-GuyNeural">Guy（美式英文男声）</option>
-      <option value="en-GB-RyanNeural">Ryan（英式英文男声）</option>
-      <option value="en-GB-SoniaNeural">Sonia（英式英文女声）</option>
+    // 使用默认值
+    languageSelect.innerHTML = `
+      <option value="en-US" selected>English (United States)</option>
+      <option value="en-GB">English (United Kingdom)</option>
     `;
+    languageSelect.selectedIndex = 0;
+    voicesData = {
+      languages: [
+        { code: 'en-US', name: 'English (United States)' },
+        { code: 'en-GB', name: 'English (United Kingdom)' }
+      ],
+      voices: {
+        'en-US': [
+          { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: [], roles: [] }
+        ],
+        'en-GB': [
+          { name: 'en-GB-RyanNeural', displayName: 'Ryan', gender: 'Male', styles: [], roles: [] }
+        ]
+      }
+    };
+    updateVoicesByLanguage('en-US');
+  }
+}
+
+// 根据选择的语言更新音色列表
+function updateVoicesByLanguage(languageCode) {
+  if (!languageCode || !voicesData || !voicesData.voices) {
+    voiceSelect.innerHTML = '<option value="">请先选择语言</option>';
+    voiceSelect.disabled = true;
+    return;
+  }
+  
+  const voices = voicesData.voices[languageCode] || [];
+  voiceSelect.innerHTML = '';
+  
+  if (voices.length === 0) {
+    voiceSelect.innerHTML = '<option value="">该语言暂无可用语音</option>';
+    voiceSelect.disabled = true;
+    personalitySelect.disabled = true;
+    styleSelect.disabled = true;
+    return;
+  }
+  
+  voiceSelect.disabled = false;
+  
+  // 添加音色选项
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.name;  // 使用ShortName作为value（用于API调用）
+    // 使用DisplayName显示，如果没有则使用name
+    const displayText = voice.displayName || voice.friendlyName || voice.name;
+    option.textContent = `${displayText} (${voice.gender === 'Male' ? '男声' : voice.gender === 'Female' ? '女声' : '未知'})`;
+    option.dataset.voiceInfo = JSON.stringify(voice);
+    voiceSelect.appendChild(option);
+  });
+  
+  // 默认选中第一个
+  if (voiceSelect.options.length > 0) {
+    voiceSelect.selectedIndex = 0;
+    updatePersonalityAndStyles(voiceSelect.value);
+  }
+}
+
+// 根据选择的音色更新Personality和Speaking styles
+function updatePersonalityAndStyles(voiceName) {
+  if (!voiceName || !voicesData || !voicesData.voices) {
+    personalitySelect.innerHTML = '<option value="">请先选择音色</option>';
+    styleSelect.innerHTML = '<option value="">请先选择音色</option>';
+    personalitySelect.disabled = true;
+    styleSelect.disabled = true;
+    return;
+  }
+  
+  // 找到选中的语音信息
+  currentVoiceInfo = null;
+  for (const langCode in voicesData.voices) {
+    const voice = voicesData.voices[langCode].find(v => v.name === voiceName);
+    if (voice) {
+      currentVoiceInfo = voice;
+      break;
+    }
+  }
+  
+  if (!currentVoiceInfo) {
+    personalitySelect.innerHTML = '<option value="">未找到语音信息</option>';
+    styleSelect.innerHTML = '<option value="">未找到语音信息</option>';
+    personalitySelect.disabled = true;
+    styleSelect.disabled = true;
+    return;
+  }
+  
+  // 更新Personality选择器
+  personalitySelect.innerHTML = '<option value="">无（不设置）</option>';
+  if (currentVoiceInfo.personality) {
+    const personalityArray = Array.isArray(currentVoiceInfo.personality) 
+      ? currentVoiceInfo.personality 
+      : [currentVoiceInfo.personality];
+    personalityArray.forEach(personality => {
+      const option = document.createElement('option');
+      option.value = personality;
+      option.textContent = personality;
+      personalitySelect.appendChild(option);
+    });
+    personalitySelect.disabled = false;
+  } else {
+    personalitySelect.disabled = false;
+  }
+  
+  // 更新Speaking styles选择器
+  styleSelect.innerHTML = '<option value="">无（不设置）</option>';
+  if (currentVoiceInfo.styles && currentVoiceInfo.styles.length > 0) {
+    currentVoiceInfo.styles.forEach(style => {
+      const option = document.createElement('option');
+      option.value = style;
+      option.textContent = style;
+      styleSelect.appendChild(option);
+    });
+    styleSelect.disabled = false;
+  } else {
+    styleSelect.disabled = false;
   }
 }
 
@@ -541,12 +599,17 @@ function showSegmentPreview() {
 // 使用Azure Speech Service进行语音合成
 async function synthesizeSpeech(text) {
   try {
+    const selectedVoice = voiceSelect.value;
+    const selectedPersonality = personalitySelect.value || null;
+    const selectedStyle = styleSelect.value || null;
+    
     console.log('调用Azure TTS API，参数:', {
-      text: text,
-      voice: voiceSelect.value,
-      speed: parseInt(speedSlider.value),
-      pitch: parseInt(pitchSlider.value),
-      volume: parseInt(volumeSlider.value)
+      text: text.substring(0, 100) + '...',
+      voice: selectedVoice,
+      personality: selectedPersonality,
+      style: selectedStyle,
+      sample_rate: parseInt(sampleRateSelect.value),
+      format: formatSelect.value
     });
     
     // 使用 Vercel API 端点
@@ -558,10 +621,9 @@ async function synthesizeSpeech(text) {
       },
       body: JSON.stringify({
         text: text,
-        voice: voiceSelect.value,
-        speed: parseInt(speedSlider.value),
-        pitch: parseInt(pitchSlider.value),
-        volume: parseInt(volumeSlider.value),
+        voice: selectedVoice,
+        personality: selectedPersonality,
+        style: selectedStyle,
         sample_rate: parseInt(sampleRateSelect.value),
         format: formatSelect.value
       })

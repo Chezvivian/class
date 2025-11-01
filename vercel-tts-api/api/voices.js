@@ -42,47 +42,79 @@ module.exports = async function handler(req, res) {
     }
     
     if (response.status === 200 && Array.isArray(response.data)) {
-      // 过滤出英语（美国）和英语（英国）的语音
+      // 过滤出所有英语语言的语音（en-开头的所有变体）
       const englishVoices = response.data.filter(voice => {
         const locale = voice.Locale || voice.locale || '';
-        return locale.startsWith('en-US') || locale.startsWith('en-GB');
+        return locale.startsWith('en-');
       });
       
-      // 按语言和性别分组
-      const voicesByLanguage = {
-        'en-US': [],
-        'en-GB': []
+      // 语言代码映射（用于显示友好名称）
+      const languageNames = {
+        'en-US': 'English (United States)',
+        'en-GB': 'English (United Kingdom)',
+        'en-CA': 'English (Canada)',
+        'en-AU': 'English (Australia)',
+        'en-NZ': 'English (New Zealand)',
+        'en-IE': 'English (Ireland)',
+        'en-IN': 'English (India)',
+        'en-ZA': 'English (South Africa)'
       };
+      
+      // 按语言分组，收集所有英语语言
+      const voicesByLanguage = {};
+      const languageList = [];
       
       englishVoices.forEach(voice => {
         const locale = voice.Locale || voice.locale || '';
         const name = voice.ShortName || voice.shortName || voice.Name || voice.name || '';
         const gender = voice.Gender || voice.gender || 'Unknown';
-        const friendlyName = voice.FriendlyName || voice.friendlyName || name;
+        // 优先使用DisplayName，如果没有则使用FriendlyName，最后使用name
+        const displayName = voice.DisplayName || voice.displayName || voice.FriendlyName || voice.friendlyName || name;
         
-        if (locale.startsWith('en-US')) {
-          voicesByLanguage['en-US'].push({
-            name: name,
-            friendlyName: friendlyName,
-            gender: gender,
-            locale: locale
-          });
-        } else if (locale.startsWith('en-GB')) {
-          voicesByLanguage['en-GB'].push({
-            name: name,
-            friendlyName: friendlyName,
-            gender: gender,
-            locale: locale
+        // 提取语言代码（如 en-US, en-GB）
+        const langCode = locale.split('-').slice(0, 2).join('-'); // 提取前两部分作为语言代码
+        
+        // 提取Personality（如果有）
+        const personality = voice.Personality || voice.personality || voice.PersonalityTags || voice.personalityTags || null;
+        
+        // 提取Speaking styles（如果有）
+        const styles = voice.StyleList || voice.styleList || voice.Style || voice.style || [];
+        const styleArray = Array.isArray(styles) ? styles : (styles ? [styles] : []);
+        
+        // 提取Role playing styles（如果有）
+        const roles = voice.RolePlayList || voice.rolePlayList || voice.Role || voice.role || [];
+        const roleArray = Array.isArray(roles) ? roles : (roles ? [roles] : []);
+        
+        if (!voicesByLanguage[langCode]) {
+          voicesByLanguage[langCode] = [];
+          languageList.push({
+            code: langCode,
+            name: languageNames[langCode] || `English (${langCode})`
           });
         }
+        
+        voicesByLanguage[langCode].push({
+          name: name,  // 保留ShortName用于API调用
+          displayName: displayName,  // 用于前端显示
+          gender: gender,
+          locale: locale,
+          personality: personality,
+          styles: styleArray,
+          roles: roleArray
+        });
       });
       
-      // 按名称排序
-      voicesByLanguage['en-US'].sort((a, b) => a.name.localeCompare(b.name));
-      voicesByLanguage['en-GB'].sort((a, b) => a.name.localeCompare(b.name));
+      // 按语言代码排序
+      languageList.sort((a, b) => a.code.localeCompare(b.code));
+      
+      // 每种语言内的语音按名称排序
+      Object.keys(voicesByLanguage).forEach(lang => {
+        voicesByLanguage[lang].sort((a, b) => a.name.localeCompare(b.name));
+      });
       
       return res.status(200).json({
         success: true,
+        languages: languageList,
         voices: voicesByLanguage,
         total: englishVoices.length
       });

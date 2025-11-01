@@ -31,8 +31,8 @@ const legacyVoiceMapping = {
  * 如果是旧名称，则使用映射；如果已经是Azure格式，直接返回
  */
 function getAzureVoiceName(voice) {
-  // 如果已经是Azure格式（包含en-US-或en-GB-等），直接返回
-  if (voice && (voice.startsWith('en-US-') || voice.startsWith('en-GB-') || voice.startsWith('zh-CN-'))) {
+  // 如果已经是Azure格式（包含en-开头的所有英语变体或zh-CN-等），直接返回
+  if (voice && (voice.startsWith('en-') || voice.startsWith('zh-CN-'))) {
     return voice;
   }
   // 否则使用向后兼容映射
@@ -106,30 +106,59 @@ function escapeXml(text) {
 
 /**
  * 构建SSML格式的请求体
+ * @param {string} text - 要合成的文本
+ * @param {string} voice - Azure语音名称（如：en-US-JennyNeural）
+ * @param {string|null} personality - Personality（如果有）
+ * @param {string|null} style - Speaking style（如果有）
  */
-function buildSSML(text, voice, speed, pitch, volume) {
-  const ratePercent = convertSpeedToRate(speed);
-  const pitchPercent = convertPitchToPitch(pitch);
-  const volumePercent = convertVolumeToPercent(volume);
-  
-  // voice参数现在应该是Azure语音名称（如：en-US-JennyNeural）
+function buildSSML(text, voice, personality, style) {
+  // voice参数应该是Azure语音名称（如：en-US-JennyNeural）
   const azureVoice = voice;
   
   // 根据语音名称确定语言
   let lang = 'en-US';
   if (azureVoice && azureVoice.startsWith('en-GB')) {
     lang = 'en-GB';
+  } else if (azureVoice && azureVoice.startsWith('en-CA')) {
+    lang = 'en-CA';
+  } else if (azureVoice && azureVoice.startsWith('en-AU')) {
+    lang = 'en-AU';
+  } else if (azureVoice && azureVoice.startsWith('en-IN')) {
+    lang = 'en-IN';
   } else if (azureVoice && azureVoice.startsWith('zh-CN')) {
     lang = 'zh-CN';
   }
   
-  return `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="${lang}">
-  <voice name="${azureVoice}">
-    <prosody rate="${ratePercent}" pitch="${pitchPercent}" volume="${volumePercent}">
-      ${escapeXml(text)}
-    </prosody>
+  // 构建基础SSML
+  let ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="${lang}">
+  <voice name="${azureVoice}">`;
+  
+  // 如果设置了Personality或Style，使用mstts:express-as标签
+  if (personality || style) {
+    ssml += `<mstts:express-as`;
+    if (style) {
+      ssml += ` style="${escapeXml(style)}"`;
+    }
+    if (personality) {
+      ssml += ` personality="${escapeXml(personality)}"`;
+    }
+    ssml += `>`;
+  }
+  
+  // 添加文本内容
+  ssml += escapeXml(text);
+  
+  // 关闭mstts:express-as标签（如果有）
+  if (personality || style) {
+    ssml += `</mstts:express-as>`;
+  }
+  
+  // 关闭voice和speak标签
+  ssml += `
   </voice>
 </speak>`;
+  
+  return ssml;
 }
 
 module.exports = async function handler(req, res) {
@@ -149,7 +178,7 @@ module.exports = async function handler(req, res) {
   try {
     console.log('收到TTS请求:', req.body);
     
-    const { text, voice, speed, pitch, volume, sample_rate, format } = req.body;
+    const { text, voice, personality, style, sample_rate, format } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: '缺少文本参数' });
@@ -173,13 +202,12 @@ module.exports = async function handler(req, res) {
     // 获取Azure语音名称（支持直接使用Azure格式或向后兼容）
     const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
     
-    // 构建SSML请求体
+    // 构建SSML请求体（支持Personality和Speaking styles）
     const ssml = buildSSML(
       text,
-      azureVoice,  // 直接使用Azure语音名称
-      speed || 0,
-      pitch || 0,
-      volume || 50
+      azureVoice,
+      personality || null,
+      style || null
     );
     
     // 获取输出格式
@@ -189,9 +217,8 @@ module.exports = async function handler(req, res) {
       endpoint: endpoint,
       inputVoice: voice || 'en-US-JennyNeural',
       azureVoice: azureVoice,
-      speed: speed || 0,
-      pitch: pitch || 0,
-      volume: volume || 50,
+      personality: personality || '无',
+      style: style || '无',
       outputFormat: outputFormat,
       ssmlLength: ssml.length
     });
