@@ -23,43 +23,43 @@ layout: post
 <!-- 输入区域 -->
 <div style="margin-bottom:24px;">
   <label for="textInput" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">输入文本：</label>
-  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:16px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
+  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:18px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
     字符数：<span id="charCount">0</span> / 5000
   </div>
 </div>
 
 <!-- 语音设置区域 -->
-<div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
+<div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:nowrap; align-items:flex-start;">
    <!-- 语言选择 -->
-   <div style="flex:1; min-width:200px;">
-     <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">语言（Language）：</label>
-     <select id="languageSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+   <div style="flex:0 0 22%; min-width:0;">
+     <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">语言：</label>
+     <select id="languageSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
        <option value="">正在加载...</option>
      </select>
    </div>
    
    <!-- 音色选择 -->
-   <div style="flex:1; min-width:200px;">
-     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">音色（Voice）：</label>
-     <select id="voiceSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+   <div style="flex:0 0 22%; min-width:0;">
+     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">音色：</label>
+     <select id="voiceSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择语言</option>
      </select>
      <div id="voiceLoadingStatus" style="font-size:12px; color:#666; margin-top:4px;"></div>
    </div>
    
    <!-- Personality选择 -->
-   <div style="flex:1; min-width:200px;">
-     <label for="personalitySelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">性格（Personality）：</label>
-     <select id="personalitySelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+   <div style="flex:0 0 22%; min-width:0;">
+     <label for="personalitySelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">性格：</label>
+     <select id="personalitySelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择音色</option>
      </select>
    </div>
    
    <!-- Speaking Style选择 -->
-   <div style="flex:1; min-width:200px;">
-     <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">说话风格（Speaking Style）：</label>
-     <select id="styleSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;" disabled>
+   <div style="flex:0 0 22%; min-width:0;">
+     <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">说话风格：</label>
+     <select id="styleSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择音色</option>
      </select>
    </div>
@@ -69,7 +69,7 @@ layout: post
 <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
    <div style="flex:1; min-width:200px;">
      <label for="sampleRateSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">采样率：</label>
-     <select id="sampleRateSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+     <select id="sampleRateSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px;">
        <option value="16000" selected>16 kHz（标准质量）</option>
        <option value="24000">24 kHz（高质量）</option>
        <option value="48000">48 kHz（超高保真）</option>
@@ -78,7 +78,7 @@ layout: post
    
    <div style="flex:1; min-width:200px;">
      <label for="formatSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">格式：</label>
-     <select id="formatSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+     <select id="formatSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px;">
        <option value="wav" selected>WAV（PCM无损）</option>
        <option value="mp3">MP3（压缩格式）</option>
        <option value="ogg">OGG（Opus编码）</option>
