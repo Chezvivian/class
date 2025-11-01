@@ -112,10 +112,9 @@ function escapeXml(text) {
  * 构建SSML格式的请求体
  * @param {string} text - 要合成的文本
  * @param {string} voice - Azure语音名称（如：en-US-JennyNeural）
- * @param {string|null} personality - Personality（如果有）
  * @param {string|null} style - Speaking style（如果有）
  */
-function buildSSML(text, voice, personality, style) {
+function buildSSML(text, voice, style) {
   // voice参数应该是Azure语音名称（如：en-US-JennyNeural）
   const azureVoice = voice;
   
@@ -137,24 +136,14 @@ function buildSSML(text, voice, personality, style) {
   let ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="${lang}">
   <voice name="${azureVoice}">`;
   
-  // 如果设置了Personality或Style，使用mstts:express-as标签
-  if (personality || style) {
-    ssml += `<mstts:express-as`;
-    if (style) {
-      ssml += ` style="${escapeXml(style)}"`;
-    }
-    if (personality) {
-      ssml += ` personality="${escapeXml(personality)}"`;
-    }
-    ssml += `>`;
-  }
-  
-  // 添加文本内容
-  ssml += escapeXml(text);
-  
-  // 关闭mstts:express-as标签（如果有）
-  if (personality || style) {
+  // 如果设置了Style，使用mstts:express-as标签
+  if (style) {
+    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += escapeXml(text);
     ssml += `</mstts:express-as>`;
+  } else {
+    // 添加文本内容
+    ssml += escapeXml(text);
   }
   
   // 关闭voice和speak标签
@@ -182,7 +171,7 @@ module.exports = async function handler(req, res) {
   try {
     console.log('收到TTS请求:', req.body);
     
-    const { text, voice, personality, style, sample_rate, format } = req.body;
+    const { text, voice, style, sample_rate, format } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: '缺少文本参数' });
@@ -206,11 +195,10 @@ module.exports = async function handler(req, res) {
     // 获取Azure语音名称（支持直接使用Azure格式或向后兼容）
     const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
     
-    // 构建SSML请求体（支持Personality和Speaking styles）
+    // 构建SSML请求体（支持Speaking styles）
     const ssml = buildSSML(
       text,
       azureVoice,
-      personality || null,
       style || null
     );
     
@@ -221,7 +209,6 @@ module.exports = async function handler(req, res) {
       endpoint: endpoint,
       inputVoice: voice || 'en-US-JennyNeural',
       azureVoice: azureVoice,
-      personality: personality || '无',
       style: style || '无',
       outputFormat: outputFormat,
       ssmlLength: ssml.length

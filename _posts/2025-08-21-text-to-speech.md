@@ -32,7 +32,7 @@ layout: post
 <!-- 语音设置区域 -->
 <div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:nowrap; align-items:flex-start;">
    <!-- 语言选择 -->
-   <div style="flex:0 0 22%; min-width:0;">
+   <div style="flex:0 0 26%; min-width:0;">
      <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">语言：</label>
      <select id="languageSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
        <option value="">正在加载...</option>
@@ -40,7 +40,7 @@ layout: post
    </div>
    
    <!-- 音色选择 -->
-   <div style="flex:0 0 22%; min-width:0;">
+   <div style="flex:0 0 26%; min-width:0;">
      <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">音色：</label>
      <select id="voiceSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择语言</option>
@@ -48,12 +48,12 @@ layout: post
      <div id="voiceLoadingStatus" style="font-size:12px; color:#666; margin-top:4px;"></div>
    </div>
    
-   <!-- Personality选择 -->
-   <div style="flex:0 0 22%; min-width:0;">
-     <label for="personalitySelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">性格：</label>
-     <select id="personalitySelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
-       <option value="">请先选择音色</option>
-     </select>
+   <!-- Personality显示（不是选择器） -->
+   <div style="flex:0 0 20%; min-width:0;">
+     <label style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">性格特性：</label>
+     <div id="personalityDisplay" style="width:100%; padding:10px 12px; border:1px solid #e0e0e0; border-radius:6px; font-size:14px; background-color:#f5f5f5; color:#666; min-height:42px; box-sizing:border-box; display:flex; align-items:center;">
+       <span style="color:#999;">请先选择音色</span>
+     </div>
    </div>
    
    <!-- Speaking Style选择 -->
@@ -124,8 +124,9 @@ layout: post
 <div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin-top:24px;">
   <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
   <div style="color:#666; font-size:14px; line-height:1.8;">
-    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色、性格和说话风格。</p>
-    <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持个性设置（Personality）和多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
+    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。每个音色都有其固有的性格特性，选择音色后会显示该音色的性格特点。</p>
+    <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
+    <p style="margin:0 0 12px 0;"><strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）。</p>
     <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
   </div>
 </div>
@@ -197,7 +198,7 @@ const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
 const languageSelect = document.getElementById('languageSelect');
 const voiceSelect = document.getElementById('voiceSelect');
-const personalitySelect = document.getElementById('personalitySelect');
+const personalityDisplay = document.getElementById('personalityDisplay');
 const styleSelect = document.getElementById('styleSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
@@ -468,6 +469,9 @@ function updateVoicesByLanguage(languageCode) {
   if (!languageCode || !voicesData || !voicesData.voices) {
     voiceSelect.innerHTML = '<option value="">请先选择语言</option>';
     voiceSelect.disabled = true;
+    personalityDisplay.innerHTML = '<span style="color:#999;">请先选择语言</span>';
+    styleSelect.innerHTML = '<option value="">请先选择语言</option>';
+    styleSelect.disabled = true;
     return;
   }
   
@@ -477,7 +481,7 @@ function updateVoicesByLanguage(languageCode) {
   if (voices.length === 0) {
     voiceSelect.innerHTML = '<option value="">该语言暂无可用语音</option>';
     voiceSelect.disabled = true;
-    personalitySelect.disabled = true;
+    personalityDisplay.innerHTML = '<span style="color:#999;">该语言暂无可用语音</span>';
     styleSelect.disabled = true;
     return;
   }
@@ -502,12 +506,11 @@ function updateVoicesByLanguage(languageCode) {
   }
 }
 
-// 根据选择的音色更新Personality和Speaking styles
+// 根据选择的音色更新Personality显示和Speaking styles
 function updatePersonalityAndStyles(voiceName) {
   if (!voiceName || !voicesData || !voicesData.voices) {
-    personalitySelect.innerHTML = '<option value="">请先选择音色</option>';
+    personalityDisplay.innerHTML = '<span style="color:#999;">请先选择音色</span>';
     styleSelect.innerHTML = '<option value="">请先选择音色</option>';
-    personalitySelect.disabled = true;
     styleSelect.disabled = true;
     return;
   }
@@ -523,28 +526,20 @@ function updatePersonalityAndStyles(voiceName) {
   }
   
   if (!currentVoiceInfo) {
-    personalitySelect.innerHTML = '<option value="">未找到语音信息</option>';
+    personalityDisplay.innerHTML = '<span style="color:#999;">未找到语音信息</span>';
     styleSelect.innerHTML = '<option value="">未找到语音信息</option>';
-    personalitySelect.disabled = true;
     styleSelect.disabled = true;
     return;
   }
   
-  // 更新Personality选择器
-  personalitySelect.innerHTML = '<option value="">无（不设置）</option>';
+  // 更新Personality显示（只显示，不选择）
   if (currentVoiceInfo.personality) {
     const personalityArray = Array.isArray(currentVoiceInfo.personality) 
       ? currentVoiceInfo.personality 
       : [currentVoiceInfo.personality];
-    personalityArray.forEach(personality => {
-      const option = document.createElement('option');
-      option.value = personality;
-      option.textContent = personality;
-      personalitySelect.appendChild(option);
-    });
-    personalitySelect.disabled = false;
+    personalityDisplay.innerHTML = '<span style="color:#2d3a4a;">' + personalityArray.join(', ') + '</span>';
   } else {
-    personalitySelect.disabled = false;
+    personalityDisplay.innerHTML = '<span style="color:#999;">无特殊性格特性</span>';
   }
   
   // 更新Speaking styles选择器
@@ -593,13 +588,11 @@ document.addEventListener('DOMContentLoaded', function() {
 async function synthesizeSpeech(text) {
   try {
     const selectedVoice = voiceSelect.value;
-    const selectedPersonality = personalitySelect.value || null;
     const selectedStyle = styleSelect.value || null;
     
     console.log('调用Azure TTS API，参数:', {
       text: text.substring(0, 100) + '...',
       voice: selectedVoice,
-      personality: selectedPersonality,
       style: selectedStyle,
       sample_rate: parseInt(sampleRateSelect.value),
       format: formatSelect.value
@@ -615,7 +608,6 @@ async function synthesizeSpeech(text) {
       body: JSON.stringify({
         text: text,
         voice: selectedVoice,
-        personality: selectedPersonality,
         style: selectedStyle,
         sample_rate: parseInt(sampleRateSelect.value),
         format: formatSelect.value

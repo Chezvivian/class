@@ -143,84 +143,11 @@ module.exports = async function handler(req, res) {
         voicesByLanguage[lang].sort((a, b) => a.name.localeCompare(b.name));
       });
       
-      // 汇总分析：专门分析en-US音色的Personality和Speaking Style情况
-      const enUSVoices = voicesByLanguage['en-US'] || [];
-      const voiceAnalysis = {
-        total: enUSVoices.length,
-        withBoth: [],      // 同时支持Personality和Speaking Style
-        personalityOnly: [], // 仅支持Personality
-        stylesOnly: [],    // 仅支持Speaking Style
-        withNeither: []    // 两者都不支持
-      };
-      
-      enUSVoices.forEach(voice => {
-        const hasPersonality = voice.personality && (
-          (Array.isArray(voice.personality) && voice.personality.length > 0) ||
-          (!Array.isArray(voice.personality) && voice.personality)
-        );
-        const hasStyles = voice.styles && voice.styles.length > 0;
-        
-        const voiceInfo = {
-          name: voice.name,
-          displayName: voice.displayName,
-          gender: voice.gender,
-          personality: voice.personality,
-          styles: voice.styles,
-          stylesCount: voice.styles ? voice.styles.length : 0
-        };
-        
-        if (hasPersonality && hasStyles) {
-          voiceAnalysis.withBoth.push(voiceInfo);
-        } else if (hasPersonality && !hasStyles) {
-          voiceAnalysis.personalityOnly.push(voiceInfo);
-        } else if (!hasPersonality && hasStyles) {
-          voiceAnalysis.stylesOnly.push(voiceInfo);
-        } else {
-          voiceAnalysis.withNeither.push(voiceInfo);
-        }
-      });
-      
-      // 输出汇总到控制台
-      console.log('\n========== English (United States) 音色分析汇总 ==========');
-      console.log(`总音色数: ${voiceAnalysis.total}`);
-      console.log(`\n同时支持Personality和Speaking Style: ${voiceAnalysis.withBoth.length}`);
-      voiceAnalysis.withBoth.forEach(v => {
-        console.log(`  - ${v.displayName} (${v.name}): Personality=${JSON.stringify(v.personality)}, Styles=[${v.styles.join(', ')}]`);
-      });
-      
-      console.log(`\n仅支持Personality: ${voiceAnalysis.personalityOnly.length}`);
-      voiceAnalysis.personalityOnly.forEach(v => {
-        console.log(`  - ${v.displayName} (${v.name}): Personality=${JSON.stringify(v.personality)}`);
-      });
-      
-      console.log(`\n仅支持Speaking Style: ${voiceAnalysis.stylesOnly.length}`);
-      voiceAnalysis.stylesOnly.forEach(v => {
-        console.log(`  - ${v.displayName} (${v.name}): Styles=[${v.styles.join(', ')}] (${v.stylesCount}种)`);
-      });
-      
-      console.log(`\n都不支持: ${voiceAnalysis.withNeither.length}`);
-      voiceAnalysis.withNeither.forEach(v => {
-        console.log(`  - ${v.displayName} (${v.name})`);
-      });
-      
-      // 计算总数
-      const withPersonalityCount = voiceAnalysis.withBoth.length + voiceAnalysis.personalityOnly.length;
-      const withStylesCount = voiceAnalysis.withBoth.length + voiceAnalysis.stylesOnly.length;
-      
-      console.log(`\n总结:`);
-      console.log(`  - 支持Personality的音色: ${withPersonalityCount} / ${voiceAnalysis.total} (${Math.round(withPersonalityCount/voiceAnalysis.total*100)}%)`);
-      console.log(`  - 支持Speaking Style的音色: ${withStylesCount} / ${voiceAnalysis.total} (${Math.round(withStylesCount/voiceAnalysis.total*100)}%)`);
-      console.log(`  - 两者都支持: ${voiceAnalysis.withBoth.length} / ${voiceAnalysis.total} (${Math.round(voiceAnalysis.withBoth.length/voiceAnalysis.total*100)}%)`);
-      console.log(`  - 两者都不支持: ${voiceAnalysis.withNeither.length} / ${voiceAnalysis.total} (${Math.round(voiceAnalysis.withNeither.length/voiceAnalysis.total*100)}%)`);
-      console.log('==========================================================\n');
-      
       return res.status(200).json({
         success: true,
         languages: languageList,
         voices: voicesByLanguage,
-        total: englishVoices.length,
-        // 添加en-US音色分析汇总（用于调试）
-        enUSAnalysis: voiceAnalysis
+        total: englishVoices.length
       });
     } else {
       return res.status(500).json({
