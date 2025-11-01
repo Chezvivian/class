@@ -11,6 +11,7 @@ layout: post
 <strong>技术平台：</strong>微软Azure AI Speech Service<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
+<strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）<br>
 <strong>更新时间：</strong>2025年11月1日
 </div>
 
@@ -38,7 +39,7 @@ layout: post
 <div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:nowrap; align-items:flex-start;">
    <!-- 语言选择 -->
    <div style="flex:0 0 32%; min-width:0;">
-     <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">语言：</label>
+     <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">语言：</label>
      <select id="languageSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
        <option value="">正在加载...</option>
      </select>
@@ -46,7 +47,7 @@ layout: post
    
    <!-- 音色选择 -->
    <div style="flex:0 0 32%; min-width:0;">
-     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">音色：</label>
+     <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">音色：</label>
      <select id="voiceSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择语言</option>
      </select>
@@ -55,7 +56,7 @@ layout: post
    
    <!-- Speaking Style选择 -->
    <div style="flex:0 0 32%; min-width:0;">
-     <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">说话风格：</label>
+     <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">说话风格：</label>
      <select id="styleSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择音色</option>
      </select>
@@ -123,7 +124,6 @@ layout: post
   <div style="color:#666; font-size:14px; line-height:1.8;">
     <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。</p>
     <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
-    <p style="margin:0 0 12px 0;"><strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）。</p>
     <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
   </div>
 </div>
