@@ -362,9 +362,22 @@ synthesizeBtn.addEventListener('click', async function() {
     
   } catch (error) {
     console.error('合成失败:', error);
-    statusText.textContent = '合成失败：' + error.message;
+    const errorMessage = error.message || '未知错误';
+    statusText.textContent = '合成失败：' + errorMessage;
+    statusText.style.color = '#dc3545';
+    
+    // 显示更详细的错误信息
+    if (errorMessage.includes('500') || errorMessage.includes('HTTP 500')) {
+      statusText.textContent = '合成失败：服务器错误（500），请检查Vercel日志或联系管理员';
+    } else if (errorMessage.includes('缺少必要的环境变量')) {
+      statusText.textContent = '合成失败：环境变量未配置，请在Vercel中设置AZURE_SPEECH_KEY和AZURE_SPEECH_REGION';
+    } else if (errorMessage.includes('401') || errorMessage.includes('HTTP 401')) {
+      statusText.textContent = '合成失败：认证失败，请检查AZURE_SPEECH_KEY是否正确';
+    }
+    
     synthesizeBtn.disabled = false;
     synthesizeBtn.innerHTML = '▶️ 开始合成';
+    progressContainer.style.display = 'none';
   }
 });
 
@@ -419,7 +432,14 @@ async function loadVoices() {
   try {
     voiceLoadingStatus.textContent = '正在加载语音列表...';
     const response = await fetch(`${apiBaseUrl}/api/voices`);
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: '无法解析错误响应' }));
+      throw new Error(`HTTP ${response.status}: ${JSON.stringify(errorData)}`);
+    }
+    
     const data = await response.json();
+    console.log('语音列表API响应:', data);
     
     if (data.success && data.voices) {
       // 清空现有选项
@@ -465,7 +485,7 @@ async function loadVoices() {
     }
   } catch (error) {
     console.error('加载语音列表失败:', error);
-    voiceLoadingStatus.textContent = '加载失败，使用默认语音';
+    voiceLoadingStatus.textContent = `加载失败: ${error.message}，使用默认语音`;
     voiceLoadingStatus.style.color = '#dc3545';
     
     // 使用一些常用的默认语音
@@ -474,6 +494,7 @@ async function loadVoices() {
       <option value="en-US-AndrewNeural">Andrew（美式英文男声）</option>
       <option value="en-US-AmandaNeural">Amanda（美式英文女声）</option>
       <option value="en-US-PhoebeNeural">Phoebe（美式英文女声）</option>
+      <option value="en-US-AriaNeural">Aria（美式英文女声）</option>
       <option value="en-US-GuyNeural">Guy（美式英文男声）</option>
       <option value="en-GB-RyanNeural">Ryan（英式英文男声）</option>
       <option value="en-GB-SoniaNeural">Sonia（英式英文女声）</option>
@@ -547,11 +568,26 @@ async function synthesizeSpeech(text) {
     });
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      // 尝试获取错误详情
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        const errorText = await response.text();
+        errorData = { error: errorText };
+      }
+      console.error('TTS API错误响应:', errorData);
+      throw new Error(`HTTP ${response.status}: ${JSON.stringify(errorData, null, 2)}`);
     }
     
     // 获取音频数据
     const audioData = await response.arrayBuffer();
+    
+    if (!audioData || audioData.byteLength === 0) {
+      throw new Error('收到空的音频数据');
+    }
+    
+    console.log('音频数据大小:', audioData.byteLength);
     
     // 创建音频对象
     const audioBlob = new Blob([audioData], { type: 'audio/wav' });
@@ -571,6 +607,7 @@ async function synthesizeSpeech(text) {
     
   } catch (error) {
     console.error('TTS API调用失败:', error);
+    console.error('错误详情:', error.message);
     throw new Error('语音合成失败：' + error.message);
   }
 }

@@ -26,12 +26,20 @@ module.exports = async function handler(req, res) {
     const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1/voices/list`;
     
     // 调用Azure Speech Service REST API获取语音列表
+    console.log('调用Azure语音列表API:', endpoint);
     const response = await axios.get(endpoint, {
       headers: {
         'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY
       },
       timeout: 10000
     });
+    
+    console.log('Azure API响应状态:', response.status);
+    console.log('响应数据类型:', typeof response.data);
+    console.log('响应是否为数组:', Array.isArray(response.data));
+    if (response.data && response.data.length > 0) {
+      console.log('第一个语音示例:', JSON.stringify(response.data[0], null, 2));
+    }
     
     if (response.status === 200 && Array.isArray(response.data)) {
       // 过滤出英语（美国）和英语（英国）的语音
@@ -87,17 +95,25 @@ module.exports = async function handler(req, res) {
     
   } catch (error) {
     console.error('获取语音列表失败:', error.message);
+    console.error('错误详情:', error.response?.data);
+    console.error('错误状态:', error.response?.status);
     
+    // 返回详细的错误信息，方便调试
     if (error.response) {
       return res.status(error.response.status || 500).json({
+        success: false,
         error: '获取语音列表失败',
         details: error.message,
-        response: error.response.data
+        status: error.response.status,
+        response: error.response.data,
+        endpoint: `https://${process.env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1/voices/list`
       });
     } else {
       return res.status(500).json({
+        success: false,
         error: '获取语音列表失败',
-        details: error.message
+        details: error.message,
+        message: '可能是网络错误或Azure API端点不可访问'
       });
     }
   }

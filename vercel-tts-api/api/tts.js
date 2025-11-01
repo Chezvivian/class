@@ -182,10 +182,11 @@ module.exports = async function handler(req, res) {
     // 获取输出格式
     const outputFormat = getOutputFormat(format || 'wav', sample_rate || 16000);
     
+    const azureVoice = getAzureVoiceName(voice || 'Betty');
     console.log('Azure TTS请求参数:', {
       endpoint: endpoint,
       voice: voice || 'Betty',
-      azureVoice: voiceMapping[voice] || voiceMapping['Betty'],
+      azureVoice: azureVoice,
       speed: speed || 0,
       pitch: pitch || 0,
       volume: volume || 50,
@@ -223,6 +224,7 @@ module.exports = async function handler(req, res) {
     
   } catch (error) {
     console.error('TTS合成失败:', error.message);
+    console.error('错误堆栈:', error.stack);
     
     // 尝试解析错误响应
     if (error.response && error.response.data) {
@@ -230,7 +232,9 @@ module.exports = async function handler(req, res) {
         const errorText = Buffer.isBuffer(error.response.data) 
           ? error.response.data.toString('utf-8') 
           : error.response.data;
-        console.error('错误响应:', errorText);
+        console.error('Azure API错误响应:', errorText);
+        console.error('错误状态码:', error.response.status);
+        console.error('错误头部:', error.response.headers);
         
         // 尝试解析为JSON（Azure错误响应通常是JSON）
         try {
@@ -240,27 +244,34 @@ module.exports = async function handler(req, res) {
           return res.status(error.response.status || 500).json({ 
             error: '语音合成失败', 
             details: error.message,
-            response: errorJson
+            azureError: errorJson,
+            endpoint: endpoint
           });
         } catch (parseError) {
           // 如果不是JSON，返回原始文本
           return res.status(error.response.status || 500).json({ 
             error: '语音合成失败', 
             details: error.message,
-            rawResponse: errorText
+            rawResponse: errorText,
+            endpoint: endpoint
           });
         }
       } catch (parseError) {
         console.error('无法解析错误响应:', parseError);
         return res.status(500).json({ 
           error: '语音合成失败', 
-          details: error.message
+          details: error.message,
+          parseError: parseError.message
         });
       }
     } else {
+      // 没有响应（可能是网络错误或超时）
+      console.error('无响应错误，可能是网络问题或超时');
       return res.status(500).json({ 
         error: '语音合成失败', 
-        details: error.message
+        details: error.message,
+        type: error.code || 'UNKNOWN_ERROR',
+        endpoint: endpoint
       });
     }
   }
