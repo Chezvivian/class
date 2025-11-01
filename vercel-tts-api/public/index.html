@@ -3,72 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TTS API 测试</title>
+    <title>Azure TTS API 测试</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
-        button { padding: 10px 20px; margin: 10px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { color: #0078d4; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+        button { padding: 10px 20px; margin: 10px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
         button:hover { background: #0051a2; }
-        .result { margin: 10px 0; padding: 10px; background: #f5f5f5; border-radius: 4px; }
-        .error { background: #ffe6e6; color: #d00; }
-        .success { background: #e6ffe6; color: #060; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .result { margin: 10px 0; padding: 15px; background: #f5f5f5; border-radius: 4px; min-height: 20px; }
+        .error { background: #ffe6e6; color: #d00; border-left: 4px solid #d00; }
+        .success { background: #e6ffe6; color: #060; border-left: 4px solid #060; }
+        .info { background: #e6f3ff; color: #0066cc; border-left: 4px solid #0066cc; }
+        .loading { color: #666; }
+        .env-list { background: white; padding: 15px; border-radius: 4px; margin-top: 10px; }
+        .env-list li { margin: 8px 0; }
+        .status-badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; margin-left: 8px; }
+        .status-ok { background: #e6ffe6; color: #060; }
+        .status-error { background: #ffe6e6; color: #d00; }
     </style>
 </head>
 <body>
-    <h1>TTS API 测试页面</h1>
-    
-    <div class="test-section">
-        <h2>1. 测试 Token API</h2>
-        <button onclick="testTokenAPI()">测试 Token API</button>
-        <div id="tokenResult" class="result"></div>
-    </div>
-    
-    <div class="test-section">
-        <h2>2. 测试 TTS API</h2>
-        <button onclick="testTTSAPI()">测试 TTS API</button>
-        <div id="ttsResult" class="result"></div>
-    </div>
-    
-    <div class="test-section">
-        <h2>3. 环境变量检查</h2>
-        <p>请确保在 Vercel Dashboard 中设置了以下环境变量：</p>
-        <ul>
-            <li>ALIYUN_AK_ID</li>
-            <li>ALIYUN_AK_SECRET</li>
-            <li>NLS_APP_KEY</li>
-        </ul>
+    <div class="container">
+        <h1>Azure Speech Service TTS API 测试页面</h1>
+        <p style="color: #666;">此页面用于测试 Azure Speech Service 的文本转语音 API 是否正常工作</p>
+        
+        <div class="test-section">
+            <h2>1. 测试 TTS API（Azure Speech Service）</h2>
+            <button onclick="testTTSAPI()" id="ttsBtn">测试 TTS API</button>
+            <button onclick="testTTSAPIWithAudio()" id="ttsAudioBtn">测试并播放音频</button>
+            <div id="ttsResult" class="result">点击按钮开始测试...</div>
+            <audio id="audioPlayer" controls style="width: 100%; margin-top: 10px; display: none;"></audio>
+        </div>
+        
+        <div class="test-section">
+            <h2>2. 环境变量检查</h2>
+            <p>请确保在 Vercel Dashboard 的 <strong>Settings → Environment Variables</strong> 中设置了以下环境变量：</p>
+            <div class="env-list">
+                <ul>
+                    <li><strong>AZURE_SPEECH_KEY</strong> - Azure Speech Service API密钥</li>
+                    <li><strong>AZURE_SPEECH_REGION</strong> - Azure资源区域（如：eastus、westus2、southeastasia等）</li>
+                </ul>
+            </div>
+            <p style="color: #d00; font-weight: bold; margin-top: 15px;">⚠️ 注意：已迁移到Azure，不再需要阿里云环境变量</p>
+            <button onclick="checkEnvVars()" style="background: #28a745; margin-top: 10px;">检查环境变量状态</button>
+            <div id="envCheckResult" class="result" style="display: none;"></div>
+        </div>
     </div>
 
     <script>
         const API_BASE = window.location.origin;
         
-        async function testTokenAPI() {
-            const resultDiv = document.getElementById('tokenResult');
-            resultDiv.innerHTML = '正在测试 Token API...';
-            
-            try {
-                const response = await fetch(`${API_BASE}/api/token`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    resultDiv.innerHTML = `<div class="success">✅ Token API 成功！<br>Token: ${data.token ? data.token.substring(0, 20) + '...' : 'N/A'}</div>`;
-                } else {
-                    resultDiv.innerHTML = `<div class="error">❌ Token API 失败：${data.error || data.details || '未知错误'}</div>`;
-                }
-            } catch (error) {
-                resultDiv.innerHTML = `<div class="error">❌ 网络错误：${error.message}</div>`;
-            }
-        }
-        
         async function testTTSAPI() {
             const resultDiv = document.getElementById('ttsResult');
-            resultDiv.innerHTML = '正在测试 TTS API...';
+            const ttsBtn = document.getElementById('ttsBtn');
+            resultDiv.innerHTML = '<span class="loading">正在测试 TTS API...</span>';
+            ttsBtn.disabled = true;
             
             try {
                 const response = await fetch(`${API_BASE}/api/tts`, {
@@ -77,8 +68,73 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        text: "Hello World",
-                        voice: "Abby",
+                        text: "Hello, this is a test of Azure Speech Service text-to-speech API.",
+                        voice: "Betty",
+                        speed: 0,
+                        pitch: 0,
+                        volume: 50,
+                        sample_rate: 16000,
+                        format: "wav"
+                    })
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const audioUrl = URL.createObjectURL(blob);
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioPlayer.src = audioUrl;
+                    
+                    resultDiv.innerHTML = `<div class="success">
+                        ✅ <strong>TTS API 测试成功！</strong><br>
+                        音频文件大小: ${(blob.size / 1024).toFixed(2)} KB<br>
+                        音频类型: ${blob.type || 'audio/wav'}<br>
+                        状态码: ${response.status}
+                    </div>`;
+                } else {
+                    const data = await response.json().catch(() => ({ error: await response.text() }));
+                    resultDiv.innerHTML = `<div class="error">
+                        ❌ <strong>TTS API 测试失败</strong><br>
+                        状态码: ${response.status}<br>
+                        错误信息: ${JSON.stringify(data, null, 2)}
+                    </div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">
+                    ❌ <strong>网络错误</strong><br>
+                    错误信息: ${error.message}<br>
+                    请检查网络连接和API端点是否正确
+                </div>`;
+            } finally {
+                ttsBtn.disabled = false;
+            }
+        }
+        
+        async function testTTSAPIWithAudio() {
+            await testTTSAPI();
+            const audioPlayer = document.getElementById('audioPlayer');
+            if (audioPlayer.src) {
+                audioPlayer.style.display = 'block';
+                audioPlayer.play().catch(err => {
+                    console.error('播放音频失败:', err);
+                });
+            }
+        }
+        
+        async function checkEnvVars() {
+            const resultDiv = document.getElementById('envCheckResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = '<span class="loading">正在检查环境变量...</span>';
+            
+            try {
+                // 测试TTS API以检查环境变量是否配置
+                const response = await fetch(`${API_BASE}/api/tts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: "Test",
+                        voice: "Betty",
                         speed: 0,
                         pitch: 0,
                         volume: 50
@@ -86,21 +142,42 @@
                 });
                 
                 if (response.ok) {
-                    const blob = await response.blob();
-                    resultDiv.innerHTML = `<div class="success">✅ TTS API 成功！<br>音频文件大小: ${blob.size} bytes<br>类型: ${blob.type}</div>`;
+                    resultDiv.innerHTML = `<div class="success">
+                        ✅ <strong>环境变量配置正确！</strong><br>
+                        AZURE_SPEECH_KEY 和 AZURE_SPEECH_REGION 已正确配置<br>
+                        TTS API 可以正常工作
+                    </div>`;
                 } else {
-                    const data = await response.text();
-                    resultDiv.innerHTML = `<div class="error">❌ TTS API 失败：${data}</div>`;
+                    const data = await response.json().catch(() => ({ error: await response.text() }));
+                    const errorMsg = JSON.stringify(data, null, 2);
+                    
+                    if (errorMsg.includes('缺少必要的环境变量') || errorMsg.includes('AZURE_SPEECH_KEY') || errorMsg.includes('AZURE_SPEECH_REGION')) {
+                        resultDiv.innerHTML = `<div class="error">
+                            ❌ <strong>环境变量未配置或配置错误</strong><br>
+                            请确保在 Vercel Dashboard 中设置了：<br>
+                            • AZURE_SPEECH_KEY<br>
+                            • AZURE_SPEECH_REGION<br><br>
+                            详细错误: ${errorMsg}
+                        </div>`;
+                    } else {
+                        resultDiv.innerHTML = `<div class="error">
+                            ❌ <strong>环境变量可能已配置，但API调用失败</strong><br>
+                            详细错误: ${errorMsg}
+                        </div>`;
+                    }
                 }
             } catch (error) {
-                resultDiv.innerHTML = `<div class="error">❌ 网络错误：${error.message}</div>`;
+                resultDiv.innerHTML = `<div class="error">
+                    ❌ <strong>检查失败</strong><br>
+                    错误信息: ${error.message}
+                </div>`;
             }
         }
         
-        // 页面加载时自动测试
+        // 页面加载时显示API基础URL
         window.onload = function() {
             console.log('API Base URL:', API_BASE);
-            testTokenAPI();
+            console.log('测试页面已加载，请点击按钮进行测试');
         };
     </script>
 </body>

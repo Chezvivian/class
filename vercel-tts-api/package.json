@@ -1,7 +1,7 @@
 {
-  "name": "aliyun-tts-vercel-proxy",
-  "version": "1.0.0",
-  "description": "阿里云TTS Vercel中间层代理",
+  "name": "azure-tts-vercel-proxy",
+  "version": "2.0.0",
+  "description": "Azure Speech Service TTS Vercel中间层代理",
   "main": "index.js",
   "scripts": {
     "dev": "vercel dev",

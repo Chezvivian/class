@@ -8,11 +8,15 @@ layout: post
 <!-- 工具简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
 <strong>工具名称：</strong>文字转语音工具<br>
-<strong>技术平台：</strong>阿里云智能语音交互<br>
+<strong>技术平台：</strong>微软Azure AI Speech Service<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
+<<<<<<< Updated upstream
 <strong>更新时间：</strong>2025年10月26日<br>
 <strong>新功能：</strong>支持长文本自动分段合成，解决300字符限制问题
+=======
+<strong>更新时间：</strong>2025年1月26日
+>>>>>>> Stashed changes
 </div>
 
 
@@ -434,9 +438,10 @@ downloadBtn.addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
   statusText.textContent = '请输入文字内容开始合成语音';
   
-  // 检查 Vercel API 是否可用
+  // 检查 Vercel API 是否可用（Azure不需要token，直接检查TTS端点）
   const apiBaseUrl = 'https://vercel-tts.vercel.app';
-  fetch(`${apiBaseUrl}/api/token`, { method: 'POST' })
+  // 使用HEAD请求检查API端点是否可访问
+  fetch(`${apiBaseUrl}/api/tts`, { method: 'OPTIONS' })
     .then(response => {
       if (response.ok) {
         statusText.textContent = 'TTS服务已就绪，可以开始使用';
@@ -468,6 +473,7 @@ function previewSegments(text) {
   return preview;
 }
 
+<<<<<<< Updated upstream
 // 显示分段预览
 function showSegmentPreview() {
   const text = textInput.value.trim();
@@ -488,6 +494,18 @@ function splitTextIntoSegments(text, maxLength = 300) {
   for (let i = 0; i < sentences.length; i++) {
     const sentence = sentences[i].trim();
     if (!sentence) continue;
+=======
+// 使用Azure Speech Service进行语音合成
+async function synthesizeSpeech(text) {
+  try {
+    console.log('调用Azure TTS API，参数:', {
+      text: text,
+      voice: voiceSelect.value,
+      speed: parseInt(speedSlider.value),
+      pitch: parseInt(pitchSlider.value),
+      volume: parseInt(volumeSlider.value)
+    });
+>>>>>>> Stashed changes
     
     // 如果单个句子就超过限制，需要进一步分割
     if (sentence.length > maxLength) {
@@ -767,6 +785,7 @@ async function synthesizeSpeech(text) {
   }
 }
 
+<<<<<<< Updated upstream
 // 单段文本合成函数
 async function synthesizeSingleSegment(text) {
   console.log('调用阿里云TTS API，参数:', {
@@ -816,6 +835,10 @@ async function getToken(accessKeyId, accessKeySecret) {
   // 返回一个模拟token，实际使用时需要替换为有效的token
   return 'c887e110996e439eb7af6b221';
 }
+=======
+// 注意：Azure Speech Service不需要单独的token获取步骤
+// API密钥存储在Vercel环境变量中，通过后端代理安全调用
+>>>>>>> Stashed changes
 
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', function() {
