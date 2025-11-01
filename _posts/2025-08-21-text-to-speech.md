@@ -554,7 +554,13 @@ async function fetchWithFallback(urls, fetchOptions, endpointType) {
         return response;
       } else {
         // 响应不OK，尝试下一个端点
-        console.warn(`端点响应异常 (${response.status}): ${url}，尝试下一个端点...`);
+        // 405 Method Not Allowed 也应该尝试下一个端点
+        const status = response.status;
+        console.warn(`端点响应异常 (${status}): ${url}，尝试下一个端点...`);
+        if (status === 405) {
+          // 405错误可能是触发器配置问题，也尝试下一个端点
+          console.warn(`方法不允许 (405)，可能是触发器配置问题，尝试下一个端点...`);
+        }
         if (i === urls.length - 1) {
           // 所有端点都失败，返回最后一个响应
           return response;

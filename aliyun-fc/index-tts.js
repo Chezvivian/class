@@ -1,5 +1,5 @@
 // 阿里云函数计算 - Azure Speech Service文本转语音合成代理
-// 入口文件：index.js（将此文件重命名为index.js）
+// HTTP触发器格式 - 使用Node.js标准Stream API
 
 const axios = require('axios');
 
@@ -126,168 +126,154 @@ function getOutputFormat(format, sampleRate) {
 }
 
 /**
- * 阿里云函数计算 HTTP触发器 处理函数
- * 阿里云函数计算的HTTP触发器使用标准事件函数格式
+ * 阿里云函数计算 HTTP触发器入口
+ * request和response是Node.js标准HTTP对象
  */
-exports.handler = async (event, context, callback) => {
-  // 设置响应头
-  const headers = {
+exports.handler = (request, response, context) => {
+  console.log('收到请求');
+  console.log('Request方法:', request.method);
+  console.log('Request URL:', request.url);
+  
+  // 设置CORS响应头 - 使用Node.js标准API
+  response.writeHead(200, {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
-  };
+  });
   
   // 处理 OPTIONS 预检请求
-  if (event.httpMethod === 'OPTIONS' || (event.request && event.request.method === 'OPTIONS')) {
-    callback(null, {
-      statusCode: 200,
-      headers: headers,
-      body: ''
-    });
+  if (request.method === 'OPTIONS') {
+    response.end('');
     return;
   }
   
-  if (event.httpMethod !== 'POST' && (!event.request || event.request.method !== 'POST')) {
-    callback(null, {
-      statusCode: 405,
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Method not allowed' })
-    });
+  // 只接受POST请求
+  if (request.method !== 'POST') {
+    console.warn('方法不允许，当前方法:', request.method);
+    response.writeHead(405, { 'Content-Type': 'application/json' });
+    response.end(JSON.stringify({ 
+      error: 'Method not allowed',
+      receivedMethod: request.method,
+      allowedMethods: ['POST']
+    }));
     return;
   }
-
-  try {
-    // 获取请求体
-    let body;
-    if (typeof event.body === 'string') {
-      body = JSON.parse(event.body);
-    } else if (event.body) {
-      body = event.body;
-    } else if (event.request && event.request.body) {
-      if (typeof event.request.body === 'string') {
-        body = JSON.parse(event.request.body);
-      } else {
-        body = event.request.body;
+  
+  // 获取请求体
+  let body = '';
+  request.on('data', (chunk) => {
+    body += chunk.toString();
+  });
+  
+  request.on('end', async () => {
+    try {
+      console.log('请求体长度:', body.length);
+      
+      const requestBody = JSON.parse(body);
+      const { text, voice, style, rate, pitch, volume, sample_rate, format } = requestBody;
+      
+      if (!text) {
+        response.writeHead(400, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify({ error: '缺少文本参数' }));
+        return;
       }
-    } else {
-      body = {};
-    }
-    
-    const { text, voice, style, rate, pitch, volume, sample_rate, format } = body;
-    
-    if (!text) {
-      callback(null, {
-        statusCode: 400,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: '缺少文本参数' })
-      });
-      return;
-    }
 
-    if (text.length > 5000) {
-      callback(null, {
-        statusCode: 400,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: '文本长度不能超过5000字符' })
-      });
-      return;
-    }
+      if (text.length > 5000) {
+        response.writeHead(400, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify({ error: '文本长度不能超过5000字符' }));
+        return;
+      }
 
-    // 从环境变量获取Azure配置
-    const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
-    const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION;
-    
-    if (!AZURE_SPEECH_KEY || !AZURE_SPEECH_REGION) {
-      callback(null, {
-        statusCode: 500,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+      // 从环境变量获取Azure配置
+      const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
+      const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION;
+      
+      if (!AZURE_SPEECH_KEY || !AZURE_SPEECH_REGION) {
+        response.writeHead(500, { 'Content-Type': 'application/json' });
+        response.end(JSON.stringify({ 
           error: '语音合成失败',
           details: '缺少必要的环境变量 AZURE_SPEECH_KEY 或 AZURE_SPEECH_REGION'
-        })
-      });
-      return;
-    }
-
-    // 构建Azure API端点
-    const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
-    
-    // 获取Azure语音名称
-    const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
-    
-    // 构建SSML请求体
-    const ssml = buildSSML(
-      text,
-      azureVoice,
-      style || null,
-      rate || null,
-      pitch || null,
-      volume || null
-    );
-    
-    // 获取输出格式
-    const outputFormat = getOutputFormat(format || 'wav', sample_rate || 16000);
-    
-    console.log('Azure TTS请求参数:', {
-      endpoint: endpoint,
-      azureVoice: azureVoice,
-      style: style || '无',
-      outputFormat: outputFormat
-    });
-    
-    // 调用Azure Speech Service REST API
-    const response = await axios.post(
-      endpoint,
-      ssml,
-      {
-        headers: {
-          'Content-Type': 'application/ssml+xml',
-          'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY,
-          'X-Microsoft-OutputFormat': outputFormat
-        },
-        responseType: 'arraybuffer',
-        timeout: 30000
+        }));
+        return;
       }
-    );
-    
-    console.log('Azure TTS响应状态:', response.status);
-    console.log('音频数据大小:', response.data.length);
-    
-    // 根据格式设置Content-Type
-    let contentType = 'audio/wav';
-    if (format === 'mp3') {
-      contentType = 'audio/mpeg';
-    } else if (format === 'ogg') {
-      contentType = 'audio/ogg';
-    }
-    
-    // 返回音频数据（base64编码）
-    const base64Audio = Buffer.from(response.data).toString('base64');
-    
-    callback(null, {
-      statusCode: 200,
-      headers: {
-        ...headers,
+
+      // 构建Azure API端点
+      const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
+      
+      // 获取Azure语音名称
+      const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
+      
+      // 构建SSML请求体
+      const ssml = buildSSML(
+        text,
+        azureVoice,
+        style || null,
+        rate || null,
+        pitch || null,
+        volume || null
+      );
+      
+      // 获取输出格式
+      const outputFormat = getOutputFormat(format || 'wav', sample_rate || 16000);
+      
+      console.log('Azure TTS请求参数:', {
+        endpoint: endpoint,
+        azureVoice: azureVoice,
+        style: style || '无',
+        outputFormat: outputFormat
+      });
+      
+      // 调用Azure Speech Service REST API
+      const azureResponse = await axios.post(
+        endpoint,
+        ssml,
+        {
+          headers: {
+            'Content-Type': 'application/ssml+xml',
+            'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY,
+            'X-Microsoft-OutputFormat': outputFormat
+          },
+          responseType: 'arraybuffer',
+          timeout: 30000
+        }
+      );
+      
+      console.log('Azure TTS响应状态:', azureResponse.status);
+      console.log('音频数据大小:', azureResponse.data.length);
+      
+      // 根据格式设置Content-Type
+      let contentType = 'audio/wav';
+      if (format === 'mp3') {
+        contentType = 'audio/mpeg';
+      } else if (format === 'ogg') {
+        contentType = 'audio/ogg';
+      }
+      
+      // 返回音频数据（二进制）
+      response.writeHead(200, {
         'Content-Type': contentType,
-        'Content-Length': response.data.length.toString(),
-        'Cache-Control': 'no-cache'
-      },
-      body: base64Audio,
-      isBase64Encoded: true
-    });
-    
-  } catch (error) {
-    console.error('TTS合成失败:', error.message);
-    console.error('错误堆栈:', error.stack);
-    
-    callback(null, {
-      statusCode: 500,
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
+        'Content-Length': azureResponse.data.length,
+        'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*'
+      });
+      response.end(Buffer.from(azureResponse.data));
+      
+    } catch (error) {
+      console.error('TTS合成失败:', error.message);
+      console.error('错误堆栈:', error.stack);
+      
+      if (error.response) {
+        console.error('Azure API错误:', error.response.status, error.response.data);
+      }
+      
+      response.writeHead(500, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      response.end(JSON.stringify({ 
         error: '语音合成失败',
         details: error.message
-      })
-    });
-  }
+      }));
+    }
+  });
 };
-

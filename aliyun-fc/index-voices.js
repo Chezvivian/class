@@ -1,71 +1,76 @@
-// 阿里云函数计算 - 获取Azure Speech Service语音列表
-// 入口文件：index.js（将此文件重命名为index.js）
+// 阿里云函数计算 - Azure Speech Service获取音色列表代理
+// HTTP触发器格式 - 使用Node.js标准Stream API
 
 const axios = require('axios');
 
 /**
- * 阿里云函数计算 HTTP触发器 处理函数
+ * 阿里云函数计算 HTTP触发器入口
+ * request和response是Node.js标准HTTP对象
  */
-exports.handler = async (event, context, callback) => {
-  // 设置响应头
-  const headers = {
+exports.handler = (request, response, context) => {
+  console.log('收到请求');
+  console.log('Request方法:', request.method);
+  console.log('Request URL:', request.url);
+  
+  // 设置CORS响应头 - 使用Node.js标准API
+  response.writeHead(200, {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
-  };
+  });
   
   // 处理 OPTIONS 预检请求
-  if (event.httpMethod === 'OPTIONS' || (event.request && event.request.method === 'OPTIONS')) {
-    callback(null, {
-      statusCode: 200,
-      headers: headers,
-      body: ''
-    });
+  if (request.method === 'OPTIONS') {
+    response.end('');
     return;
   }
-
-  try {
-    // 从环境变量获取Azure配置
-    const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
-    const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION;
-    
-    if (!AZURE_SPEECH_KEY || !AZURE_SPEECH_REGION) {
-      callback(null, {
-        statusCode: 500,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: '缺少必要的环境变量 AZURE_SPEECH_KEY 或 AZURE_SPEECH_REGION'
-        })
-      });
-      return;
-    }
-
-    // 构建Azure API端点
-    const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
-    
-    // 调用Azure Speech Service REST API获取语音列表
-    console.log('调用Azure语音列表API:', endpoint);
-    const response = await axios.get(endpoint, {
-      headers: {
-        'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY
-      },
-      timeout: 10000
-    });
-    
-    if (response.status === 200 && Array.isArray(response.data)) {
-      // 语言代码映射
-      const languageNames = {
-        'en-US': 'English (United States)',
-        'en-GB': 'English (United Kingdom)',
-        'en-CA': 'English (Canada)',
-        'en-AU': 'English (Australia)',
-        'en-IE': 'English (Ireland)',
-        'en-IN': 'English (India)',
-        'en-NZ': 'English (New Zealand)',
-        'en-ZA': 'English (South Africa)'
-      };
+  
+  // 异步处理
+  (async () => {
+    try {
+      // 从环境变量获取Azure配置
+      const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
+      const AZURE_SPEECH_REGION = process.env.AZURE_SPEECH_REGION;
       
-      // 语言优先级顺序
+      if (!AZURE_SPEECH_KEY || !AZURE_SPEECH_REGION) {
+        response.writeHead(500, { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        });
+        response.end(JSON.stringify({ 
+          error: '获取音色列表失败',
+          details: '缺少必要的环境变量 AZURE_SPEECH_KEY 或 AZURE_SPEECH_REGION'
+        }));
+        return;
+      }
+
+      // 构建Azure API端点
+      const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
+      
+      console.log('请求Azure Voices API:', endpoint);
+      
+      // 调用Azure Speech Service REST API获取音色列表
+      const azureResponse = await axios.get(endpoint, {
+        headers: {
+          'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY
+        },
+        timeout: 10000
+      });
+      
+      console.log('Azure API响应状态:', azureResponse.status);
+      console.log('音色数量:', azureResponse.data.length);
+      
+      // 筛选所有英语locale的音色，并按语言分组
+      const englishVoices = azureResponse.data.filter(voice => 
+        voice.Locale && voice.Locale.startsWith('en-')
+      );
+      
+      console.log('英语音色数量:', englishVoices.length);
+      
+      // 按locale分组
+      const voicesByLanguage = {};
+      
+      // 定义语言优先级（用于排序）
       const languagePriority = {
         'en-US': 1,
         'en-GB': 2,
@@ -77,105 +82,65 @@ exports.handler = async (event, context, callback) => {
         'en-ZA': 8
       };
       
-      // 过滤出所有英语语言的语音
-      const englishVoices = response.data.filter(voice => {
-        const locale = voice.Locale || voice.locale || '';
-        return locale.startsWith('en-');
-      });
-      
-      // 按语言分组
-      const voicesByLanguage = {};
-      const languageList = [];
-      
       englishVoices.forEach(voice => {
-        const locale = voice.Locale || voice.locale || '';
-        const name = voice.ShortName || voice.shortName || voice.Name || voice.name || '';
-        const gender = voice.Gender || voice.gender || 'Unknown';
-        const displayName = voice.DisplayName || voice.displayName || voice.FriendlyName || voice.friendlyName || name;
+        const locale = voice.Locale;
         
-        // 提取语言代码（如 en-US, en-GB）
-        const langCode = locale.split('-').slice(0, 2).join('-');
-        
-        // 提取Speaking styles
-        const styles = voice.StyleList || voice.styleList || voice.Style || voice.style || [];
-        const styleArray = Array.isArray(styles) ? styles : (styles ? [styles] : []);
-        
-        // 提取Role playing styles
-        const roles = voice.RolePlayList || voice.rolePlayList || voice.Role || voice.role || [];
-        const roleArray = Array.isArray(roles) ? roles : (roles ? [roles] : []);
-        
-        if (!voicesByLanguage[langCode]) {
-          voicesByLanguage[langCode] = [];
-          const displayName = languageNames[langCode];
-          if (displayName) {
-            languageList.push({
-              code: langCode,
-              name: displayName
-            });
-          } else {
-            languageList.push({
-              code: langCode,
-              name: `English (${langCode.split('-')[1] || langCode})`
-            });
-          }
+        if (!voicesByLanguage[locale]) {
+          voicesByLanguage[locale] = {
+            language: locale,
+            languageName: voice.LocaleName || locale,
+            voices: []
+          };
         }
         
-        voicesByLanguage[langCode].push({
-          name: name,
-          displayName: displayName,
-          gender: gender,
-          locale: locale,
-          styles: styleArray,
-          roles: roleArray
-        });
+        // 提取关键信息
+        const voiceInfo = {
+          name: voice.ShortName || voice.Name,
+          displayName: voice.DisplayName || voice.FriendlyName || voice.ShortName,
+          friendlyName: voice.FriendlyName || voice.DisplayName || voice.ShortName,
+          gender: voice.Gender,
+          locale: voice.Locale,
+          styles: voice.StyleList || [],
+          roles: voice.RolePlayList || []
+        };
+        
+        voicesByLanguage[locale].voices.push(voiceInfo);
       });
       
-      // 按优先级排序
-      languageList.sort((a, b) => {
-        const priorityA = languagePriority[a.code] || 999;
-        const priorityB = languagePriority[b.code] || 999;
-        if (priorityA !== priorityB) {
-          return priorityA - priorityB;
-        }
-        return a.code.localeCompare(b.code);
+      // 转换为数组并排序
+      const result = Object.values(voicesByLanguage).sort((a, b) => {
+        const priorityA = languagePriority[a.language] || 999;
+        const priorityB = languagePriority[b.language] || 999;
+        return priorityA - priorityB;
       });
       
-      // 每种语言内的语音按名称排序
-      Object.keys(voicesByLanguage).forEach(lang => {
-        voicesByLanguage[lang].sort((a, b) => a.name.localeCompare(b.name));
-      });
+      console.log('返回的语言分组数:', result.length);
       
-      callback(null, {
-        statusCode: 200,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          success: true,
-          languages: languageList,
-          voices: voicesByLanguage,
-          total: englishVoices.length
-        })
+      // 返回JSON数据
+      response.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=3600',
+        'Access-Control-Allow-Origin': '*'
       });
-    } else {
-      callback(null, {
-        statusCode: 500,
-        headers: { ...headers, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: '无法解析语音列表响应'
-        })
+      response.end(JSON.stringify(result));
+      
+    } catch (error) {
+      console.error('获取音色列表失败:', error.message);
+      console.error('错误堆栈:', error.stack);
+      
+      if (error.response) {
+        console.error('Azure API错误:', error.response.status, error.response.statusText);
+        console.error('响应数据:', error.response.data);
+      }
+      
+      response.writeHead(500, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       });
-    }
-  } catch (error) {
-    console.error('获取语音列表失败:', error.message);
-    console.error('错误堆栈:', error.stack);
-    
-    callback(null, {
-      statusCode: 500,
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        error: '获取语音列表失败',
+      response.end(JSON.stringify({ 
+        error: '获取音色列表失败',
         details: error.message
-      })
-    });
-  }
+      }));
+    }
+  })();
 };
-
