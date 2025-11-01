@@ -113,8 +113,11 @@ function escapeXml(text) {
  * @param {string} text - 要合成的文本
  * @param {string} voice - Azure语音名称（如：en-US-JennyNeural）
  * @param {string|null} style - Speaking style（如果有）
+ * @param {string|null} rate - Speech rate（如果有）
+ * @param {string|null} pitch - Speech pitch（如果有）
+ * @param {string|null} volume - Speech volume（如果有）
  */
-function buildSSML(text, voice, style) {
+function buildSSML(text, voice, style, rate, pitch, volume) {
   // voice参数应该是Azure语音名称（如：en-US-JennyNeural）
   const azureVoice = voice;
   
@@ -136,13 +139,46 @@ function buildSSML(text, voice, style) {
   let ssml = `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="${lang}">
   <voice name="${azureVoice}">`;
   
-  // 如果设置了Style，使用mstts:express-as标签
-  if (style) {
+  // 检查是否需要使用标签
+  const hasStyle = style && style.trim() !== '';
+  const hasRate = rate && rate.trim() !== '' && rate !== 'medium';
+  const hasPitch = pitch && pitch.trim() !== '' && pitch !== 'medium';
+  const hasVolume = volume && volume.trim() !== '' && volume !== 'medium';
+  const hasProsody = hasRate || hasPitch || hasVolume;
+  
+  // 构建prosody属性字符串
+  let prosodyAttrs = [];
+  if (hasRate) {
+    prosodyAttrs.push(`rate="${escapeXml(rate)}"`);
+  }
+  if (hasPitch) {
+    prosodyAttrs.push(`pitch="${escapeXml(pitch)}"`);
+  }
+  if (hasVolume) {
+    prosodyAttrs.push(`volume="${escapeXml(volume)}"`);
+  }
+  const prosodyAttrsStr = prosodyAttrs.join(' ');
+  
+  // 根据是否有Style和Prosody组合标签
+  if (hasStyle && hasProsody) {
+    // 同时有Style和Prosody，先使用mstts:express-as，再使用prosody
+    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += `<prosody ${prosodyAttrsStr}>`;
+    ssml += escapeXml(text);
+    ssml += `</prosody>`;
+    ssml += `</mstts:express-as>`;
+  } else if (hasStyle) {
+    // 只有Style
     ssml += `<mstts:express-as style="${escapeXml(style)}">`;
     ssml += escapeXml(text);
     ssml += `</mstts:express-as>`;
+  } else if (hasProsody) {
+    // 只有Prosody（Rate/Pitch/Volume）
+    ssml += `<prosody ${prosodyAttrsStr}>`;
+    ssml += escapeXml(text);
+    ssml += `</prosody>`;
   } else {
-    // 添加文本内容
+    // 都没有，直接添加文本内容
     ssml += escapeXml(text);
   }
   
@@ -171,7 +207,7 @@ module.exports = async function handler(req, res) {
   try {
     console.log('收到TTS请求:', req.body);
     
-    const { text, voice, style, sample_rate, format } = req.body;
+    const { text, voice, style, rate, pitch, volume, sample_rate, format } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: '缺少文本参数' });
@@ -195,11 +231,14 @@ module.exports = async function handler(req, res) {
     // 获取Azure语音名称（支持直接使用Azure格式或向后兼容）
     const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
     
-    // 构建SSML请求体（支持Speaking styles）
+    // 构建SSML请求体（支持Speaking styles、Speech rate、Pitch和Volume）
     const ssml = buildSSML(
       text,
       azureVoice,
-      style || null
+      style || null,
+      rate || null,
+      pitch || null,
+      volume || null
     );
     
     // 获取输出格式
@@ -210,6 +249,9 @@ module.exports = async function handler(req, res) {
       inputVoice: voice || 'en-US-JennyNeural',
       azureVoice: azureVoice,
       style: style || '无',
+      rate: rate || 'medium',
+      pitch: pitch || 'medium',
+      volume: volume || 'medium',
       outputFormat: outputFormat,
       ssmlLength: ssml.length
     });

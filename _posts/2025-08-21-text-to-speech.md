@@ -64,7 +64,43 @@ layout: post
    </div>
  </div>
 
-<!-- 高级设置区域 -->
+<!-- 高级设置区域 - 语速、音调、音量 -->
+<div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:nowrap; align-items:flex-start;">
+   <div style="flex:0 0 32%; min-width:0;">
+     <label for="rateSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">语速：</label>
+     <select id="rateSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
+       <option value="x-slow">很慢</option>
+       <option value="slow">慢速</option>
+       <option value="medium" selected>正常</option>
+       <option value="fast">快速</option>
+       <option value="x-fast">很快</option>
+     </select>
+   </div>
+   
+   <div style="flex:0 0 32%; min-width:0;">
+     <label for="pitchSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">音调：</label>
+     <select id="pitchSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
+       <option value="x-low">很低</option>
+       <option value="low">低</option>
+       <option value="medium" selected>正常</option>
+       <option value="high">高</option>
+       <option value="x-high">很高</option>
+     </select>
+   </div>
+   
+   <div style="flex:0 0 32%; min-width:0;">
+     <label for="volumeSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">音量：</label>
+     <select id="volumeSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
+       <option value="x-soft">很小</option>
+       <option value="soft">小</option>
+       <option value="medium" selected>正常</option>
+       <option value="loud">大</option>
+       <option value="x-loud">很大</option>
+     </select>
+   </div>
+ </div>
+
+<!-- 高级设置区域 - 采样率、格式 -->
 <div style="display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap;">
    <div style="flex:1; min-width:200px;">
      <label for="sampleRateSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">采样率：</label>
@@ -197,6 +233,9 @@ const charCount = document.getElementById('charCount');
 const languageSelect = document.getElementById('languageSelect');
 const voiceSelect = document.getElementById('voiceSelect');
 const styleSelect = document.getElementById('styleSelect');
+const rateSelect = document.getElementById('rateSelect');
+const pitchSelect = document.getElementById('pitchSelect');
+const volumeSelect = document.getElementById('volumeSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
 const sampleTextBtn = document.getElementById('sampleTextBtn');
@@ -325,7 +364,9 @@ synthesizeBtn.addEventListener('click', async function() {
     statusText.style.color = '#dc3545';
     
     // 显示更详细的错误信息
-    if (errorMessage.includes('500') || errorMessage.includes('HTTP 500')) {
+    if (errorMessage.includes('网络连接失败') || errorMessage.includes('无法连接到API服务器')) {
+      statusText.textContent = errorMessage;
+    } else if (errorMessage.includes('500') || errorMessage.includes('HTTP 500')) {
       statusText.textContent = '合成失败：服务器错误（500），请检查Vercel日志或联系管理员';
     } else if (errorMessage.includes('缺少必要的环境变量')) {
       statusText.textContent = '合成失败：环境变量未配置，请在Vercel中设置AZURE_SPEECH_KEY和AZURE_SPEECH_REGION';
@@ -440,26 +481,86 @@ async function loadVoices() {
     }
   } catch (error) {
     console.error('加载语音列表失败:', error);
-    voiceLoadingStatus.textContent = `加载失败: ${error.message}`;
-    voiceLoadingStatus.style.color = '#dc3545';
     
-    // 使用默认值
+    // 检测是否是网络连接问题
+    const isNetworkError = error.message.includes('NetworkError') || 
+                          error.message.includes('Failed to fetch') || 
+                          error.message.includes('fetch') ||
+                          error.name === 'TypeError';
+    
+    if (isNetworkError) {
+      voiceLoadingStatus.textContent = '网络连接失败，可能无法访问API服务器。已使用默认语音列表，您可以继续使用基本功能。';
+      voiceLoadingStatus.style.color = '#dc3545';
+    } else {
+      voiceLoadingStatus.textContent = `加载失败: ${error.message}`;
+      voiceLoadingStatus.style.color = '#dc3545';
+    }
+    
+    // 使用默认值，确保用户仍可使用基本功能
     languageSelect.innerHTML = `
       <option value="en-US" selected>English (United States)</option>
       <option value="en-GB">English (United Kingdom)</option>
+      <option value="en-CA">English (Canada)</option>
+      <option value="en-AU">English (Australia)</option>
+      <option value="en-IE">English (Ireland)</option>
+      <option value="en-IN">English (India)</option>
+      <option value="en-NZ">English (New Zealand)</option>
+      <option value="en-ZA">English (South Africa)</option>
     `;
     languageSelect.selectedIndex = 0;
+    
+    // 提供常用音色的默认列表
     voicesData = {
       languages: [
         { code: 'en-US', name: 'English (United States)' },
-        { code: 'en-GB', name: 'English (United Kingdom)' }
+        { code: 'en-GB', name: 'English (United Kingdom)' },
+        { code: 'en-CA', name: 'English (Canada)' },
+        { code: 'en-AU', name: 'English (Australia)' },
+        { code: 'en-IE', name: 'English (Ireland)' },
+        { code: 'en-IN', name: 'English (India)' },
+        { code: 'en-NZ', name: 'English (New Zealand)' },
+        { code: 'en-ZA', name: 'English (South Africa)' }
       ],
       voices: {
         'en-US': [
-          { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: [], roles: [] }
+          { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: ['chat', 'cheerful', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'narration-professional', 'newscast-casual', 'newscast-formal'], roles: [] },
+          { name: 'en-US-AriaNeural', displayName: 'Aria', gender: 'Female', styles: ['chat', 'cheerful', 'empathy', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] },
+          { name: 'en-US-AndrewNeural', displayName: 'Andrew', gender: 'Male', styles: [], roles: [] },
+          { name: 'en-US-DavisNeural', displayName: 'Davis', gender: 'Male', styles: ['chat', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'sad', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast-casual', 'newscast-formal', 'narration-relaxed'], roles: [] },
+          { name: 'en-US-GuyNeural', displayName: 'Guy', gender: 'Male', styles: ['newscast', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'disgruntled'], roles: [] },
+          { name: 'en-US-JaneNeural', displayName: 'Jane', gender: 'Female', styles: ['angry', 'cheerful', 'excited', 'friendly', 'hopeful', 'sad', 'scared', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical'], roles: [] },
+          { name: 'en-US-JasonNeural', displayName: 'Jason', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'nervous', 'scared', 'serious', 'whispering', 'affectionate', 'disgruntled'], roles: [] },
+          { name: 'en-US-NancyNeural', displayName: 'Nancy', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast'], roles: [] },
+          { name: 'en-US-SaraNeural', displayName: 'Sara', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast-casual'], roles: [] },
+          { name: 'en-US-TonyNeural', displayName: 'Tony', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] }
         ],
         'en-GB': [
-          { name: 'en-GB-RyanNeural', displayName: 'Ryan', gender: 'Male', styles: [], roles: [] }
+          { name: 'en-GB-RyanNeural', displayName: 'Ryan', gender: 'Male', styles: ['chat', 'cheerful', 'sad'], roles: [] },
+          { name: 'en-GB-SoniaNeural', displayName: 'Sonia', gender: 'Female', styles: ['cheerful', 'sad'], roles: [] }
+        ],
+        'en-CA': [
+          { name: 'en-CA-ClaraNeural', displayName: 'Clara', gender: 'Female', styles: [], roles: [] },
+          { name: 'en-CA-LiamNeural', displayName: 'Liam', gender: 'Male', styles: [], roles: [] }
+        ],
+        'en-AU': [
+          { name: 'en-AU-NatashaNeural', displayName: 'Natasha', gender: 'Female', styles: [], roles: [] },
+          { name: 'en-AU-WilliamNeural', displayName: 'William', gender: 'Male', styles: [], roles: [] }
+        ],
+        'en-IE': [
+          { name: 'en-IE-ConnorNeural', displayName: 'Connor', gender: 'Male', styles: [], roles: [] },
+          { name: 'en-IE-EmilyNeural', displayName: 'Emily', gender: 'Female', styles: [], roles: [] }
+        ],
+        'en-IN': [
+          { name: 'en-IN-NeerjaNeural', displayName: 'Neerja', gender: 'Female', styles: [], roles: [] },
+          { name: 'en-IN-PrabhatNeural', displayName: 'Prabhat', gender: 'Male', styles: [] }
+        ],
+        'en-NZ': [
+          { name: 'en-NZ-MitchellNeural', displayName: 'Mitchell', gender: 'Male', styles: [], roles: [] },
+          { name: 'en-NZ-MollyNeural', displayName: 'Molly', gender: 'Female', styles: [] }
+        ],
+        'en-ZA': [
+          { name: 'en-ZA-LeanneNeural', displayName: 'Leanne', gender: 'Female', styles: [], roles: [] },
+          { name: 'en-ZA-LukeNeural', displayName: 'Luke', gender: 'Male', styles: [] }
         ]
       }
     };
@@ -632,7 +733,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })
     .catch(error => {
-      statusText.textContent = 'TTS服务连接失败，请检查网络连接';
+      // 检测是否是网络连接问题
+      const isNetworkError = error.message.includes('Failed to fetch') || 
+                            error.message.includes('NetworkError') ||
+                            error.message.includes('fetch') ||
+                            error.name === 'TypeError';
+      
+      if (isNetworkError) {
+        statusText.textContent = '网络连接失败：无法连接到API服务器。如果您在中国大陆，可能需要使用VPN访问。';
+        statusText.style.color = '#dc3545';
+      } else {
+        statusText.textContent = 'TTS服务连接失败，请检查网络连接';
+      }
       console.error('Vercel API 连接失败:', error);
     });
 });
@@ -648,6 +760,9 @@ async function synthesizeSpeech(text) {
       text: text.substring(0, 100) + '...',
       voice: selectedVoice,
       style: selectedStyle,
+      rate: rateSelect.value,
+      pitch: pitchSelect.value,
+      volume: volumeSelect.value,
       sample_rate: parseInt(sampleRateSelect.value),
       format: formatSelect.value
     });
@@ -663,6 +778,9 @@ async function synthesizeSpeech(text) {
         text: text,
         voice: selectedVoice,
         style: selectedStyle,
+        rate: rateSelect.value,
+        pitch: pitchSelect.value,
+        volume: volumeSelect.value,
         sample_rate: parseInt(sampleRateSelect.value),
         format: formatSelect.value
       })
@@ -709,7 +827,18 @@ async function synthesizeSpeech(text) {
   } catch (error) {
     console.error('TTS API调用失败:', error);
     console.error('错误详情:', error.message);
-    throw new Error('语音合成失败：' + error.message);
+    
+    // 检测是否是网络连接问题
+    const isNetworkError = error.message.includes('Failed to fetch') || 
+                          error.message.includes('NetworkError') ||
+                          error.message.includes('fetch') ||
+                          error.name === 'TypeError';
+    
+    if (isNetworkError) {
+      throw new Error('网络连接失败：无法连接到API服务器。如果您在中国大陆，可能需要使用VPN或检查网络连接。');
+    } else {
+      throw new Error('语音合成失败：' + error.message);
+    }
   }
 }
 
