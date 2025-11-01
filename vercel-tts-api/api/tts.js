@@ -1,8 +1,10 @@
 // Vercel API 路由 - Azure Speech Service文本转语音合成
 const axios = require('axios');
 
-// 语音名称映射：阿里云语音名称 → Azure语音名称
-const voiceMapping = {
+// 注意：现在直接使用Azure的语音名称，不再需要映射
+// 如果前端传入的是旧名称，这里提供一个简单的向后兼容映射
+// 建议前端更新为直接使用Azure语音名称（如：en-US-AndrewNeural, en-US-AmandaNeural等）
+const legacyVoiceMapping = {
   'Betty': 'en-US-JennyNeural',
   'ava': 'en-US-AriaNeural',
   'Andy': 'en-US-GuyNeural',
@@ -14,7 +16,7 @@ const voiceMapping = {
   'Abby': 'en-US-AriaNeural',
   'Donna': 'en-US-JennyNeural',
   'Emily': 'en-GB-SoniaNeural',
-  'Lydia': 'zh-CN-XiaoxiaoNeural', // 中英双语
+  'Lydia': 'zh-CN-XiaoxiaoNeural',
   'Eva': 'en-US-AriaNeural',
   'Eric': 'en-GB-RyanNeural',
   'Olivia': 'en-GB-SoniaNeural',
@@ -23,6 +25,19 @@ const voiceMapping = {
   'Wendy': 'en-GB-SoniaNeural',
   'Harry': 'en-GB-RyanNeural'
 };
+
+/**
+ * 获取Azure语音名称
+ * 如果是旧名称，则使用映射；如果已经是Azure格式，直接返回
+ */
+function getAzureVoiceName(voice) {
+  // 如果已经是Azure格式（包含en-US-或en-GB-等），直接返回
+  if (voice && (voice.startsWith('en-US-') || voice.startsWith('en-GB-') || voice.startsWith('zh-CN-'))) {
+    return voice;
+  }
+  // 否则使用向后兼容映射
+  return legacyVoiceMapping[voice] || 'en-US-JennyNeural';
+}
 
 /**
  * 将阿里云的speed参数(-500到500)转换为Azure的rate百分比(-50%到+100%)
@@ -98,7 +113,7 @@ function buildSSML(text, voice, speed, pitch, volume) {
   const volumePercent = convertVolumeToPercent(volume);
   
   // 获取Azure语音名称
-  const azureVoice = voiceMapping[voice] || voiceMapping['Betty'];
+  const azureVoice = getAzureVoiceName(voice);
   
   // 根据语音名称确定语言
   let lang = 'en-US';

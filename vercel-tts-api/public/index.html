@@ -91,7 +91,13 @@
                         状态码: ${response.status}
                     </div>`;
                 } else {
-                    const data = await response.json().catch(() => ({ error: await response.text() }));
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        const text = await response.text();
+                        data = { error: text };
+                    }
                     resultDiv.innerHTML = `<div class="error">
                         ❌ <strong>TTS API 测试失败</strong><br>
                         状态码: ${response.status}<br>
@@ -148,7 +154,13 @@
                         TTS API 可以正常工作
                     </div>`;
                 } else {
-                    const data = await response.json().catch(() => ({ error: await response.text() }));
+                    let data;
+                    try {
+                        data = await response.json();
+                    } catch (e) {
+                        const text = await response.text();
+                        data = { error: text };
+                    }
                     const errorMsg = JSON.stringify(data, null, 2);
                     
                     if (errorMsg.includes('缺少必要的环境变量') || errorMsg.includes('AZURE_SPEECH_KEY') || errorMsg.includes('AZURE_SPEECH_REGION')) {
