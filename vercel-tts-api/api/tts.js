@@ -76,15 +76,19 @@ function convertVolumeToPercent(volume) {
 function getOutputFormat(format, sampleRate) {
   const sampleRateValue = parseInt(sampleRate) || 16000;
   
-  // 优先考虑格式
+  // 根据格式和采样率返回Azure支持的输出格式
   if (format === 'mp3') {
-    if (sampleRateValue === 8000) return 'audio-8khz-128kbitrate-mono-mp3';
     if (sampleRateValue === 16000) return 'audio-16khz-128kbitrate-mono-mp3';
     if (sampleRateValue === 24000) return 'audio-24khz-160kbitrate-mono-mp3';
+    if (sampleRateValue === 48000) return 'audio-48khz-192kbitrate-mono-mp3';
     return 'audio-16khz-128kbitrate-mono-mp3'; // 默认16kHz
+  } else if (format === 'ogg') {
+    if (sampleRateValue === 16000) return 'ogg-16khz-16bit-mono-opus';
+    if (sampleRateValue === 24000) return 'ogg-24khz-16bit-mono-opus';
+    if (sampleRateValue === 48000) return 'ogg-48khz-16bit-mono-opus';
+    return 'ogg-16khz-16bit-mono-opus'; // 默认16kHz
   } else {
     // WAV格式（PCM）
-    if (sampleRateValue === 8000) return 'riff-8khz-16bit-mono-pcm';
     if (sampleRateValue === 16000) return 'riff-16khz-16bit-mono-pcm';
     if (sampleRateValue === 24000) return 'riff-24khz-16bit-mono-pcm';
     if (sampleRateValue === 48000) return 'riff-48khz-16bit-mono-pcm';
@@ -243,7 +247,12 @@ module.exports = async function handler(req, res) {
     console.log('音频数据大小:', response.data.length);
     
     // 根据格式设置Content-Type
-    const contentType = (format === 'mp3') ? 'audio/mpeg' : 'audio/wav';
+    let contentType = 'audio/wav';
+    if (format === 'mp3') {
+      contentType = 'audio/mpeg';
+    } else if (format === 'ogg') {
+      contentType = 'audio/ogg';
+    }
     
     // 设置响应头
     res.setHeader('Content-Type', contentType);

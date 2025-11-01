@@ -15,15 +15,6 @@ layout: post
 </div>
 
 
-<!-- 使用说明 -->
-<div style="background:#e8f4fd; border:1px solid #b3d9ff; border-radius:8px; padding:16px; margin:20px 0; font-size:14px; line-height:1.6;">
-<strong>📝 使用说明：</strong><br>
-• 输入要转换的文字内容（支持最多5000字符）<br>
-• 选择合适的音色、语速、音量和语调<br>
-• 点击"开始合成"按钮生成语音<br>
-• 合成完成后可以播放或下载音频<br>
-• 支持多种音色和参数调节，满足不同需求
-</div>
 
 <!-- 文字转语音工具界面 -->
 
@@ -79,33 +70,32 @@ layout: post
    <div style="flex:1; min-width:200px;">
      <label for="sampleRateSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">采样率：</label>
      <select id="sampleRateSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="8000">8000 Hz（电话质量）</option>
-       <option value="16000" selected>16000 Hz（标准质量）</option>
+       <option value="16000" selected>16 kHz（标准质量）</option>
+       <option value="24000">24 kHz（高质量）</option>
+       <option value="48000">48 kHz（超高保真）</option>
      </select>
    </div>
    
    <div style="flex:1; min-width:200px;">
      <label for="formatSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">格式：</label>
      <select id="formatSelect" style="width:100%; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
-       <option value="wav" selected>WAV（无损）</option>
-       <option value="mp3">MP3（压缩）</option>
+       <option value="wav" selected>WAV（PCM无损）</option>
+       <option value="mp3">MP3（压缩格式）</option>
+       <option value="ogg">OGG（Opus编码）</option>
      </select>
    </div>
  </div>
 
 <!-- 控制按钮区域 -->
 <div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap;">
-  <button id="synthesizeBtn" style="background:#4a90e2; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-    ▶️ 开始合成
+  <button id="synthesizeBtn" style="background:#4a90e2; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:17px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    开始合成
   </button>
-  <button id="previewBtn" style="background:#6f42c1; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-    👁️ 预览文本
+  <button id="playBtn" style="background:#52c41a; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:17px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
+    播放
   </button>
-  <button id="playBtn" style="background:#52c41a; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
-    ⏯️ 播放
-  </button>
-  <button id="downloadBtn" style="background:#8c8c8c; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
-    ⬇️ 下载音频
+  <button id="downloadBtn" style="background:#8c8c8c; color:white; border:none; padding:14px 28px; border-radius:8px; font-size:17px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);" disabled>
+    下载音频
   </button>
 </div>
 
@@ -131,15 +121,13 @@ layout: post
 </div>
 
 <!-- 使用说明 -->
-<div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:16px; margin-top:24px;">
-  <h4 style="margin:0 0 12px 0; color:#2d3a4a;">使用说明：</h4>
-  <ul style="margin:0; padding-left:20px; color:#666; font-size:14px; line-height:1.6;">
-    <li>输入要转换的文字内容</li>
-    <li>选择合适的音色、语速和音量</li>
-    <li>点击"开始合成"按钮生成语音</li>
-    <li>合成完成后可以播放、暂停、停止或下载音频</li>
-    <li>支持多种音色和语速调节，满足不同需求</li>
-  </ul>
+<div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin-top:24px;">
+  <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
+  <div style="color:#666; font-size:14px; line-height:1.8;">
+    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色、性格和说话风格。</p>
+    <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持个性设置（Personality）和多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
+    <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
+  </div>
 </div>
 
 </div>
@@ -214,7 +202,6 @@ const styleSelect = document.getElementById('styleSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
-const previewBtn = document.getElementById('previewBtn');
 const playBtn = document.getElementById('playBtn');
 const downloadBtn = document.getElementById('downloadBtn');
 const progressContainer = document.getElementById('progressContainer');
@@ -254,13 +241,8 @@ voiceSelect.addEventListener('change', function() {
   updatePersonalityAndStyles(this.value);
 });
 
-// 预览文本按钮事件
-previewBtn.addEventListener('click', function() {
-  showSegmentPreview();
-});
-
 // 按钮悬停效果
-const buttons = [synthesizeBtn, previewBtn, playBtn, downloadBtn];
+const buttons = [synthesizeBtn, playBtn, downloadBtn];
 buttons.forEach(btn => {
   btn.addEventListener('mouseenter', function() {
     if (!this.disabled) {
@@ -311,8 +293,15 @@ synthesizeBtn.addEventListener('click', async function() {
     progressBar.style.width = '100%';
     progressText.textContent = '100%';
     
-     // 创建音频对象
-     audioBlob = new Blob([audioData], { type: 'audio/wav' });
+     // 创建音频对象（根据格式设置MIME类型）
+     const format = formatSelect.value;
+     let mimeType = 'audio/wav';
+     if (format === 'mp3') {
+       mimeType = 'audio/mpeg';
+     } else if (format === 'ogg') {
+       mimeType = 'audio/ogg';
+     }
+     audioBlob = new Blob([audioData], { type: mimeType });
      audioUrl = URL.createObjectURL(audioBlob);
      audioPlayer.src = audioUrl;
     
@@ -320,7 +309,7 @@ synthesizeBtn.addEventListener('click', async function() {
     playBtn.disabled = false;
     downloadBtn.disabled = false;
     synthesizeBtn.disabled = false;
-    synthesizeBtn.innerHTML = '▶️ 开始合成';
+    synthesizeBtn.textContent = '开始合成';
     
     statusText.textContent = '语音合成完成！';
     audioContainer.style.display = 'block';
@@ -341,7 +330,7 @@ synthesizeBtn.addEventListener('click', async function() {
     }
     
     synthesizeBtn.disabled = false;
-    synthesizeBtn.innerHTML = '▶️ 开始合成';
+    synthesizeBtn.textContent = '开始合成';
     progressContainer.style.display = 'none';
   }
 });
@@ -350,28 +339,28 @@ synthesizeBtn.addEventListener('click', async function() {
 playBtn.addEventListener('click', function() {
   if (audioPlayer.paused) {
     audioPlayer.play();
-    playBtn.innerHTML = '⏸️ 暂停';
+    playBtn.textContent = '暂停';
     statusText.textContent = '正在播放...';
   } else {
     audioPlayer.pause();
-    playBtn.innerHTML = '⏯️ 播放';
+    playBtn.textContent = '播放';
     statusText.textContent = '已暂停';
   }
 });
 
 // 音频播放事件监听
 audioPlayer.addEventListener('play', function() {
-  playBtn.innerHTML = '⏸️ 暂停';
+  playBtn.textContent = '暂停';
   statusText.textContent = '正在播放...';
 });
 
 audioPlayer.addEventListener('pause', function() {
-  playBtn.innerHTML = '⏯️ 播放';
+  playBtn.textContent = '播放';
   statusText.textContent = '已暂停';
 });
 
 audioPlayer.addEventListener('ended', function() {
-  playBtn.innerHTML = '⏯️ 播放';
+  playBtn.textContent = '播放';
   statusText.textContent = '播放完成';
 });
 
@@ -586,15 +575,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 显示文本预览
-function showSegmentPreview() {
-  const text = textInput.value.trim();
-  if (!text) {
-    alert('请输入文本内容');
-    return;
-  }
-  alert(`文本预览（${text.length}字符）：\n\n${text.substring(0, 500)}${text.length > 500 ? '...' : ''}`);
-}
 
 // 使用Azure Speech Service进行语音合成
 async function synthesizeSpeech(text) {
