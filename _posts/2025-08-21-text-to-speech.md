@@ -519,14 +519,13 @@ downloadBtn.addEventListener('click', function() {
 });
 
 // 代理端点配置（优先阿里云，备用Vercel）
-// 注意：部署阿里云函数计算后，请更新以下URL为实际的阿里云函数计算地址
 const PROXY_ENDPOINTS = {
   voices: [
-    'https://your-service.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/tts-proxy-service/voices-proxy/api/voices', // 阿里云代理（优先，国内访问快）
+    'https://voices-proxy-oucqkhrhda.ap-northeast-1.fcapp.run', // 阿里云代理（优先，国内访问快）
     'https://vercel-tts.vercel.app/api/voices'  // Vercel代理（备用，国外用户）
   ],
   tts: [
-    'https://your-service.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/tts-proxy-service/tts-proxy/api/tts', // 阿里云代理（优先，国内访问快）
+    'https://tts-proxy-ranjwtrycj.ap-northeast-1.fcapp.run', // 阿里云代理（优先，国内访问快）
     'https://vercel-tts.vercel.app/api/tts'  // Vercel代理（备用，国外用户）
   ]
 };
