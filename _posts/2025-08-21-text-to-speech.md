@@ -153,8 +153,8 @@ layout: post
   <div style="background:#f8f9fa; border:1px solid #e0e0e0; border-radius:8px; padding:16px; margin-bottom:16px;">
     <div style="display:flex; align-items:center; gap:16px;">
       <label style="font-weight:bold; color:#2d3a4a; white-space:nowrap; min-width:80px; font-size:16px;">播放音量：</label>
-      <input type="range" id="playbackVolumeSlider" min="0" max="100" value="100" step="1" style="flex:1; height:10px; border-radius:5px; outline:none; cursor:pointer;">
-      <span id="playbackVolumeValue" style="font-weight:bold; color:#4a90e2; min-width:55px; text-align:right; font-size:16px;">100%</span>
+      <input type="range" id="playbackVolumeSlider" min="0" max="100" value="50" step="1" style="flex:1; height:10px; border-radius:5px; outline:none; cursor:pointer;">
+      <span id="playbackVolumeValue" style="font-weight:bold; color:#4a90e2; min-width:55px; text-align:right; font-size:16px;">50%</span>
     </div>
   </div>
   <audio id="audioPlayer" controls style="width:100%;">
@@ -408,12 +408,12 @@ synthesizeBtn.addEventListener('click', async function() {
      audioUrl = URL.createObjectURL(audioBlob);
      audioPlayer.src = audioUrl;
      
-     // 重置播放音量到100%
+     // 重置播放音量到50%
      if (playbackVolumeSlider && playbackVolumeValue) {
-       playbackVolumeSlider.value = 100;
-       audioPlayer.volume = 1.0;
-       playbackVolumeValue.textContent = '100%';
-       playbackVolumeSlider.style.setProperty('--slider-progress', '100%');
+       playbackVolumeSlider.value = 50;
+       audioPlayer.volume = 0.5;
+       playbackVolumeValue.textContent = '50%';
+       playbackVolumeSlider.style.setProperty('--slider-progress', '50%');
      }
     
     // 更新按钮状态
@@ -479,7 +479,7 @@ audioPlayer.addEventListener('ended', function() {
 
 // 播放音量控制
 if (playbackVolumeSlider && playbackVolumeValue) {
-  // 初始化音量滑块，默认100%
+  // 初始化音量滑块，默认50%
   audioPlayer.volume = playbackVolumeSlider.value / 100;
   
   // 更新滑块进度条样式
@@ -911,12 +911,12 @@ async function synthesizeSpeech(text) {
     // 更新音频播放器
     audioPlayer.src = audioUrl;
     
-    // 重置播放音量到100%
+    // 重置播放音量到50%
     if (playbackVolumeSlider && playbackVolumeValue) {
-      playbackVolumeSlider.value = 100;
-      audioPlayer.volume = 1.0;
-      playbackVolumeValue.textContent = '100%';
-      playbackVolumeSlider.style.setProperty('--slider-progress', '100%');
+      playbackVolumeSlider.value = 50;
+      audioPlayer.volume = 0.5;
+      playbackVolumeValue.textContent = '50%';
+      playbackVolumeSlider.style.setProperty('--slider-progress', '50%');
     }
     
     audioContainer.style.display = 'block';
