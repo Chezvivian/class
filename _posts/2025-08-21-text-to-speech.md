@@ -23,7 +23,7 @@ layout: post
 <!-- 输入区域 -->
 <div style="margin-bottom:24px;">
   <label for="textInput" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">输入文本：</label>
-  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:150px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:18px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
+  <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:180px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:18px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
     字符数：<span id="charCount">0</span> / 5000
   </div>
@@ -400,19 +400,32 @@ async function loadVoices() {
       voicesData = data;
       
       // 清空语言选择器
-      languageSelect.innerHTML = '<option value="">请选择语言</option>';
+      languageSelect.innerHTML = '';
       
       // 添加所有英语语言选项
       data.languages.forEach(lang => {
         const option = document.createElement('option');
         option.value = lang.code;
         option.textContent = lang.name;
+        // 设置English (United States)为默认选中
+        if (lang.code === 'en-US') {
+          option.selected = true;
+        }
         languageSelect.appendChild(option);
       });
       
-      // 设置默认选中第一个语言
-      if (languageSelect.options.length > 1) {
-        languageSelect.selectedIndex = 1;
+      // 确保English (United States)被选中，如果没有则选择第一个
+      if (languageSelect.value !== 'en-US') {
+        const usOption = Array.from(languageSelect.options).find(opt => opt.value === 'en-US');
+        if (usOption) {
+          usOption.selected = true;
+        } else if (languageSelect.options.length > 0) {
+          languageSelect.selectedIndex = 0;
+        }
+      }
+      
+      // 更新音色列表
+      if (languageSelect.value) {
         updateVoicesByLanguage(languageSelect.value);
       }
       

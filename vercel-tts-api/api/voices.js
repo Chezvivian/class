@@ -48,16 +48,28 @@ module.exports = async function handler(req, res) {
         return locale.startsWith('en-');
       });
       
-      // 语言代码映射（用于显示友好名称）
+      // 语言代码映射（用于显示友好名称）- 使用准确的国家名称
       const languageNames = {
         'en-US': 'English (United States)',
         'en-GB': 'English (United Kingdom)',
         'en-CA': 'English (Canada)',
         'en-AU': 'English (Australia)',
-        'en-NZ': 'English (New Zealand)',
         'en-IE': 'English (Ireland)',
         'en-IN': 'English (India)',
+        'en-NZ': 'English (New Zealand)',
         'en-ZA': 'English (South Africa)'
+      };
+      
+      // 语言优先级顺序（用于排序）
+      const languagePriority = {
+        'en-US': 1,
+        'en-GB': 2,
+        'en-CA': 3,
+        'en-AU': 4,
+        'en-IE': 5,
+        'en-IN': 6,
+        'en-NZ': 7,
+        'en-ZA': 8
       };
       
       // 按语言分组，收集所有英语语言
@@ -87,10 +99,22 @@ module.exports = async function handler(req, res) {
         
         if (!voicesByLanguage[langCode]) {
           voicesByLanguage[langCode] = [];
-          languageList.push({
-            code: langCode,
-            name: languageNames[langCode] || `English (${langCode})`
-          });
+          // 使用映射中的名称，如果没有映射则使用语言代码（可能需要从Locale字段提取更准确的信息）
+          const displayName = languageNames[langCode];
+          if (displayName) {
+            languageList.push({
+              code: langCode,
+              name: displayName
+            });
+          } else {
+            // 如果映射中没有，尝试从locale提取国家信息（格式如 en-US, en-GB等）
+            // 暂时使用语言代码作为fallback，实际使用时应该添加更多映射
+            console.warn(`未找到语言代码 ${langCode} 的映射，使用默认格式`);
+            languageList.push({
+              code: langCode,
+              name: `English (${langCode.split('-')[1] || langCode})`
+            });
+          }
         }
         
         voicesByLanguage[langCode].push({
@@ -104,8 +128,15 @@ module.exports = async function handler(req, res) {
         });
       });
       
-      // 按语言代码排序
-      languageList.sort((a, b) => a.code.localeCompare(b.code));
+      // 按优先级排序，优先级高的排在前面，其他按语言代码排序
+      languageList.sort((a, b) => {
+        const priorityA = languagePriority[a.code] || 999;
+        const priorityB = languagePriority[b.code] || 999;
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+        }
+        return a.code.localeCompare(b.code);
+      });
       
       // 每种语言内的语音按名称排序
       Object.keys(voicesByLanguage).forEach(lang => {
