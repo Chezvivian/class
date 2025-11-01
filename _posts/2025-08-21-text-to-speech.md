@@ -22,7 +22,12 @@ layout: post
 
 <!-- 输入区域 -->
 <div style="margin-bottom:24px;">
-  <label for="textInput" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a;">输入文本：</label>
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+    <label for="textInput" style="display:block; font-weight:bold; color:#2d3a4a;">输入文本：</label>
+    <button id="sampleTextBtn" style="background:#6f42c1; color:white; border:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+      示例文本
+    </button>
+  </div>
   <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:180px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:18px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
     字符数：<span id="charCount">0</span> / 5000
@@ -32,7 +37,7 @@ layout: post
 <!-- 语音设置区域 -->
 <div style="display:flex; gap:16px; margin-bottom:24px; flex-wrap:nowrap; align-items:flex-start;">
    <!-- 语言选择 -->
-   <div style="flex:0 0 26%; min-width:0;">
+   <div style="flex:0 0 32%; min-width:0;">
      <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">语言：</label>
      <select id="languageSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
        <option value="">正在加载...</option>
@@ -40,7 +45,7 @@ layout: post
    </div>
    
    <!-- 音色选择 -->
-   <div style="flex:0 0 26%; min-width:0;">
+   <div style="flex:0 0 32%; min-width:0;">
      <label for="voiceSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">音色：</label>
      <select id="voiceSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择语言</option>
@@ -48,16 +53,8 @@ layout: post
      <div id="voiceLoadingStatus" style="font-size:12px; color:#666; margin-top:4px;"></div>
    </div>
    
-   <!-- Personality显示（不是选择器） -->
-   <div style="flex:0 0 20%; min-width:0;">
-     <label style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">性格特性：</label>
-     <div id="personalityDisplay" style="width:100%; padding:10px 12px; border:1px solid #e0e0e0; border-radius:6px; font-size:14px; background-color:#f5f5f5; color:#666; min-height:42px; box-sizing:border-box; display:flex; align-items:center;">
-       <span style="color:#999;">请先选择音色</span>
-     </div>
-   </div>
-   
    <!-- Speaking Style选择 -->
-   <div style="flex:0 0 22%; min-width:0;">
+   <div style="flex:0 0 32%; min-width:0;">
      <label for="styleSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap; font-size:14px;">说话风格：</label>
      <select id="styleSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择音色</option>
@@ -124,7 +121,7 @@ layout: post
 <div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin-top:24px;">
   <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
   <div style="color:#666; font-size:14px; line-height:1.8;">
-    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。每个音色都有其固有的性格特性，选择音色后会显示该音色的性格特点。</p>
+    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。</p>
     <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
     <p style="margin:0 0 12px 0;"><strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）。</p>
     <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
@@ -198,10 +195,10 @@ const textInput = document.getElementById('textInput');
 const charCount = document.getElementById('charCount');
 const languageSelect = document.getElementById('languageSelect');
 const voiceSelect = document.getElementById('voiceSelect');
-const personalityDisplay = document.getElementById('personalityDisplay');
 const styleSelect = document.getElementById('styleSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
+const sampleTextBtn = document.getElementById('sampleTextBtn');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
 const playBtn = document.getElementById('playBtn');
 const downloadBtn = document.getElementById('downloadBtn');
@@ -237,13 +234,18 @@ languageSelect.addEventListener('change', function() {
   updateVoicesByLanguage(this.value);
 });
 
-// 音色选择改变时，更新Personality和Speaking styles
+// 音色选择改变时，更新Speaking styles
 voiceSelect.addEventListener('change', function() {
-  updatePersonalityAndStyles(this.value);
+  updateStyles(this.value);
+});
+
+// 示例文本按钮事件
+sampleTextBtn.addEventListener('click', function() {
+  loadSampleText();
 });
 
 // 按钮悬停效果
-const buttons = [synthesizeBtn, playBtn, downloadBtn];
+const buttons = [sampleTextBtn, synthesizeBtn, playBtn, downloadBtn];
 buttons.forEach(btn => {
   btn.addEventListener('mouseenter', function() {
     if (!this.disabled) {
@@ -469,7 +471,6 @@ function updateVoicesByLanguage(languageCode) {
   if (!languageCode || !voicesData || !voicesData.voices) {
     voiceSelect.innerHTML = '<option value="">请先选择语言</option>';
     voiceSelect.disabled = true;
-    personalityDisplay.innerHTML = '<span style="color:#999;">请先选择语言</span>';
     styleSelect.innerHTML = '<option value="">请先选择语言</option>';
     styleSelect.disabled = true;
     return;
@@ -481,7 +482,6 @@ function updateVoicesByLanguage(languageCode) {
   if (voices.length === 0) {
     voiceSelect.innerHTML = '<option value="">该语言暂无可用语音</option>';
     voiceSelect.disabled = true;
-    personalityDisplay.innerHTML = '<span style="color:#999;">该语言暂无可用语音</span>';
     styleSelect.disabled = true;
     return;
   }
@@ -502,14 +502,13 @@ function updateVoicesByLanguage(languageCode) {
   // 默认选中第一个
   if (voiceSelect.options.length > 0) {
     voiceSelect.selectedIndex = 0;
-    updatePersonalityAndStyles(voiceSelect.value);
+    updateStyles(voiceSelect.value);
   }
 }
 
-// 根据选择的音色更新Personality显示和Speaking styles
-function updatePersonalityAndStyles(voiceName) {
+// 根据选择的音色更新Speaking styles
+function updateStyles(voiceName) {
   if (!voiceName || !voicesData || !voicesData.voices) {
-    personalityDisplay.innerHTML = '<span style="color:#999;">请先选择音色</span>';
     styleSelect.innerHTML = '<option value="">请先选择音色</option>';
     styleSelect.disabled = true;
     return;
@@ -526,20 +525,9 @@ function updatePersonalityAndStyles(voiceName) {
   }
   
   if (!currentVoiceInfo) {
-    personalityDisplay.innerHTML = '<span style="color:#999;">未找到语音信息</span>';
     styleSelect.innerHTML = '<option value="">未找到语音信息</option>';
     styleSelect.disabled = true;
     return;
-  }
-  
-  // 更新Personality显示（只显示，不选择）
-  if (currentVoiceInfo.personality) {
-    const personalityArray = Array.isArray(currentVoiceInfo.personality) 
-      ? currentVoiceInfo.personality 
-      : [currentVoiceInfo.personality];
-    personalityDisplay.innerHTML = '<span style="color:#2d3a4a;">' + personalityArray.join(', ') + '</span>';
-  } else {
-    personalityDisplay.innerHTML = '<span style="color:#999;">无特殊性格特性</span>';
   }
   
   // 更新Speaking styles选择器
@@ -555,6 +543,71 @@ function updatePersonalityAndStyles(voiceName) {
   } else {
     styleSelect.disabled = false;
   }
+}
+
+// 示例文本库
+const sampleTexts = [
+  {
+    category: 'News',
+    text: 'Breaking news from around the world today. Scientists have made a groundbreaking discovery in renewable energy technology. A team of researchers has developed a new solar panel design that could revolutionize the industry. This innovation promises to increase efficiency by thirty percent while reducing manufacturing costs. The announcement came during an international conference on sustainable energy solutions. Environmental experts are calling this development a major step forward in the fight against climate change.'
+  },
+  {
+    category: 'Advertisement',
+    text: 'Introducing our revolutionary new product that will change your daily routine forever. Experience unmatched quality and performance with our latest innovation. Thousands of satisfied customers have already made the switch. Join them today and discover the difference premium quality makes. Limited time offer available now. Don\'t miss this incredible opportunity to transform your life. Our dedicated team has spent years perfecting every detail. Trust the brand that millions rely on every single day.'
+  },
+  {
+    category: 'Conversation',
+    text: 'Hey, how was your weekend? Mine was pretty relaxing. I spent most of Saturday reading and then went for a long walk on Sunday morning. The weather was absolutely perfect. What about you? Did you do anything special? I\'ve been thinking about planning a trip for next month, maybe somewhere by the coast. Have you been anywhere interesting lately? I\'d love to hear your recommendations for a good weekend getaway destination.'
+  },
+  {
+    category: 'Audiobook',
+    text: 'The old house stood at the end of the quiet street, its windows dark and mysterious. Sarah approached cautiously, her heart pounding in her chest. She had received the letter three days ago, inviting her to this very location. The creaking of the gate sent shivers down her spine as she pushed it open. The garden was overgrown with wildflowers and ivy climbing the weathered stone walls. She took a deep breath and walked up the cobblestone path toward the front door.'
+  },
+  {
+    category: 'Social Media',
+    text: 'Just tried the most amazing new restaurant downtown! The food was absolutely incredible and the atmosphere was perfect for a casual dinner with friends. Highly recommend checking it out if you\'re in the area. The service was top-notch and the prices were really reasonable. Definitely going back soon. Has anyone else been there? Would love to hear your thoughts! Sharing some photos from the meal later tonight.'
+  },
+  {
+    category: 'Narration',
+    text: 'In the heart of the ancient forest, where sunlight barely touched the ground, lived a community of creatures rarely seen by human eyes. They moved through the shadows with grace and purpose, each playing a vital role in the delicate ecosystem that thrived beneath the towering canopy. The trees themselves seemed to breathe with a slow, steady rhythm, their roots intertwined in a vast network that stretched for miles beneath the earth.'
+  },
+  {
+    category: 'E-Learning',
+    text: 'Welcome to today\'s lesson on fundamental mathematics. We\'ll be exploring the concept of algebraic equations and how they apply to real-world problem solving. First, let\'s review the basic principles we covered in the previous session. Remember, an equation represents a balance between two expressions. Today, we\'ll learn to manipulate these equations while maintaining that balance. Pay close attention to each step, as understanding the process is more important than memorizing formulas.'
+  },
+  {
+    category: 'Gaming',
+    text: 'You enter the ancient temple, torch in hand, shadows dancing on the walls ahead. The air feels heavy and ancient, filled with the dust of centuries. Your footsteps echo through the vast chamber as you move forward cautiously. Strange symbols cover every surface, glowing faintly in the torchlight. A voice whispers from the darkness, warning you to turn back. But you\'ve come too far now. The adventure awaits, and the legendary treasure lies just beyond the next corridor.'
+  },
+  {
+    category: 'Podcast',
+    text: 'Today we\'re diving deep into the fascinating world of artificial intelligence and its impact on modern society. Our guest expert will share insights from years of research in this rapidly evolving field. We\'ll explore both the incredible opportunities and the important challenges that AI presents. From healthcare to education, technology is transforming how we live and work. This conversation is going to be really interesting, so stay tuned for some surprising revelations.'
+  },
+  {
+    category: 'Customer Service',
+    text: 'Thank you for contacting our customer support team today. We\'re here to help resolve any questions or concerns you may have. Your satisfaction is our top priority, and we want to ensure you have the best possible experience with our services. Please provide a few details about your inquiry so we can assist you most effectively. Our team is available to help with product information, technical support, billing questions, or any other assistance you might need.'
+  }
+];
+
+// 加载示例文本
+function loadSampleText() {
+  // 随机选择一个示例文本
+  const randomIndex = Math.floor(Math.random() * sampleTexts.length);
+  const sample = sampleTexts[randomIndex];
+  
+  // 填充到文本框
+  textInput.value = sample.text;
+  
+  // 触发input事件以更新字符计数
+  textInput.dispatchEvent(new Event('input'));
+  
+  // 显示提示信息
+  statusText.textContent = `已加载示例文本：${sample.category}（${sample.text.length}字符）`;
+  statusText.style.color = '#666';
+  
+  // 滚动到文本框
+  textInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  textInput.focus();
 }
 
 // 页面加载完成后的初始化

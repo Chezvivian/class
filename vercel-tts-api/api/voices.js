@@ -86,9 +86,6 @@ module.exports = async function handler(req, res) {
         // 提取语言代码（如 en-US, en-GB）
         const langCode = locale.split('-').slice(0, 2).join('-'); // 提取前两部分作为语言代码
         
-        // 提取Personality（如果有）
-        const personality = voice.Personality || voice.personality || voice.PersonalityTags || voice.personalityTags || null;
-        
         // 提取Speaking styles（如果有）
         const styles = voice.StyleList || voice.styleList || voice.Style || voice.style || [];
         const styleArray = Array.isArray(styles) ? styles : (styles ? [styles] : []);
@@ -122,7 +119,6 @@ module.exports = async function handler(req, res) {
           displayName: displayName,  // 用于前端显示
           gender: gender,
           locale: locale,
-          personality: personality,
           styles: styleArray,
           roles: roleArray
         });
