@@ -1,0 +1,13 @@
+{
+  "name": "azure-tts-aliyun-fc-proxy",
+  "version": "1.0.0",
+  "description": "Azure Speech Service TTS 阿里云函数计算代理",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

@@ -518,15 +518,72 @@ downloadBtn.addEventListener('click', function() {
   }
 });
 
+// 代理端点配置（优先阿里云，备用Vercel）
+// 注意：部署阿里云函数计算后，请更新以下URL为实际的阿里云函数计算地址
+const PROXY_ENDPOINTS = {
+  voices: [
+    'https://your-service.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/tts-proxy-service/voices-proxy/api/voices', // 阿里云代理（优先，国内访问快）
+    'https://vercel-tts.vercel.app/api/voices'  // Vercel代理（备用，国外用户）
+  ],
+  tts: [
+    'https://your-service.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/tts-proxy-service/tts-proxy/api/tts', // 阿里云代理（优先，国内访问快）
+    'https://vercel-tts.vercel.app/api/tts'  // Vercel代理（备用，国外用户）
+  ]
+};
+
+// 当前使用的代理端点索引
+let currentProxyIndex = { voices: 0, tts: 0 };
+
+/**
+ * 尝试使用指定端点获取数据，失败时自动切换到下一个端点
+ */
+async function fetchWithFallback(urls, fetchOptions, endpointType) {
+  const startIndex = currentProxyIndex[endpointType] || 0;
+  
+  for (let i = 0; i < urls.length; i++) {
+    const index = (startIndex + i) % urls.length;
+    const url = urls[index];
+    
+    try {
+      console.log(`尝试使用端点 ${index + 1}/${urls.length}: ${url}`);
+      const response = await fetch(url, fetchOptions);
+      
+      if (response.ok) {
+        // 成功，记住当前使用的端点
+        currentProxyIndex[endpointType] = index;
+        console.log(`端点连接成功: ${url}`);
+        return response;
+      } else {
+        // 响应不OK，尝试下一个端点
+        console.warn(`端点响应异常 (${response.status}): ${url}，尝试下一个端点...`);
+        if (i === urls.length - 1) {
+          // 所有端点都失败，返回最后一个响应
+          return response;
+        }
+      }
+    } catch (error) {
+      console.warn(`端点连接失败: ${url}，错误: ${error.message}，尝试下一个端点...`);
+      if (i === urls.length - 1) {
+        // 所有端点都失败，抛出最后一个错误
+        throw error;
+      }
+    }
+  }
+  
+  // 理论上不会到达这里
+  throw new Error('所有代理端点都不可用');
+}
+
 // 加载Azure语音列表
 async function loadVoices() {
   const languageSelect = document.getElementById('languageSelect');
   const voiceLoadingStatus = document.getElementById('voiceLoadingStatus');
-  const apiBaseUrl = 'https://vercel-tts.vercel.app';
   
   try {
     voiceLoadingStatus.textContent = '正在加载语音列表...';
-    const response = await fetch(`${apiBaseUrl}/api/voices`);
+    const response = await fetchWithFallback(PROXY_ENDPOINTS.voices, {
+      method: 'GET'
+    }, 'voices');
     
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ error: '无法解析错误响应' }));
@@ -815,34 +872,42 @@ document.addEventListener('DOMContentLoaded', function() {
   // 加载语音列表
   loadVoices();
   
-  // 检查 Vercel API 是否可用（Azure不需要token，直接检查TTS端点）
-  const apiBaseUrl = 'https://vercel-tts.vercel.app';
-  // 使用HEAD请求检查API端点是否可访问
-  fetch(`${apiBaseUrl}/api/tts`, { method: 'OPTIONS' })
-    .then(response => {
-      if (response.ok) {
-        statusText.textContent = 'TTS服务已就绪，可以开始使用';
-        console.log('Vercel API 连接成功');
-      } else {
-        statusText.textContent = 'TTS服务暂时不可用，请稍后重试';
-        console.warn('Vercel API 响应异常');
+  // 检查代理端点是否可用（尝试所有端点，使用第一个可用的）
+  async function checkProxyAvailability() {
+    for (let i = 0; i < PROXY_ENDPOINTS.tts.length; i++) {
+      try {
+        const response = await fetch(PROXY_ENDPOINTS.tts[i], { method: 'OPTIONS' });
+        if (response.ok) {
+          currentProxyIndex.tts = i;
+          const proxyName = i === 0 ? '阿里云代理' : 'Vercel代理';
+          statusText.textContent = `TTS服务已就绪（${proxyName}），可以开始使用`;
+          statusText.style.color = '#28a745';
+          console.log(`代理端点连接成功: ${proxyName} (${PROXY_ENDPOINTS.tts[i]})`);
+          return;
+        }
+      } catch (error) {
+        console.warn(`端点 ${i + 1} 连接失败:`, error.message);
+        if (i === PROXY_ENDPOINTS.tts.length - 1) {
+          // 所有端点都失败
+          const isNetworkError = error.message.includes('Failed to fetch') || 
+                                error.message.includes('NetworkError') ||
+                                error.message.includes('fetch') ||
+                                error.name === 'TypeError';
+          
+          if (isNetworkError) {
+            statusText.textContent = '网络连接失败：无法连接到API服务器。如果您在中国大陆，可能需要使用VPN访问或部署阿里云函数计算代理。';
+            statusText.style.color = '#dc3545';
+          } else {
+            statusText.textContent = 'TTS服务连接失败，请检查网络连接';
+            statusText.style.color = '#dc3545';
+          }
+          console.error('所有代理端点连接失败:', error);
+        }
       }
-    })
-    .catch(error => {
-      // 检测是否是网络连接问题
-      const isNetworkError = error.message.includes('Failed to fetch') || 
-                            error.message.includes('NetworkError') ||
-                            error.message.includes('fetch') ||
-                            error.name === 'TypeError';
-      
-      if (isNetworkError) {
-        statusText.textContent = '网络连接失败：无法连接到API服务器。如果您在中国大陆，可能需要使用VPN访问。';
-        statusText.style.color = '#dc3545';
-      } else {
-        statusText.textContent = 'TTS服务连接失败，请检查网络连接';
-      }
-      console.error('Vercel API 连接失败:', error);
-    });
+    }
+  }
+  
+  checkProxyAvailability();
 });
 
 
@@ -863,9 +928,8 @@ async function synthesizeSpeech(text) {
       format: formatSelect.value
     });
     
-    // 使用 Vercel API 端点
-    const apiBaseUrl = 'https://vercel-tts.vercel.app';
-    const response = await fetch(`${apiBaseUrl}/api/tts`, {
+    // 使用代理端点（优先阿里云，备用Vercel）
+    const response = await fetchWithFallback(PROXY_ENDPOINTS.tts, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -880,7 +944,7 @@ async function synthesizeSpeech(text) {
         sample_rate: parseInt(sampleRateSelect.value),
         format: formatSelect.value
       })
-    });
+    }, 'tts');
     
     if (!response.ok) {
       // 尝试获取错误详情
