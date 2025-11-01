@@ -150,7 +150,14 @@ layout: post
 
 <!-- 音频播放器 -->
 <div id="audioContainer" style="display:none;">
-  <audio id="audioPlayer" controls style="width:100%; margin-top:16px;">
+  <div style="background:#f8f9fa; border:1px solid #e0e0e0; border-radius:8px; padding:16px; margin-bottom:16px;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <label style="font-weight:bold; color:#2d3a4a; white-space:nowrap; min-width:80px; font-size:16px;">播放音量：</label>
+      <input type="range" id="playbackVolumeSlider" min="0" max="100" value="100" step="1" style="flex:1; height:10px; border-radius:5px; outline:none; cursor:pointer;">
+      <span id="playbackVolumeValue" style="font-weight:bold; color:#4a90e2; min-width:55px; text-align:right; font-size:16px;">100%</span>
+    </div>
+  </div>
+  <audio id="audioPlayer" controls style="width:100%;">
     您的浏览器不支持音频播放。
   </audio>
 </div>
@@ -166,6 +173,57 @@ layout: post
 </div>
 
 </div>
+
+<!-- 播放音量滑块样式 -->
+<style>
+/* 播放音量滑块样式 */
+#playbackVolumeSlider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  background: linear-gradient(to right, #4a90e2 0%, #4a90e2 var(--slider-progress, 100%), #ddd var(--slider-progress, 100%), #ddd 100%);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.2s;
+}
+
+#playbackVolumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4a90e2;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+#playbackVolumeSlider::-webkit-slider-thumb:hover {
+  background: #357abd;
+  transform: scale(1.1);
+}
+
+#playbackVolumeSlider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #4a90e2;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+#playbackVolumeSlider::-moz-range-thumb:hover {
+  background: #357abd;
+  transform: scale(1.1);
+}
+
+#playbackVolumeSlider:active {
+  cursor: grabbing;
+}
+</style>
 
 <!-- 滑块样式 -->
 <style>
@@ -248,6 +306,8 @@ const progressText = document.getElementById('progressText');
 const statusText = document.getElementById('statusText');
 const audioContainer = document.getElementById('audioContainer');
 const audioPlayer = document.getElementById('audioPlayer');
+const playbackVolumeSlider = document.getElementById('playbackVolumeSlider');
+const playbackVolumeValue = document.getElementById('playbackVolumeValue');
 
 // 存储语音数据
 let voicesData = null;
@@ -347,6 +407,14 @@ synthesizeBtn.addEventListener('click', async function() {
      audioBlob = new Blob([audioData], { type: mimeType });
      audioUrl = URL.createObjectURL(audioBlob);
      audioPlayer.src = audioUrl;
+     
+     // 重置播放音量到100%
+     if (playbackVolumeSlider && playbackVolumeValue) {
+       playbackVolumeSlider.value = 100;
+       audioPlayer.volume = 1.0;
+       playbackVolumeValue.textContent = '100%';
+       playbackVolumeSlider.style.setProperty('--slider-progress', '100%');
+     }
     
     // 更新按钮状态
     playBtn.disabled = false;
@@ -408,6 +476,34 @@ audioPlayer.addEventListener('ended', function() {
   playBtn.textContent = '播放';
   statusText.textContent = '播放完成';
 });
+
+// 播放音量控制
+if (playbackVolumeSlider && playbackVolumeValue) {
+  // 初始化音量滑块，默认100%
+  audioPlayer.volume = playbackVolumeSlider.value / 100;
+  
+  // 更新滑块进度条样式
+  function updateSliderStyle() {
+    const value = playbackVolumeSlider.value;
+    playbackVolumeSlider.style.setProperty('--slider-progress', value + '%');
+  }
+  updateSliderStyle();
+  
+  // 音量滑块变化时更新音频音量和显示
+  playbackVolumeSlider.addEventListener('input', function() {
+    const volume = this.value / 100;
+    audioPlayer.volume = volume;
+    playbackVolumeValue.textContent = Math.round(volume * 100) + '%';
+    updateSliderStyle();
+  });
+  
+  // 同步音频播放器自带音量控制到滑块（如果用户使用浏览器自带的音量控制）
+  audioPlayer.addEventListener('volumechange', function() {
+    playbackVolumeSlider.value = audioPlayer.volume * 100;
+    playbackVolumeValue.textContent = Math.round(audioPlayer.volume * 100) + '%';
+    updateSliderStyle();
+  });
+}
 
 // 下载音频
 downloadBtn.addEventListener('click', function() {
@@ -814,6 +910,15 @@ async function synthesizeSpeech(text) {
     
     // 更新音频播放器
     audioPlayer.src = audioUrl;
+    
+    // 重置播放音量到100%
+    if (playbackVolumeSlider && playbackVolumeValue) {
+      playbackVolumeSlider.value = 100;
+      audioPlayer.volume = 1.0;
+      playbackVolumeValue.textContent = '100%';
+      playbackVolumeSlider.style.setProperty('--slider-progress', '100%');
+    }
+    
     audioContainer.style.display = 'block';
     
     // 更新按钮状态
