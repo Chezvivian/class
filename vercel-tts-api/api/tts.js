@@ -112,14 +112,14 @@ function buildSSML(text, voice, speed, pitch, volume) {
   const pitchPercent = convertPitchToPitch(pitch);
   const volumePercent = convertVolumeToPercent(volume);
   
-  // 获取Azure语音名称
-  const azureVoice = getAzureVoiceName(voice);
+  // voice参数现在应该是Azure语音名称（如：en-US-JennyNeural）
+  const azureVoice = voice;
   
   // 根据语音名称确定语言
   let lang = 'en-US';
-  if (azureVoice.startsWith('en-GB')) {
+  if (azureVoice && azureVoice.startsWith('en-GB')) {
     lang = 'en-GB';
-  } else if (azureVoice.startsWith('zh-CN')) {
+  } else if (azureVoice && azureVoice.startsWith('zh-CN')) {
     lang = 'zh-CN';
   }
   
@@ -170,10 +170,13 @@ module.exports = async function handler(req, res) {
     // 构建Azure API端点
     const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
     
+    // 获取Azure语音名称（支持直接使用Azure格式或向后兼容）
+    const azureVoice = getAzureVoiceName(voice || 'en-US-JennyNeural');
+    
     // 构建SSML请求体
     const ssml = buildSSML(
       text,
-      voice || 'Betty',
+      azureVoice,  // 直接使用Azure语音名称
       speed || 0,
       pitch || 0,
       volume || 50
@@ -182,16 +185,17 @@ module.exports = async function handler(req, res) {
     // 获取输出格式
     const outputFormat = getOutputFormat(format || 'wav', sample_rate || 16000);
     
-    const azureVoice = getAzureVoiceName(voice || 'Betty');
     console.log('Azure TTS请求参数:', {
       endpoint: endpoint,
-      voice: voice || 'Betty',
+      inputVoice: voice || 'en-US-JennyNeural',
       azureVoice: azureVoice,
       speed: speed || 0,
       pitch: pitch || 0,
       volume: volume || 50,
-      outputFormat: outputFormat
+      outputFormat: outputFormat,
+      ssmlLength: ssml.length
     });
+    console.log('SSML内容:', ssml);
     
     // 调用Azure Speech Service REST API
     const response = await axios.post(

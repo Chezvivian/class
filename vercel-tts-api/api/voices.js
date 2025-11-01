@@ -22,8 +22,8 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 构建Azure API端点
-    const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1/voices/list`;
+    // 构建Azure API端点 - 语音列表API端点不包含/v1/
+    const endpoint = `https://${AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/voices/list`;
     
     // 调用Azure Speech Service REST API获取语音列表
     console.log('调用Azure语音列表API:', endpoint);
@@ -106,7 +106,7 @@ module.exports = async function handler(req, res) {
         details: error.message,
         status: error.response.status,
         response: error.response.data,
-        endpoint: `https://${process.env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1/voices/list`
+        endpoint: `https://${process.env.AZURE_SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/voices/list`
       });
     } else {
       return res.status(500).json({
