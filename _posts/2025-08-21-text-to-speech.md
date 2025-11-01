@@ -8,11 +8,12 @@ layout: post
 <!-- 工具简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
 <strong>工具名称：</strong>文字转语音工具<br>
-<strong>技术平台：</strong>微软Azure AI Speech Service<br>
+<strong>技术平台：</strong>微软 Azure AI Speech Service<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
 <strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
 <strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）<br>
-<strong>更新时间：</strong>2025年11月1日
+<strong>更新时间：</strong>2025年11月1日<br>
+<strong>制作人：</strong>黄婕（网站功能如有问题，欢迎联系 chezvivian@outlook.com）
 </div>
 
 
