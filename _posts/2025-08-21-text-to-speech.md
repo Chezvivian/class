@@ -525,7 +525,7 @@ const PROXY_ENDPOINTS = {
     'https://vercel-tts.vercel.app/api/voices'  // Vercel代理（备用，国外用户）
   ],
   tts: [
-    'https://tts-proxy-ranjwtrycj.ap-northeast-1.fcapp.run', // 阿里云代理（优先，国内访问快）
+    'https://tts-update-jeicusdbgk.cn-shanghai.fcapp.run', // 阿里云代理（优先，国内访问快）
     'https://vercel-tts.vercel.app/api/tts'  // Vercel代理（备用，国外用户）
   ]
 };
