@@ -521,7 +521,7 @@ downloadBtn.addEventListener('click', function() {
 // 代理端点配置（优先阿里云，备用Vercel）
 const PROXY_ENDPOINTS = {
   voices: [
-    'https://voices-proxy-oucqkhrhda.ap-northeast-1.fcapp.run', // 阿里云代理（优先，国内访问快）
+    'https://voices-update-tsnzxwridz.cn-shanghai.fcapp.run', // 阿里云代理（优先，国内访问快）
     'https://vercel-tts.vercel.app/api/voices'  // Vercel代理（备用，国外用户）
   ],
   tts: [
