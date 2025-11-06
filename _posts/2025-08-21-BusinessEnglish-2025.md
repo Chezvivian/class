@@ -48,14 +48,15 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit2_warming_up.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Warming up</a> | 
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit2_Lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 2</a> | 
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit2_Lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 3</a>
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit2_Lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 3</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit2_Lesson4.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 4</a>
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit2_Media_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 2 词汇闪卡</a>
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
           <a href="https://verbose-temple-e01.notion.site/Unit-2-Media-Lead-in-Video-2985a9c7a666808186b9f2007203af9f?source=copy_link" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead_in Video</a> | 
-          <a href="https://verbose-temple-e01.notion.site/Unit-2-Text-1-Video-explanation-29c5a9c7a66680ec9750d71c61b01854?source=copy_link" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 Video</a>
+          <a href="https://verbose-temple-e01.notion.site/Unit-2-Text-1-Video-explanation-29c5a9c7a66680ec9750d71c61b01854?source=copy_link" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 Video</a> |
           <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/Matt_small_talk.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Career: Small Talk</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
