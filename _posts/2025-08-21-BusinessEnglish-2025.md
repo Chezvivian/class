@@ -40,7 +40,7 @@ layout: post
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit1_brands_introduction.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Video</a> | 
-      <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit1_brands_introduction.MP3" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead in Podcast</a>
+      <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit1_brands_introduction.MP3" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead in Podcast</a>      
     </td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
@@ -56,7 +56,8 @@ layout: post
     </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
           <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit2_Lead_in_Video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead_in Video</a> | 
-          <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Text1_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 Video</a></td>
+          <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Text1_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 Video</a>
+          <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/Matt_small_talk.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Career skills: small talk</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
