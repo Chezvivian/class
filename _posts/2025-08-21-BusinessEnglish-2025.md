@@ -62,11 +62,13 @@ layout: post
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Warming up</a></td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Warming up</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a>
+      </td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">        
         <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit3_Lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in Video</a> | 
         <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit3_Text1_explained.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 explained</a></td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
