@@ -63,7 +63,9 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Warming up</a> |
-      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a>
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 2</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 3</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一_Unit3_lesson4.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 4</a>
       </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
         <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit3_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 3 词汇闪卡</a></td>
@@ -73,7 +75,12 @@ layout: post
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-Unit6-lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 1</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-Unit6-lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 2</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-Unit6-lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 3</a> |
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-Unit6-lesson4.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 4</a>
+    </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit6_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 6 词汇闪卡</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
@@ -81,7 +88,9 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 7 Job Hunting</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-商英一-Unit7-lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 1</a>
+    </td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
     <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit7_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 7 词汇闪卡</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
