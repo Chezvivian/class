@@ -74,6 +74,24 @@ layout: post
         <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit3_Text1_explained.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Text 1 explained</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 4 Advertising（自学）</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">自学</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit4_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 4 词汇闪卡</a>
+    </td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit4_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in Video</a>
+    </td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 5 Environment（自学）</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">自学</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit5_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 5 词汇闪卡</a>
+    </td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/2025秋-Unit6-lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 1</a> |
@@ -96,6 +114,16 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
         <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit7_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in Video</a> |
         <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Interview_bilingual.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Interview video</a></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 8 Government policy（自学）</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">自学</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit8_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 8 词汇闪卡</a>
+    </td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit8_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in Video</a>
+    </td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Summary</td>
