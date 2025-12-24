@@ -6,199 +6,224 @@ layout: post
 ---
 
 <style>
-/* 整体布局 */
-.mentor-container {
-  display: flex;
-  gap: 24px;
-  margin: 20px 0;
+/* 整体专业风格 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
 }
 
-.modules-section {
-  flex: 1;
-  min-width: 0;
+/* 顶部横幅 */
+.tpr-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+  border-radius: 8px;
+  padding: 28px 32px;
+  margin: 0 0 24px 0;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+  color: white;
 }
 
+.tpr-header h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.tpr-header-subtitle {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.92;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* 模块卡片 */
 .module-card {
-  background: #fff;
-  border: 1px solid #e7e9ee;
-  border-radius: 10px;
-  padding: 18px 22px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #2563eb;
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.module-card:hover {
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
+  transform: translateX(4px);
+  border-left-width: 6px;
 }
 
 .module-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f3f4f6;
 }
 
 .module-number {
-  background: linear-gradient(135deg, #6f42c1, #5a34a1);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
 .module-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
   margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.module-desc {
+  margin: 0 0 14px 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 .module-links {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .module-link {
-  display: inline-block;
-  padding: 4px 12px;
-  background: #f0f4ff;
-  color: #2d7ff9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #1e40af;
   text-decoration: none;
   border-radius: 6px;
   font-size: 13px;
+  font-weight: 500;
   transition: all 0.2s;
 }
 
 .module-link:hover {
-  background: #e0ebff;
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1e3a8a;
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
 }
 
-/* 右侧助手栏 */
-.chat-sidebar {
-  width: 380px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 80px;
-  height: calc(100vh - 100px);
-  background: #fff;
-  border: 1px solid #e7e9ee;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.module-link::before {
+  content: "📄";
+  font-size: 16px;
 }
 
-.chat-header {
-  padding: 14px 18px;
-  background: linear-gradient(135deg, #6f42c1, #5a34a1);
-  color: white;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+.link-external::before {
+  content: "🔗";
 }
 
-.chat-header h3 {
+/* 助手提示 */
+.assistant-tip {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 2px solid #93c5fd;
+  border-radius: 8px;
+  padding: 18px 24px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.assistant-tip-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.2));
+}
+
+.assistant-tip-text {
+  font-size: 14px;
+  line-height: 1.7;
   margin: 0;
-  font-size: 15px;
-  font-weight: 600;
+  color: #1e293b;
 }
 
-.chat-body {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  min-height: 0;
-}
-
-#coze-chat-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* 移动端适配 */
-@media (max-width: 1024px) {
-  .mentor-container {
-    flex-direction: column;
-  }
-  
-  .chat-sidebar {
-    width: 100%;
-    position: relative;
-    top: 0;
-    height: 500px;
-  }
+.assistant-tip-highlight {
+  color: #1e40af;
+  font-weight: 700;
 }
 </style>
 
 <div class="no_toc">
-<div style="background:#f5f7fa;border-radius:10px;padding:20px 24px;margin:0 0 20px 0;box-shadow:0 2px 6px rgba(0,0,0,0.04);">
-  <h2 class="no_toc" style="margin:0 0 8px 0;font-size:20px;">翻译认知研究导师指导平台</h2>
-  <p style="margin:0;line-height:1.6;color:#4a5568;font-size:14px;">
-    整合文献、眼动实验与统计分析资源，配备智能助手即时答疑
+<div class="tpr-header">
+  <h2 class="no_toc">Translation Process Research · 导师指导平台</h2>
+  <p class="tpr-header-subtitle">
+    TPR 文献资源 · 眼动实验方法 · 统计分析工具 · AI 智能辅助
   </p>
 </div>
 
-<div class="mentor-container">
-  <!-- 左侧模块区 -->
-  <div class="modules-section">
-    <!-- 模块 01 -->
-    <div class="module-card">
-      <div class="module-header">
-        <span class="module-number">01</span>
-        <h3 class="module-title no_toc">文献学习</h3>
-      </div>
-      <p style="margin:8px 0;color:#4a5568;font-size:13px;line-height:1.6;">
-        核心文献与研究脉络导读
-      </p>
-      <div class="module-links">
-        <a href="{{ '/archive/CAT-2025-spring' | relative_url }}" target="_blank" class="module-link">CAT 阅读清单</a>
-        <a href="{{ '/CAT_pdf/Week 9 译文质量控制技术与工具-github.pdf' | relative_url }}" target="_blank" class="module-link">质量控制</a>
-        <a href="{{ '/CAT_pdf/Week 1 计算机辅助翻译技术与工具概况-github.pdf' | relative_url }}" target="_blank" class="module-link">CAT 概况</a>
-      </div>
-    </div>
-
-    <!-- 模块 02 -->
-    <div class="module-card">
-      <div class="module-header">
-        <span class="module-number">02</span>
-        <h3 class="module-title no_toc">眼动与实证方法</h3>
-      </div>
-      <p style="margin:8px 0;color:#4a5568;font-size:13px;line-height:1.6;">
-        实验设计、眼动指标与数据清洗流程
-      </p>
-      <div class="module-links">
-        <a href="https://arxiv.org/pdf/2102.07044.pdf" target="_blank" class="module-link">眼动方法综述</a>
-        <a href="https://psyarxiv.com/3z6k7/download" target="_blank" class="module-link">实验设计标准</a>
-        <a href="https://osf.io/9x3w4/download" target="_blank" class="module-link">数据清洗模板</a>
-      </div>
-    </div>
-
-    <!-- 模块 03 -->
-    <div class="module-card">
-      <div class="module-header">
-        <span class="module-number">03</span>
-        <h3 class="module-title no_toc">R / Python 统计分析</h3>
-      </div>
-      <p style="margin:8px 0;color:#4a5568;font-size:13px;line-height:1.6;">
-        数据整理、统计建模与可视化
-      </p>
-      <div class="module-links">
-        <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf" target="_blank" class="module-link">R 入门手册</a>
-        <a href="https://pandas.pydata.org/docs/getting_started/index.html" target="_blank" class="module-link">Pandas 快速上手</a>
-        <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" class="module-link">Seaborn 可视化</a>
-      </div>
-    </div>
+<!-- 模块 01: TPR 文献资源 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">MODULE 01</span>
+    <h3 class="module-title no_toc">TPR 核心文献与理论框架</h3>
   </div>
+  <p class="module-desc">
+    翻译过程研究 (Translation Process Research) 的经典文献、理论模型与最新研究进展
+  </p>
+  <div class="module-links">
+    <a href="https://www.benjamins.com/catalog/btl" target="_blank" class="module-link link-external">BTL 系列丛书</a>
+    <a href="https://www.jbe-platform.com/content/journals/10.1075/target" target="_blank" class="module-link link-external">Target 期刊</a>
+    <a href="https://www.routledge.com/Translation-and-Interpreting-Studies/book-series/TIS" target="_blank" class="module-link link-external">TIS 系列</a>
+  </div>
+  <p style="margin:12px 0 0 0;padding:10px 14px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;font-size:12px;color:#92400e;">
+    <strong>📚 知识库建设中</strong>：导师正在整理 TPR 核心文献库，包含眼动研究、认知负荷、翻译策略等专题资源
+  </p>
+</div>
 
-  <!-- 右侧智能助手 -->
-  <aside class="chat-sidebar">
-    <div class="chat-header">
-      <h3>🤖 智能研究助手</h3>
-    </div>
-    <div class="chat-body">
-      <iframe id="coze-chat-iframe" src="" frameborder="0" allow="microphone"></iframe>
-    </div>
-  </aside>
+<!-- 模块 02: 眼动与实证方法 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">MODULE 02</span>
+    <h3 class="module-title no_toc">眼动追踪与实验设计</h3>
+  </div>
+  <p class="module-desc">
+    眼动实验设计规范、指标解读、数据预处理与质量控制流程
+  </p>
+  <div class="module-links">
+    <a href="https://link.springer.com/article/10.3758/s13428-020-01404-5" target="_blank" class="module-link link-external">Eye-tracking 方法指南</a>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942767/" target="_blank" class="module-link link-external">实验设计最佳实践</a>
+    <a href="https://www.sr-research.com/support/" target="_blank" class="module-link link-external">EyeLink 官方文档</a>
+  </div>
+</div>
+
+<!-- 模块 03: R/Python 统计分析 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">MODULE 03</span>
+    <h3 class="module-title no_toc">统计建模与数据可视化</h3>
+  </div>
+  <p class="module-desc">
+    基于 R 的回归分析、混合效应模型与专业学术图表绘制
+  </p>
+  <div class="module-links">
+    <a href="https://ggplot2.tidyverse.org/" target="_blank" class="module-link link-external">ggplot2 官方文档</a>
+    <a href="https://strengejacke.github.io/sjPlot/" target="_blank" class="module-link link-external">sjPlot 绘图包</a>
+    <a href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf" target="_blank" class="module-link link-external">lme4 混合模型</a>
+    <a href="https://www.datanovia.com/en/blog/ggplot-examples-best-reference/" target="_blank" class="module-link link-external">ggplot 示例集</a>
+  </div>
+</div>
+
+<!-- 智能助手提示 -->
+<div class="assistant-tip">
+  <div class="assistant-tip-icon">🤖</div>
+  <p class="assistant-tip-text">
+    点击页面<span class="assistant-tip-highlight">右下角紫色按钮</span>，即可打开<strong>智能研究助手</strong>进行即时问答、代码辅助与文献解读
+  </p>
 </div>
 
 </div>
@@ -252,20 +277,11 @@ layout: post
         }
       });
       
-      console.log('✓ Coze SDK 初始化完成');
-      
-      // 隐藏 iframe，显示悬浮按钮（SDK 会自动创建）
-      const iframe = document.getElementById('coze-chat-iframe');
-      if (iframe) iframe.style.display = 'none';
-      
-      // 在侧边栏显示提示
-      const chatBody = document.querySelector('.chat-body');
-      chatBody.innerHTML = '<div style="padding:30px 20px;text-align:center;color:#6f42c1;font-size:14px;line-height:1.8;">点击右下角<br><strong style="font-size:16px;">紫色按钮</strong><br>打开智能助手对话</div>';
+      console.log('✓ Coze SDK 初始化完成 - 请点击右下角紫色按钮打开对话');
       
     } catch (error) {
       console.error('✗ Coze 初始化失败:', error);
-      const chatBody = document.querySelector('.chat-body');
-      chatBody.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-size:13px;">智能助手加载失败<br><small style="color:#ccc;">' + error.message + '</small><br><br>请刷新页面重试</div>';
+      alert('智能助手加载失败，请刷新页面重试');
     }
   }
 
