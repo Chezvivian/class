@@ -7,7 +7,7 @@ layout: post
 
 <div class="no_toc">
 <div style="background:#f5f7fa;border-radius:12px;padding:24px 28px;margin:12px 0 28px 0;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
-  <h2 style="margin:0 0 12px 0;">翻译认知研究导师指导平台</h2>
+  <h2 class="no_toc" style="margin:0 0 12px 0;">翻译认知研究导师指导平台</h2>
   <p style="margin:0;line-height:1.8;color:#4a5568;">
     面向翻译认知研究的分层学习导航，提供文献阅读、眼动与实证研究方法、以及 R / Python 统计分析实践的核心资源，并集成智能助手支持即时答疑。
   </p>
@@ -17,7 +17,7 @@ layout: post
   <!-- 文献学习模块 -->
   <section style="background:#fff;border:1px solid #e7e9ee;border-radius:12px;padding:20px;box-shadow:0 3px 12px rgba(0,0,0,0.05);">
     <div style="color:#6f42c1;font-weight:600;font-size:14px;letter-spacing:0.02em;">模块 01</div>
-    <h3 style="margin:8px 0 12px 0;">文献学习模块</h3>
+    <h3 class="no_toc" style="margin:8px 0 12px 0;">文献学习模块</h3>
     <p style="color:#4a5568;line-height:1.7;">
       聚焦翻译认知与过程研究的文献导读，帮助快速建立概念框架与研究脉络，明确阅读要点与批判性思考路径。
     </p>
@@ -40,7 +40,7 @@ layout: post
   <!-- 眼动与实证研究方法模块 -->
   <section style="background:#fff;border:1px solid #e7e9ee;border-radius:12px;padding:20px;box-shadow:0 3px 12px rgba(0,0,0,0.05);">
     <div style="color:#6f42c1;font-weight:600;font-size:14px;letter-spacing:0.02em;">模块 02</div>
-    <h3 style="margin:8px 0 12px 0;">眼动和实证研究方法学习模块</h3>
+    <h3 class="no_toc" style="margin:8px 0 12px 0;">眼动和实证研究方法学习模块</h3>
     <p style="color:#4a5568;line-height:1.7;">
       针对翻译过程的实验设计、眼动指标解读与数据清洗流程，提供可复用的研究范式与操作指引。
     </p>
@@ -63,7 +63,7 @@ layout: post
   <!-- R / Python 统计分析模块 -->
   <section style="background:#fff;border:1px solid #e7e9ee;border-radius:12px;padding:20px;box-shadow:0 3px 12px rgba(0,0,0,0.05);">
     <div style="color:#6f42c1;font-weight:600;font-size:14px;letter-spacing:0.02em;">模块 03</div>
-    <h3 style="margin:8px 0 12px 0;">R 和 Python 统计分析学习模块</h3>
+    <h3 class="no_toc" style="margin:8px 0 12px 0;">R 和 Python 统计分析学习模块</h3>
     <p style="color:#4a5568;line-height:1.7;">
       面向认知与眼动数据的统计建模与可视化，覆盖数据整理、描述性统计、方差分析与线性混合模型入门。
     </p>
@@ -86,7 +86,7 @@ layout: post
 
 <!-- 智能助手区域 -->
 <div style="margin:32px 0 8px 0;padding:20px;border:1px solid #e7e9ee;border-radius:12px;background:#fff;box-shadow:0 3px 12px rgba(0,0,0,0.05);">
-  <h3 style="margin:0 0 10px 0;">智能助手 · Coze</h3>
+  <h3 class="no_toc" style="margin:0 0 10px 0;">智能助手 · Coze</h3>
   <p style="margin:0 0 12px 0;color:#4a5568;line-height:1.7;">
     在浏览资源或设计实验时，可直接唤起助手进行即时问答、代码提示与数据处理建议。窗口自适应不同屏幕宽度，移动端亦可正常使用。
   </p>
