@@ -171,7 +171,7 @@ body {
 .modules-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
@@ -182,25 +182,36 @@ body {
   margin-bottom: 24px;
 }
 
-/* 响应式布局 */
-@media (max-width: 1200px) {
+/* 响应式布局 - 根据实际页面宽度调整 */
+@media (max-width: 1100px) {
   .modules-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  
+  .module-card {
+    margin-bottom: 0;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .header-container {
     flex-direction: column;
+    gap: 12px;
   }
   
   .tpr-header {
     margin-bottom: 0 !important;
+    padding: 20px 24px !important;
   }
   
   .assistant-tip {
     width: 100% !important;
-    margin: 0;
+    margin: 0 !important;
+  }
+  
+  .modules-grid {
+    gap: 12px;
   }
 }
 </style>
@@ -225,59 +236,58 @@ body {
 
 <!-- 三列模块布局 -->
 <div class="modules-grid">
-  <div>
+<!-- 模块 01: TPR 文献资源 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">01</span>
+    <h3 class="module-title no_toc">TPR 文献</h3>
+  </div>
+  <p class="module-desc">
+    翻译过程研究核心文献与理论框架
+  </p>
+  <div class="module-links">
+    <a href="https://www.benjamins.com/catalog/btl" target="_blank" class="module-link link-external">BTL 系列丛书</a>
+    <a href="https://www.jbe-platform.com/content/journals/10.1075/target" target="_blank" class="module-link link-external">Target 期刊</a>
+    <a href="https://www.routledge.com/Translation-and-Interpreting-Studies/book-series/TIS" target="_blank" class="module-link link-external">TIS 研究系列</a>
+  </div>
+  <p style="margin:12px 0 0 0;padding:8px 10px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;font-size:11px;color:#92400e;line-height:1.5;">
+    <strong>📚</strong> 导师正在整理 TPR 专题文献库
+  </p>
+</div>
 
-  <!-- 模块 01: TPR 文献资源 -->
-  <div class="module-card">
-    <div class="module-header">
-      <span class="module-number">01</span>
-      <h3 class="module-title no_toc">TPR 文献</h3>
-    </div>
-    <p class="module-desc">
-      翻译过程研究核心文献与理论框架
-    </p>
-    <div class="module-links" style="grid-template-columns:1fr;">
-      <a href="https://www.benjamins.com/catalog/btl" target="_blank" class="module-link link-external">BTL 系列丛书</a>
-      <a href="https://www.jbe-platform.com/content/journals/10.1075/target" target="_blank" class="module-link link-external">Target 期刊</a>
-      <a href="https://www.routledge.com/Translation-and-Interpreting-Studies/book-series/TIS" target="_blank" class="module-link link-external">TIS 研究系列</a>
-    </div>
-    <p style="margin:12px 0 0 0;padding:8px 10px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;font-size:11px;color:#92400e;line-height:1.5;">
-      <strong>📚</strong> 导师正在整理 TPR 专题文献库
-    </p>
+<!-- 模块 02: 眼动与实证方法 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">02</span>
+    <h3 class="module-title no_toc">眼动实验</h3>
   </div>
-  
-  <!-- 模块 02: 眼动与实证方法 -->
-  <div class="module-card">
-    <div class="module-header">
-      <span class="module-number">02</span>
-      <h3 class="module-title no_toc">眼动实验</h3>
-    </div>
-    <p class="module-desc">
-      实验设计、指标解读与数据处理
-    </p>
-    <div class="module-links" style="grid-template-columns:1fr;">
-      <a href="https://link.springer.com/article/10.3758/s13428-020-01404-5" target="_blank" class="module-link link-external">方法指南</a>
-      <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942767/" target="_blank" class="module-link link-external">设计最佳实践</a>
-      <a href="https://www.sr-research.com/support/" target="_blank" class="module-link link-external">EyeLink 文档</a>
-    </div>
+  <p class="module-desc">
+    实验设计、指标解读与数据处理
+  </p>
+  <div class="module-links">
+    <a href="https://link.springer.com/article/10.3758/s13428-020-01404-5" target="_blank" class="module-link link-external">方法指南</a>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942767/" target="_blank" class="module-link link-external">设计最佳实践</a>
+    <a href="https://www.sr-research.com/support/" target="_blank" class="module-link link-external">EyeLink 文档</a>
   </div>
-  
-  <!-- 模块 03: R 统计分析 -->
-  <div class="module-card">
-    <div class="module-header">
-      <span class="module-number">03</span>
-      <h3 class="module-title no_toc">统计分析</h3>
-    </div>
-    <p class="module-desc">
-      R 建模与学术图表可视化
-    </p>
-    <div class="module-links" style="grid-template-columns:1fr;">
-      <a href="https://ggplot2.tidyverse.org/" target="_blank" class="module-link link-external">ggplot2 文档</a>
-      <a href="https://strengejacke.github.io/sjPlot/" target="_blank" class="module-link link-external">sjPlot 绘图</a>
-      <a href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf" target="_blank" class="module-link link-external">lme4 混合模型</a>
-      <a href="https://www.datanovia.com/en/blog/ggplot-examples-best-reference/" target="_blank" class="module-link link-external">ggplot 示例</a>
-    </div>
+</div>
+
+<!-- 模块 03: R 统计分析 -->
+<div class="module-card">
+  <div class="module-header">
+    <span class="module-number">03</span>
+    <h3 class="module-title no_toc">统计分析</h3>
   </div>
+  <p class="module-desc">
+    R 建模与学术图表可视化
+  </p>
+  <div class="module-links">
+    <a href="https://ggplot2.tidyverse.org/" target="_blank" class="module-link link-external">ggplot2 文档</a>
+    <a href="https://strengejacke.github.io/sjPlot/" target="_blank" class="module-link link-external">sjPlot 绘图</a>
+    <a href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf" target="_blank" class="module-link link-external">lme4 混合模型</a>
+    <a href="https://www.datanovia.com/en/blog/ggplot-examples-best-reference/" target="_blank" class="module-link link-external">ggplot 示例</a>
+  </div>
+</div>
+
 </div>
 
 </div>
