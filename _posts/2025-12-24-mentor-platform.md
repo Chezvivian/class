@@ -5,6 +5,7 @@ date: 2025-12-24
 layout: post
 ---
 
+<div class="no_toc">
 <div style="background:#f5f7fa;border-radius:12px;padding:24px 28px;margin:12px 0 28px 0;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
   <h2 style="margin:0 0 12px 0;">翻译认知研究导师指导平台</h2>
   <p style="margin:0;line-height:1.8;color:#4a5568;">
@@ -114,3 +115,4 @@ layout: post
   </script>
 </div>
 
+</div>
