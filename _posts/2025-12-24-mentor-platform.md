@@ -203,54 +203,79 @@ layout: post
 
 </div>
 
+<script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
 <script>
 (async function() {
-  // 从阿里云函数获取 token
+  console.log('开始初始化 Coze 助手...');
+  
+  // 从阿里云函数获取 token（安全方式）
   async function fetchCozeToken() {
     try {
-      const res = await fetch('https://coze-token-ikztxrqzlc.cn-shanghai.fcapp.run', {
+      console.log('正在从阿里云函数获取 token...');
+      const res = await fetch('https://coze-proxy-fqunfbhbqk.cn-shanghai.fcapp.run', {
         method: 'GET',
         credentials: 'omit'
       });
       
       if (!res.ok) {
-        throw new Error(`Token 获取失败: ${res.status}`);
+        throw new Error(`HTTP ${res.status}`);
       }
       
       const data = await res.json();
       console.log('✓ Token 获取成功');
       return data.token;
     } catch (error) {
-      console.error('✗ 获取 Coze token 失败:', error);
+      console.error('✗ Token 获取失败:', error);
       throw error;
     }
   }
 
-  // 初始化 Coze iframe 聊天
+  // 初始化 Coze SDK
   async function initCozeChat() {
     try {
-      const token = await fetchCozeToken();
-      const botId = '7586584916138655750';
+      const initialToken = await fetchCozeToken();
       
-      // 构建 Coze Web Chat URL（使用 iframe 嵌入方式）
-      const cozeUrl = `https://www.coze.cn/chat/${botId}?access_token=${encodeURIComponent(token)}`;
+      console.log('正在初始化 Coze WebChatClient...');
       
+      const client = new CozeWebSDK.WebChatClient({
+        config: {
+          bot_id: '7586584916138655750',
+        },
+        componentProps: {
+          title: '研究助手',
+          layout: 'pc',
+        },
+        auth: {
+          type: 'token',
+          token: initialToken,
+          onRefreshToken: fetchCozeToken
+        }
+      });
+      
+      console.log('✓ Coze SDK 初始化完成');
+      
+      // 隐藏 iframe，显示悬浮按钮（SDK 会自动创建）
       const iframe = document.getElementById('coze-chat-iframe');
-      iframe.src = cozeUrl;
+      if (iframe) iframe.style.display = 'none';
       
-      console.log('✓ Coze 聊天界面已加载');
+      // 在侧边栏显示提示
+      const chatBody = document.querySelector('.chat-body');
+      chatBody.innerHTML = '<div style="padding:30px 20px;text-align:center;color:#6f42c1;font-size:14px;line-height:1.8;">点击右下角<br><strong style="font-size:16px;">紫色按钮</strong><br>打开智能助手对话</div>';
+      
     } catch (error) {
       console.error('✗ Coze 初始化失败:', error);
       const chatBody = document.querySelector('.chat-body');
-      chatBody.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-size:13px;">智能助手加载失败<br>请刷新页面重试</div>';
+      chatBody.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-size:13px;">智能助手加载失败<br><small style="color:#ccc;">' + error.message + '</small><br><br>请刷新页面重试</div>';
     }
   }
 
-  // 页面加载完成后初始化
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCozeChat);
-  } else {
+  // 等待 SDK 加载完成
+  if (typeof CozeWebSDK !== 'undefined') {
     initCozeChat();
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(initCozeChat, 500);
+    });
   }
 })();
 </script>
