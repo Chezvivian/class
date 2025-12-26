@@ -89,7 +89,9 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">
       <a href="https://chezvivian.github.io/class/BE_pdf/2025秋/Unit5_词汇闪卡.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Unit 5 词汇闪卡</a>
     </td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;"></td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;">
+      <a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit5_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a>
+    </td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
