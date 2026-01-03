@@ -1,5 +1,5 @@
 ---
-title: 翻译认知研究导师指导平台
+title: 翻译认知研究导师智能体（测试）
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/
