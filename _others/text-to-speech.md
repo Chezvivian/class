@@ -1,8 +1,8 @@
 ---
 title: 文字转语音工具
 author: Huang Jie
-date: 2025-8-21
 layout: post
+permalink: /text-to-speech/
 ---
 
 <!-- 工具简介区块 -->
