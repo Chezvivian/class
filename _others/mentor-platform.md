@@ -1,8 +1,8 @@
 ---
 title: 翻译认知研究导师指导平台
 author: Huang Jie
-date: 2025-12-24
 layout: post
+permalink: /mentor-platform/
 ---
 
 <style>

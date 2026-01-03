@@ -32,8 +32,8 @@ permalink: /
 
 <!-- 智能助教专区 -->
 
-<div style="display:flex; flex-wrap:wrap; gap:24px; margin:32px 0 0 0; justify-content:space-between;">
-  <div style="flex:1 1 320px; max-width:48%; background:#e3e8ef; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin:32px 0 0 0;">
+  <div style="background:#e3e8ef; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🧑‍💻</span><br>
     <b>CAT 2.0 智能助教</b><br>
     <span style="color:#555;">翻译技术课程专属AI助手，支持答疑、资料检索、作业批改等。</span><br>
@@ -43,22 +43,19 @@ permalink: /
       <div style="color:#888; font-size:0.95em; margin-top:6px;">手机扫码体验</div>
     </div>
   </div>
-  <!-- 商务英语数字人助理 - 已注释，未来可能启用
-  <div style="flex:1 1 320px; max-width:48%; background:#f1f4f7; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
-    <span style="font-size:2.2em;">🤖</span><br>
-    <b>商务英语数字人助理</b><br>
-    <span style="color:#555;">商务英语助理数字人，支持口语陪练、商务概念解析等。</span><br>
-    <span style="color:#4472c4; font-weight:bold;">点击右下角动态头像体验</span>
-    <a href="https://studio.d-id.com/agents/share?id=agt_AARr0Q-v&utm_source=copy&key=WVhWMGFEQjhOamd4WVRBeFltRXlaR05oTVRjMU5EZGtabVl4TkRjMU9saHZhV0ZZYm1acGRrdDVORFJLUkZaU1JVUmpZdz09" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">或者一键点击进入</a><br>
-    <div style="margin-top:10px; font-size:0.95em; color:#888;">支持语音/文本提问，英文优先，提供沉浸式英语对话场景。</div>
-  </div>
-  -->
-  <div style="flex:1 1 320px; max-width:48%; background:#f1f4f7; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+  <div style="background:#f1f4f7; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🔊</span><br>
     <b>文字转语音工具</b><br>
     <span style="color:#555;">将文字转换为自然语音，支持多种语言和音色选择。</span><br>
     <a href="/class/text-to-speech/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
     <div style="margin-top:10px; font-size:0.95em; color:#888;">支持中英文转换，提供多种语音风格选择。</div>
+  </div>
+  <div style="background:#e8f4fd; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+    <span style="font-size:2.2em;">🎓</span><br>
+    <b>导师智能体（测试）</b><br>
+    <span style="color:#555;">翻译认知研究导师指导平台的智能体，提供TPR研究指导和学术咨询。</span><br>
+    <a href="/class/mentor-platform/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
+    <div style="margin-top:10px; font-size:0.95em; color:#888;">眼动实验设计、统计分析、文献检索等专业指导。</div>
   </div>
 </div>
 
