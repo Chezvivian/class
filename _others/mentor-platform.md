@@ -226,11 +226,12 @@ body {
   </div>
   
   <!-- 智能助手提示 -->
-  <div class="assistant-tip" style="width:280px;margin:0;padding:14px 18px;">
+  <div class="assistant-tip" style="width:280px;margin:0;padding:14px 18px;cursor:pointer;" onclick="if(window.cozeClient) window.cozeClient.show();">
     <div class="assistant-tip-icon" style="font-size:28px;margin-bottom:4px;">🤖</div>
     <p class="assistant-tip-text" style="font-size:12px;line-height:1.5;">
-      点击<span class="assistant-tip-highlight">右下角按钮</span><br>打开智能研究助手
+      点击<span class="assistant-tip-highlight">此处</span>或右下角按钮<br>打开智能研究助手
     </p>
+    <a href="https://www.coze.cn/store/agent/7586584916138655750?bot_id=true" target="_blank" style="font-size:10px;color:#2563eb;text-decoration:none;margin-top:5px;display:inline-block;opacity:0.8;">[ 图标未加载？点此直链访问 ]</a>
   </div>
 </div>
 
@@ -326,7 +327,7 @@ body {
       
       console.log('正在初始化 Coze WebChatClient...');
       
-      const client = new CozeWebSDK.WebChatClient({
+      window.cozeClient = new CozeWebSDK.WebChatClient({
         config: {
           bot_id: '7586584916138655750',
         },
