@@ -143,9 +143,81 @@ layout: post
 
 <!-- 结课感想美化区块 -->
 ## 备课笔记
+
+### 目录
+- [2026年1月18日：结课感想](#2026年1月18日结课感想)
+- [10月13日](#10月13日)
+- [10月8日](#10月8日)
+- [9月5日：学期初](#9月5日)
+
 ---
 
-### 9月5日
+### 2026年1月18日：结课感想 {#2026年1月18日结课感想}
+
+这学期商英一使用了新教材，和所有平行班老师一起从零开始备课，过程中使用了一些新的AI技术和工具，是很新鲜、很有创造性的体验。
+
+课程组设计总共5个精讲单元+3个学生自学单元，按照新生课12周的时间进行规划。新教材里的内容非常丰富，比上一代商英一教材多了一篇Text 2课文，并且多了Telling the story of China, Case study, Career skills 这些思政和商务元素。整体来说，在内容主题（涵盖最新的数字经济、社交媒体、AI驱动创新）到教材元素设计都有了非常大的创新。
+
+备课方面，我自己最深的印象是：
+
+#### **音视频教学辅助材料的制作在AI辅助下效率猛增。**
+
+以往英语课堂需要多模态语言环境的创造，但是音频、视频往往需要花大功夫搜索或者制作微课。创意花的时间远远比不上搜索、获取资源、制作材料花的时间和精力。而以下工具分别解决了这几类材料制作的痛点：
+
+- **英文音频**：Azure 语音转文字。这里我是购买了Azure TTS的服务，把API通过阿里云函数计算进行调用，嵌入到自己的网站上，方便直接使用。这个Azure服务在个人用量下几乎是免费的，但是做成一个网页，可以直接访问稍微花了一些工夫。
+
+- **导入讲解视频**：神奇的 NotebookLM. 今年 Google 公司的一个神奇好用的副产品，从25年5月份到现在已经有了数次功能更新。从最初的音频概览（本质是 podcast, 播客），到视频概览（直接生成完整的讲解视频），再到PDF（PPT的静态形态，他们正在更新可以编辑的版本），再到信息图（集中讲解概念的图解）。非常神奇、顺手的学习工具！不过，这学期高频使用之后，再看到这些音视频，稍微觉得有些视觉疲劳。而且单纯靠听、看的信息输入，感觉不如主动学习，即使用记忆和逻辑链接的方法更牢靠。作为引入也许可以，但是想要深入学习这些概念，主观感觉需要刻意练习，对知识内容和联系进行深化记忆，才能内化为自己的知识体系。
+
+- **课堂图示**：Google Gemini 的 Nano banana. 我之前没有太接触过文生图的应用，偶尔尝试，发现包含中英文字符的图片总会渲染错误，出现很奇怪的字符。而今年Gemini的生图功能已经比较完善，至少在教学方面、信息呈现上，已经有了很大程度的可用性。具体使用场景是讲解一个商业概念或者词汇，比如 ID verification, 比如 digital economy, 可以让学生快速了解一个概念。
+
+#### **数字人口语练习助手的效果仍待探索。**
+
+这学期一个很大的投入是数字人工具的采购和使用，在最好的数字人系统里（HeyGen, D-ID等），我选择了 D-ID 作为学生口语练习的助手工具。因为它可以直接在中国大陆访问，而且比较创新性地提供了实时交互的多模态数字人。而HeyGen虽然技术很强，但是并没有开发出可以直接使用的实时交互工具，更多地是以生成数字人视频为主要市场方向。
+
+为了测试数字人的实际使用效果，我带着一个本科生设计问卷，来做我班级和其他平行班级的对照实验，用FLCAS量表来测试不同的英语课程焦虑情况。但是很遗憾的是，通过一个月口语练习的对照，对照组和实验组的差异并不明显，也就是说数字人在短期内的使用上，无法对学生的英语课堂焦虑情况有很大的改善。当然，问卷也只能显示出焦虑这一方面的问题，而学生们主观的反馈，对于数字人还是有一定的好感，并且会乐意继续尝试。我们也会继续探索数字人的优化使用。
+
+### 10月13日 {#10月13日}
+
+#### Unit 1 音频概览素材
+
+<div style="overflow-x: auto; margin-bottom: 32px;">
+<table style="width:100%; min-width: 400px; border-collapse:collapse; text-align:left; font-size:0.9em; background:#fff;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
+    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">音频素材名称</th>
+    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">链接</th>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Unit 1 词汇</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
+  </tr>
+  <tr style="background:#f1f4f7; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 中文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-28b5a9c7a66680c49541d012e37b5bc0?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
+  </tr>
+  <tr style="background:#f9fafb; color:#2d3a4a;">
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 英文讲解</td>
+    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-explanation-28b5a9c7a66680d58a54e5363fa1ac24?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
+  </tr>
+</table>
+</div>
+
+### 10月8日 {#10月8日}
+
+马上到开课时间了。课程组群里也在不断更新课程资源、教材答案等，国庆假期的最后一天完全投入到备课中来。
+
+这次虽然是商英一新教材的备课，但是和去年第一轮教商英一的感觉还不太一样，没有那么紧张、不确定的感觉，因为已经知道每个单元的授课内容如何分配，学生们大概的状态和预期。所以，今年这一轮的备课重心在于流程化和自动化。
+
+新教材的使用是一个很好的机会，把目前 AI 工具的使用和大学英语教学法的设计结合在一起，看能够多大程度上提高备课的效率，同时最大程度上用好学生们在课堂上宝贵的注意力，给他们最佳的资源和工具，以及最合理的学习方法。
+
+今天测试上线的内容有：
+
+1. <a href="https://studio.d-id.com/agents/share?id=agt_AARr0Q-v&utm_source=copy&key=WVhWMGFEQjhOamd4WVRBeFltRXlaR05oTVRjMU5EZGtabVl4TkRjMU9saHZhV0ZZYm1acGRrdDVORFJLUkZaU1JVUmpZdz09" target="_blank">商务英语助理数字人（交互式视频对话）</a>：使用 D-ID 的数字人技术，付年费2000元，来获取每个月30分钟的交互时长，以及数字人视频的制作。使用场景在于给学生们提供24小时沉浸式口语、听力练习的环境，相当于一个私人订制、课程专属的英文外教。
+
+2. <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank">每单元的单词学习播客（瀑布流视频）</a>：这个是我精加工，进行了私人定制的一个小产品。初始形态是 NotebookLM 根据我上传的每单元核心词汇和课文，生成的两名主持人对话讲授单元新词的一段音频。我选择了较短的形态，约6分钟左右（较长的形态是30多分钟），大概应该适合同学们进行预习。但是，从我个人的体验来说，之前见过瀑布流形式的音频字幕，非常喜欢，所以暑假期间探索了一下，最近在剪映中可以加上了瀑布流字幕，从而把音频变成了一个可以更加抓住人注意力的视频（想起来剪映也刚购买了一个年度会员，399元）。这里的链接是第一单元的测试播客，我把其中音频转录的字幕文字进行了一遍人工筛查，修改了一些错误转录的字符，算是一次小小的精加工。
+
+3. 每单元的课文讲解课件。这部分是课堂教学的内容，今天已经使用 Claude 生成了课文讲解的大纲，包括丰富版和精简版，然后依次测试了PPT生成工具：天工AI, AIPPT, Gemini
+
+### 9月5日：学期初 {#9月5日}
 
 前两天稍微准备了一下这学期的课件模板，以动物图标作为各个小节的封面页，希望能活泼一点，吸引同学们的注意力。
 
@@ -189,71 +261,5 @@ layout: post
   - 课文精读文档编制：小组合作整理每个单元的课文精读PDF
 
 接下来从 Unit 1 开始准备。记录一下备课过程，帮助之后形成工作流，提高效率，反思各个环节。
-
-
-### 10月8日 
-
-马上到开课时间了。课程组群里也在不断更新课程资源、教材答案等，国庆假期的最后一天完全投入到备课中来。
-
-这次虽然是商英一新教材的备课，但是和去年第一轮教商英一的感觉还不太一样，没有那么紧张、不确定的感觉，因为已经知道每个单元的授课内容如何分配，学生们大概的状态和预期。所以，今年这一轮的备课重心在于流程化和自动化。
-
-新教材的使用是一个很好的机会，把目前 AI 工具的使用和大学英语教学法的设计结合在一起，看能够多大程度上提高备课的效率，同时最大程度上用好学生们在课堂上宝贵的注意力，给他们最佳的资源和工具，以及最合理的学习方法。
-
-今天测试上线的内容有：
-
-1. <a href="https://studio.d-id.com/agents/share?id=agt_AARr0Q-v&utm_source=copy&key=WVhWMGFEQjhOamd4WVRBeFltRXlaR05oTVRjMU5EZGtabVl4TkRjMU9saHZhV0ZZYm1acGRrdDVORFJLUkZaU1JVUmpZdz09" target="_blank">商务英语助理数字人（交互式视频对话）</a>：使用 D-ID 的数字人技术，付年费2000元，来获取每个月30分钟的交互时长，以及数字人视频的制作。使用场景在于给学生们提供24小时沉浸式口语、听力练习的环境，相当于一个私人订制、课程专属的英文外教。
-
-2. <a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-video-2865a9c7a6668003aa31e25ae2882590?pvs=73" target="_blank">每单元的单词学习播客（瀑布流视频）</a>：这个是我精加工，进行了私人定制的一个小产品。初始形态是 NotebookLM 根据我上传的每单元核心词汇和课文，生成的两名主持人对话讲授单元新词的一段音频。我选择了较短的形态，约6分钟左右（较长的形态是30多分钟），大概应该适合同学们进行预习。但是，从我个人的体验来说，之前见过瀑布流形式的音频字幕，非常喜欢，所以暑假期间探索了一下，最近在剪映中可以加上了瀑布流字幕，从而把音频变成了一个可以更加抓住人注意力的视频（想起来剪映也刚购买了一个年度会员，399元）。这里的链接是第一单元的测试播客，我把其中音频转录的字幕文字进行了一遍人工筛查，修改了一些错误转录的字符，算是一次小小的精加工。
-
-3. 每单元的课文讲解课件。这部分是课堂教学的内容，今天已经使用 Claude 生成了课文讲解的大纲，包括丰富版和精简版，然后依次测试了PPT生成工具：天工AI, AIPPT, Gemini
-
-### 10月13日
-
-#### Unit 1 音频概览素材
-
-<div style="overflow-x: auto; margin-bottom: 32px;">
-<table style="width:100%; min-width: 400px; border-collapse:collapse; text-align:left; font-size:0.9em; background:#fff;">
-  <tr style="background:#e3e8ef; color:#2d3a4a;">
-    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">音频素材名称</th>
-    <th style="border:1px solid #e0e0e0; padding:12px 16px; min-width:200px;">链接</th>
-  </tr>
-  <tr style="background:#f9fafb; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Unit 1 词汇</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Brands-audio-2865a9c7a666803fb332cd154c2f709b" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
-  </tr>
-  <tr style="background:#f1f4f7; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 中文讲解</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-28b5a9c7a66680c49541d012e37b5bc0?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
-  </tr>
-  <tr style="background:#f9fafb; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;">Text 2 英文讲解</td>
-    <td style="border:1px solid #e0e0e0; padding:12px 16px;"><a href="https://verbose-temple-e01.notion.site/Unit-1-Text-2-explanation-28b5a9c7a66680d58a54e5363fa1ac24?pvs=74" target="_blank" style="color:#0066cc; text-decoration:underline;">点击播放音频</a></td>
-  </tr>
-</table>
-</div>
-
-### 2026年1月18日：结课感想
-
-这学期商英一使用了新教材，和所有平行班老师一起从零开始备课，过程中使用了一些新的AI技术和工具，是很新鲜、很有创造性的体验。
-
-课程组设计总共5个精讲单元+3个学生自学单元，按照新生课12周的时间进行规划。新教材里的内容非常丰富，比上一代商英一教材多了一篇Text 2课文，并且多了Telling the story of China, Case study, Career skills 这些思政和商务元素。整体来说，在内容主题（涵盖最新的数字经济、社交媒体、AI驱动创新）到教材元素设计都有了非常大的创新。
-
-备课方面，我自己最深的印象是：
-
-#### **音视频教学辅助材料的制作在AI辅助下效率猛增。**
-
-以往英语课堂需要多模态语言环境的创造，但是音频、视频往往需要花大功夫搜索或者制作微课。创意花的时间远远比不上搜索、获取资源、制作材料花的时间和精力。而以下工具分别解决了这几类材料制作的痛点：
-
-- **英文音频**：Azure 语音转文字。这里我是购买了Azure TTS的服务，把API通过阿里云函数计算进行调用，嵌入到自己的网站上，方便直接使用。这个Azure服务在个人用量下几乎是免费的，但是做成一个网页，可以直接访问稍微花了一些工夫。
-
-- **导入讲解视频**：神奇的 NotebookLM. 今年 Google 公司的一个神奇好用的副产品，从25年5月份到现在已经有了数次功能更新。从最初的音频概览（本质是 podcast, 播客），到视频概览（直接生成完整的讲解视频），再到PDF（PPT的静态形态，他们正在更新可以编辑的版本），再到信息图（集中讲解概念的图解）。非常神奇、顺手的学习工具！不过，这学期高频使用之后，再看到这些音视频，稍微觉得有些视觉疲劳。而且单纯靠听、看的信息输入，感觉不如主动学习，即使用记忆和逻辑链接的方法更牢靠。作为引入也许可以，但是想要深入学习这些概念，主观感觉需要刻意练习，对知识内容和联系进行深化记忆，才能内化为自己的知识体系。
-
-- **课堂图示**：Google Gemini 的 Nano banana. 我之前没有太接触过文生图的应用，偶尔尝试，发现包含中英文字符的图片总会渲染错误，出现很奇怪的字符。而今年Gemini的生图功能已经比较完善，至少在教学方面、信息呈现上，已经有了很大程度的可用性。具体使用场景是讲解一个商业概念或者词汇，比如 ID verification, 比如 digital economy, 可以让学生快速了解一个概念。
-
-#### **数字人口语练习助手的效果仍待探索。** 
-
-这学期一个很大的投入是数字人工具的采购和使用，在最好的数字人系统里（HeyGen, D-ID等），我选择了 D-ID 作为学生口语练习的助手工具。因为它可以直接在中国大陆访问，而且比较创新性地提供了实时交互的多模态数字人。而HeyGen虽然技术很强，但是并没有开发出可以直接使用的实时交互工具，更多地是以生成数字人视频为主要市场方向。
-
-为了测试数字人的实际使用效果，我带着一个本科生设计问卷，来做我班级和其他平行班级的对照实验，用FLCAS量表来测试不同的英语课程焦虑情况。但是很遗憾的是，通过一个月口语练习的对照，对照组和实验组的差异并不明显，也就是说数字人在短期内的使用上，无法对学生的英语课堂焦虑情况有很大的改善。当然，问卷也只能显示出焦虑这一方面的问题，而学生们主观的反馈，对于数字人还是有一定的好感，并且会乐意继续尝试。我们也会继续探索数字人的优化使用。
 
 
