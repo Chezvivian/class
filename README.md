@@ -18,21 +18,15 @@ permalink: /
 
 <b>2026春季：</b>
 
-- <a href="/class/posts/2026-3-11-CAT-2026-spring/" style="color:#4472c4; font-weight:bold;">2025春：计算机辅助翻译（CAT）</a>：翻译技术与工具(偏技术)
-
-- <a href="/class/posts/2026-3-11-Localization-2026-spring/" style="color:#4472c4; font-weight:bold;">2025春：本地化翻译</a>：本地化翻译的各个场景（偏项目管理和实践）
+- <a href="/class/posts/2026-3-11-CAT-2026-spring/" style="color:#4472c4; font-weight:bold;">2026春：计算机辅助翻译（CAT）</a>：翻译技术与工具(偏技术)
+- <a href="/class/posts/2026-3-11-Localization-2026-spring/" style="color:#4472c4; font-weight:bold;">2026春：本地化翻译</a>：本地化翻译的各个场景（偏项目管理和实践）
 
 
 
 <b>历史学期课程：</b>
 
 - <a href="/class/archive/BusinessEnglish-2025/" style="color:#4472c4; font-weight:bold;">2025秋：大学商务英语（一）</a>：新教材
-- <a href="/class/archive/CAT-2025-autumn/" style="color:#4472c4; font-weight:bold;">2025秋：计算机辅助翻译AI+</a>
-
-- <a href="/class/archive/Localization-2025-spring/" style="color:#4472c4; font-weight:bold;">2025春：本地化翻译</a>：软件/网站/游戏本地化
 - <a href="/class/archive/Entrepreneur-2025-spring/" style="color:#4472c4; font-weight:bold;">2025春：翻译创业管理</a>：创业理论与实操
-- <a href="/class/archive/BusinessEnglish-2024/" style="color:#4472c4; font-weight:bold;">2024秋：大学商务英语（一）</a>
-- <a href="/class/archive/CAT-2024/" style="color:#4472c4; font-weight:bold;">2024秋：计算机辅助翻译</a>
 
 <!-- 智能助教专区 -->
 
