@@ -32,7 +32,7 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第2讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第2讲_本地化翻译文本类型与翻译规则.pdf" target="_blank">本地化翻译文本类型与翻译规则</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握常见文本类型及翻译规则。</td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
