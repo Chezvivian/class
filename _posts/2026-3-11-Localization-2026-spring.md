@@ -11,7 +11,8 @@ layout: post
 <strong>授课学期：</strong>2026春<br>
 <strong>教师：</strong>黄婕<br>
 <strong>授课单位：</strong>对外经济贸易大学英语学院<br>
-<strong>转载请注明出处：</strong>https://chezvivian.github.io/class
+<strong>转载请注明出处：</strong>https://chezvivian.github.io/class<br>
+<strong>历史学期完整课件：</strong><a href="/class/archive/Localization-2025-spring/" target="_blank">2025秋《本地化翻译》课件</a>
 </div>
 
 <!-- 本地化翻译课程学期计划与资源（可视化表格） -->
