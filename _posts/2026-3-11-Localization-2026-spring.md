@@ -38,7 +38,7 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第3讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第3讲_本地化流程概览.pdf" target="_blank">本地化流程概览</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍产品本地化的标准流程。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
