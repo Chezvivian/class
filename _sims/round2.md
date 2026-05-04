@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 翻译项目沙盘 · 第二轮：质量管控
+title: 本地化项目管理第二轮：质量管控
 permalink: /localization-sim-r2/
 ---
 
