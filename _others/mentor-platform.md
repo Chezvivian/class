@@ -1,5 +1,5 @@
 ---
-title: 翻译认知研究导师智能体（测试）
+title: MTI 培养全流程 · AI 导师指导平台
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/
@@ -219,9 +219,9 @@ body {
 <div class="no_toc">
 <div class="header-container">
   <div class="tpr-header" style="flex:1;">
-    <h2 class="no_toc">Translation Process Research · 导师指导平台</h2>
+    <h2 class="no_toc">MTI 培养全流程 · AI 导师指导平台</h2>
     <p class="tpr-header-subtitle">
-      TPR 文献资源 · 眼动实验方法 · 统计分析工具 · AI 智能辅助
+      开题选题 · 报告撰写 · 实习反思 · AI 智能辅助
     </p>
   </div>
   
@@ -229,7 +229,7 @@ body {
   <div class="assistant-tip" style="width:280px;margin:0;padding:14px 18px;cursor:pointer;" onclick="if(window.cozeClient) window.cozeClient.show();">
     <div class="assistant-tip-icon" style="font-size:28px;margin-bottom:4px;">🤖</div>
     <p class="assistant-tip-text" style="font-size:12px;line-height:1.5;">
-      点击<span class="assistant-tip-highlight">此处</span>或右下角按钮<br>打开智能研究助手
+      点击<span class="assistant-tip-highlight">此处</span>或右下角按钮<br>向 AI 导师提问：开题 · 报告 · 实习
     </p>
     <a href="https://www.coze.cn/store/agent/7586584916138655750?bot_id=true" target="_blank" style="font-size:10px;color:#2563eb;text-decoration:none;margin-top:5px;display:inline-block;opacity:0.8;">[ 图标未加载？点此直链访问 ]</a>
   </div>
@@ -237,56 +237,65 @@ body {
 
 <!-- 三列模块布局 -->
 <div class="modules-grid">
-<!-- 模块 01: TPR 文献资源 -->
+
+<!-- 模块 01: 开题与选题指导 -->
 <div class="module-card">
   <div class="module-header">
     <span class="module-number">01</span>
-    <h3 class="module-title no_toc">TPR 文献</h3>
+    <h3 class="module-title no_toc">开题与选题指导</h3>
   </div>
   <p class="module-desc">
-    翻译过程研究核心文献与理论框架
+    针对选题方向不清晰、研究问题过于宽泛、文献综述薄弱等常见问题，提供 AI 辅助开题全流程指导
   </p>
   <div class="module-links">
-    <a href="https://www.benjamins.com/catalog/btl" target="_blank" class="module-link link-external">BTL 系列丛书</a>
-    <a href="https://www.jbe-platform.com/content/journals/10.1075/target" target="_blank" class="module-link link-external">Target 期刊</a>
-    <a href="https://www.routledge.com/Translation-and-Interpreting-Studies/book-series/TIS" target="_blank" class="module-link link-external">TIS 研究系列</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">💬 向 AI 导师咨询选题方向</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">🔍 AI 辅助文献检索与综述框架</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">✅ 开题报告逻辑自查工具</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">📋 历年开题常见问题与应对策略</a>
   </div>
-  <p style="margin:12px 0 0 0;padding:8px 10px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;font-size:11px;color:#92400e;line-height:1.5;">
-    <strong>📚</strong> 导师正在整理 TPR 专题文献库
+  <p style="margin:12px 0 0 0;padding:8px 10px;background:#eff6ff;border-left:3px solid #2563eb;border-radius:4px;font-size:11px;color:#1e40af;line-height:1.5;">
+    <strong>💡</strong> 点击上方链接或右下角按钮，直接向 AI 导师提问
   </p>
 </div>
 
-<!-- 模块 02: 眼动与实证方法 -->
+<!-- 模块 02: 翻译实践报告撰写指导 -->
 <div class="module-card">
   <div class="module-header">
     <span class="module-number">02</span>
-    <h3 class="module-title no_toc">眼动实验</h3>
+    <h3 class="module-title no_toc">翻译实践报告撰写</h3>
   </div>
   <p class="module-desc">
-    实验设计、指标解读与数据处理
+    结合本年度盲审反馈，针对 AI 辅助翻译、传统手工翻译等不同路径，分类提供写作规范与质量自查指导
   </p>
   <div class="module-links">
-    <a href="https://link.springer.com/article/10.3758/s13428-020-01404-5" target="_blank" class="module-link link-external">方法指南</a>
-    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942767/" target="_blank" class="module-link link-external">设计最佳实践</a>
-    <a href="https://www.sr-research.com/support/" target="_blank" class="module-link link-external">EyeLink 文档</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">🤖 AI 辅助翻译项目报告规范框架</a>
+    <a href="https://www.taus.net/resources/reports/guidelines-for-post-editing" target="_blank" class="module-link link-external">译后编辑方法参考指南</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">📝 各章节写作规范（译前·译中·译后）</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">⚠️ 报告常见扣分点自查清单</a>
   </div>
+  <p style="margin:12px 0 0 0;padding:8px 10px;background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;font-size:11px;color:#92400e;line-height:1.5;">
+    <strong>📌</strong> 无论使用 AI 工具还是手工翻译，都需在报告中清晰呈现完整流程
+  </p>
 </div>
 
-<!-- 模块 03: R 统计分析 -->
+<!-- 模块 03: 实习过程指导与反思 -->
 <div class="module-card">
   <div class="module-header">
     <span class="module-number">03</span>
-    <h3 class="module-title no_toc">统计分析</h3>
+    <h3 class="module-title no_toc">实习过程指导与反思</h3>
   </div>
   <p class="module-desc">
-    R 建模与学术图表可视化
+    引导学生在实习中有目的地观察职业环节，将实习经历转化为有深度的报告写作素材
   </p>
   <div class="module-links">
-    <a href="https://ggplot2.tidyverse.org/" target="_blank" class="module-link link-external">ggplot2 文档</a>
-    <a href="https://strengejacke.github.io/sjPlot/" target="_blank" class="module-link link-external">sjPlot 绘图</a>
-    <a href="https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf" target="_blank" class="module-link link-external">lme4 混合模型</a>
-    <a href="https://www.datanovia.com/en/blog/ggplot-examples-best-reference/" target="_blank" class="module-link link-external">ggplot 示例</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">🗂️ 实习过程 AI 辅助记录与反思工具</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">🏢 项目管理与质量控制观察框架</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">💼 客户沟通与职业素养观察清单</a>
+    <a href="javascript:void(0)" onclick="if(window.cozeClient) window.cozeClient.show();" class="module-link">✍️ 实习反思报告写作建议</a>
   </div>
+  <p style="margin:12px 0 0 0;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;border-radius:4px;font-size:11px;color:#15803d;line-height:1.5;">
+    <strong>🎯</strong> 好的实习报告来自有意识的过程观察，而非事后回忆
+  </p>
 </div>
 
 </div>
