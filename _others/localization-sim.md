@@ -652,7 +652,7 @@ input[type=range]::-webkit-slider-thumb {
 
 <!-- ── 决策摘要 & 导出 ── -->
 <div class="summary-section">
-  <h3>📋 决策摘要（提交给教师）</h3>
+  <h4>📋 决策摘要（提交给教师）</h4>
   <div class="summary-box" id="summary-box">请先填写小组名称并调整参数，摘要将自动生成。</div>
   <div>
     <button class="btn-primary" onclick="generateSummary()">生成摘要</button>
