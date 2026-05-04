@@ -658,6 +658,8 @@ input[type=range]::-webkit-slider-thumb {
     <button class="btn-primary" onclick="generateSummary()">生成摘要</button>
     <button class="btn-primary btn-copy" onclick="copySummary()">复制摘要</button>
     <span class="copy-feedback" id="copy-feedback">✓ 已复制</span>
+    <button class="btn-primary" onclick="saveAndGoRound2()"
+            style="background:#8e44ad; margin-left:0.6rem">🔓 进入第二轮</button>
   </div>
 </div>
 
@@ -945,6 +947,25 @@ function copySummary() {
     fb.style.opacity = '1';
     setTimeout(() => { fb.style.opacity = '0'; }, 2000);
   });
+}
+
+function saveAndGoRound2() {
+  const p = getParams();
+  const r = calc(p);
+  const code = prompt('📋 请输入教师提供的第二轮口令：');
+  if (code !== 'ROUND2') {
+    alert('❌ 口令不正确，请等待教师公布。');
+    return;
+  }
+  try {
+    localStorage.setItem('sim_r1', JSON.stringify({
+      quality:   r.quality,
+      budgetPct: r.budgetPct,
+      mtD:       p.mtD,
+      group:     document.getElementById('group-name').value.trim(),
+    }));
+  } catch(e) {}
+  window.location.href = '/class/localization-sim-r2/';
 }
 
 // ──────────────────────────────────────────────
