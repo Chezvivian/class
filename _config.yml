@@ -62,6 +62,9 @@ collections:
   podcast:
     output: true
     permalink: /:collection/:path/
+  sims:
+    output: true
+    permalink: /:collection/:path/
 
 ordered_collections:
   - posts
