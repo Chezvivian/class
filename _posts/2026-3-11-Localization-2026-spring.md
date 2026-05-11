@@ -43,29 +43,29 @@ layout: post
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第4讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握Trados Studio的基本操作与应用。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第4讲_本地化翻译技术基础.pdf" target="_blank">本地化翻译技术基础</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍本地化翻译常用技术工具及基础操作流程。</td>
     <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="9"><b>各类本地化流程与实践</b></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第5讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解术语管理的重要性与工具。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第5讲_软件用户界面的本地化翻译.pdf" target="_blank">软件用户界面的本地化翻译</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">讲解软件界面本地化的规范、流程与翻译要点。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第6讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">讲解软件界面本地化流程与案例。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第6讲_文档本地化翻译.pdf" target="_blank">文档本地化翻译</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍文档类内容本地化的翻译方法与规范要求。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第7讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">提升文档本地化的专业性与规范性。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第7讲_游戏本地化翻译方法与策略.pdf" target="_blank">游戏本地化翻译方法与策略</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解游戏本地化的特殊需求与翻译方法策略。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第8讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解游戏本地化的特殊需求与策略。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第8讲_网站本地化翻译.pdf" target="_blank">网站本地化翻译</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握网站内容本地化的翻译方法与注意事项。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第9讲</td>
