@@ -556,7 +556,7 @@ permalink: /localization-sim-r3/
 </div><!-- /sim-body -->
 
 <script>
-const GATE_CODE = 'ROUND3';
+const GATE_CODE = 'BANANA';
 
 function checkGate() {
   const val = document.getElementById('gate-input').value.trim().toUpperCase();

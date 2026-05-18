@@ -535,7 +535,7 @@ input[type=range]::-webkit-slider-thumb {
 // ─────────────────────────────────────────────
 // 密码门
 // ─────────────────────────────────────────────
-const GATE_CODE = 'ROUND2';
+const GATE_CODE = 'APPLE';
 
 function checkGate() {
   const val = document.getElementById('gate-input').value.trim().toUpperCase();

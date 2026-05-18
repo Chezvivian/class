@@ -591,7 +591,7 @@ permalink: /localization-sim-r4/
 </div><!-- /sim-body -->
 
 <script>
-const GATE_CODE = 'ROUND4';
+const GATE_CODE = 'CAT';
 
 function checkGate() {
   const val = document.getElementById('gate-input').value.trim().toUpperCase();
