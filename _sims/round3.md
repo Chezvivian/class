@@ -1212,7 +1212,7 @@ function copySummary() {
 
 function saveAndContinue() {
   recalc();
-  window.location = '/localization-sim-r4/';
+  window.location = '/class/localization-sim-r4/';
 }
 
 // ─────────────────────────────────────────────
