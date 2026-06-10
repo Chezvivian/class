@@ -7,8 +7,8 @@ permalink: /
 <!-- 顶部 Hero -->
 <div style="padding: 36px 0 28px 0; border-bottom: 1px solid #e8e8e8; margin-bottom: 32px;">
   <div style="font-size: 2em; font-weight: 700; letter-spacing: 0.04em; color: #1a1a1a; margin-bottom: 8px;">黄 婕</div>
-  <div style="color: #555; font-size: 1em; margin-bottom: 16px;">对外经济贸易大学 英语学院 翻译系 · 讲师</div>
-  <div style="color: #888; font-size: 0.92em; letter-spacing: 0.08em; margin-bottom: 20px;">翻译过程认知 &nbsp;·&nbsp; 眼动追踪 &nbsp;·&nbsp; 翻译技术 &nbsp;·&nbsp; AI 教学实验</div>
+  <div style="color: #555; font-size: 1em; margin-bottom: 16px;">对外经济贸易大学 英语学院 翻译系 · 副教授</div>
+  <div style="color: #888; font-size: 0.92em; letter-spacing: 0.08em; margin-bottom: 20px;">翻译过程认知 &nbsp;·&nbsp; 眼动追踪 &nbsp;·&nbsp; 商务英语 &nbsp;·&nbsp; AI 教学实验</div>
   <div style="color: #333; font-size: 0.97em; line-height: 1.8; max-width: 580px; margin-bottom: 20px;">
     研究翻译认知过程，使用眼动与击键实验方法探究多模态信息对译者认知负荷的影响。课堂中积极引入 AI 工具与翻译技术，探索人机协作时代的翻译教学路径。
   </div>
