@@ -7,11 +7,14 @@ permalink: /
 <!-- 顶部简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2; display:flex; justify-content:space-between; align-items:center;">
   <div>
-    <b>大家好，我是对外经济贸易大学英语学院老师黄婕。这里发布的是我的课程资源。</b>
+    <b>黄 婕 <br>
+    对外经济贸易大学 英语学院 副教授<br>
+    翻译过程认知 · 眼动追踪 · 商务英语 · AI 教学实验<br>
+    邮箱：chezvivian@outlook.com </b>
   </div>
   <div style="margin-left:20px;">
     <a href="https://chezvivian.github.io" style="display:inline-block; color:#555; background:transparent; font-weight:bold; border:2px solid #555; border-radius:6px; padding:8px 20px; text-decoration:none; font-size:0.95em; transition:all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#555';">
-      🏠 回到个人主页
+      🏠 我的讲座·博客·播客
     </a>
   </div>
 </div>
@@ -57,7 +60,6 @@ permalink: /
   </div>
 </div>
 
-<div style="margin-top:32px; color:#888; font-size:0.95em;">如有问题，欢迎邮件联系黄婕老师：chezvivian@outlook.com</div>
 
 <!-- 保留数字人助理脚本 - 已注释，未来可能启用
 <script
