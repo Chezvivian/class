@@ -7,10 +7,10 @@ permalink: /
 <!-- 顶部简介区块 -->
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2; display:flex; justify-content:space-between; align-items:center;">
   <div>
-    <b>黄 婕 <br>
+    <b>黄 婕</b><br>
     对外经济贸易大学 英语学院 副教授<br>
     翻译过程认知 · 眼动追踪 · 商务英语 · AI 教学实验<br>
-    邮箱：chezvivian@outlook.com </b>
+    邮箱：chezvivian@outlook.com 
   </div>
   <div style="margin-left:20px;">
     <a href="https://chezvivian.github.io" style="display:inline-block; color:#555; background:transparent; font-weight:bold; border:2px solid #555; border-radius:6px; padding:8px 20px; text-decoration:none; font-size:0.95em; transition:all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#555';">
