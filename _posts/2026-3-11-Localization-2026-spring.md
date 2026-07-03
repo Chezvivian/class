@@ -45,7 +45,7 @@ layout: post
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第4讲</td>
     <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第4讲_本地化翻译技术基础.pdf" target="_blank">本地化翻译技术基础</a></td>
     <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍本地化翻译常用技术工具及基础操作流程。</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="9"><b>各类本地化流程与实践</b></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="8"><b>各类本地化流程与实践</b></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第5讲</td>
@@ -69,44 +69,29 @@ layout: post
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第9讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握网站内容的本地化方法。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第9讲_APP本地化翻译.pdf" target="_blank">APP本地化翻译</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">讲解APP界面及内容的本地化翻译流程与技术要点。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第10讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">提升多媒体内容本地化能力。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第10讲_本地化翻译中的AI智能体设计与应用.pdf" target="_blank">本地化翻译中的AI智能体设计与应用</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍AI智能体在本地化翻译场景中的设计思路与实际应用。</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第11讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握移动端内容的本地化方法。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;">作业讲评</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">作业讲评与常见问题分析。</td>
   </tr>
-  <tr style="background:#f1f4f7; color:#2d3a4a;">
+  <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第12讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">总结作业常见问题与改进建议。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第12讲_本地化翻译的语言资产管理.pdf" target="_blank">本地化翻译的语言资产管理</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">介绍翻译记忆库、术语库等语言资产的管理与复用方法。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="2"><b>项目管理知识</b></td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:10px 24px;">第13讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">提升语言资产管理与应用能力。</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;" rowspan="4"><b>项目管理知识</b></td>
-  </tr>
-  <tr style="background:#e3e8ef; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第14讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">掌握本地化项目管理的核心要点。</td>
-  </tr>
-  <tr style="background:#e3e8ef; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第15讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">了解AI智能体在本地化中的应用。</td>
-  </tr>
-  <tr style="background:#e3e8ef; color:#2d3a4a;">
-    <td style="border:1px solid #e0e0e0; padding:10px 24px;">第16讲</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 40px;">课前上传</td>
-    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">课程总结与职业发展讨论。</td>
+    <td style="border:1px solid #e0e0e0; padding:10px 40px;"><a href="https://chezvivian.github.io/class/l10n_pdf/2026-spring/第13讲_课程总结与本地化职业发展.pdf" target="_blank">课程总结与本地化职业发展</a></td>
+    <td style="border:1px solid #e0e0e0; padding:10px 12px; font-size:0.8em;">总结课程核心内容，探讨本地化职业发展路径与前景。</td>
   </tr>
 </table>
 
