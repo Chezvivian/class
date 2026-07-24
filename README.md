@@ -48,8 +48,15 @@ permalink: /
     <span style="font-size:2.2em;">🔊</span><br>
     <b>文字转语音工具</b><br>
     <span style="color:#555;">将文字转换为自然语音，支持多种语言和音色选择。</span><br>
-    <a href="/class/text-to-speech/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
+    <a href="/class/tools/text-to-speech/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
     <div style="margin-top:10px; font-size:0.95em; color:#888;">支持中英文转换，提供多种语音风格选择。</div>
+  </div>
+  <div style="background:#f7f3ee; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+    <span style="font-size:2.2em;">📑</span><br>
+    <b>PDF 添加目录工具</b><br>
+    <span style="color:#555;">本地为 PDF 推断标题并写入书签目录，隐私优先、文件不上传。</span><br>
+    <a href="/class/tools/pdf-toc/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
+    <div style="margin-top:10px; font-size:0.95em; color:#888;">可编辑 PDF 自动出草稿，支持页码偏移与手动微调。</div>
   </div>
   <div style="background:#e8f4fd; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🎓</span><br>

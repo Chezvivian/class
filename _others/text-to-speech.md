@@ -2,7 +2,7 @@
 title: 文字转语音工具
 author: Huang Jie
 layout: post
-permalink: /text-to-speech/
+permalink: /tools/text-to-speech/
 ---
 
 <!-- 工具简介区块 -->
