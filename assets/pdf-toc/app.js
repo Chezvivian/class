@@ -183,10 +183,6 @@
     return false;
   }
 
-  function hasLeaderDots(text) {
-    return /[\.·•⋯…]{3,}/.test(text) || /(?:\.\s*){3,}/.test(text);
-  }
-
   function inferLevelFromTitle(title, x, minX, maxX) {
     var t = cleanTitle(title);
     var m;
@@ -223,31 +219,31 @@
     return 2;
   }
 
+  var TRAILING_ARABIC_RE = /^(.+?)[\s.·•⋯…‥_\-–—]+(\d{1,4})[.)]?$/;
+  var TRAILING_ROMAN_RE = /[\s.·•⋯…‥_\-–—]\s*[ivxlcdm]{1,6}[.)]?$/i;
+
   /**
-   * Parse TOC entry. Requires leader dots / wide gap before page number.
-   * NEVER parses "Chapter 1" as title="Chapter", page=1.
+   * If a line ends with an arabic page number (after a separator or leaders),
+   * return { title, page }. This is the core TOC signal — works with or
+   * without dotted leaders. "Chapter 1" is handled as a label elsewhere.
    */
-  function parseTocEntryLine(text) {
+  function stripTrailingPageNumber(text) {
     var raw = String(text || '').replace(/\s+/g, ' ').trim();
-    if (!raw || raw.length > 240) return null;
-    if (FRONT_MATTER_NOISE_RE.test(raw)) return null;
-    if (CHAPTER_LABEL_RE.test(raw)) return null;
-    if (TOC_HEADING_RE.test(raw)) return null;
-
-    var m = raw.match(/^(.*?)((?:[\.·•⋯…]\s*){3,}|\s{3,})(\d{1,4})\s*$/);
+    if (!raw || raw.length > 260) return null;
+    var m = raw.match(TRAILING_ARABIC_RE);
     if (!m) return null;
-
     var title = cleanTitle(m[1]);
-    var page = parseInt(m[3], 10);
+    var page = parseInt(m[2], 10);
     if (!title || !Number.isFinite(page) || page < 1) return null;
-    if (isNoiseTitle(title)) return null;
-    if (isBareStructuralTitle(title)) return null;
+    return { title: title, page: page };
+  }
 
-    return {
-      title: title,
-      page: page,
-      confidence: hasLeaderDots(raw) ? 2 : 1,
-    };
+  // Front-matter entries paged with roman numerals (Preface ...... ix).
+  // We skip them so they don't contaminate the merge buffers.
+  function endsWithRomanPage(text) {
+    var raw = String(text || '').replace(/\s+/g, ' ').trim();
+    if (/\d\s*$/.test(raw)) return false;
+    return TRAILING_ROMAN_RE.test(raw);
   }
 
   function isPageOnlyLine(text) {
@@ -261,160 +257,79 @@
     if (TOC_HEADING_RE.test(t)) return false;
     if (FRONT_MATTER_NOISE_RE.test(t)) return false;
     if (isPageOnlyLine(t)) return false;
-    if (parseTocEntryLine(t)) return true;
-    // Prefer title-case / capitalised starts; reject mid-sentence leftovers
-    if (/^[a-z]/.test(t)) return false;
+    if (/^[a-z]/.test(t)) return false; // mid-sentence leftover
     return true;
   }
 
-  function lineObj(base, text, other) {
-    return {
-      page: base.page,
-      x: other ? Math.min(base.x, other.x) : base.x,
-      y: base.y,
-      fontSize: other ? Math.max(base.fontSize, other.fontSize) : base.fontSize,
-      text: text,
-    };
+  function pageLinesOf(lines, p) {
+    return lines.filter(function (ln) {
+      return ln.page === p;
+    });
+  }
+
+  function lineEndsWithPage(text) {
+    var t = String(text || '').trim();
+    if (!t || t.length > 200) return false;
+    if (CHAPTER_LABEL_RE.test(t)) return false; // "Chapter 1" is not an entry
+    return /[\s.·•⋯…‥_\-–—]\d{1,4}[.)]?$/.test(t) || /\S\s+\d{1,4}[.)]?$/.test(t);
+  }
+
+  function tocPageScore(pageLines) {
+    var withPage = 0;
+    pageLines.forEach(function (ln) {
+      if (lineEndsWithPage(ln.text)) withPage += 1;
+    });
+    return withPage;
   }
 
   /**
-   * Merge multi-line TOC patterns common in English books:
-   *   Chapter 1
-   *   Introduction .................... 15
+   * Locate the Contents page range. Prefer a page with a "Contents" heading;
+   * otherwise the densest run of page-number-ending lines.
    */
-  function coalesceTocLines(lines) {
-    var out = [];
-    for (var i = 0; i < lines.length; i++) {
-      var cur = lines[i];
-      var text = String(cur.text || '').trim();
-      var next = lines[i + 1];
-      var next2 = lines[i + 2];
-
-      if (CHAPTER_LABEL_RE.test(text) && next && cur.page === next.page) {
-        var m2 = text + ' ' + String(next.text || '').trim();
-        if (parseTocEntryLine(m2)) {
-          out.push(lineObj(cur, m2, next));
-          i += 1;
-          continue;
-        }
-
-        if (
-          next2 &&
-          cur.page === next2.page &&
-          looksLikeTitleContinuation(next.text) &&
-          isPageOnlyLine(next2.text)
-        ) {
-          var m3 = text + ' ' + String(next.text).trim() + ' .... ' + String(next2.text).trim();
-          if (parseTocEntryLine(m3)) {
-            out.push(lineObj(cur, m3, next));
-            i += 2;
-            continue;
-          }
-        }
-
-        if (looksLikeTitleContinuation(next.text)) {
-          var mTitle = text + ' ' + String(next.text).trim();
-          if (next2 && cur.page === next2.page && isPageOnlyLine(next2.text)) {
-            var mTitlePage = mTitle + ' .... ' + String(next2.text).trim();
-            if (parseTocEntryLine(mTitlePage)) {
-              out.push(lineObj(cur, mTitlePage, next));
-              i += 2;
-              continue;
-            }
-          }
-          // Keep "Chapter N Title" for a later page-only join
-          out.push(lineObj(cur, mTitle, next));
-          i += 1;
-          continue;
-        }
-      }
-
-      if (
-        next &&
-        cur.page === next.page &&
-        isPageOnlyLine(next.text) &&
-        !parseTocEntryLine(text)
-      ) {
-        var withPage = text + ' .... ' + String(next.text).trim();
-        if (parseTocEntryLine(withPage)) {
-          out.push(lineObj(cur, withPage, next));
-          i += 1;
-          continue;
-        }
-      }
-
-      out.push(cur);
-    }
-    return out;
-  }
-
-  function countTocEntries(pageLines) {
-    var n = 0;
-    var strong = 0;
-    coalesceTocLines(pageLines).forEach(function (ln) {
-      var e = parseTocEntryLine(ln.text);
-      if (e) {
-        n += 1;
-        if (e.confidence >= 2) strong += 1;
-      }
-    });
-    return { n: n, strong: strong };
-  }
-
-  function findContentsStartPage(lines, pageCount) {
-    var scanLimit = Math.min(pageCount, Math.max(25, Math.ceil(pageCount * 0.25)));
-    var best = null;
+  function locateTocPages(lines, pageCount) {
+    var scanLimit = Math.min(pageCount, Math.max(30, Math.ceil(pageCount * 0.3)));
+    var start = null;
 
     for (var p = 1; p <= scanLimit; p++) {
-      var pageLines = lines.filter(function (ln) {
-        return ln.page === p;
-      });
-      var hasHeading = pageLines.some(function (ln) {
-        return TOC_HEADING_RE.test(ln.text.trim());
-      });
-      var counts = countTocEntries(pageLines);
-
-      if (hasHeading) {
-        var nextN = 0;
-        if (p + 1 <= pageCount) {
-          nextN = countTocEntries(
-            lines.filter(function (ln) {
-              return ln.page === p + 1;
-            })
-          ).n;
-        }
-        if (counts.n + nextN >= 3) return p;
-      }
-
-      if (counts.strong >= 5 && (best == null || counts.strong > best.count)) {
-        best = { page: p, count: counts.strong };
+      if (
+        pageLinesOf(lines, p).some(function (ln) {
+          return TOC_HEADING_RE.test(ln.text.trim());
+        })
+      ) {
+        start = p;
+        break;
       }
     }
-    return best ? best.page : null;
-  }
 
-  function collectContentsPageRange(lines, startPage, pageCount) {
+    if (start == null) {
+      var best = null;
+      for (var r = 1; r <= scanLimit; r++) {
+        var sc = tocPageScore(pageLinesOf(lines, r));
+        if (sc >= 4 && (best == null || sc > best.sc)) best = { p: r, sc: sc };
+      }
+      if (best) start = best.p;
+    }
+    if (start == null) return [];
+
     var pages = [];
     var emptyStreak = 0;
-    var maxPages = Math.min(pageCount, startPage + 30);
+    var maxPage = Math.min(pageCount, start + 20);
 
-    for (var p = startPage; p <= maxPages; p++) {
-      var pageLines = lines.filter(function (ln) {
-        return ln.page === p;
-      });
+    for (var q = start; q <= maxPage; q++) {
+      var pl = pageLinesOf(lines, q);
       if (
-        p > startPage &&
-        pageLines.some(function (ln) {
+        q > start &&
+        pages.length &&
+        pl.some(function (ln) {
           return TOC_STOP_HEADING_RE.test(ln.text.trim());
         })
       ) {
         break;
       }
-
-      var entries = countTocEntries(pageLines).n;
-      if (p === startPage || entries >= 2) {
-        pages.push(p);
-        emptyStreak = entries >= 2 ? 0 : emptyStreak + 1;
+      var score = tocPageScore(pl);
+      if (q === start || score >= 3) {
+        pages.push(q);
+        emptyStreak = score >= 3 ? 0 : emptyStreak + 1;
       } else {
         emptyStreak += 1;
       }
@@ -423,45 +338,124 @@
     return pages;
   }
 
-  function parseContentsPages(lines, pageRange) {
+  /**
+   * Parse entries from the located TOC pages.
+   * Uses trailing page numbers as the entry delimiter, and merges:
+   *  - a lone "Chapter N" label with the following title line
+   *  - a wrapped (multi-line) title whose page appears on a later line
+   */
+  function parseTocPages(lines, pages) {
     var pageSet = {};
-    pageRange.forEach(function (p) {
+    pages.forEach(function (p) {
       pageSet[p] = true;
     });
+    var block = lines.filter(function (ln) {
+      return pageSet[ln.page];
+    });
 
-    var block = coalesceTocLines(
-      lines.filter(function (ln) {
-        return pageSet[ln.page];
-      })
-    );
-    // Run twice: label+title merge, then title+page merge
-    block = coalesceTocLines(block);
-
-    var xs = [];
     var rows = [];
+    var xs = [];
     var seen = {};
+    var labelPrefix = null; // e.g. "Chapter 1"
+    var labelX = null;
+    var wrapBuf = null; // wrapped title without page yet
+    var wrapX = null;
 
-    block.forEach(function (ln) {
-      if (TOC_HEADING_RE.test(ln.text.trim())) return;
-      if (CHAPTER_LABEL_RE.test(ln.text.trim())) return;
-      var entry = parseTocEntryLine(ln.text);
-      if (!entry) return;
-      var key = entry.title.toLowerCase() + '|' + entry.page;
+    function reset() {
+      labelPrefix = null;
+      labelX = null;
+      wrapBuf = null;
+      wrapX = null;
+    }
+
+    function push(title, page, x) {
+      var full = cleanTitle(title);
+      if (!full || isNoiseTitle(full) || isBareStructuralTitle(full)) return;
+      if (!Number.isFinite(page) || page < 1) return;
+      var key = full.toLowerCase() + '|' + page;
       if (seen[key]) return;
       seen[key] = true;
-      xs.push(ln.x);
-      rows.push({ title: entry.title, page: entry.page, x: ln.x });
-    });
+      rows.push({ title: full, page: page, x: x });
+      xs.push(x);
+    }
+
+    for (var i = 0; i < block.length; i++) {
+      var ln = block[i];
+      var raw = String(ln.text || '').replace(/\s+/g, ' ').trim();
+      if (!raw) continue;
+      if (TOC_HEADING_RE.test(raw)) {
+        reset();
+        continue;
+      }
+      if (TOC_STOP_HEADING_RE.test(raw)) break;
+      if (FRONT_MATTER_NOISE_RE.test(raw)) {
+        reset();
+        continue;
+      }
+
+      // Lone structural label: keep for the next title line
+      if (CHAPTER_LABEL_RE.test(raw)) {
+        labelPrefix = raw;
+        labelX = ln.x;
+        wrapBuf = null;
+        wrapX = null;
+        continue;
+      }
+
+      var hit = stripTrailingPageNumber(raw);
+      if (hit) {
+        var base = labelPrefix
+          ? labelPrefix + ' ' + hit.title
+          : wrapBuf
+          ? wrapBuf + ' ' + hit.title
+          : hit.title;
+        var baseX = labelPrefix ? labelX : wrapX != null ? wrapX : ln.x;
+        push(base, hit.page, baseX);
+        reset();
+        continue;
+      }
+
+      // A page number sitting alone on its own line
+      if (isPageOnlyLine(raw)) {
+        var onlyPage = parseInt(raw.replace(/[^\d]/g, ''), 10);
+        var pending = labelPrefix || wrapBuf;
+        if (pending && Number.isFinite(onlyPage)) {
+          push(pending, onlyPage, labelPrefix ? labelX : wrapX);
+        }
+        reset();
+        continue;
+      }
+
+      // Roman-numeral front matter entry: skip without contaminating buffers
+      if (endsWithRomanPage(raw)) {
+        if (!labelPrefix) reset();
+        continue;
+      }
+
+      // Otherwise treat as a (possibly wrapping) title fragment
+      if (looksLikeTitleContinuation(raw)) {
+        if (labelPrefix) {
+          labelPrefix = (labelPrefix + ' ' + raw).slice(0, 220);
+        } else if (wrapBuf) {
+          wrapBuf = (wrapBuf + ' ' + raw).slice(0, 220);
+        } else {
+          wrapBuf = raw;
+          wrapX = ln.x;
+        }
+      } else {
+        reset();
+      }
+    }
 
     if (!rows.length) return [];
 
     var minX = Math.min.apply(null, xs);
     var maxX = Math.max.apply(null, xs);
-    return rows.map(function (r) {
+    return rows.map(function (row) {
       return {
-        title: r.title,
-        level: inferLevelFromTitle(r.title, r.x, minX, maxX),
-        page: r.page,
+        title: row.title,
+        level: inferLevelFromTitle(row.title, row.x, minX, maxX),
+        page: row.page,
       };
     });
   }
@@ -543,37 +537,45 @@
     return rows;
   }
 
+  function pagesLabel(pages) {
+    if (!pages || !pages.length) return '';
+    return pages.length > 1
+      ? pages[0] + '–' + pages[pages.length - 1]
+      : String(pages[0]);
+  }
+
   function detectToc(lines, pageCount) {
     if (!lines.length) {
       return { rows: [], method: 'none', detail: '' };
     }
 
-    var start = findContentsStartPage(lines, pageCount);
-    if (start != null) {
-      var range = collectContentsPageRange(lines, start, pageCount);
-      var tocRows = parseContentsPages(lines, range);
+    var pages = locateTocPages(lines, pageCount);
+    if (pages.length) {
+      var tocRows = parseTocPages(lines, pages);
       if (tocRows.length >= 3) {
         return {
           rows: tocRows,
           method: 'contents',
           detail:
-            '从 Contents 页（PDF 第 ' +
-            range[0] +
-            (range.length > 1 ? '–' + range[range.length - 1] : '') +
-            ' 页）解析；表格页码多为印刷页码，请用偏移量对齐',
+            '从目录页（PDF 第 ' +
+            pagesLabel(pages) +
+            ' 页）解析出 ' +
+            tocRows.length +
+            ' 条；页码多为印刷页码，请用偏移量对齐',
         };
       }
     }
 
-    var skipBefore =
-      start != null ? Math.max(start + 1, 5) : Math.min(8, Math.floor(pageCount * 0.05) + 1);
+    var skipBefore = pages.length
+      ? Math.max(pages[pages.length - 1] + 1, 5)
+      : Math.min(8, Math.floor(pageCount * 0.05) + 1);
     var numbered = detectNumberedHeadings(lines, skipBefore);
     if (numbered.length) {
       return {
         rows: numbered,
         method: 'numbering',
         detail:
-          '未可靠解析 Contents 条目，已按「Chapter + 标题」从正文识别（跳过前 ' +
+          '未能可靠解析目录页，已按「Chapter + 标题」从正文识别（跳过前 ' +
           (skipBefore - 1) +
           ' 页扉页）；表格页码为 PDF 页码',
       };
@@ -582,7 +584,7 @@
     return {
       rows: [],
       method: 'none',
-      detail: '未找到可用的 Contents 条目，也未识别到带完整标题的 Chapter 行',
+      detail: '未找到可用的目录页，也未识别到带完整标题的 Chapter 行',
     };
   }
 
@@ -711,9 +713,10 @@
       }
 
       els.ocrHint.style.display = 'none';
-      setProgress(true, 85, '正在解析 Contents / 编号标题…');
+      setProgress(true, 88, '正在解析目录…');
       var detected = detectToc(result.lines, result.pageCount);
       state.rows = detected.rows;
+
       renderTable();
       setProgress(true, 100, '完成');
       setTimeout(function () {
