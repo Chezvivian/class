@@ -1,6 +1,10 @@
 /**
  * PDF TOC Tool — browser-local heading detection + bookmark writing.
  * Depends on: pdf.js (pdfjsLib), @cantoo/pdf-lib (PDFLib), outline.js (PdfTocOutline)
+ *
+ * Detection strategy (English academic books):
+ *  1) Parse Contents / Table of Contents pages (leader dots + page)
+ *  2) Fallback: Chapter/Part labels merged with following title lines
  */
 (function () {
   'use strict';
@@ -48,10 +52,6 @@
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
   }
 
-  /**
-   * Extract lines with font size from a page's text content.
-   * Font size ≈ hypot of transform scale components.
-   */
   function extractLinesFromTextContent(textContent, pageIndex0) {
     var items = (textContent.items || []).filter(function (it) {
       return it && typeof it.str === 'string' && it.str.trim().length > 0;
@@ -68,9 +68,8 @@
       };
     });
 
-    // Group into lines by similar Y (tolerance relative to median font size)
     raw.sort(function (a, b) {
-      if (Math.abs(a.y - b.y) > 2) return b.y - a.y; // top to bottom
+      if (Math.abs(a.y - b.y) > 2) return b.y - a.y;
       return a.x - b.x;
     });
 
@@ -89,7 +88,16 @@
         };
         lines.push(current);
       } else {
-        current.parts.push(item.str);
+        // Insert space when glyphs are clearly separated
+        var prev = current.parts[current.parts.length - 1];
+        var gap = item.x - current.x;
+        if (current.parts.length && item.x > current.x + 1) {
+          var needSpace =
+            !/\s$/.test(prev) && !/^\s/.test(item.str) && !/^[\.,;:!\?]/.test(item.str);
+          current.parts.push((needSpace ? ' ' : '') + item.str);
+        } else {
+          current.parts.push(item.str);
+        }
         current.fontSize = Math.max(current.fontSize, item.fontSize);
         current.x = Math.min(current.x, item.x);
       }
@@ -136,17 +144,32 @@
     };
   }
 
+  // ── TOC detection ──────────────────────────────────────────────
+
   var TOC_HEADING_RE =
     /^(table\s+of\s+contents|contents|content|list\s+of\s+contents)\s*$/i;
   var TOC_STOP_HEADING_RE =
     /^(list\s+of\s+(figures|tables|illustrations|maps|plates))\s*$/i;
   var LEADER_CHARS = /[\.·•⋯…‥﹣\-–—_]/g;
+  var CHAPTER_LABEL_RE =
+    /^(part|book|chapter|appendix|annex|section)\s+([IVXLCDM]+|\d+)\s*$/i;
+  var FRONT_MATTER_NOISE_RE =
+    /\b(copyright|all\s+rights\s+reserved|isbn[- ]?\d|library\s+of\s+congress|printed\s+in|published\s+by|©|cip\s+data|catalogu(?:ing|eing)|cataloging|rights\s+reserved)\b/i;
 
   function cleanTitle(title) {
     return String(title || '')
-      .replace(LEADER_CHARS, ' ')
+      // Only strip leader runs (2+ dots), keep "1.2" numbering intact
+      .replace(/(?:[\.·•⋯…]\s*){2,}/g, ' ')
+      .replace(/[-–—_]{2,}/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
+  }
+
+  function isBareStructuralTitle(title) {
+    var t = cleanTitle(title);
+    if (/^(part|book|chapter|appendix|annex|section)$/i.test(t)) return true;
+    if (CHAPTER_LABEL_RE.test(t)) return true;
+    return false;
   }
 
   function isNoiseTitle(title) {
@@ -155,38 +178,42 @@
     if (/^(contents?|table of contents)$/i.test(t)) return true;
     if (/^page$/i.test(t)) return true;
     if (/^[\d\sivxlcdm]+$/i.test(t)) return true;
+    if (isBareStructuralTitle(t)) return true;
+    if (FRONT_MATTER_NOISE_RE.test(t)) return true;
     return false;
   }
 
-  /**
-   * Infer H1–H3 from English TOC / heading numbering patterns.
-   */
+  function hasLeaderDots(text) {
+    return /[\.·•⋯…]{3,}/.test(text) || /(?:\.\s*){3,}/.test(text);
+  }
+
   function inferLevelFromTitle(title, x, minX, maxX) {
     var t = cleanTitle(title);
     var m;
 
     if (/^(part|book)\b/i.test(t)) return 1;
     if (/^(chapter|appendix|annex)\b/i.test(t)) return 1;
-    if (/^(bibliography|references|index|glossary|preface|foreword|introduction|conclusion)\b/i.test(t) &&
-        !/^\d/.test(t)) {
+    if (
+      /^(bibliography|references|index|glossary|preface|foreword|introduction|conclusion)\b/i.test(
+        t
+      ) &&
+      !/^\d/.test(t)
+    ) {
       return 1;
     }
 
-    // 1.2.3 Title  or  1.2 Title
     m = t.match(/^(\d+(?:\.\d+){0,5})\b/);
-    if (m) {
-      var depth = m[1].split('.').length;
-      return Math.min(3, depth);
-    }
+    if (m) return Math.min(3, m[1].split('.').length);
 
-    // Section A.1 / § 2.1
     m = t.match(/^(?:section|sec\.?|§)\s*(\d+(?:\.\d+)*)/i);
-    if (m) {
-      return Math.min(3, m[1].split('.').length + 1);
-    }
+    if (m) return Math.min(3, m[1].split('.').length + 1);
 
-    // Indentation fallback within TOC block
-    if (typeof x === 'number' && typeof minX === 'number' && typeof maxX === 'number' && maxX > minX + 8) {
+    if (
+      typeof x === 'number' &&
+      typeof minX === 'number' &&
+      typeof maxX === 'number' &&
+      maxX > minX + 8
+    ) {
       var ratio = (x - minX) / (maxX - minX);
       if (ratio < 0.2) return 1;
       if (ratio < 0.55) return 2;
@@ -197,75 +224,145 @@
   }
 
   /**
-   * Parse one TOC-style line into {title, page} or null.
-   * Handles: "Title ...... 12" / "Title  12" / "Chapter 1 Title .... 5"
+   * Parse TOC entry. Requires leader dots / wide gap before page number.
+   * NEVER parses "Chapter 1" as title="Chapter", page=1.
    */
   function parseTocEntryLine(text) {
     var raw = String(text || '').replace(/\s+/g, ' ').trim();
-    if (!raw || raw.length > 220) return null;
+    if (!raw || raw.length > 240) return null;
+    if (FRONT_MATTER_NOISE_RE.test(raw)) return null;
+    if (CHAPTER_LABEL_RE.test(raw)) return null;
+    if (TOC_HEADING_RE.test(raw)) return null;
 
-    // Leaders then page number
-    var m = raw.match(/^(.*?)(?:[\s\.·•⋯…‥﹣\-–—_]{2,}|\s{2,})(\d{1,4})\s*$/);
-    if (m) {
-      var title = cleanTitle(m[1]);
-      var page = parseInt(m[2], 10);
-      if (!isNoiseTitle(title) && page >= 1) {
-        return { title: title, page: page };
-      }
-    }
+    var m = raw.match(/^(.*?)((?:[\.·•⋯…]\s*){3,}|\s{3,})(\d{1,4})\s*$/);
+    if (!m) return null;
 
-    // Title ending with a lone page number (single space)
-    m = raw.match(/^(.+?)\s+(\d{1,4})\s*$/);
-    if (m) {
-      var title2 = cleanTitle(m[1]);
-      var page2 = parseInt(m[2], 10);
-      // Avoid "Chapter 1" alone being parsed as title=Chapter page=1 unless looks like TOC
-      var hasLeaderish = /[\.·•⋯…]{2,}/.test(raw) || /\s{3,}\d+\s*$/.test(text);
-      var looksNumbered =
-        /^(part|chapter|appendix|section)\b/i.test(title2) ||
-        /^\d+(\.\d+)+\b/.test(title2) ||
-        hasLeaderish;
-      if (looksNumbered && !isNoiseTitle(title2) && page2 >= 1 && title2.length >= 3) {
-        return { title: title2, page: page2 };
-      }
-    }
+    var title = cleanTitle(m[1]);
+    var page = parseInt(m[3], 10);
+    if (!title || !Number.isFinite(page) || page < 1) return null;
+    if (isNoiseTitle(title)) return null;
+    if (isBareStructuralTitle(title)) return null;
 
-    return null;
+    return {
+      title: title,
+      page: page,
+      confidence: hasLeaderDots(raw) ? 2 : 1,
+    };
+  }
+
+  function isPageOnlyLine(text) {
+    return /^\s*(?:[\.·•⋯…\s]{2,})?\d{1,4}\s*$/.test(String(text || ''));
+  }
+
+  function looksLikeTitleContinuation(text) {
+    var t = cleanTitle(text);
+    if (!t || t.length < 2 || t.length > 160) return false;
+    if (CHAPTER_LABEL_RE.test(t)) return false;
+    if (TOC_HEADING_RE.test(t)) return false;
+    if (FRONT_MATTER_NOISE_RE.test(t)) return false;
+    if (isPageOnlyLine(t)) return false;
+    if (parseTocEntryLine(t)) return true;
+    // Prefer title-case / capitalised starts; reject mid-sentence leftovers
+    if (/^[a-z]/.test(t)) return false;
+    return true;
+  }
+
+  function lineObj(base, text, other) {
+    return {
+      page: base.page,
+      x: other ? Math.min(base.x, other.x) : base.x,
+      y: base.y,
+      fontSize: other ? Math.max(base.fontSize, other.fontSize) : base.fontSize,
+      text: text,
+    };
   }
 
   /**
-   * Merge wrapped TOC lines: title on one line, leaders/page on the next.
+   * Merge multi-line TOC patterns common in English books:
+   *   Chapter 1
+   *   Introduction .................... 15
    */
   function coalesceTocLines(lines) {
     var out = [];
     for (var i = 0; i < lines.length; i++) {
       var cur = lines[i];
+      var text = String(cur.text || '').trim();
       var next = lines[i + 1];
-      var text = cur.text;
-      var pageOnly = next && /^\s*(?:[\.·•⋯…\s]{2,})?\d{1,4}\s*$/.test(next.text);
-      var parsedAlone = parseTocEntryLine(text);
+      var next2 = lines[i + 2];
 
-      if (!parsedAlone && next && pageOnly && cur.page === next.page) {
-        var merged = text + ' ' + next.text;
-        if (parseTocEntryLine(merged)) {
-          out.push({
-            page: cur.page,
-            x: cur.x,
-            y: cur.y,
-            fontSize: cur.fontSize,
-            text: merged,
-          });
+      if (CHAPTER_LABEL_RE.test(text) && next && cur.page === next.page) {
+        var m2 = text + ' ' + String(next.text || '').trim();
+        if (parseTocEntryLine(m2)) {
+          out.push(lineObj(cur, m2, next));
+          i += 1;
+          continue;
+        }
+
+        if (
+          next2 &&
+          cur.page === next2.page &&
+          looksLikeTitleContinuation(next.text) &&
+          isPageOnlyLine(next2.text)
+        ) {
+          var m3 = text + ' ' + String(next.text).trim() + ' .... ' + String(next2.text).trim();
+          if (parseTocEntryLine(m3)) {
+            out.push(lineObj(cur, m3, next));
+            i += 2;
+            continue;
+          }
+        }
+
+        if (looksLikeTitleContinuation(next.text)) {
+          var mTitle = text + ' ' + String(next.text).trim();
+          if (next2 && cur.page === next2.page && isPageOnlyLine(next2.text)) {
+            var mTitlePage = mTitle + ' .... ' + String(next2.text).trim();
+            if (parseTocEntryLine(mTitlePage)) {
+              out.push(lineObj(cur, mTitlePage, next));
+              i += 2;
+              continue;
+            }
+          }
+          // Keep "Chapter N Title" for a later page-only join
+          out.push(lineObj(cur, mTitle, next));
           i += 1;
           continue;
         }
       }
+
+      if (
+        next &&
+        cur.page === next.page &&
+        isPageOnlyLine(next.text) &&
+        !parseTocEntryLine(text)
+      ) {
+        var withPage = text + ' .... ' + String(next.text).trim();
+        if (parseTocEntryLine(withPage)) {
+          out.push(lineObj(cur, withPage, next));
+          i += 1;
+          continue;
+        }
+      }
+
       out.push(cur);
     }
     return out;
   }
 
+  function countTocEntries(pageLines) {
+    var n = 0;
+    var strong = 0;
+    coalesceTocLines(pageLines).forEach(function (ln) {
+      var e = parseTocEntryLine(ln.text);
+      if (e) {
+        n += 1;
+        if (e.confidence >= 2) strong += 1;
+      }
+    });
+    return { n: n, strong: strong };
+  }
+
   function findContentsStartPage(lines, pageCount) {
-    var scanLimit = Math.min(pageCount, Math.max(20, Math.ceil(pageCount * 0.2)));
+    var scanLimit = Math.min(pageCount, Math.max(25, Math.ceil(pageCount * 0.25)));
     var best = null;
 
     for (var p = 1; p <= scanLimit; p++) {
@@ -275,28 +372,22 @@
       var hasHeading = pageLines.some(function (ln) {
         return TOC_HEADING_RE.test(ln.text.trim());
       });
-      var entryCount = 0;
-      coalesceTocLines(pageLines).forEach(function (ln) {
-        if (parseTocEntryLine(ln.text)) entryCount += 1;
-      });
+      var counts = countTocEntries(pageLines);
 
-      // Heading on this page, entries may start here or on the next page
       if (hasHeading) {
-        var nextCount = 0;
+        var nextN = 0;
         if (p + 1 <= pageCount) {
-          coalesceTocLines(
+          nextN = countTocEntries(
             lines.filter(function (ln) {
               return ln.page === p + 1;
             })
-          ).forEach(function (ln) {
-            if (parseTocEntryLine(ln.text)) nextCount += 1;
-          });
+          ).n;
         }
-        if (entryCount + nextCount >= 2) return p;
+        if (counts.n + nextN >= 3) return p;
       }
 
-      if (entryCount >= 5 && (best == null || entryCount > best.count)) {
-        best = { page: p, count: entryCount };
+      if (counts.strong >= 5 && (best == null || counts.strong > best.count)) {
+        best = { page: p, count: counts.strong };
       }
     }
     return best ? best.page : null;
@@ -305,25 +396,22 @@
   function collectContentsPageRange(lines, startPage, pageCount) {
     var pages = [];
     var emptyStreak = 0;
-    var maxPages = Math.min(pageCount, startPage + 24);
+    var maxPages = Math.min(pageCount, startPage + 30);
 
     for (var p = startPage; p <= maxPages; p++) {
       var pageLines = lines.filter(function (ln) {
         return ln.page === p;
       });
-      var hitStop = pageLines.some(function (ln) {
-        var t = ln.text.trim();
-        return TOC_STOP_HEADING_RE.test(t) && p > startPage;
-      });
-      if (hitStop && pages.length) break;
+      if (
+        p > startPage &&
+        pageLines.some(function (ln) {
+          return TOC_STOP_HEADING_RE.test(ln.text.trim());
+        })
+      ) {
+        break;
+      }
 
-      var coalesced = coalesceTocLines(pageLines);
-      var entries = 0;
-      coalesced.forEach(function (ln) {
-        if (parseTocEntryLine(ln.text)) entries += 1;
-      });
-
-      // Keep the Contents heading page even if sparse
+      var entries = countTocEntries(pageLines).n;
       if (p === startPage || entries >= 2) {
         pages.push(p);
         emptyStreak = entries >= 2 ? 0 : emptyStreak + 1;
@@ -340,11 +428,14 @@
     pageRange.forEach(function (p) {
       pageSet[p] = true;
     });
+
     var block = coalesceTocLines(
       lines.filter(function (ln) {
         return pageSet[ln.page];
       })
     );
+    // Run twice: label+title merge, then title+page merge
+    block = coalesceTocLines(block);
 
     var xs = [];
     var rows = [];
@@ -352,17 +443,14 @@
 
     block.forEach(function (ln) {
       if (TOC_HEADING_RE.test(ln.text.trim())) return;
+      if (CHAPTER_LABEL_RE.test(ln.text.trim())) return;
       var entry = parseTocEntryLine(ln.text);
       if (!entry) return;
       var key = entry.title.toLowerCase() + '|' + entry.page;
       if (seen[key]) return;
       seen[key] = true;
       xs.push(ln.x);
-      rows.push({
-        title: entry.title,
-        page: entry.page,
-        x: ln.x,
-      });
+      rows.push({ title: entry.title, page: entry.page, x: ln.x });
     });
 
     if (!rows.length) return [];
@@ -378,11 +466,8 @@
     });
   }
 
-  /**
-   * Fallback: scan body for English numbered headings (Chapter / 1.2 / Appendix).
-   * Page numbers here are PDF page indices (1-based).
-   */
-  function detectNumberedHeadings(lines) {
+  function detectNumberedHeadings(lines, skipBeforePage) {
+    var startPage = Math.max(1, skipBeforePage || 1);
     var repeating = {};
     var textPageCount = {};
     lines.forEach(function (ln) {
@@ -394,52 +479,70 @@
       if (Object.keys(textPageCount[key]).length >= 3) repeating[key] = true;
     });
 
-    var patterns = [
-      /^(part|book)\s+([IVXLCDM\d]+)(?:\s*[:.\-–—]\s*|\s+)(.{0,120})$/i,
-      /^(chapter)\s+([IVXLCDM\d]+)(?:\s*[:.\-–—]\s*|\s+)(.{0,120})$/i,
-      /^(appendix|annex)\s+([A-Z]|\d+)(?:\s*[:.\-–—]\s*|\s*)(.{0,120})$/i,
-      /^(section)\s+(\d+(?:\.\d+)*)(?:\s*[:.\-–—]\s*|\s+)(.{0,120})$/i,
-      /^(\d+\.\d+(?:\.\d+){0,3})\s+([A-Z“"'(].{1,120})$/,
-      /^(\d+)\s+([A-Z“"'(][^.]{2,80})$/,
-    ];
+    var sorted = lines.slice().sort(function (a, b) {
+      if (a.page !== b.page) return a.page - b.page;
+      return b.y - a.y;
+    });
 
     var rows = [];
-    var lastKey = '';
+    var seen = {};
 
-    lines.forEach(function (ln) {
+    for (var i = 0; i < sorted.length; i++) {
+      var ln = sorted[i];
+      if (ln.page < startPage) continue;
       var t = ln.text.trim();
-      if (t.length < 3 || t.length > 140) return;
-      if (repeating[t.toLowerCase()]) return;
-      if (parseTocEntryLine(t)) return; // skip leftover TOC-looking lines in body
+      if (t.length < 3 || t.length > 160) continue;
+      if (repeating[t.toLowerCase()]) continue;
+      if (FRONT_MATTER_NOISE_RE.test(t)) continue;
 
-      for (var i = 0; i < patterns.length; i++) {
-        var m = t.match(patterns[i]);
-        if (!m) continue;
+      var title = null;
+      var level = 2;
 
-        var title = cleanTitle(t);
-        if (isNoiseTitle(title)) return;
-
-        // Plain "1 Something" is noisy — require uppercase start already in regex;
-        // also skip very long paragraph-like lines
-        if (i === patterns.length - 1 && t.length > 90) return;
-
-        var level = inferLevelFromTitle(title);
-        var key = ln.page + '|' + title.toLowerCase();
-        if (key === lastKey) return;
-        lastKey = key;
-        rows.push({ title: title, level: level, page: ln.page });
-        return;
+      if (CHAPTER_LABEL_RE.test(t)) {
+        var next = sorted[i + 1];
+        if (
+          next &&
+          next.page === ln.page &&
+          looksLikeTitleContinuation(next.text) &&
+          !CHAPTER_LABEL_RE.test(next.text.trim()) &&
+          !FRONT_MATTER_NOISE_RE.test(next.text)
+        ) {
+          title = cleanTitle(t + ' ' + next.text);
+          level = inferLevelFromTitle(title);
+          i += 1;
+        } else {
+          continue; // never keep bare "Chapter 1"
+        }
+      } else {
+        var patterns = [
+          /^(part|book)\s+([IVXLCDM]+|\d+)\s*[:.\-–—]?\s+(.{3,120})$/i,
+          /^(chapter)\s+([IVXLCDM]+|\d+)\s*[:.\-–—]?\s+(.{3,120})$/i,
+          /^(appendix|annex)\s+([A-Z]|\d+)\s*[:.\-–—]?\s*(.{3,120})$/i,
+          /^(\d+\.\d+(?:\.\d+){0,3})\s+([A-Z“"'(].{2,120})$/,
+        ];
+        var matched = false;
+        for (var p = 0; p < patterns.length; p++) {
+          if (!t.match(patterns[p])) continue;
+          title = cleanTitle(t);
+          level = inferLevelFromTitle(title);
+          matched = true;
+          break;
+        }
+        if (!matched) continue;
       }
-    });
+
+      if (!title || isNoiseTitle(title) || isBareStructuralTitle(title)) continue;
+
+      var key = title.toLowerCase().replace(/\s+/g, ' ');
+      if (seen[key]) continue;
+      seen[key] = true;
+      rows.push({ title: title, level: level, page: ln.page });
+    }
 
     if (rows.length > 400) rows = rows.slice(0, 400);
     return rows;
   }
 
-  /**
-   * Primary: English Contents page parse.
-   * Fallback: numbered heading scan in body.
-   */
   function detectToc(lines, pageCount) {
     if (!lines.length) {
       return { rows: [], method: 'none', detail: '' };
@@ -462,21 +565,28 @@
       }
     }
 
-    var numbered = detectNumberedHeadings(lines);
+    var skipBefore =
+      start != null ? Math.max(start + 1, 5) : Math.min(8, Math.floor(pageCount * 0.05) + 1);
+    var numbered = detectNumberedHeadings(lines, skipBefore);
     if (numbered.length) {
       return {
         rows: numbered,
         method: 'numbering',
-        detail: '未可靠解析 Contents，已按 Chapter / 1.2 等编号模式从正文识别；表格页码为 PDF 页码',
+        detail:
+          '未可靠解析 Contents 条目，已按「Chapter + 标题」从正文识别（跳过前 ' +
+          (skipBefore - 1) +
+          ' 页扉页）；表格页码为 PDF 页码',
       };
     }
 
     return {
       rows: [],
       method: 'none',
-      detail: '未找到 Contents 页，也未识别到编号标题',
+      detail: '未找到可用的 Contents 条目，也未识别到带完整标题的 Chapter 行',
     };
   }
+
+  // ── UI ─────────────────────────────────────────────────────────
 
   function renderTable() {
     var tbody = els.tocBody;
@@ -618,7 +728,11 @@
         );
       } else {
         setStatus(
-          '已生成目录草稿 ' + state.rows.length + ' 条。' + (detected.detail || '') + '。请微调后生成书签。',
+          '已生成目录草稿 ' +
+            state.rows.length +
+            ' 条。' +
+            (detected.detail || '') +
+            '。请微调后生成书签。',
           'ok'
         );
       }
@@ -691,7 +805,6 @@
       var outlines = PdfTocOutline.buildNestedOutlines(adjusted);
       PdfTocOutline.setOutline(pdfDoc, outlines, PDFLib);
 
-      // Prefer showing bookmarks panel when opened
       try {
         var PDFName = PDFLib.PDFName;
         if (PDFName && pdfDoc.catalog) {
@@ -720,7 +833,12 @@
       setTimeout(function () {
         setProgress(false);
       }, 500);
-      setStatus('已下载带书签的 PDF（' + adjusted.length + ' 条目录）。请在阅读器中打开左侧书签面板查看。', 'ok');
+      setStatus(
+        '已下载带书签的 PDF（' +
+          adjusted.length +
+          ' 条目录）。请在阅读器中打开左侧书签面板查看。',
+        'ok'
+      );
     } catch (err) {
       console.error(err);
       setProgress(false);
@@ -805,7 +923,9 @@
 
     els.generateBtn.addEventListener('click', generateAndDownload);
 
-    setStatus('请上传可编辑 PDF。将优先解析英文 Contents，其次按编号标题识别。文件仅在本地处理。');
+    setStatus(
+      '请上传可编辑 PDF。将优先解析英文 Contents（点线+页码），其次合并 Chapter 与标题行。文件仅在本地处理。'
+    );
   }
 
   if (document.readyState === 'loading') {
