@@ -9,9 +9,9 @@ permalink: /tools/pdf-toc/
 <div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2;">
 <strong>工具名称：</strong>PDF 添加目录工具<br>
 <strong>运行方式：</strong>纯前端 · 浏览器本地处理（文件不上传服务器）<br>
-<strong>功能特点：</strong>可编辑 PDF 自动推断标题 → 表格微调 → 写入书签目录并下载<br>
-<strong>适用场景：</strong>整理学术文献、老书扫描前的可编辑 PDF 书签补全<br>
-<strong>技术栈：</strong>pdf.js（读文字/字号）· @cantoo/pdf-lib（写书签）<br>
+<strong>功能特点：</strong>解析英文 Contents 页 / 编号标题 → 表格微调 → 写入书签并下载<br>
+<strong>适用场景：</strong>整理学术文献、老书可编辑 PDF 的书签补全（英文目录为主）<br>
+<strong>技术栈：</strong>pdf.js（读文字）· @cantoo/pdf-lib（写书签）<br>
 <strong>更新时间：</strong>2026年7月<br>
 <strong>制作人：</strong>黄婕（网站功能如有问题，欢迎联系 chezvivian@outlook.com）
 </div>
@@ -22,7 +22,7 @@ permalink: /tools/pdf-toc/
   <div id="pdfDropZone" style="border:2px dashed #c5ced9; border-radius:8px; background:#f8fafc; padding:36px 20px; text-align:center; cursor:pointer; transition:all 0.2s; margin-bottom:20px;">
     <div style="font-size:2em; margin-bottom:8px;">📄</div>
     <div style="font-weight:bold; color:#2d3a4a; margin-bottom:6px;">点击或拖拽上传 PDF</div>
-    <div style="font-size:13px; color:#888;">本版支持可编辑 PDF；扫描版 OCR 即将支持。文件仅在本地处理。</div>
+    <div style="font-size:13px; color:#888;">优先解析英文 Contents；若无则按 Chapter / 1.2 等编号识别。文件仅在本地处理。</div>
     <input type="file" id="pdfFileInput" accept="application/pdf,.pdf" style="display:none;">
   </div>
 
@@ -57,7 +57,7 @@ permalink: /tools/pdf-toc/
       </div>
       <div style="flex:1; min-width:220px; font-size:13px; color:#666; line-height:1.6; padding-bottom:4px;">
         最终 PDF 页码 = 表格中的页码 + 偏移量。<br>
-        例如表格写印刷页码 10、偏移量填 14 → 跳转到 PDF 第 24 页。共 <b id="pdfTocRowCount">0</b> 条。
+        从 Contents 解析时表格多为<strong>印刷页码</strong>，请用偏移量对齐到 PDF 页。共 <b id="pdfTocRowCount">0</b> 条。
       </div>
     </div>
 
@@ -87,9 +87,9 @@ permalink: /tools/pdf-toc/
   <div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin-top:24px;">
     <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
     <div style="color:#666; font-size:14px; line-height:1.8;">
-      <p style="margin:0 0 12px 0;">1. 上传可编辑 PDF（能用鼠标选中文字的那种）。工具用字号大小启发式推断一/二/三级标题，生成可编辑草稿。</p>
-      <p style="margin:0 0 12px 0;">2. 在表格中修改标题、层级、页码；用「页码偏移量」对齐印刷页码与 PDF 页码。</p>
-      <p style="margin:0 0 12px 0;">3. 点击生成后，浏览器会下载带书签目录的新 PDF。请在 Adobe / Sumatra / 浏览器 PDF 阅读器中打开左侧书签面板查看。</p>
+      <p style="margin:0 0 12px 0;">1. 上传可编辑 PDF。工具优先解析书前英文 Contents / Table of Contents；若找不到，再按 Chapter、1.2、Appendix 等编号模式从正文识别。</p>
+      <p style="margin:0 0 12px 0;">2. 在表格中修改标题、层级、页码。Contents 解析出的页码通常是印刷页码，用「页码偏移量」对齐到实际 PDF 页（最终页码 = 表格页码 + 偏移量）。</p>
+      <p style="margin:0 0 12px 0;">3. 点击生成后下载带书签的新 PDF，在阅读器左侧书签面板查看。</p>
       <p style="margin:0;">隐私：全部在本地完成，PDF 不会上传到任何服务器。</p>
     </div>
   </div>
