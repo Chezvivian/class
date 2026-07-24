@@ -44,26 +44,19 @@ permalink: /
       <div style="color:#888; font-size:0.95em; margin-top:6px;">手机扫码体验</div>
     </div>
   </div>
-  <div style="background:#f1f4f7; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
-    <span style="font-size:2.2em;">🔊</span><br>
-    <b>文字转语音工具</b><br>
-    <span style="color:#555;">将文字转换为自然语音，支持多种语言和音色选择。</span><br>
-    <a href="/class/tools/text-to-speech/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
-    <div style="margin-top:10px; font-size:0.95em; color:#888;">支持中英文转换，提供多种语音风格选择。</div>
-  </div>
-  <div style="background:#f7f3ee; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
-    <span style="font-size:2.2em;">📑</span><br>
-    <b>PDF 添加目录工具</b><br>
-    <span style="color:#555;">本地为 PDF 推断标题并写入书签目录，隐私优先、文件不上传。</span><br>
-    <a href="/class/tools/pdf-toc/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
-    <div style="margin-top:10px; font-size:0.95em; color:#888;">可编辑 PDF 自动出草稿，支持页码偏移与手动微调。</div>
-  </div>
   <div style="background:#e8f4fd; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🎓</span><br>
-    <b>导师智能体（测试）</b><br>
-    <span style="color:#555;">翻译认知研究导师指导平台的智能体，提供TPR研究指导和学术咨询。</span><br>
+    <b>MTI 培养指导平台</b><br>
+    <span style="color:#555;">开题选题、实践报告与实习反思的 AI 辅助指导。</span><br>
     <a href="/class/mentor-platform/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
-    <div style="margin-top:10px; font-size:0.95em; color:#888;">眼动实验设计、统计分析、文献检索等专业指导。</div>
+    <div style="margin-top:10px; font-size:0.95em; color:#888;">开题 · 报告撰写 · 实习反思</div>
+  </div>
+  <div style="background:#f0f7f4; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+    <span style="font-size:2.2em;">🌐</span><br>
+    <b>本地化商业模拟平台</b><br>
+    <span style="color:#555;">本地化项目管理情景模拟，在决策中学习项目流程。</span><br>
+    <a href="/class/localization-sim/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
+    <div style="margin-top:10px; font-size:0.95em; color:#888;">多轮情景任务 · 商业决策练习</div>
   </div>
 </div>
 

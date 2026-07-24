@@ -1,5 +1,5 @@
 ---
-title: 本地化项目管理：商业模拟
+title: 本地化商业模拟平台
 author: Huang Jie
 layout: post
 permalink: /localization-sim/

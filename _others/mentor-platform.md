@@ -1,5 +1,5 @@
 ---
-title: MTI 培养全流程 · AI 导师指导平台
+title: MTI 培养指导平台
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/
@@ -219,7 +219,7 @@ body {
 <div class="no_toc">
 <div class="header-container">
   <div class="tpr-header" style="flex:1;">
-    <h2 class="no_toc">MTI 培养全流程 · AI 导师指导平台</h2>
+    <h2 class="no_toc">MTI 培养指导平台</h2>
     <p class="tpr-header-subtitle">
       开题选题 · 报告撰写 · 实习反思 · AI 智能辅助
     </p>
