@@ -1,0 +1,19 @@
+{%- comment -%}
+  Usage: {% include mentor-crumb.html trail="节点名" %}
+  Optional: second="二级" second_url="/mentor-platform/path/03-practice/"
+{%- endcomment -%}
+<nav class="mp-crumb" aria-label="面包屑">
+  <a href="{{ site.baseurl }}/mentor-platform/">MTI 培养指导平台</a>
+  {%- if include.second -%}
+  <span class="sep">/</span>
+  {%- if include.second_url -%}
+  <a href="{{ site.baseurl }}{{ include.second_url }}">{{ include.second }}</a>
+  {%- else -%}
+  <span>{{ include.second }}</span>
+  {%- endif -%}
+  {%- endif -%}
+  {%- if include.trail -%}
+  <span class="sep">/</span>
+  <span>{{ include.trail }}</span>
+  {%- endif -%}
+</nav>

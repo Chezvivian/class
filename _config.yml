@@ -65,6 +65,10 @@ collections:
   sims:
     output: true
     permalink: /:collection/:path/
+  # MTI 培养指导平台子页（不进侧栏；总览仍在 others）
+  mentor:
+    output: true
+    permalink: /mentor-platform/:path/
 
 ordered_collections:
   - posts
