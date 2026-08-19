@@ -1,5 +1,5 @@
 ---
-title: "节点 07 · 答辩准备"
+title: "07 · 答辩准备"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/07-defense/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/07-defense/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="07 答辩准备" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">07 · 答辩准备</h2>
-  <p>占位页 · Best Practice / Q&A / 自查清单待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>

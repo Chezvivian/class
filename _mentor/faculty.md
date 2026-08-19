@@ -10,11 +10,6 @@ permalink: /mentor-platform/faculty/
 <div class="mp-wrap">
 {% include mentor-crumb.html trail="导师指导体系" %}
 
-<div class="mp-header">
-  <h2 class="no_toc">导师指导体系</h2>
-  <p>学院项目侧交付 · 占位骨架，内容待填（教学法、评估、带生节奏）</p>
-</div>
-
 <div class="mp-section">
   <h2 id="calendar">1. 学年指导日历</h2>
   <div class="mp-placeholder">

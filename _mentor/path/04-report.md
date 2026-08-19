@@ -1,5 +1,5 @@
 ---
-title: "节点 04 · 报告主体写作"
+title: "04 · 报告主体写作"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/04-report/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/04-report/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="04 报告主体写作" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">04 · 报告主体写作</h2>
-  <p>占位页 · Best Practice / Q&A / 自查清单待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>
@@ -57,7 +51,7 @@ permalink: /mentor-platform/path/04-report/
   <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice/">03 翻译实践和素材</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">05 AI / 译后编辑</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice/">03 翻译实践和素材</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">AI 使用指南和伦理</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

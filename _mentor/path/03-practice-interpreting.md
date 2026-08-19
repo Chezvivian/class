@@ -1,5 +1,5 @@
 ---
-title: "节点 03A · 翻译实践和素材（口译）"
+title: "03A · 翻译实践和素材（口译）"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/03-practice-interpreting/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html second="03 翻译实践和素材" second_url="/mentor-platform/path/03-practice/" trail="口译方向" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">03A · 口译方向</h2>
-  <p>占位页 · 口译素材积累与评估方式待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>

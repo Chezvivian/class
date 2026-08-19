@@ -1,5 +1,5 @@
 ---
-title: "节点 06 · 盲审修改"
+title: "06 · 盲审修改"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/06-blind-review/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/06-blind-review/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="06 盲审修改" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">06 · 盲审修改</h2>
-  <p>占位页 · Best Practice / Q&A / 自查清单待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>
@@ -56,7 +50,7 @@ permalink: /mentor-platform/path/06-blind-review/
   <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">05 AI / 译后编辑</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/07-defense/">07 答辩准备</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">AI 使用指南和伦理</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/07-defense/">07 答辩准备</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

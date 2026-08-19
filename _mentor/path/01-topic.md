@@ -1,5 +1,5 @@
 ---
-title: "节点 01 · 选题定向"
+title: "01 · 选题定向"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/01-topic/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/01-topic/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="01 选题定向" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">01 · 选题定向</h2>
-  <p>占位页 · Best Practice / Q&A / 自查清单待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>

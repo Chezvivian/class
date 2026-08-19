@@ -1,5 +1,5 @@
 ---
-title: "节点 05 · AI / 译后编辑路径"
+title: "AI 使用指南和伦理"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/05-ai-pe/
@@ -8,12 +8,6 @@ permalink: /mentor-platform/path/05-ai-pe/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="05 AI / 译后编辑路径" %}
-
-<div class="mp-header">
-  <h2 class="no_toc">05 · AI / 译后编辑路径</h2>
-  <p>占位页 · Best Practice / Q&A / 自查清单待填充</p>
-</div>
 
 <div class="mp-section">
   <h2>本阶段目标</h2>

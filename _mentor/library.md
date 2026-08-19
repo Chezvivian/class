@@ -10,11 +10,6 @@ permalink: /mentor-platform/library/
 <div class="mp-wrap">
 {% include mentor-crumb.html trail="权威资料库" %}
 
-<div class="mp-header">
-  <h2 class="no_toc">权威资料库</h2>
-  <p>全国教指委规范 · 贸大英语学院模板与指引 · C 刊题录索引</p>
-</div>
-
 <div class="mp-section">
   <h2>使用说明</h2>
   <div class="mp-placeholder" style="border-style:solid;">
