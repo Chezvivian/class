@@ -335,7 +335,7 @@ a.mp-step:hover {
 }
 
 /* ========================================================= */
-/* 首页改版：一屏 16:9 · 侧边导航 · 手绘路径                    */
+/* 首页改版：常规侧边栏 + 右上快捷入口 · 手绘路径                */
 /* ========================================================= */
 
 :root {
@@ -346,39 +346,18 @@ a.mp-step:hover {
   --mp-seal: #b2402f;
 }
 
-/* 隐藏 gitbook 主题外壳，让本页独占一屏（仅在含 .mp-home 的页面生效） */
-.book:has(.mp-home) .book-summary,
-.book:has(.mp-home) .book-header,
-.book:has(.mp-home) .navigation {
-  display: none !important;
-}
-
-.book:has(.mp-home) .book-body {
-  left: 0 !important;
-}
-
-.page-wrapper:has(.mp-home) .page-inner {
-  max-width: none !important;
-  padding: 0 !important;
-}
-
-.markdown-section:has(.mp-home) > h1:first-child {
-  display: none !important;
-}
-
 .mp-wrap.mp-home {
-  max-width: none;
-  margin: 0;
+  max-width: 1000px;
 }
 
 .mp-home-stage {
   box-sizing: border-box;
   display: flex;
-  gap: 32px;
-  width: min(1360px, 94vw, calc(92vh * 16 / 9));
-  aspect-ratio: 16 / 9;
-  margin: 3vh auto;
-  padding: 34px 40px;
+  flex-direction: column;
+  gap: 26px;
+  width: 100%;
+  margin: 4px 0 28px;
+  padding: 30px 36px;
   background: var(--mp-paper);
   border: 1px solid var(--mp-paper-line);
   border-radius: 16px;
@@ -392,53 +371,57 @@ a.mp-step:hover {
   box-sizing: border-box;
 }
 
-.mp-home-side {
-  flex: 0 0 180px;
+.mp-home-top {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 4px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px 28px;
+  flex-wrap: wrap;
 }
 
-.mp-home-side-link {
+.mp-home-quicklinks {
+  display: flex;
+  gap: 12px;
+  flex: none;
+  order: 2;
+}
+
+.mp-home-quicklink {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 8px;
+  padding: 12px 20px;
   background: #fff;
-  border: 1px solid var(--mp-paper-line);
+  border: 1.5px solid var(--mp-ink);
   border-radius: 10px;
   color: var(--mp-ink);
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s,
+    transform 0.15s, box-shadow 0.15s;
 }
 
-.mp-home-side-link:hover {
+.mp-home-quicklink:hover {
+  background: var(--mp-seal);
   border-color: var(--mp-seal);
-  transform: translateX(2px);
-  box-shadow: 0 4px 10px rgba(178, 64, 47, 0.12);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(178, 64, 47, 0.25);
 }
 
-.mp-home-side-icon {
-  font-size: 18px;
+.mp-home-quicklink-icon {
+  font-size: 19px;
   line-height: 1;
 }
 
-.mp-home-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: clamp(16px, 4vh, 40px);
-}
-
 .mp-home-intro {
+  order: 1;
   margin: 0;
-  max-width: 720px;
-  font-size: clamp(14px, 1.6vw, 17px);
+  flex: 1 1 380px;
+  min-width: 0;
+  font-size: clamp(14px, 1.6vw, 16px);
   line-height: 1.85;
   color: var(--mp-ink-soft);
 }
@@ -556,26 +539,28 @@ a.mp-home-node.mp-down:hover {
 
 @media (max-width: 800px) {
   .mp-home-stage {
-    width: 94vw;
-    aspect-ratio: auto;
+    margin: 16px 0 24px;
+    padding: 22px 18px;
+    gap: 18px;
+  }
+
+  .mp-home-top {
     flex-direction: column;
-    margin: 20px auto;
-    padding: 24px 20px;
-    gap: 20px;
+    align-items: stretch;
   }
 
-  .mp-home-side {
+  .mp-home-quicklinks {
+    order: 1;
     flex-direction: row;
-    flex: none;
-    padding-top: 0;
   }
 
-  .mp-home-side-link {
+  .mp-home-quicklink {
     flex: 1;
+    justify-content: center;
   }
 
   .mp-home-intro {
-    max-width: none;
+    order: 2;
   }
 
   .mp-home-path {

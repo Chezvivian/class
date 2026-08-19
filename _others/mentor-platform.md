@@ -11,21 +11,22 @@ permalink: /mentor-platform/
 
 <div class="mp-home-stage">
 
-  <nav class="mp-home-side" aria-label="平台导航">
-    <a class="mp-home-side-link" href="{{ site.baseurl }}/mentor-platform/library/">
-      <span class="mp-home-side-icon">📚</span>
-      <span class="mp-home-side-text">资料下载</span>
-    </a>
-    <a class="mp-home-side-link" href="{{ site.baseurl }}/mentor-platform/faculty/">
-      <span class="mp-home-side-icon">🧭</span>
-      <span class="mp-home-side-text">导师沟通节点</span>
-    </a>
-  </nav>
-
-  <div class="mp-home-main">
+  <div class="mp-home-top">
     <p class="mp-home-intro">
       欢迎 MTI 同学们开始毕业论文写作的旅程！这里有全流程从开题、收集翻译实践素材、论文写作到盲审和答辩中你可能会遇到的问题（和答案），以及和导师沟通的几个关键时间节点，帮助你规划、顺利完成自己的毕业论文。那，我们开始吧！
     </p>
+
+    <nav class="mp-home-quicklinks" aria-label="平台导航">
+      <a class="mp-home-quicklink" href="{{ site.baseurl }}/mentor-platform/library/">
+        <span class="mp-home-quicklink-icon">📚</span>
+        <span>资料下载</span>
+      </a>
+      <a class="mp-home-quicklink" href="{{ site.baseurl }}/mentor-platform/faculty/">
+        <span class="mp-home-quicklink-icon">🧭</span>
+        <span>导师沟通节点</span>
+      </a>
+    </nav>
+  </div>
 
     <div class="mp-home-path">
       <svg class="mp-home-wave" viewBox="0 0 1000 160" preserveAspectRatio="none" aria-hidden="true">
@@ -70,7 +71,6 @@ permalink: /mentor-platform/
         </span>
       </div>
     </div>
-  </div>
 
 </div>
 
