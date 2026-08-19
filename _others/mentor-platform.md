@@ -10,13 +10,17 @@ permalink: /mentor-platform/
 <div class="mp-home-head no_toc">
 <p class="mp-home-intro">欢迎 MTI 同学们开始毕业论文写作的旅程！这里有全流程从开题、收集翻译实践素材、论文写作到盲审和答辩中你可能会遇到的问题（和答案），以及和导师沟通的几个关键时间节点，帮助你规划、顺利完成自己的毕业论文。<br>那，我们开始吧！</p>
 <p class="mp-home-links">
-<a href="{{ site.baseurl }}/mentor-platform/library/">📚 资料下载</a>
-<a href="{{ site.baseurl }}/mentor-platform/faculty/">🧭 导师沟通节点</a>
+<a class="mp-panel" href="{{ site.baseurl }}/mentor-platform/library/">📚 资料下载</a>
+<a class="mp-panel" href="{{ site.baseurl }}/mentor-platform/faculty/">🧭 导师沟通节点</a>
 </p>
 </div>
+
+<div class="mp-panel mp-home-steps" markdown="1">
 
 1. **开题**：[选题定向]({{ site.baseurl }}/mentor-platform/path/01-topic/) · [开题报告]({{ site.baseurl }}/mentor-platform/path/02-proposal/)
 2. [**笔译实践和素材**]({{ site.baseurl }}/mentor-platform/path/03-practice-translation/)
 3. [**口译实践和素材**]({{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/)
 4. **论文主体写作**：[报告主体写作]({{ site.baseurl }}/mentor-platform/path/04-report/) · [AI · 译后编辑]({{ site.baseurl }}/mentor-platform/path/05-ai-pe/)
 5. **盲审和答辩**：[盲审修改]({{ site.baseurl }}/mentor-platform/path/06-blind-review/) · [答辩准备]({{ site.baseurl }}/mentor-platform/path/07-defense/)
+
+</div>

@@ -257,13 +257,21 @@ a.mp-card:hover {
   font-weight: 600;
 }
 
-/* 首页：全宽正文 + 右上入口；步骤沿用站点 markdown 列表 */
+/* 首页：简介色块（对齐文字转语音工具简介区块） */
+.mp-panel {
+  background: #f5f7fa;
+  border-radius: 8px;
+  padding: 20px 30px;
+  font-size: 1.1em;
+  line-height: 2.2;
+}
+
 .mp-home-head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px 24px;
-  margin-bottom: 1em;
+  gap: 16px 24px;
+  margin: 24px 0 0;
 }
 
 .mp-home-intro {
@@ -275,23 +283,41 @@ a.mp-card:hover {
 
 .mp-home-links {
   display: flex;
-  gap: 1.25em;
+  flex-direction: column;
+  gap: 12px;
   margin: 0;
   flex-shrink: 0;
-  font-size: 1.1em;
-  font-weight: 700;
 }
 
-.mp-home-links a {
+.mp-home-links a.mp-panel {
+  display: block;
+  margin: 0;
+  font-weight: 700;
   white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+}
+
+.mp-home-steps {
+  margin: 24px 0 32px;
+}
+
+.mp-home-steps ol {
+  margin: 0;
+  padding-left: 1.4em;
+}
+
+.mp-home-steps li {
+  margin: 0;
 }
 
 @media (max-width: 800px) {
   .mp-home-head {
     display: block;
+    margin-top: 16px;
   }
 
   .mp-home-intro {
-    margin-bottom: 0.5em;
+    margin-bottom: 12px;
   }
 }
