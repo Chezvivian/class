@@ -335,276 +335,71 @@ a.mp-step:hover {
 }
 
 /* ========================================================= */
-/* 首页改版：常规侧边栏 + 右上快捷入口 · 手绘路径                */
+/* 首页改版：无背景色块 · 右上快捷入口 · 步骤自上而下居左排列    */
 /* ========================================================= */
-
-:root {
-  --mp-ink: #2b3f66;
-  --mp-ink-soft: #566388;
-  --mp-paper: #faf6ec;
-  --mp-paper-line: #e3d9c2;
-  --mp-seal: #b2402f;
-}
-
-.mp-wrap.mp-home {
-  max-width: 1000px;
-}
-
-.mp-home-stage {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  width: 100%;
-  margin: 4px 0 28px;
-  padding: 30px 36px;
-  background: var(--mp-paper);
-  border: 1px solid var(--mp-paper-line);
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(43, 63, 102, 0.08);
-  color: var(--mp-ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-}
-
-.mp-home-stage * {
-  box-sizing: border-box;
-}
 
 .mp-home-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px 28px;
+  gap: 16px 28px;
   flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
 .mp-home-quicklinks {
   display: flex;
   gap: 12px;
   flex: none;
-  order: 2;
 }
 
 .mp-home-quicklink {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
+  padding: 10px 18px;
   background: #fff;
-  border: 1.5px solid var(--mp-ink);
-  border-radius: 10px;
-  color: var(--mp-ink);
+  border: 1.5px solid #1e40af;
+  border-radius: 8px;
+  color: #1e40af;
   text-decoration: none;
   font-size: 16px;
   font-weight: 700;
   white-space: nowrap;
-  transition: background 0.15s, border-color 0.15s, color 0.15s,
-    transform 0.15s, box-shadow 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
 
 .mp-home-quicklink:hover {
-  background: var(--mp-seal);
-  border-color: var(--mp-seal);
+  background: #1e40af;
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(178, 64, 47, 0.25);
 }
 
 .mp-home-quicklink-icon {
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1;
 }
 
 .mp-home-intro {
-  order: 1;
   margin: 0;
   flex: 1 1 380px;
   min-width: 0;
-  font-size: clamp(14px, 1.6vw, 16px);
-  line-height: 1.85;
-  color: var(--mp-ink-soft);
-}
-
-.mp-home-path {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: clamp(140px, 26vh, 220px);
-  padding: 0 8px;
-}
-
-.mp-home-wave {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.mp-wave {
-  fill: none;
-  stroke: var(--mp-ink);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  opacity: 0.5;
-}
-
-.mp-wave-2 {
-  opacity: 0.28;
-}
-
-.mp-home-node {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-align: center;
-  text-decoration: none;
-  color: var(--mp-ink);
-  padding: 6px 4px;
-  border-radius: 12px;
-  transition: transform 0.2s;
-}
-
-a.mp-home-node:hover {
-  transform: translateY(-4px);
-}
-
-a.mp-home-node:hover .mp-home-dot {
-  border-color: var(--mp-seal);
-  color: var(--mp-seal);
-}
-
-.mp-home-node.mp-up {
-  transform: translateY(-18px);
-}
-
-.mp-home-node.mp-down {
-  transform: translateY(18px);
-}
-
-a.mp-home-node.mp-up:hover {
-  transform: translateY(-22px);
-}
-
-a.mp-home-node.mp-down:hover {
-  transform: translateY(14px);
-}
-
-.mp-home-dot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 2px solid var(--mp-ink);
-  background: var(--mp-paper);
-  font-size: 15px;
-  font-weight: 700;
-  transition: border-color 0.15s, color 0.15s;
-}
-
-.mp-home-node-title {
-  font-family: "STKaiti", "KaiTi", "Kaiti SC", "华文楷体", cursive;
-  font-size: clamp(17px, 2vw, 22px);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.mp-home-node-sub {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.mp-home-node-sub a {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--mp-ink-soft);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--mp-paper-line);
-  padding-bottom: 1px;
-}
-
-.mp-home-node-sub a:hover {
-  color: var(--mp-seal);
-  border-bottom-color: var(--mp-seal);
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.9;
+  color: #334155;
 }
 
 @media (max-width: 800px) {
-  .mp-home-stage {
-    margin: 16px 0 24px;
-    padding: 22px 18px;
-    gap: 18px;
-  }
-
   .mp-home-top {
     flex-direction: column;
     align-items: stretch;
   }
 
   .mp-home-quicklinks {
-    order: 1;
     flex-direction: row;
   }
 
   .mp-home-quicklink {
     flex: 1;
     justify-content: center;
-  }
-
-  .mp-home-intro {
-    order: 2;
-  }
-
-  .mp-home-path {
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 0;
-    padding: 0;
-    gap: 4px;
-  }
-
-  .mp-home-wave {
-    display: none;
-  }
-
-  .mp-home-node,
-  .mp-home-node.mp-up,
-  .mp-home-node.mp-down {
-    transform: none;
-    flex-direction: row;
-    text-align: left;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 4px;
-    border-bottom: 1px dashed var(--mp-paper-line);
-    border-radius: 0;
-  }
-
-  a.mp-home-node:hover,
-  a.mp-home-node.mp-up:hover,
-  a.mp-home-node.mp-down:hover {
-    transform: none;
-  }
-
-  .mp-home-node:last-child {
-    border-bottom: none;
-  }
-
-  .mp-home-dot {
-    flex: none;
-  }
-
-  .mp-home-node-sub {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px 12px;
   }
 }
