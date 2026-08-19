@@ -11,23 +11,29 @@ permalink: /mentor-platform/path/01-topic/
 
 <div class="mp-section">
   <h2>本阶段目标</h2>
-  <p style="font-size:14px;color:#475569;line-height:1.8;margin:0 0 12px;">
-    本阶段要完成一件事：<strong>确定自己想写的翻译实践报告具体类型</strong>。全国翻译专业学位研究生教育指导委员会《基本要求（试行）》把「案例分析报告」明确划分为<strong>六大类型</strong>，并不按学生的培养方向（口译 / 笔译）划分——也就是说，<strong>无论你是口译方向还是笔译方向，都可以跨方向选择这六类中的任意一类</strong>，不要被自己的培养方向局限住。
-  </p>
-  <p style="font-size:14px;color:#475569;line-height:1.8;margin:0 0 12px;">
-    <strong>特别鼓励大家多考虑后四种「新」类型</strong>——翻译项目管理、翻译语言资产管理、项目质量审校（MTPE）、翻译技术应用。选的人不多，但更贴合当下语言服务市场的真实岗位需求（项目经理、术语工程师、MTPE 审校员等），对就业更有帮助；写作难度也不一定比传统口笔译实践操作类更高，往往因为工具链和流程本身比较清晰，反而更容易把「做了什么、遇到什么问题、怎么解决」讲明白。
-  </p>
-  <p style="font-size:14px;color:#475569;line-height:1.8;margin:0 0 12px;">
-    <strong>导师在这一阶段主要关注两点：</strong>①选题是否合理——是否出于真实的市场需求或行业现象，而不是凭空设想的问题；②范围是否已经收窄到可操作、有可行性——是否基于你能收集到的数据、个人兴趣、以及合理的工作量预估。
-  </p>
-  <p style="font-size:14px;color:#475569;line-height:1.8;margin:0;">
-    确定类型之后，下一步要想：<strong>这个类型能不能贴合我已经做过的翻译实践，或者近期、可预见的将来会接触到的实践项目？</strong>翻译实践报告的本质，就是从自己的翻译实践中发现问题、解决问题，为未来进入语言服务行业提供经验和指导——这也是帮助自己从「学生思维」转换为「工作思维」的一次很好的自我探索。如果能把个人的实习实践经历、所思所想所创，和毕业论文写作结合起来，会是记录个人成长最好的方式。
+
+  <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
+  <ul class="mp-goals">
+    <li>确定自己想写的翻译实践报告<strong>具体类型</strong>（教指委六大类型之一），而不是笼统地说「想写翻译实践报告」。</li>
+    <li>不受培养方向（口译 / 笔译）局限——<strong>六大类型可跨方向自由选择</strong>。</li>
+    <li>认真考虑后四种「新」类型：翻译项目管理、语言资产管理、项目质量审校（MTPE）、翻译技术应用。它们更贴合语言服务市场的真实岗位需求，对就业更有帮助，写作难度也不一定更高。</li>
+    <li>确定类型后，进一步思考：这个类型能否贴合自己<strong>已经做过、或近期可预见会接触到</strong>的翻译实践项目，从而保证有素材可用。</li>
+  </ul>
+
+  <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:16px 0 8px;">导师关注</h3>
+  <ul class="mp-goals">
+    <li><strong>选题是否合理</strong>：是否出于真实的市场需求或行业现象，而不是凭空设想的问题。</li>
+    <li><strong>范围是否可行</strong>：是否已收窄到可操作的程度，是否基于学生能收集到的数据、个人兴趣、合理的工作量预估。</li>
+  </ul>
+
+  <p style="margin:16px 0 0;color:#64748b;">
+    翻译实践报告的本质，是从自己的翻译实践中发现问题、解决问题，为未来进入语言服务行业积累经验——这也是帮助自己从「学生思维」转换为「工作思维」的一次自我探索。把实习实践经历、所思所想所创和毕业论文写作结合起来，会是记录个人成长最好的方式。
   </p>
 </div>
 
 <div class="mp-section">
   <h2>六大实践报告类型速览</h2>
-  <p style="font-size:13px;color:#94a3b8;margin:0 0 12px;">来源：《翻译专业学位类别硕士学位论文基本要求（试行）》（教指委，2023-12）「二、学位论文类型和相关要求 · (一) 案例分析报告 · 2. 选题要求」</p>
+  <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">来源：《翻译专业学位类别硕士学位论文基本要求（试行）》（教指委，2023-12）「二、学位论文类型和相关要求 · (一) 案例分析报告 · 2. 选题要求」</p>
 
   <img src="{{ site.baseurl }}/assets/mentor-platform/images/report-types-6.png" alt="翻译实践报告的六大具体类型" style="width:100%;max-width:720px;display:block;margin:0 auto 16px;border-radius:8px;">
 
@@ -78,7 +84,7 @@ permalink: /mentor-platform/path/01-topic/
 
 <div class="mp-section">
   <h2>Best Practice</h2>
-  <p style="font-size:14px;color:#475569;line-height:1.8;margin:0 0 12px;">
+  <p style="margin:0 0 12px;">
     理想的选题过程，是从「一个宽泛的实践领域」逐步收窄到「一个具体、可分析的研究问题」。以下几个方向来自往届 MTI 实践报告评阅中的真实案例（已对题目做模糊化处理，仅保留大致行业方向，供大家参考选题的收窄思路）：
   </p>
   <div class="mp-qa">
@@ -97,7 +103,7 @@ permalink: /mentor-platform/path/01-topic/
     <h4 class="no_toc">案例四 · 项目质量审校类（视听字幕翻译 + 译后编辑）</h4>
     <p class="mp-muted">作者实际采用的是「机器翻译 + 译后编辑」流程，因此更准确的定位应是项目质量审校类（MTPE），而不是笼统的笔译实践类——选题类型要和实际做的工作流程对齐，题目、类型、内容三者要互相匹配。</p>
   </div>
-  <p style="font-size:13px;color:#94a3b8;line-height:1.7;margin:12px 0 0;">
+  <p style="font-size:14px;color:#94a3b8;line-height:1.7;margin:12px 0 0;">
     一个反面提醒：研究问题不能只是「我要做的几件事」的清单（例如「我会做 MT、我会做 PE、我会做评估」），而必须是具体、可分析、可回答的问题（例如「某类文本在 MT+PE 流程中最常见的错误类型是什么，哪些译后编辑策略最有效」）。
   </p>
 </div>
@@ -136,7 +142,7 @@ permalink: /mentor-platform/path/01-topic/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="font-size:14px;color:#64748b;">
+  <p style="color:#64748b;">
     《翻译专业学位类别硕士学位论文基本要求（试行）》（全国翻译专业学位研究生教育指导委员会，2023-12，公开文件）：
     <a href="{{ site.baseurl }}/assets/mentor-platform/refs/norms/翻译专业学位类别硕士学位论文基本要求-试行-2023.pdf" target="_blank" rel="noopener">PDF 下载</a>
     ，更多规范与模板见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。

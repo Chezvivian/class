@@ -2,10 +2,9 @@
 .mp-wrap {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
     "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-  color: #475569;
-  background: #f5f7fa;
-  border-radius: 8px;
-  padding: 20px 30px;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.8;
   max-width: none;
   margin: 0;
 }
@@ -97,16 +96,16 @@ a.mp-card:hover {
 
 .mp-card h3 {
   margin: 0 0 6px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: #1e293b;
 }
 
 .mp-card p {
   margin: 0;
-  font-size: 13px;
+  font-size: 15px;
   color: #64748b;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .mp-card .tag {
@@ -134,13 +133,12 @@ a.mp-card:hover {
 }
 
 .mp-placeholder {
-  background: #f8fafc;
   border: 1px dashed #cbd5e1;
   border-radius: 8px;
   padding: 14px 16px;
-  font-size: 14px;
+  font-size: 16px;
   color: #64748b;
-  line-height: 1.7;
+  line-height: 1.8;
   margin: 0 0 16px;
 }
 
@@ -148,34 +146,49 @@ a.mp-card:hover {
   color: #334155;
 }
 
+.mp-goals {
+  margin: 0 0 16px;
+  padding-left: 1.3em;
+  font-size: 16px;
+  line-height: 1.85;
+  color: #334155;
+}
+
+.mp-goals li {
+  margin-bottom: 8px;
+}
+
+.mp-goals li:last-child {
+  margin-bottom: 0;
+}
+
 .mp-list {
   margin: 0 0 16px;
   padding-left: 1.2em;
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.85;
   color: #334155;
 }
 
 .mp-qa {
   margin: 0 0 14px;
   padding: 12px 14px;
-  background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
 }
 
 .mp-qa h4 {
   margin: 0 0 6px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #1e40af;
 }
 
 .mp-qa p {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: #475569;
-  line-height: 1.65;
+  line-height: 1.75;
 }
 
 .mp-check {
@@ -185,13 +198,12 @@ a.mp-card:hover {
 }
 
 .mp-check li {
-  font-size: 14px;
+  font-size: 16px;
   color: #334155;
   padding: 8px 12px;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
   margin-bottom: 8px;
-  background: #fff;
 }
 
 .mp-check li::before {
@@ -200,13 +212,11 @@ a.mp-card:hover {
 }
 
 .mp-note {
-  background: #eff6ff;
   border-left: 3px solid #2563eb;
-  border-radius: 0 6px 6px 0;
   padding: 10px 14px;
-  font-size: 13px;
+  font-size: 15px;
   color: #1e40af;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 16px 0 0;
 }
 
@@ -218,7 +228,7 @@ a.mp-card:hover {
 .mp-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .mp-table th,
@@ -230,7 +240,6 @@ a.mp-card:hover {
 }
 
 .mp-table th {
-  background: #f8fafc;
   font-weight: 700;
   color: #334155;
 }
@@ -240,19 +249,18 @@ a.mp-card:hover {
 }
 
 .mp-muted {
-  color: #94a3b8;
-  font-style: italic;
+  color: #64748b;
+  font-style: normal;
 }
 
 .mp-ai {
   margin-top: 28px;
   padding: 14px 16px;
-  background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: 15px;
   color: #475569;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .mp-ai a {
