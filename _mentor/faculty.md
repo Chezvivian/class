@@ -1,5 +1,5 @@
 ---
-title: "导师指导体系"
+title: "导师沟通节点"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/faculty/

@@ -1,5 +1,5 @@
 ---
-title: "权威资料库"
+title: "资料下载"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/library/
