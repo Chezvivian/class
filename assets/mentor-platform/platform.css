@@ -284,18 +284,25 @@ a.mp-card:hover {
 .mp-home-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: stretch;
+  gap: 8px;
   margin: 0;
   flex-shrink: 0;
 }
 
-.mp-home-links a.mp-panel {
+.markdown-section .mp-home-links a {
   display: block;
+  box-sizing: border-box;
+  background: #f5f7fa;
+  border-radius: 8px;
+  padding: 10px 16px;
   margin: 0;
+  font-size: 1.1em;
   font-weight: 700;
-  white-space: nowrap;
-  text-align: center;
+  line-height: 1.5;
+  text-align: left;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .mp-home-steps {
