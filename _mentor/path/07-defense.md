@@ -47,7 +47,7 @@ permalink: /mentor-platform/path/07-defense/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。</p>
+  <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 
 <p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/06-blind-review/">06 盲审修改</a> · 返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a></p>

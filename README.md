@@ -47,7 +47,7 @@ permalink: /
   <div style="background:#e8f4fd; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🎓</span><br>
     <b>MTI 培养指导平台</b><br>
-    <span style="color:#555;">论文全流程路径、权威资料库与导师指导体系。</span><br>
+    <span style="color:#555;">论文全流程路径、资料下载与导师沟通节点。</span><br>
     <a href="/class/mentor-platform/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
     <div style="margin-top:10px; font-size:0.95em; color:#888;">七节点路径 · 资料库 · 导师侧</div>
   </div>

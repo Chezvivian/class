@@ -8,7 +8,7 @@ permalink: /mentor-platform/library/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="权威资料库" %}
+{% include mentor-crumb.html trail="资料下载" %}
 
 <div class="mp-section">
   <h2>使用说明</h2>
@@ -252,5 +252,5 @@ permalink: /mentor-platform/library/
   </div>
 </div>
 
-<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/faculty/">导师指导体系</a></p>
+<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/faculty/">导师沟通节点</a></p>
 </div>

@@ -48,7 +48,7 @@ permalink: /mentor-platform/path/05-ai-pe/
 <div class="mp-section">
   <h2>延伸阅读</h2>
   <p style="font-size:14px;color:#64748b;">
-    见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。
+    见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。
     外部参考（可保留）：
     <a href="https://www.taus.net/resources/reports/guidelines-for-post-editing" target="_blank" rel="noopener">TAUS 译后编辑指南</a>
   </p>

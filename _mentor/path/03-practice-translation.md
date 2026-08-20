@@ -128,7 +128,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="color:#64748b;">教指委对笔译附录与实践量的底线，见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a> 中的《基本要求（试行）》及学院模板。类型选择仍以 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> 为准。</p>
+  <p style="color:#64748b;">教指委对笔译附录与实践量的底线，见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的《基本要求（试行）》及学院模板。类型选择仍以 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> 为准。</p>
 </div>
 
 <p class="mp-note">

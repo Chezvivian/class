@@ -48,7 +48,7 @@ permalink: /mentor-platform/path/04-report/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a>。</p>
+  <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 
 <p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice/">03 翻译实践和素材</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">AI 使用指南和伦理</a></p>

@@ -8,7 +8,7 @@ permalink: /mentor-platform/faculty/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
 
 <div class="mp-wrap">
-{% include mentor-crumb.html trail="导师指导体系" %}
+{% include mentor-crumb.html trail="导师沟通节点" %}
 
 <div class="mp-section">
   <h2 id="calendar">1. 学年指导日历</h2>
@@ -45,5 +45,5 @@ permalink: /mentor-platform/faculty/
   </div>
 </div>
 
-<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a></p>
+<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a></p>
 </div>

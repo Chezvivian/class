@@ -106,7 +106,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="color:#64748b;">篇幅与附录要求见 <a href="{{ site.baseurl }}/mentor-platform/library/">权威资料库</a> 中的学院选题指引与教指委《基本要求（试行）》。类型与跨方向选择见 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a>。</p>
+  <p style="color:#64748b;">篇幅与附录要求见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的学院选题指引与教指委《基本要求（试行）》。类型与跨方向选择见 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a>。</p>
 </div>
 
 <p class="mp-note">
