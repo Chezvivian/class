@@ -131,7 +131,7 @@ permalink: /mentor-platform/path/02-proposal/
   <p style="color:#64748b;">两种开题报告模板（及配套学位论文模板）已收录在 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>，可直接下载填写；格式与体例问题请对照《英语学院学位论文写作规范》。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice/">03 翻译实践和素材</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a> · <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

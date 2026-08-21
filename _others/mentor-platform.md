@@ -18,7 +18,7 @@ permalink: /mentor-platform/
 <div class="mp-panel mp-home-steps" markdown="1">
 
 1. **开题**：[选题定向]({{ site.baseurl }}/mentor-platform/path/01-topic/) · [开题报告]({{ site.baseurl }}/mentor-platform/path/02-proposal/)
-2. **翻译实践和素材**：[笔译方向]({{ site.baseurl }}/mentor-platform/path/03-practice-translation/) · [口译方向]({{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/)
+2. **翻译实践和素材**：[03A 笔译]({{ site.baseurl }}/mentor-platform/path/03-practice-translation/) · [03B 口译]({{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/)
 3. **论文主体写作**：[报告主体写作]({{ site.baseurl }}/mentor-platform/path/04-report/)
 4. **盲审和答辩**：[盲审修改]({{ site.baseurl }}/mentor-platform/path/06-blind-review/) · [答辩准备]({{ site.baseurl }}/mentor-platform/path/07-defense/)
 5. [**AI 使用指南**]({{ site.baseurl }}/mentor-platform/path/05-ai-pe/)

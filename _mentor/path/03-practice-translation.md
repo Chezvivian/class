@@ -1,5 +1,5 @@
 ---
-title: "03B · 翻译实践和素材（笔译）"
+title: "03A · 翻译实践和素材（笔译）"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/03-practice-translation/
@@ -131,9 +131,5 @@ permalink: /mentor-platform/path/03-practice-translation/
   <p style="color:#64748b;">教指委对笔译附录与实践量的底线，见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的《基本要求（试行）》及学院模板。类型选择仍以 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> 为准。</p>
 </div>
 
-<p class="mp-note">
-  返回 <a href="{{ site.baseurl }}/mentor-platform/path/03-practice/">03 总览</a>
-  · 对照 <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">口译方向</a>
-  · 下一节点 <a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 报告主体写作</a>
-</p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/02-proposal/">02 开题报告</a> · 对照：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 报告主体写作</a></p>
 </div>

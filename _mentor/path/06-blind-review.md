@@ -50,7 +50,7 @@ permalink: /mentor-platform/path/06-blind-review/
   <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">AI 使用指南和伦理</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/07-defense/">07 答辩准备</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">05 AI 使用指南和伦理</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/07-defense/">07 答辩准备</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。
