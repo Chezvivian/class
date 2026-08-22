@@ -10,6 +10,11 @@ permalink: /mentor-platform/timetable/
 <div class="mp-wrap">
 {% include mentor-crumb.html trail="毕业论文工作时间线" %}
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#calendar">1. 毕业论文工作时间线</a>
+  <a href="#qa">2. Q&amp;A</a>
+</nav>
+
 <div class="mp-section">
   <h2 id="calendar">1. 毕业论文工作时间线</h2>
   <p style="margin:0 0 12px;color:#64748b;">面向 2025 级（2027 年 6 月毕业）。毕业论文写作从 2026 年 9 月起进入集中阶段。下表按同一时间轴对照学生与导师任务；具体日期以当年学院通知为准。</p>

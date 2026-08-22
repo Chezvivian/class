@@ -9,8 +9,17 @@ permalink: /mentor-platform/path/02-proposal/
 
 <div class="mp-wrap">
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#sec-goals">本阶段目标</a>
+  <a href="#sec-templates">两种模板结构速览</a>
+  <a href="#sec-bp">Best Practice</a>
+  <a href="#sec-qa">Q&amp;A</a>
+  <a href="#sec-check">自查清单</a>
+  <a href="#sec-read">延伸阅读</a>
+</nav>
+
 <div class="mp-section">
-  <h2>本阶段目标</h2>
+  <h2 id="sec-goals">本阶段目标</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
   <ul class="mp-goals">
@@ -30,7 +39,7 @@ permalink: /mentor-platform/path/02-proposal/
 </div>
 
 <div class="mp-section">
-  <h2>两种模板结构速览</h2>
+  <h2 id="sec-templates">两种模板结构速览</h2>
   <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">来源：贸大英语学院《MTI 开题报告模板》（笔译 / 口译两条模板同构，仅示例语言不同）。这里只列结构，具体措辞与格式请以模板原文为准，见延伸阅读。</p>
 
   <div class="mp-table-wrap">
@@ -78,7 +87,7 @@ permalink: /mentor-platform/path/02-proposal/
 </div>
 
 <div class="mp-section">
-  <h2>Best Practice</h2>
+  <h2 id="sec-bp">Best Practice</h2>
   <div class="mp-qa">
     <h4 class="no_toc">Project Focus / Research Questions 要能回答，不要写成任务清单</h4>
     <p class="mp-muted">常见的坑：把 Project Focus 写成「我会做机器翻译、我会做译后编辑、我会做质量评估」。这是工作流程，不是研究问题。更好的写法是提出具体、能分析、能回答的问题，例如「某类文本在 MT + PE 流程中最常见的错误类型是什么，哪些译后编辑办法最有效」。这样第三章之后的每一步，都是在回答这个问题。</p>
@@ -94,7 +103,7 @@ permalink: /mentor-platform/path/02-proposal/
 </div>
 
 <div class="mp-section">
-  <h2>Q&amp;A</h2>
+  <h2 id="sec-qa">Q&amp;A</h2>
   <div class="mp-qa">
     <h4 class="no_toc">Q1 · 两种模板可以混用或者中途更换吗？</h4>
     <p class="mp-muted">原则上按 01 阶段确定的报告类型对应选用。如果开题后发现类型不合适（比如发现实际是调研，不是案例分析），可以和导师沟通调整。越早发现，调整成本越低，所以 01 阶段的类型判断很关键。</p>
@@ -114,7 +123,7 @@ permalink: /mentor-platform/path/02-proposal/
 </div>
 
 <div class="mp-section">
-  <h2>自查清单</h2>
+  <h2 id="sec-check">自查清单</h2>
   <ul class="mp-check">
     <li>已根据 01 阶段选定的类型，选用对应的开题报告模板（实践项目报告 / 行业调研报告）</li>
     <li>Project Focus / Research Questions 是具体、能回答的问题，不是任务清单</li>
@@ -127,7 +136,7 @@ permalink: /mentor-platform/path/02-proposal/
 </div>
 
 <div class="mp-section">
-  <h2>延伸阅读</h2>
+  <h2 id="sec-read">延伸阅读</h2>
   <p style="color:#64748b;">开题报告模板和学位论文模板请向英语学院获取。格式与体例问题请对照《英语学院学位论文写作规范》，文件见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 

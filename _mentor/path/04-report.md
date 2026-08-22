@@ -9,8 +9,16 @@ permalink: /mentor-platform/path/04-report/
 
 <div class="mp-wrap">
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#sec-goals">本阶段目标</a>
+  <a href="#sec-bp">Best Practice</a>
+  <a href="#sec-qa">Q&amp;A</a>
+  <a href="#sec-check">自查清单</a>
+  <a href="#sec-read">延伸阅读</a>
+</nav>
+
 <div class="mp-section">
-  <h2>本阶段目标</h2>
+  <h2 id="sec-goals">本阶段目标</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
   <ul class="mp-goals">
@@ -29,7 +37,7 @@ permalink: /mentor-platform/path/04-report/
 </div>
 
 <div class="mp-section">
-  <h2>Best Practice</h2>
+  <h2 id="sec-bp">Best Practice</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">Chapter 3 Project Implementation</h3>
   <p style="margin:0 0 12px;">这一章写<strong>你怎么把项目做完</strong>：逻辑、方法、细节。读者看完应能大致复现你的流程。目标是高效、高质，能自动化的步骤尽量自动化，并写清规则。</p>
@@ -63,7 +71,7 @@ permalink: /mentor-platform/path/04-report/
 </div>
 
 <div class="mp-section">
-  <h2>Q&amp;A</h2>
+  <h2 id="sec-qa">Q&amp;A</h2>
   <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">以下根据近两年 MTI 实践报告评阅中的高频问题整理，不针对某一篇论文。</p>
 
   <div class="mp-qa">
@@ -102,7 +110,7 @@ permalink: /mentor-platform/path/04-report/
 </div>
 
 <div class="mp-section">
-  <h2>自查清单</h2>
+  <h2 id="sec-check">自查清单</h2>
   <ul class="mp-check">
     <li>Chapter 3 能回答：用了什么工具、每一步规则是什么、术语和评分如何筛选；时态为过去时</li>
     <li>Chapter 3 没有大段译例分析，也没有开题用的写作时间表</li>
@@ -115,7 +123,7 @@ permalink: /mentor-platform/path/04-report/
 </div>
 
 <div class="mp-section">
-  <h2>延伸阅读</h2>
+  <h2 id="sec-read">延伸阅读</h2>
   <p style="color:#64748b;">结构与篇幅以学院下发的学位论文模板为准。语料与流程准备见 <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a>、<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a>。</p>
 </div>
 

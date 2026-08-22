@@ -9,8 +9,17 @@ permalink: /mentor-platform/path/01-topic/
 
 <div class="mp-wrap">
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#sec-goals">本阶段目标</a>
+  <a href="#sec-types">六大实践报告类型速览</a>
+  <a href="#sec-bp">Best Practice</a>
+  <a href="#sec-qa">Q&amp;A</a>
+  <a href="#sec-check">自查清单</a>
+  <a href="#sec-read">延伸阅读</a>
+</nav>
+
 <div class="mp-section">
-  <h2>本阶段目标</h2>
+  <h2 id="sec-goals">本阶段目标</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
   <ul class="mp-goals">
@@ -32,7 +41,7 @@ permalink: /mentor-platform/path/01-topic/
 </div>
 
 <div class="mp-section">
-  <h2>六大实践报告类型速览</h2>
+  <h2 id="sec-types">六大实践报告类型速览</h2>
   <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">来源：《翻译专业学位类别硕士学位论文基本要求（试行）》（教指委，2023-12）「二、学位论文类型和相关要求 · (一) 案例分析报告 · 2. 选题要求」</p>
 
   <img src="{{ site.baseurl }}/assets/mentor-platform/images/report-types-6.png" alt="翻译实践报告的六大具体类型" style="width:100%;max-width:720px;display:block;margin:0 auto 16px;border-radius:8px;">
@@ -83,7 +92,7 @@ permalink: /mentor-platform/path/01-topic/
 </div>
 
 <div class="mp-section">
-  <h2>Best Practice</h2>
+  <h2 id="sec-bp">Best Practice</h2>
   <p style="margin:0 0 12px;">
     比较稳妥的选题办法，是从一个比较宽的实践领域，一步步收到一个具体、能分析的问题。下面几个方向来自往届 MTI 实践报告评阅中的真实案例（题目已做模糊处理，只保留大致行业方向，供大家参考怎么收窄）：
   </p>
@@ -109,7 +118,7 @@ permalink: /mentor-platform/path/01-topic/
 </div>
 
 <div class="mp-section">
-  <h2>Q&amp;A</h2>
+  <h2 id="sec-qa">Q&amp;A</h2>
   <div class="mp-qa">
     <h4 class="no_toc">Q1 · 我是口译方向的学生，可以写笔译类型（或反过来）的实践报告吗？</h4>
     <p class="mp-muted">可以。六大类型是按报告里具体做什么来分的，不是按你的培养方向来分。只要你有对应的实践素材，哪怕是短期实习、志愿服务、课程项目里留下的语料或录音，就可以跨方向选题。往届这样写的并不少见。</p>
@@ -129,7 +138,7 @@ permalink: /mentor-platform/path/01-topic/
 </div>
 
 <div class="mp-section">
-  <h2>自查清单</h2>
+  <h2 id="sec-check">自查清单</h2>
   <ul class="mp-check">
     <li>我已经明确要写六大类型中的哪一类</li>
     <li>我的选题来自真实的市场需求或行业现象</li>
@@ -141,7 +150,7 @@ permalink: /mentor-platform/path/01-topic/
 </div>
 
 <div class="mp-section">
-  <h2>延伸阅读</h2>
+  <h2 id="sec-read">延伸阅读</h2>
   <p style="color:#64748b;">
     《翻译专业学位类别硕士学位论文基本要求（试行）》（全国翻译专业学位研究生教育指导委员会，2023-12，公开文件）：
     <a href="{{ site.baseurl }}/assets/mentor-platform/refs/norms/翻译专业学位类别硕士学位论文基本要求-试行-2023.pdf" target="_blank" rel="noopener">PDF 下载</a>

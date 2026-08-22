@@ -9,8 +9,19 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 
 <div class="mp-wrap">
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#sec-goals">本阶段目标</a>
+  <a href="#sec-reqs">学院基本要求（口译实践报告）</a>
+  <a href="#sec-source">语料从哪里来</a>
+  <a href="#sec-workflow">建议的语料工作流</a>
+  <a href="#sec-bp">Best Practice</a>
+  <a href="#sec-qa">Q&amp;A</a>
+  <a href="#sec-check">自查清单</a>
+  <a href="#sec-read">延伸阅读</a>
+</nav>
+
 <div class="mp-section">
-  <h2>本阶段目标</h2>
+  <h2 id="sec-goals">本阶段目标</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
   <ul class="mp-goals">
@@ -29,7 +40,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>学院基本要求（口译实践报告）</h2>
+  <h2 id="sec-reqs">学院基本要求（口译实践报告）</h2>
   <ul class="mp-goals">
     <li>在导师指导下，对自己承担的口译任务进行描述和分析。</li>
     <li>附录：不少于 <strong>10,000 汉字 / 英语单词</strong>的口译录音转写。</li>
@@ -40,12 +51,12 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>语料从哪里来</h2>
+  <h2 id="sec-source">语料从哪里来</h2>
   <p style="margin:0 0 12px;">优先真实实习：把会议原声和自己的口译都录下来。并非每位同学都有会议口译机会，学院组织的多次模拟会议口译，其录音同样可以作为实践报告语料。无论真会还是模拟，关键是原语和译语成对保存，并能对应到具体场次、角色与主题。</p>
 </div>
 
 <div class="mp-section">
-  <h2>建议的语料工作流</h2>
+  <h2 id="sec-workflow">建议的语料工作流</h2>
   <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">职业口译员除了知识储备和语言转换，还要会商务沟通、行程管理和语言材料的整理。语料整理做到哪一步，看你的研究问题；能用工具或 AI 帮忙的环节，尽量让工具来做。</p>
   <ol class="mp-list">
     <li><strong>采集</strong>：原语与译语分轨或可区分地录音；记下会议类型、听众、主题、准备材料与突发情况。</li>
@@ -57,7 +68,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>Best Practice</h2>
+  <h2 id="sec-bp">Best Practice</h2>
   <div class="mp-qa">
     <h4 class="no_toc">案例要写出你怎么处理的，不要只证明这件事很难</h4>
     <p>值得写的问题，通常来自你自己的实践：某类数字、引语、文化负载词反复卡住，或你习惯先抓主干再补细节、却在某类发言里不好用。把问题说清楚，把当时的处理、事后的改进写清楚，案例才有参考价值。</p>
@@ -73,7 +84,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>Q&amp;A</h2>
+  <h2 id="sec-qa">Q&amp;A</h2>
   <div class="mp-qa">
     <h4 class="no_toc">Q1 · 没有会议口译实习，模拟会议能写实践报告吗？</h4>
     <p>可以。学院组织的模拟会议口译录音，可以作为语料。仍须满足转写篇幅与音视频时长要求，并在任务描述里交代模拟的场景设定与自己承担的任务。</p>
@@ -93,7 +104,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>自查清单</h2>
+  <h2 id="sec-check">自查清单</h2>
   <ul class="mp-check">
     <li>已有成对的原语 / 译语录音，来源是真实实习或学院模拟会议，场次信息可说明</li>
     <li>转写达到不少于 10,000 汉字 / 英语单词；音视频时长满足教指委 30 分钟以上要求（或已有保密说明）</li>
@@ -105,7 +116,7 @@ permalink: /mentor-platform/path/03-practice-interpreting/
 </div>
 
 <div class="mp-section">
-  <h2>延伸阅读</h2>
+  <h2 id="sec-read">延伸阅读</h2>
   <p style="color:#64748b;">篇幅与附录要求见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的教指委《基本要求（试行）》及学院具体要求。类型与跨方向选择见 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a>。</p>
 </div>
 

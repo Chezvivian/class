@@ -9,8 +9,18 @@ permalink: /mentor-platform/path/03-practice-translation/
 
 <div class="mp-wrap">
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <a href="#sec-goals">本阶段目标</a>
+  <a href="#sec-why">为什么先整理语料</a>
+  <a href="#sec-workflow">建议的语料工作流</a>
+  <a href="#sec-bp">Best Practice</a>
+  <a href="#sec-qa">Q&amp;A</a>
+  <a href="#sec-check">自查清单</a>
+  <a href="#sec-read">延伸阅读</a>
+</nav>
+
 <div class="mp-section">
-  <h2>本阶段目标</h2>
+  <h2 id="sec-goals">本阶段目标</h2>
 
   <h3 class="no_toc" style="font-size:15px;color:#1e40af;margin:0 0 8px;">学生要完成</h3>
   <ul class="mp-goals">
@@ -29,7 +39,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>为什么先整理语料</h2>
+  <h2 id="sec-why">为什么先整理语料</h2>
   <p style="margin:0 0 12px;">同一批笔译素材，整理深度不同，能支撑的报告类型就不同：</p>
   <div class="mp-table-wrap">
     <table class="mp-table">
@@ -67,7 +77,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>建议的语料工作流</h2>
+  <h2 id="sec-workflow">建议的语料工作流</h2>
   <p style="font-size:14px;color:#94a3b8;margin:0 0 12px;">尽量能自动处理，并且能留档。工具可以是 Trados / memoQ / OmegaT，也可以是脚本加表格。关键是规则清楚，版本能回头看。</p>
   <ol class="mp-list">
     <li><strong>选取</strong>：优先真实项目或能说明来源的实践文本；主题相对集中；注意版权与保密。笔译附录原文须「从未有过译文」，且体积要够（教指委：原文不少于 10,000 汉字）。</li>
@@ -79,7 +89,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>Best Practice</h2>
+  <h2 id="sec-bp">Best Practice</h2>
   <div class="mp-qa">
     <h4 class="no_toc">把 Implementation 写成项目管理，不要写成翻译流水账</h4>
     <p>评阅时，Project Design 和 Implementation 最能看出学生有没有从实践里找出问题、再解决问题的能力。理想情况不是「我先译前准备、再翻译、再审校」，而是：语料从零散到能用，中间遇到了什么（编码混乱、句段切分不准、术语冲突、MT 错误集中在某类结构），你用什么规则、工具或流程把它管住。能写出创造语料、管理语料、清洗、质控、流程节点，就是项目管理思维，印象会明显加分。</p>
@@ -95,7 +105,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>Q&amp;A</h2>
+  <h2 id="sec-qa">Q&amp;A</h2>
   <div class="mp-qa">
     <h4 class="no_toc">Q1 · 我是笔译方向，是不是只能写笔译实践操作类？</h4>
     <p>不是。除口译实践操作类外，其余五类都可以用笔译实践素材来写。差别在于你归档了什么：有 TM 和术语，就更适合语言资产；有完整工具链和质控节点，就更适合项目管理或技术应用；保留了 MT 与 PE 对照，就更适合项目质量审校（MTPE）。</p>
@@ -115,7 +125,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>自查清单</h2>
+  <h2 id="sec-check">自查清单</h2>
   <ul class="mp-check">
     <li>原文来源可说明，版权 / 保密已处理；体积达到附录底线或已有扩容计划</li>
     <li>已有双语对照文本，且 MT / PE / 终稿（若涉及）分版保存</li>
@@ -127,7 +137,7 @@ permalink: /mentor-platform/path/03-practice-translation/
 </div>
 
 <div class="mp-section">
-  <h2>延伸阅读</h2>
+  <h2 id="sec-read">延伸阅读</h2>
   <p style="color:#64748b;">教指委对笔译附录与实践量的底线，见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的《基本要求（试行）》。类型选择仍以 <a href="{{ site.baseurl }}/mentor-platform/path/01-topic/">01 选题定向</a> 为准。</p>
 </div>
 
