@@ -10,8 +10,17 @@ permalink: /mentor-platform/library/
 <div class="mp-wrap">
 {% include mentor-crumb.html trail="资料下载" %}
 
+<nav class="mp-page-toc" aria-label="本页目录">
+  <p class="mp-page-toc-title">本页内容</p>
+  <ol>
+    <li><a href="#sec-a">A. MTI 硕士毕业论文基本要求（翻译专业学位教指委）</a></li>
+    <li><a href="#sec-b">B. 贸大英语学院 MTI 毕业论文具体要求</a></li>
+    <li><a href="#sec-c">C. 参考资料</a></li>
+  </ol>
+</nav>
+
 <div class="mp-section">
-  <h2>A. MTI 硕士毕业论文基本要求（翻译专业学位教指委）</h2>
+  <h2 id="sec-a">A. MTI 硕士毕业论文基本要求（翻译专业学位教指委）</h2>
   <p>全国翻译专业学位研究生教育指导委员会于 2023 年 12 月发布《翻译专业学位类别硕士学位论文基本要求（试行）》。该文件适用于选题、撰写、中期检查和答辩，也是培养单位管理与评价学位论文的指导性依据。学位论文应由学生在导师指导下独立完成，写作目的是培养学生在翻译实践相关工作中发现、分析和解决问题的能力。</p>
 
   <h3 class="no_toc">论文形式</h3>
@@ -51,7 +60,7 @@ permalink: /mentor-platform/library/
 </div>
 
 <div class="mp-section">
-  <h2>B. 贸大英语学院 MTI 毕业论文具体要求</h2>
+  <h2 id="sec-b">B. 贸大英语学院 MTI 毕业论文具体要求</h2>
   <p>以下内容依据贸大英语学院 2026 年 7 月 1 日修订的《英语学院硕士研究生学位论文选题及写作类型指引》。开题与写作时，请同时对照上文教指委的基本要求。引用和参考文献的具体格式见《英语学院学位论文写作规范》；开题报告的其他部分以学院模板为准。如果导师对开题报告结构另有建议，以导师意见为准。</p>
 
   <h3 class="no_toc">选题要求</h3>
@@ -92,7 +101,7 @@ permalink: /mentor-platform/library/
 </div>
 
 <div class="mp-section">
-  <h2>C. 参考资料</h2>
+  <h2 id="sec-c">C. 参考资料</h2>
   <p>规范性文件与学院模板可直接点击题名下载。</p>
   <ul class="mp-list">
     <li><a href="{{ site.baseurl }}/assets/mentor-platform/refs/norms/翻译专业学位类别硕士学位论文基本要求-试行-2023.pdf" target="_blank" rel="noopener">翻译专业学位类别硕士学位论文基本要求（试行）</a>（全国翻译专业学位研究生教育指导委员会，2023 年 12 月）</li>
