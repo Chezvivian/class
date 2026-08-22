@@ -1,8 +1,8 @@
 ---
-title: "06 · 盲审修改"
+title: "06 · 答辩准备"
 author: Huang Jie
 layout: post
-permalink: /mentor-platform/path/06-blind-review/
+permalink: /mentor-platform/path/06-defense/
 ---
 
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
@@ -12,16 +12,16 @@ permalink: /mentor-platform/path/06-blind-review/
 <div class="mp-section">
   <h2>本阶段目标</h2>
   <div class="mp-placeholder">
-    <strong>【待填】</strong>如何分类理解盲审意见、制定修改优先级、形成可核对的修改说明。
+    <strong>【待填】</strong>答辩陈述结构、材料边界、预判追问与应答策略。
   </div>
 </div>
 
 <div class="mp-section">
   <h2>Best Practice</h2>
   <ol class="mp-list">
-    <li><span class="mp-muted">（待补充）意见类型分类（结构 / 分析 / 规范 / 实践描述等）</span></li>
-    <li><span class="mp-muted">（待补充）高频扣分点与应对</span></li>
-    <li><span class="mp-muted">（待补充）修改说明怎么写给导师/评委看</span></li>
+    <li><span class="mp-muted">（待补充）陈述结构与时间分配</span></li>
+    <li><span class="mp-muted">（待补充）评委高频追问类型</span></li>
+    <li><span class="mp-muted">（待补充）演示与附录材料的边界</span></li>
   </ol>
 </div>
 
@@ -50,7 +50,7 @@ permalink: /mentor-platform/path/06-blind-review/
   <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">05 AI 使用指南和伦理</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/07-defense/">07 答辩准备</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">05 盲审修改</a> · 返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

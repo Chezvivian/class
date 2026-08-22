@@ -1,8 +1,8 @@
 ---
-title: "AI 使用指南和伦理"
+title: "08 · AI 使用指南"
 author: Huang Jie
 layout: post
-permalink: /mentor-platform/path/05-ai-pe/
+permalink: /mentor-platform/path/08-ai-guidelines/
 ---
 
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
@@ -54,7 +54,7 @@ permalink: /mentor-platform/path/05-ai-pe/
   </p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 报告主体写作</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/06-blind-review/">06 盲审修改</a></p>
+<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

@@ -51,7 +51,7 @@ permalink: /mentor-platform/path/04-report/
   <p style="font-size:14px;color:#64748b;">见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a> · <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-ai-pe/">05 AI 使用指南和伦理</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a> · <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">05 盲审修改</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。

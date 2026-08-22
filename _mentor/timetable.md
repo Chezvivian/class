@@ -2,7 +2,7 @@
 title: "毕业论文工作时间线"
 author: Huang Jie
 layout: post
-permalink: /mentor-platform/faculty/
+permalink: /mentor-platform/timetable/
 ---
 
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">

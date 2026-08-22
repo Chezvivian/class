@@ -157,7 +157,7 @@ permalink: /mentor-platform/library/
           <td>MTI 学位论文模板 · 翻译实践项目报告</td>
           <td>英语学院口笔译模板</td>
           <td>实践类学位论文结构底稿</td>
-          <td>04 写作 · 05 AI/PE</td>
+          <td>04 写作 · 08 AI</td>
           <td><a href="{{ site.baseurl }}/assets/mentor-platform/refs/templates/MTI-学位论文模板-翻译实践项目报告.doc">DOC</a></td>
         </tr>
         <tr>
@@ -245,12 +245,12 @@ permalink: /mentor-platform/library/
           <td>李红玉，《产教融合视域下翻译硕士专业学位论文中的问题与对策》</td>
           <td>《外语电化教学》2024 年第 6 期，81–86；DOI: 10.20139/j.issn.1001-5795.20240611</td>
           <td>论文定位、行业脱节问题与对策；对接《基本要求》</td>
-          <td>01 选题 · 04 写作 · 06 盲审</td>
+          <td>01 选题 · 04 写作 · 05 盲审</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/faculty/">毕业论文工作时间线</a></p>
+<p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/timetable/">毕业论文工作时间线</a></p>
 </div>
