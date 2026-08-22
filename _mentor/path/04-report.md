@@ -116,7 +116,7 @@ permalink: /mentor-platform/path/04-report/
 
 <div class="mp-section">
   <h2>延伸阅读</h2>
-  <p style="color:#64748b;">结构与篇幅仍以 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的学位论文模板为准。语料与流程准备见 <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a>、<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a>。</p>
+  <p style="color:#64748b;">结构与篇幅以学院下发的学位论文模板为准。语料与流程准备见 <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a>、<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a>。</p>
 </div>
 
 <p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a> · <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">05 盲审修改</a></p>

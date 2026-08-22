@@ -146,33 +146,23 @@ a.mp-card:hover {
 
 .mp-page-toc {
   margin: 0 0 28px;
-  padding: 0 0 16px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.mp-page-toc-title {
-  margin: 0 0 8px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #64748b;
-}
-
-.mp-page-toc ol {
-  margin: 0;
-  padding-left: 1.4em;
-}
-
-.mp-page-toc li {
-  margin: 0 0 4px;
-  font-size: 16px;
-  line-height: 1.7;
+  padding: 16px 24px;
+  background: #f5f7fa;
+  border-radius: 8px;
 }
 
 .mp-page-toc a {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 1.7;
   color: #1e40af;
   text-decoration: none;
   font-weight: 600;
+}
+
+.mp-page-toc a:last-child {
+  margin-bottom: 0;
 }
 
 .mp-page-toc a:hover {

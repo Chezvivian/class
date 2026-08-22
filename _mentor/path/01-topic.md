@@ -145,7 +145,7 @@ permalink: /mentor-platform/path/01-topic/
   <p style="color:#64748b;">
     《翻译专业学位类别硕士学位论文基本要求（试行）》（全国翻译专业学位研究生教育指导委员会，2023-12，公开文件）：
     <a href="{{ site.baseurl }}/assets/mentor-platform/refs/norms/翻译专业学位类别硕士学位论文基本要求-试行-2023.pdf" target="_blank" rel="noopener">PDF 下载</a>
-    ，更多规范与模板见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。
+    ，更多规范见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a>。
   </p>
 </div>
 
