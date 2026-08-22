@@ -11,13 +11,13 @@ permalink: /mentor-platform/library/
 {% include mentor-crumb.html trail="资料下载" %}
 
 <nav class="mp-page-toc" aria-label="本页目录">
-  <a href="#sec-a">A. MTI 硕士毕业论文基本要求（翻译专业学位教指委）</a>
+  <a href="#sec-a">A. MTI 硕士毕业论文基本要求</a>
   <a href="#sec-b">B. 贸大英语学院 MTI 毕业论文具体要求</a>
   <a href="#sec-c">C. 参考资料</a>
 </nav>
 
 <div class="mp-section">
-  <h2 id="sec-a">A. MTI 硕士毕业论文基本要求（翻译专业学位教指委）</h2>
+  <h2 id="sec-a">A. MTI 硕士毕业论文基本要求</h2>
   <p>全国翻译专业学位研究生教育指导委员会于 2023 年 12 月发布《翻译专业学位类别硕士学位论文基本要求（试行）》。该文件适用于选题、撰写、中期检查和答辩，也是培养单位管理与评价学位论文的指导性依据。学位论文应由学生在导师指导下独立完成，写作目的是培养学生在翻译实践相关工作中发现、分析和解决问题的能力。</p>
 
   <h3 class="no_toc">论文形式</h3>

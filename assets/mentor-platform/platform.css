@@ -151,12 +151,17 @@ a.mp-card:hover {
   border-radius: 8px;
 }
 
-.mp-page-toc a {
+.mp-page-toc a,
+.markdown-section .mp-page-toc a,
+.markdown-section .mp-page-toc a:link,
+.markdown-section .mp-page-toc a:visited,
+.markdown-section .mp-page-toc a:hover,
+.markdown-section .mp-page-toc a:active {
   display: block;
   margin: 0 0 4px;
   font-size: 16px;
   line-height: 1.7;
-  color: #1e40af;
+  color: #334155;
   text-decoration: none;
   font-weight: 600;
 }
