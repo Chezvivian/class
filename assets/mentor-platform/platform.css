@@ -132,6 +132,13 @@ a.mp-card:hover {
   border-bottom: 2px solid #e5e7eb;
 }
 
+.mp-section > h3 {
+  margin: 18px 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e40af;
+}
+
 .mp-placeholder {
   border: 1px dashed #cbd5e1;
   border-radius: 8px;
@@ -168,6 +175,15 @@ a.mp-card:hover {
   font-size: 16px;
   line-height: 1.85;
   color: #334155;
+}
+
+.mp-list li {
+  margin-bottom: 8px;
+}
+
+.mp-list ul {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
 }
 
 .mp-qa {
