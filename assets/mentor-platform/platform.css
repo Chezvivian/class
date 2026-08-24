@@ -319,6 +319,23 @@ a.mp-card:hover {
   font-weight: 600;
 }
 
+.mp-footnote {
+  margin: 10px 0 0;
+  text-align: right;
+}
+
+.mp-footnote a,
+.markdown-section .mp-footnote a {
+  font-size: 11px;
+  color: #cbd5e1;
+  text-decoration: none;
+}
+
+.mp-footnote a:hover {
+  color: #94a3b8;
+  text-decoration: underline;
+}
+
 /* 首页：简介色块（对齐文字转语音工具简介区块） */
 .mp-panel {
   background: #f5f7fa;

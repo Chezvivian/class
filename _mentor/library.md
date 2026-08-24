@@ -118,4 +118,5 @@ permalink: /mentor-platform/library/
 </div>
 
 <p class="mp-note">返回 <a href="{{ site.baseurl }}/mentor-platform/">平台总览</a> · <a href="{{ site.baseurl }}/mentor-platform/timetable/">毕业论文工作时间线</a></p>
+{% include mentor-footnote.html %}
 </div>

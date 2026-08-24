@@ -145,4 +145,5 @@ permalink: /mentor-platform/path/02-proposal/
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。
 </div>
+{% include mentor-footnote.html %}
 </div>

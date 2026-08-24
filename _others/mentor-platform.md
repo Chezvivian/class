@@ -23,3 +23,5 @@ permalink: /mentor-platform/
 4. **盲审和答辩**：[盲审修改]({{ site.baseurl }}/mentor-platform/path/05-blind-review/) · [答辩准备]({{ site.baseurl }}/mentor-platform/path/06-defense/)
 5. [**AI 使用指南**]({{ site.baseurl }}/mentor-platform/path/08-ai-guidelines/)
 </div>
+
+{% include mentor-footnote.html %}

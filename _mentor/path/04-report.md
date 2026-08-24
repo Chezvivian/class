@@ -128,4 +128,5 @@ permalink: /mentor-platform/path/04-report/
 </div>
 
 <p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">03A 笔译</a> · <a href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">03B 口译</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">05 盲审修改</a></p>
+{% include mentor-footnote.html %}
 </div>
