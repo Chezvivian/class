@@ -28,8 +28,6 @@ permalink: /mentor-platform/
 </div>
 
 <div class="mp-section">
-  <p class="mp-section-title">写作路线图</p>
-
   <div class="mp-gallery-grid">
     <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/01-topic/">
       <div class="mp-gallery-cover mp-cover-blue">

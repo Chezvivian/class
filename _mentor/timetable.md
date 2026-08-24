@@ -71,7 +71,7 @@ permalink: /mentor-platform/timetable/
       <div class="mp-flow-node">
         <time datetime="2027-05">2027 年 5 月中旬</time>
         <strong>学位论文答辩</strong>
-        <span class="mp-flow-note">学生答辩 · 导师参加并给出修改意见</span>
+        <span class="mp-flow-note">学生答辩 · 根据答辩意见修改</span>
       </div>
     </div>
   </div>
