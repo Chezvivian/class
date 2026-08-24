@@ -411,22 +411,36 @@ a.mp-card:hover {
 /* 首页：页面简介——文字与快捷入口并排，避免整段单独占一行 */
 .mp-intro {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 20px 28px;
+  gap: 20px 24px;
   margin: 16px 0 28px;
   padding: 0 0 20px;
   border-bottom: 1px solid #e9e9e7;
 }
 
 .mp-intro-text {
-  flex: 1 1 380px;
+  flex: 1 1 0;
+  min-width: 0;
   margin: 0;
   font-size: 0.98em;
   line-height: 1.7;
   color: #37352f;
-  max-width: 62ch;
+}
+
+.mp-intro-text a,
+.markdown-section .mp-intro-text a,
+.markdown-section .mp-intro-text a:link,
+.markdown-section .mp-intro-text a:visited {
+  color: #1e40af;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mp-intro-text a:hover,
+.markdown-section .mp-intro-text a:hover {
+  text-decoration: underline;
 }
 
 .mp-quicklinks {
@@ -473,13 +487,6 @@ a.mp-card:hover {
 }
 
 /* 首页：写作路线图——仿 Notion Gallery，单个密集网格承载全部节点 */
-.mp-roadmap-caption {
-  margin: -6px 0 16px;
-  font-size: 0.88em;
-  color: #6f6e69;
-  line-height: 1.6;
-}
-
 .mp-gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -509,12 +516,12 @@ a.mp-card:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 8 / 3;
 }
 
 .mp-gallery-cover svg {
-  width: 32%;
-  height: 32%;
+  width: auto;
+  height: 52%;
   color: inherit;
 }
 
@@ -523,7 +530,7 @@ a.mp-card:hover {
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  padding: 8px 10px;
+  padding: 6px 10px;
   border-top: 1px solid #e9e9e7;
 }
 

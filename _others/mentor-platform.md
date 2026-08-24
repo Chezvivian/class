@@ -29,7 +29,6 @@ permalink: /mentor-platform/
 
 <div class="mp-section">
   <h2 id="roadmap">写作路线图</h2>
-  <p class="mp-roadmap-caption">按开题 → 翻译实践和素材 → 论文主体写作 → 盲审和答辩 → AI 使用指南的顺序排列，点击卡片进入对应节点。</p>
 
   <div class="mp-gallery-grid">
     <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/01-topic/">
@@ -95,13 +94,13 @@ permalink: /mentor-platform/
         <span class="mp-tag mp-tag-pink">06</span>
       </div>
     </a>
-    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/08-ai-guidelines/">
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/07-ai-guidelines/">
       <div class="mp-gallery-cover mp-cover-gray">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 5h13a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-3l-3.5 3v-3h-6.5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M11 8.2v4M9 10.2h4"/></svg>
       </div>
       <div class="mp-gallery-body">
         <h4 class="mp-gallery-title no_toc">AI 使用指南</h4>
-        <span class="mp-tag mp-tag-gray">08</span>
+        <span class="mp-tag mp-tag-gray">07</span>
       </div>
     </a>
   </div>
