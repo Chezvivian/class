@@ -29,127 +29,81 @@ permalink: /mentor-platform/
 
 <div class="mp-section">
   <h2 id="roadmap">写作路线图</h2>
+  <p class="mp-roadmap-caption">按开题 → 翻译实践和素材 → 论文主体写作 → 盲审和答辩 → AI 使用指南的顺序排列，点击卡片进入对应节点。</p>
 
-  <div class="mp-gallery-group">
-    <div class="mp-gallery-group-head">
-      <h3 class="mp-gallery-group-title no_toc">开题</h3>
-      <span class="mp-gallery-group-count">2</span>
-    </div>
-    <p class="mp-gallery-group-desc">确定报告类型和研究问题，写出可以动手执行的开题报告。</p>
-    <div class="mp-gallery-grid">
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/01-topic/">
-        <div class="mp-gallery-cover mp-cover-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-2 5.6-5.6 2 2-5.6z"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">选题定向</h4>
-          <span class="mp-tag mp-tag-blue">01</span>
-        </div>
-      </a>
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/02-proposal/">
-        <div class="mp-gallery-cover mp-cover-purple">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="4" width="12" height="16" rx="1.5"/><path d="M9.5 4.5h5"/><path d="M9 12l2 2 4-4.5"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">开题报告</h4>
-          <span class="mp-tag mp-tag-purple">02</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="mp-gallery-group">
-    <div class="mp-gallery-group-head">
-      <h3 class="mp-gallery-group-title no_toc">翻译实践和素材</h3>
-      <span class="mp-gallery-group-count">2</span>
-    </div>
-    <p class="mp-gallery-group-desc">按培养方向分别整理实践语料：笔译看文本，口译看录音转写。</p>
-    <div class="mp-gallery-grid">
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">
-        <div class="mp-gallery-cover mp-cover-green">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4.5"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">笔译方向</h4>
-          <span class="mp-tag mp-tag-green">03A</span>
-        </div>
-      </a>
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">
-        <div class="mp-gallery-cover mp-cover-yellow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9.5" y="3.5" width="5" height="9" rx="2.5"/><path d="M6.5 11a5.5 5.5 0 0011 0"/><path d="M12 16.5v3.5M9 20h6"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">口译方向</h4>
-          <span class="mp-tag mp-tag-yellow">03B</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="mp-gallery-group">
-    <div class="mp-gallery-group-head">
-      <h3 class="mp-gallery-group-title no_toc">论文主体写作</h3>
-      <span class="mp-gallery-group-count">1</span>
-    </div>
-    <p class="mp-gallery-group-desc">把开题报告落实成正文，安排好各章节的分工与篇幅。</p>
-    <div class="mp-gallery-grid">
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/04-report/">
-        <div class="mp-gallery-cover mp-cover-orange">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17.5l1-3.5 7-7a1.4 1.4 0 0 1 2 2l-7 7-3 1.5z"/><path d="M6 20.5h12"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">报告主体写作</h4>
-          <span class="mp-tag mp-tag-orange">04</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="mp-gallery-group">
-    <div class="mp-gallery-group-head">
-      <h3 class="mp-gallery-group-title no_toc">盲审和答辩</h3>
-      <span class="mp-gallery-group-count">2</span>
-    </div>
-    <p class="mp-gallery-group-desc">根据评审意见修改论文，准备答辩陈述与高频追问。</p>
-    <div class="mp-gallery-grid">
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">
-        <div class="mp-gallery-cover mp-cover-red">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="10" height="14" rx="1.2"/><path d="M8 8h4M8 11h4"/><circle cx="16.5" cy="15.5" r="3"/><path d="M18.6 17.6l2 2"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">盲审修改</h4>
-          <span class="mp-tag mp-tag-red">05</span>
-        </div>
-      </a>
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/06-defense/">
-        <div class="mp-gallery-cover mp-cover-pink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5l9 4.5-9 4.5-9-4.5z"/><path d="M7 11.5v4c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5v-4"/><path d="M21 9.5v4.5"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">答辩准备</h4>
-          <span class="mp-tag mp-tag-pink">06</span>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="mp-gallery-group">
-    <div class="mp-gallery-group-head">
-      <h3 class="mp-gallery-group-title no_toc">AI 使用指南</h3>
-      <span class="mp-gallery-group-count">1</span>
-    </div>
-    <p class="mp-gallery-group-desc">贯穿全程：写作中怎么用 AI、使用伦理与留痕方式。</p>
-    <div class="mp-gallery-grid">
-      <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/08-ai-guidelines/">
-        <div class="mp-gallery-cover mp-cover-gray">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 5h13a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-3l-3.5 3v-3h-6.5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M11 8.2v4M9 10.2h4"/></svg>
-        </div>
-        <div class="mp-gallery-body">
-          <h4 class="mp-gallery-title no_toc">AI 使用指南</h4>
-          <span class="mp-tag mp-tag-gray">08</span>
-        </div>
-      </a>
-    </div>
+  <div class="mp-gallery-grid">
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/01-topic/">
+      <div class="mp-gallery-cover mp-cover-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-2 5.6-5.6 2 2-5.6z"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">选题定向</h4>
+        <span class="mp-tag mp-tag-blue">01</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/02-proposal/">
+      <div class="mp-gallery-cover mp-cover-purple">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="4" width="12" height="16" rx="1.5"/><path d="M9.5 4.5h5"/><path d="M9 12l2 2 4-4.5"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">开题报告</h4>
+        <span class="mp-tag mp-tag-purple">02</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/03-practice-translation/">
+      <div class="mp-gallery-cover mp-cover-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M8.5 9h7M8.5 12.5h7M8.5 16h4.5"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">笔译实践与素材</h4>
+        <span class="mp-tag mp-tag-green">03A</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/03-practice-interpreting/">
+      <div class="mp-gallery-cover mp-cover-yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9.5" y="3.5" width="5" height="9" rx="2.5"/><path d="M6.5 11a5.5 5.5 0 0011 0"/><path d="M12 16.5v3.5M9 20h6"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">口译实践与素材</h4>
+        <span class="mp-tag mp-tag-yellow">03B</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/04-report/">
+      <div class="mp-gallery-cover mp-cover-orange">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17.5l1-3.5 7-7a1.4 1.4 0 0 1 2 2l-7 7-3 1.5z"/><path d="M6 20.5h12"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">论文主体写作</h4>
+        <span class="mp-tag mp-tag-orange">04</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/">
+      <div class="mp-gallery-cover mp-cover-red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="10" height="14" rx="1.2"/><path d="M8 8h4M8 11h4"/><circle cx="16.5" cy="15.5" r="3"/><path d="M18.6 17.6l2 2"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">盲审修改</h4>
+        <span class="mp-tag mp-tag-red">05</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/06-defense/">
+      <div class="mp-gallery-cover mp-cover-pink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5l9 4.5-9 4.5-9-4.5z"/><path d="M7 11.5v4c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5v-4"/><path d="M21 9.5v4.5"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">答辩准备</h4>
+        <span class="mp-tag mp-tag-pink">06</span>
+      </div>
+    </a>
+    <a class="mp-gallery-card" href="{{ site.baseurl }}/mentor-platform/path/08-ai-guidelines/">
+      <div class="mp-gallery-cover mp-cover-gray">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 5h13a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-3l-3.5 3v-3h-6.5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M11 8.2v4M9 10.2h4"/></svg>
+      </div>
+      <div class="mp-gallery-body">
+        <h4 class="mp-gallery-title no_toc">AI 使用指南</h4>
+        <span class="mp-tag mp-tag-gray">08</span>
+      </div>
+    </a>
   </div>
 </div>
 

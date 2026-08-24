@@ -137,7 +137,7 @@ permalink: /mentor-platform/path/05-blind-review/
   <p style="font-size:14px;color:#64748b;">报告主体的写作规范见 <a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 报告主体写作</a>；格式与体例问题见 <a href="{{ site.baseurl }}/mentor-platform/library/">资料下载</a> 中的《英语学院学位论文写作规范》。</p>
 </div>
 
-<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 报告主体写作</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/06-defense/">06 答辩准备</a></p>
+<p class="mp-note">上一节点：<a href="{{ site.baseurl }}/mentor-platform/path/04-report/">04 论文主体写作</a> · 下一节点：<a href="{{ site.baseurl }}/mentor-platform/path/06-defense/">06 答辩准备</a></p>
 
 <div class="mp-ai">
   个性化问题可返回 <a href="{{ site.baseurl }}/mentor-platform/">总览</a> 使用 AI 导师。
