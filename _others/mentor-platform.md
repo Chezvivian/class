@@ -106,13 +106,5 @@ permalink: /mentor-platform/
   </div>
 </div>
 
-<div class="mp-section">
-  <h2 id="ai-mentor">AI 导师</h2>
-  <div class="mp-placeholder mp-ai-slot">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h16v12H8l-4 4z"/></svg>
-    <span><strong>建设中。</strong>各节点页面提到的「个性化问题可返回总览使用 AI 导师」功能尚未上线。在此之前，遇到具体问题请优先查看对应节点的 Best Practice、Q&amp;A 和自查清单，或直接与导师沟通。</span>
-  </div>
-</div>
-
 {% include mentor-footnote.html %}
 </div>
