@@ -5,7 +5,7 @@ permalink: /
 ---
 
 <!-- 顶部简介区块 -->
-<div style="background:#f8f6f2; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2; display:flex; justify-content:space-between; align-items:center;">
+<div style="background:#f5f7fa; border-radius:8px; padding:20px 30px; margin:24px 0 32px 0; font-size:1.1em; line-height:2.2; display:flex; justify-content:space-between; align-items:center;">
   <div>
     <b>黄 婕</b><br>
     对外经济贸易大学 英语学院 副教授<br>
@@ -34,7 +34,7 @@ permalink: /
 <!-- 智能助教专区 -->
 
 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin:32px 0 0 0;">
-  <div style="background:#f8f6f2; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+  <div style="background:#f5f7fa; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🧑‍💻</span><br>
     <b>CAT 2.0 智能助教</b><br>
     <span style="color:#555;">翻译技术课程专属AI助手，支持答疑、资料检索、作业批改等。</span><br>
@@ -44,14 +44,14 @@ permalink: /
       <div style="color:#888; font-size:0.95em; margin-top:6px;">手机扫码体验</div>
     </div>
   </div>
-  <div style="background:#f8f6f2; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+  <div style="background:#f5f7fa; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🎓</span><br>
     <b>MTI 培养指导平台</b><br>
     <span style="color:#555;">论文全流程路径、资料下载与毕业论文工作时间线。</span><br>
     <a href="/class/mentor-platform/" style="display:inline-block; margin:18px 0 10px 0; color:#fff; background:#4472c4; font-weight:bold; border-radius:6px; padding:8px 24px; text-decoration:none; font-size:1.08em;">一键点击进入</a><br>
     <div style="margin-top:10px; font-size:0.95em; color:#888;">七节点路径 · 资料库 · 导师侧</div>
   </div>
-  <div style="background:#f8f6f2; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
+  <div style="background:#f5f7fa; border-radius:8px; padding:24px; margin-bottom:16px; text-align:center; min-width:260px;">
     <span style="font-size:2.2em;">🌐</span><br>
     <b>本地化商业模拟平台</b><br>
     <span style="color:#555;">本地化项目管理情景模拟，在决策中学习项目流程。</span><br>
