@@ -17,59 +17,63 @@ permalink: /mentor-platform/timetable/
 
 <div class="mp-section">
   <h2 id="calendar">1. 毕业论文工作时间线</h2>
-  <p style="margin:0 0 12px;color:#64748b;">面向 2025 级（2027 年 6 月毕业）。毕业论文写作从 2026 年 9 月起进入集中阶段。下表按同一时间轴对照学生与导师任务；具体日期以当年学院通知为准。</p>
-  <div class="mp-table-wrap">
-    <table class="mp-table">
-      <thead>
-        <tr>
-          <th style="width:22%;">时间</th>
-          <th style="width:39%;">学生</th>
-          <th style="width:39%;">导师</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2026 年暑期–9 月 18 日前</td>
-          <td>确定选题，完成开题报告</td>
-          <td>指导学生选题，完成开题报告</td>
-        </tr>
-        <tr>
-          <td>2026 年 9 月 18 日左右</td>
-          <td>提交开题报告</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>2026 年 9 月底–10 月中旬</td>
-          <td>10 月中旬收到开题盲审意见，修改开题报告，准备开始写论文全文</td>
-          <td>作为盲审专家组，评审开题，提交论文评审表</td>
-        </tr>
-        <tr>
-          <td>2026 年 10 月下旬–2027 年 3 月上中旬</td>
-          <td>撰写论文全文</td>
-          <td>指导学生完成论文全稿</td>
-        </tr>
-        <tr>
-          <td>2027 年 3 月上中旬</td>
-          <td>提交论文全文</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>2027 年 3 月中旬–4 月中旬</td>
-          <td>论文相似性检测，随后进行论文外审和院内盲审</td>
-          <td>3 月下旬–4 月上旬：作为盲审专家组，评审论文全文，完成论文评审意见书</td>
-        </tr>
-        <tr>
-          <td>2027 年 5 月中旬</td>
-          <td>学位论文答辩</td>
-          <td>参加答辩，给出答辩和修改意见</td>
-        </tr>
-        <tr>
-          <td>2027 年 6 月底</td>
-          <td>发放学位证和毕业证</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
+
+
+  <div class="mp-flow" role="img" aria-label="毕业论文工作流程图。左侧学生，右侧导师。三个关口为提交开题报告、提交论文全文、学位论文答辩。">
+    <div class="mp-flow-lanes">
+      <div class="mp-flow-lane-h is-student">学生</div>
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-lane-h is-mentor">导师</div>
+    </div>
+
+    <div class="mp-flow-stage">
+      <div class="mp-flow-card is-student">确定选题，完成开题报告</div>
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-card is-mentor">指导学生选题，完成开题报告</div>
+    </div>
+
+    <div class="mp-flow-event">
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-node">
+        <time datetime="2026-09-18">2026 年 9 月 18 日左右</time>
+        <strong>提交开题报告</strong>
+      </div>
+    </div>
+
+    <div class="mp-flow-stage">
+      <div class="mp-flow-card is-student">收到开题盲审意见，修改开题报告，准备开始写论文全文</div>
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-card is-mentor">作为盲审专家组，评审开题，提交论文评审表</div>
+    </div>
+
+    <div class="mp-flow-stage">
+      <div class="mp-flow-card is-student">撰写论文全文</div>
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-card is-mentor">指导学生完成论文全稿</div>
+    </div>
+
+    <div class="mp-flow-event">
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-node">
+        <time datetime="2027-03">2027 年 3 月上中旬</time>
+        <strong>提交论文全文</strong>
+      </div>
+    </div>
+
+    <div class="mp-flow-stage">
+      <div class="mp-flow-card is-student">论文相似性检测，随后进行论文外审和院内盲审</div>
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-card is-mentor">作为盲审专家组，评审论文全文，完成论文评审意见书</div>
+    </div>
+
+    <div class="mp-flow-event is-last">
+      <div class="mp-flow-spine" aria-hidden="true"></div>
+      <div class="mp-flow-node">
+        <time datetime="2027-05">2027 年 5 月中旬</time>
+        <strong>学位论文答辩</strong>
+        <span class="mp-flow-note">学生答辩 · 根据答辩意见修改</span>
+      </div>
+    </div>
   </div>
 </div>
 

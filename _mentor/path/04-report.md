@@ -1,5 +1,5 @@
 ---
-title: "04 · 报告主体写作"
+title: "04 · 论文主体写作"
 author: Huang Jie
 layout: post
 permalink: /mentor-platform/path/04-report/

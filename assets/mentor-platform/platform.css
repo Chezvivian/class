@@ -124,7 +124,9 @@ a.mp-card:hover {
 }
 
 .mp-section > h2,
-.markdown-section .mp-wrap .mp-section h2 {
+.markdown-section .mp-wrap .mp-section h2,
+.mp-section-title,
+.markdown-section .mp-wrap p.mp-section-title {
   margin: 0 0 12px;
   font-size: 22px;
   font-weight: 700;
@@ -405,5 +407,435 @@ a.mp-card:hover {
 
   .mp-home-intro {
     margin-bottom: 12px;
+  }
+}
+
+/* 首页：页面简介——文字与快捷入口并排，避免整段单独占一行 */
+.mp-intro {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px 24px;
+  margin: 16px 0 24px;
+  padding: 0;
+}
+
+.mp-intro-text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.98em;
+  line-height: 1.7;
+  color: #37352f;
+}
+
+.mp-intro-text a,
+.markdown-section .mp-intro-text a,
+.markdown-section .mp-intro-text a:link,
+.markdown-section .mp-intro-text a:visited {
+  color: #1e40af;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mp-intro-text a:hover,
+.markdown-section .mp-intro-text a:hover {
+  text-decoration: underline;
+}
+
+.mp-quicklinks {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 8px;
+  margin: 0;
+}
+
+.mp-quicklink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #e9e9e7;
+  border-radius: 6px;
+  padding: 9px 14px 9px 10px;
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #37352f;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.mp-quicklink:hover {
+  background: #f7f6f3;
+  border-color: #d3d1cb;
+}
+
+.mp-quicklink-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+
+.mp-quicklink-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* 首页：写作路线图——仿 Notion Gallery，单个密集网格承载全部节点 */
+.mp-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.mp-gallery-card {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 3 / 2;
+  min-height: 0;
+  background: #fff;
+  border: 1px solid #e9e9e7;
+  border-radius: 7px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.mp-gallery-card:hover {
+  border-color: #d3d1cb;
+  box-shadow: 0 4px 12px rgba(55, 53, 47, 0.08);
+  transform: translateY(-1px);
+}
+
+.mp-gallery-cover {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mp-gallery-cover svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 58%;
+  aspect-ratio: 1;
+  margin: 0;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  color: inherit;
+}
+
+.mp-gallery-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 4px 10px;
+  border-top: 1px solid #e9e9e7;
+}
+
+.mp-gallery-title {
+  margin: 0;
+  min-width: 0;
+  font-size: 0.86em;
+  font-weight: 600;
+  color: #37352f;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mp-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.mp-cover-blue, .mp-tag-blue { background: #d3e5ef; color: #487ca5; }
+.mp-cover-purple, .mp-tag-purple { background: #e8deee; color: #8a67ab; }
+.mp-cover-green, .mp-tag-green { background: #dbeddb; color: #548164; }
+.mp-cover-yellow, .mp-tag-yellow { background: #fbf3db; color: #b8862f; }
+.mp-cover-orange, .mp-tag-orange { background: #fadec9; color: #cc782f; }
+.mp-cover-red, .mp-tag-red { background: #ffe2dd; color: #c4554d; }
+.mp-cover-pink, .mp-tag-pink { background: #f4dfeb; color: #b35488; }
+.mp-cover-gray, .mp-tag-gray { background: #e3e2e0; color: #787774; }
+
+/* 首页：AI 导师入口占位——沿用 mp-placeholder，补充图标排布 */
+.mp-ai-slot {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mp-ai-slot svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: #9b9a97;
+  margin-top: 2px;
+}
+
+/* 时间线页：双泳道流程图 */
+.mp-flow-lead {
+  margin: 0 0 18px;
+  color: #6f6e69;
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+.mp-flow {
+  --flow-line: #d3d1cb;
+  --flow-student: #d3e5ef;
+  --flow-student-ink: #3a6485;
+  --flow-mentor: #dbeddb;
+  --flow-mentor-ink: #3d6149;
+  --flow-gate: #1e3a8a;
+  position: relative;
+  margin: 0 0 8px;
+}
+
+.mp-flow-lanes,
+.mp-flow-stage,
+.mp-flow-event {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
+  column-gap: 14px;
+  align-items: stretch;
+}
+
+.mp-flow-lanes {
+  margin-bottom: 4px;
+}
+
+.mp-flow-lane-h {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.mp-flow-lane-h.is-student {
+  color: var(--flow-student-ink);
+}
+
+.mp-flow-lane-h.is-mentor {
+  color: var(--flow-mentor-ink);
+}
+
+.mp-flow-spine {
+  justify-self: center;
+  width: 2px;
+  background: var(--flow-line);
+  min-height: 16px;
+}
+
+.mp-flow-lanes .mp-flow-spine {
+  background: transparent;
+}
+
+.mp-flow-card {
+  position: relative;
+  margin: 6px 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.mp-flow-card.is-student {
+  background: var(--flow-student);
+  color: var(--flow-student-ink);
+}
+
+.mp-flow-card.is-mentor {
+  background: var(--flow-mentor);
+  color: var(--flow-mentor-ink);
+}
+
+.mp-flow-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  background: var(--flow-line);
+}
+
+.mp-flow-card.is-student::after {
+  right: -14px;
+}
+
+.mp-flow-card.is-mentor::after {
+  left: -14px;
+}
+
+.mp-flow-event {
+  position: relative;
+  min-height: 72px;
+  align-items: stretch;
+}
+
+.mp-flow-event .mp-flow-spine {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mp-flow-node {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: center;
+  justify-self: center;
+  z-index: 1;
+  box-sizing: border-box;
+  min-width: 220px;
+  max-width: min(340px, 86%);
+  padding: 10px 22px 12px;
+  text-align: center;
+  color: #fff;
+  background: var(--flow-gate);
+  border-radius: 8px;
+}
+
+.markdown-section .mp-wrap .mp-flow-node time,
+.mp-flow-node time {
+  display: block;
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.markdown-section .mp-wrap .mp-flow-node strong,
+.mp-flow-node strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.mp-flow-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 500;
+}
+
+.mp-flow-event.is-last .mp-flow-spine {
+  background: linear-gradient(var(--flow-line), var(--flow-line) 50%, transparent 50%);
+}
+
+@media (max-width: 800px) {
+  .mp-intro {
+    display: block;
+  }
+
+  .mp-quicklinks {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .mp-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mp-gallery-title {
+    font-size: 0.9em;
+  }
+
+  .mp-flow-node {
+    min-width: 0;
+    padding: 10px 14px 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .mp-flow-lanes,
+  .mp-flow-stage,
+  .mp-flow-event {
+    grid-template-columns: 12px minmax(0, 1fr);
+    column-gap: 10px;
+  }
+
+  .mp-flow-card::after {
+    display: none;
+  }
+
+  .mp-flow-lane-h.is-student {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .mp-flow-lanes .mp-flow-lane-h.is-mentor,
+  .mp-flow-lanes .mp-flow-spine {
+    display: none;
+  }
+
+  .mp-flow-stage .mp-flow-card.is-student {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .mp-flow-stage .mp-flow-card.is-mentor {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .mp-flow-stage .mp-flow-spine {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .mp-flow-card.is-student::before,
+  .mp-flow-card.is-mentor::before {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+  }
+
+  .mp-flow-card.is-student::before {
+    content: "学生";
+  }
+
+  .mp-flow-card.is-mentor::before {
+    content: "导师";
+  }
+
+  .mp-flow-event .mp-flow-spine {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .mp-flow-node {
+    grid-column: 2;
+    justify-self: stretch;
+    max-width: none;
+    text-align: left;
   }
 }
