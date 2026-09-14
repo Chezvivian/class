@@ -73,7 +73,7 @@ permalink: /mentor-platform/about/
     <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/path/04-report/"><span class="tag">04</span><h3>报告主体写作</h3><p>Implementation / Results / Discussion 三章分工</p></a>
     <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/path/05-blind-review/"><span class="tag">05</span><h3>盲审修改</h3><p>意见分类、优先级与修改说明</p></a>
     <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/path/06-defense/"><span class="tag">06</span><h3>答辩准备</h3><p>陈述结构、时间分配与高频追问</p></a>
-    <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/path/08-ai-guidelines/"><span class="tag">08</span><h3>AI 使用指南</h3><p>工具披露规范与人机协作边界</p></a>
+    <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/path/07-ai-guidelines/"><span class="tag">07</span><h3>AI 使用指南</h3><p>工具披露规范与人机协作边界</p></a>
     <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/library/"><span class="tag">资料</span><h3>资料下载</h3><p>教指委规范、学院要求与参考文献</p></a>
     <a class="mp-card" href="{{ site.baseurl }}/mentor-platform/timetable/"><span class="tag">时间线</span><h3>毕业论文工作时间线</h3><p>学生与导师任务对照</p></a>
   </div>

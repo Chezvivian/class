@@ -1,8 +1,8 @@
 ---
-title: "08 · AI 使用指南"
+title: "07 · AI 使用指南"
 author: Huang Jie
 layout: post
-permalink: /mentor-platform/path/08-ai-guidelines/
+permalink: /mentor-platform/path/07-ai-guidelines/
 ---
 
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/mentor-platform/platform.css">
