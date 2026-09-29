@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 · Brands 词汇跟读</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .toolbar {
+    background: #fff;
+    border-bottom: 1px solid #dde3ef;
+    border-top: 4px solid #1f3f86;
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .course-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f3f86;
+    letter-spacing: 0.2px;
+  }
+  .course-sub {
+    font-size: 13px;
+    color: #7b879c;
+    margin-top: 2px;
+  }
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .field label {
+    font-size: 15px;
+    color: #445;
+  }
+  .field select {
+    font-size: 15px;
+    padding: 6px 10px;
+    border: 1px solid #c5cde0;
+    border-radius: 8px;
+    background: #f9fafc;
+    color: #1a1a2e;
+    cursor: pointer;
+  }
+  .gap-hint {
+    font-size: 13px;
+    color: #8a94a8;
+  }
+  .counter {
+    margin-left: auto;
+    font-size: 15px;
+    color: #6b7590;
+    font-variant-numeric: tabular-nums;
+  }
+  .rec-btn, .btn {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .rec-btn {
+    padding: 7px 14px;
+    font-size: 14px;
+    background: #e8edf5;
+    color: #1a1a2e;
+  }
+  .rec-btn.recording {
+    background: #e05252;
+    color: #fff;
+    animation: pulse 1.2s infinite;
+  }
+  .progress-bar {
+    height: 4px;
+    background: #e8edf5;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #3a5a9e;
+    width: 0;
+    transition: width 0.25s ease;
+  }
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px 20px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(31, 63, 134, 0.08);
+    padding: 42px 64px 36px;
+    max-width: 980px;
+    width: min(980px, 100%);
+    max-height: calc(100vh - 168px);
+    overflow: auto;
+    text-align: center;
+    animation: fadeIn 0.28s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  .word {
+    font-size: clamp(40px, 4.6vw, 72px);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.12;
+    color: #1a1a2e;
+  }
+  .phonetic {
+    margin-top: 10px;
+    font-size: 32px;
+    color: #3a5a9e;
+    font-style: italic;
+    letter-spacing: 0.4px;
+  }
+  .pos-cn {
+    margin-top: 14px;
+    font-size: 28px;
+    color: #2a4a88;
+    font-weight: 600;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #e8edf5;
+    margin: 22px 0 18px;
+  }
+  .example-en {
+    font-size: 26px;
+    line-height: 1.55;
+    color: #243044;
+    font-style: italic;
+  }
+  .example-cn {
+    margin-top: 8px;
+    font-size: 22px;
+    line-height: 1.55;
+    color: #6d7585;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 26px;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d5dced;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .dot.done { background: #8eabd8; }
+  .dot.current {
+    background: #1f3f86;
+    transform: scale(1.35);
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px 18px;
+    background: #fff;
+    border-top: 1px solid #dde3ef;
+  }
+  .btn {
+    padding: 10px 22px;
+    font-size: 16px;
+    background: #e8edf5;
+    color: #1a1a2e;
+  }
+  .btn:hover, .rec-btn:hover { background: #d5deef; }
+  .btn.primary { background: #1f3f86; color: #fff; }
+  .btn.primary:hover { background: #18336d; }
+  .btn.is-paused { background: #3d8b55; color: #fff; }
+  .keys {
+    font-size: 13px;
+    color: #97a0b3;
+    margin-left: 8px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .dot, .progress-fill, .rec-btn.recording { transition: none; animation: none; }
+  }
+  @media (max-width: 800px) {
+    .card { padding: 28px 22px 24px; }
+    .phonetic { font-size: 24px; }
+    .pos-cn, .example-en { font-size: 20px; }
+    .example-cn { font-size: 18px; }
+    .counter { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div>
+    <div class="course-title">Unit 1 · Brands</div>
+    <div class="course-sub">词汇跟读 · 每词朗读 3 遍</div>
+  </div>
+  <div class="field">
+    <label for="voiceSelect">语音</label>
+    <select id="voiceSelect"><option>正在加载语音…</option></select>
+  </div>
+  <div class="field">
+    <label for="rateSelect">语速</label>
+    <select id="rateSelect" title="语速越快，两遍之间的停顿越短">
+      <option value="0.6">很慢</option>
+      <option value="0.75">慢</option>
+      <option value="0.9" selected>正常</option>
+      <option value="1.1">快</option>
+      <option value="1.3">很快</option>
+    </select>
+    <span class="gap-hint" id="gapHint"></span>
+  </div>
+  <span class="counter" id="counter">1 / 32</span>
+  <button class="rec-btn" id="recBtn" type="button">⏺ 开始录制</button>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="main">
+  <div class="card" id="card">
+    <div class="word" id="wordEl" lang="en"></div>
+    <div class="phonetic" id="phoneticEl" lang="en"></div>
+    <div class="pos-cn" id="posCnEl"></div>
+    <hr class="divider">
+    <div class="example-en" id="exEnEl" lang="en"></div>
+    <div class="example-cn" id="exCnEl"></div>
+    <div class="dots" id="dots" aria-label="朗读遍数">
+      <div class="dot" id="d0"></div>
+      <div class="dot" id="d1"></div>
+      <div class="dot" id="d2"></div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn" id="prevBtn" type="button">⬅ 上一个</button>
+  <button class="btn primary" id="playBtn" type="button">⏸ 暂停</button>
+  <button class="btn" id="nextBtn" type="button">下一个 ➡</button>
+  <span class="keys">空格暂停 · ← → 换词</span>
+</div>
+
+<script>
+const words = [
+  {
+    word: "herald",
+    phonetic: "/ˈhɛrəld/",
+    posCn: "v. 预告；宣传",
+    exEn: "The announcement heralded a new era of digital marketing.",
+    exCn: "这一公告预示着数字营销新时代的到来。"
+  },
+  {
+    word: "leapfrog",
+    phonetic: "/ˈliːpfrɑːɡ/",
+    posCn: "v. 越级提升；超越",
+    exEn: "The startup leapfrogged its rivals by adopting cutting-edge technology.",
+    exCn: "这家初创公司通过采用尖端技术，超越了竞争对手。"
+  },
+  {
+    word: "hub",
+    phonetic: "/hʌb/",
+    posCn: "n. 活动中心",
+    exEn: "New York is a global hub for finance and media.",
+    exCn: "纽约是全球金融和媒体的中心。"
+  },
+  {
+    word: "branding",
+    phonetic: "/ˈbrændɪŋ/",
+    posCn: "n. 品牌创建",
+    exEn: "Effective branding helps consumers recognize and trust a product.",
+    exCn: "有效的品牌创建有助于消费者识别并信任某款产品。"
+  },
+  {
+    word: "branded content",
+    phonetic: "/ˌbrændɪd ˈkɑːntent/",
+    posCn: "n. 品牌化内容",
+    exEn: "The company invested heavily in branded content to engage its audience.",
+    exCn: "该公司大力投资品牌化内容，以吸引受众。"
+  },
+  {
+    word: "creative",
+    phonetic: "/kriˈeɪtɪv/",
+    posCn: "n. 创意内容",
+    exEn: "The marketing team presented several creatives for the new campaign.",
+    exCn: "营销团队为新一轮广告活动展示了几套创意内容。"
+  },
+  {
+    word: "touching",
+    phonetic: "/ˈtʌtʃɪŋ/",
+    posCn: "adj. 感人的",
+    exEn: "The advertisement told a touching story about a mother and her child.",
+    exCn: "这则广告讲述了一个关于母亲和孩子的感人故事。"
+  },
+  {
+    word: "fame",
+    phonetic: "/feɪm/",
+    posCn: "n. 声誉",
+    exEn: "She rose to fame after her viral social media campaign.",
+    exCn: "在她的社交媒体活动病毒式传播之后，她声名大噪。"
+  },
+  {
+    word: "arena",
+    phonetic: "/əˈriːnə/",
+    posCn: "n. 竞技场",
+    exEn: "Many brands compete in the arena of online advertising.",
+    exCn: "许多品牌在网络广告这一竞技场上相互竞争。"
+  },
+  {
+    word: "oligopoly",
+    phonetic: "/ˌɑːlɪˈɡɑːpəli/",
+    posCn: "n. 寡头卖方垄断",
+    exEn: "The tech industry is often described as an oligopoly dominated by a few giants.",
+    exCn: "科技行业常被描述为由少数巨头主导的寡头垄断市场。"
+  },
+  {
+    word: "bind",
+    phonetic: "/baɪnd/",
+    posCn: "v. 使结合",
+    exEn: "Shared values bind employees together and strengthen company culture.",
+    exCn: "共同的价值观将员工凝聚在一起，增强了公司文化。"
+  },
+  {
+    word: "intensity",
+    phonetic: "/ɪnˈtensəti/",
+    posCn: "n. 强度；强烈",
+    exEn: "The intensity of competition in the market has increased sharply.",
+    exCn: "市场竞争的激烈程度急剧上升。"
+  },
+  {
+    word: "flourishing",
+    phonetic: "/ˈflɜːrɪʃɪŋ/",
+    posCn: "adj. 繁荣的",
+    exEn: "A flourishing e-commerce sector is transforming retail worldwide.",
+    exCn: "蓬勃发展的电子商务领域正在改变全球零售业。"
+  },
+  {
+    word: "seamlessly",
+    phonetic: "/ˈsiːmləsli/",
+    posCn: "adv. 无缝地；无间地",
+    exEn: "The new software integrates seamlessly with existing platforms.",
+    exCn: "新软件与现有平台无缝集成。"
+  },
+  {
+    word: "barely",
+    phonetic: "/ˈbɛrli/",
+    posCn: "adv. 仅仅；几乎不",
+    exEn: "The small company could barely keep up with consumer demand.",
+    exCn: "这家小公司几乎跟不上消费者的需求。"
+  },
+  {
+    word: "coordinate",
+    phonetic: "/koʊˈɔːrdɪneɪt/",
+    posCn: "v. 协调",
+    exEn: "The manager had to coordinate efforts across multiple departments.",
+    exCn: "经理需要协调多个部门之间的工作。"
+  },
+  {
+    word: "mediocrity",
+    phonetic: "/ˌmiːdiˈɑːkrəti/",
+    posCn: "n. 平庸",
+    exEn: "The brand refused to settle for mediocrity and constantly raised its standards.",
+    exCn: "该品牌拒绝接受平庸，不断提高自身标准。"
+  },
+  {
+    word: "grease the wheels",
+    phonetic: "/ˌɡriːs ðə ˈwiːlz/",
+    posCn: "习语 使顺利进行",
+    exEn: "A small gift can sometimes grease the wheels of a business deal.",
+    exCn: "一份小礼物有时可以让商业交易更加顺利。"
+  },
+  {
+    word: "preindustrial",
+    phonetic: "/ˌpriːɪnˈdʌstriəl/",
+    posCn: "adj. 工业化前的",
+    exEn: "In preindustrial societies, most goods were made by hand.",
+    exCn: "在工业化前的社会中，大多数商品都是手工制作的。"
+  },
+  {
+    word: "ideology",
+    phonetic: "/ˌaɪdiˈɑːlədʒi/",
+    posCn: "n. 意识形态",
+    exEn: "The company's marketing ideology centers on sustainability.",
+    exCn: "该公司的营销理念以可持续发展为核心。"
+  },
+  {
+    word: "tap into",
+    phonetic: "/ˌtæp ˈɪntuː/",
+    posCn: "习语 挖掘",
+    exEn: "Brands are eager to tap into the growing youth market.",
+    exCn: "各品牌都渴望挖掘不断增长的年轻人市场。"
+  },
+  {
+    word: "burgeoning",
+    phonetic: "/ˈbɜːrdʒənɪŋ/",
+    posCn: "adj. 发展迅速的",
+    exEn: "The burgeoning streaming industry has disrupted traditional television.",
+    exCn: "迅速发展的流媒体行业已经颠覆了传统电视业。"
+  },
+  {
+    word: "mundane",
+    phonetic: "/mʌnˈdeɪn/",
+    posCn: "adj. 平凡的；单调的",
+    exEn: "Even mundane products can become iconic with the right branding.",
+    exCn: "即使是平凡的产品，只要品牌塑造得当，也能成为标志性商品。"
+  },
+  {
+    word: "critique",
+    phonetic: "/krɪˈtiːk/",
+    posCn: "n. 评论；评论文章",
+    exEn: "The professor wrote a detailed critique of the advertising campaign.",
+    exCn: "教授对这场广告活动撰写了一篇详尽的评论文章。"
+  },
+  {
+    word: "initiate",
+    phonetic: "/ɪˈnɪʃieɪt/",
+    posCn: "v. 使开始；发起",
+    exEn: "The CEO decided to initiate a company-wide rebranding effort.",
+    exCn: "首席执行官决定发起一场全公司范围的品牌重塑工作。"
+  },
+  {
+    word: "pitch in",
+    phonetic: "/ˌpɪtʃ ˈɪn/",
+    posCn: "习语 投入；参与",
+    exEn: "Everyone on the team pitched in to meet the deadline.",
+    exCn: "团队中的每个人都全力投入，以赶上截止日期。"
+  },
+  {
+    word: "chaotic",
+    phonetic: "/keɪˈɑːtɪk/",
+    posCn: "adj. 混乱的；杂乱的",
+    exEn: "The product launch was chaotic due to poor planning.",
+    exCn: "由于规划不足，产品发布会一片混乱。"
+  },
+  {
+    word: "call the shots",
+    phonetic: "/ˌkɔːl ðə ˈʃɑːts/",
+    posCn: "习语 发号施令；操纵",
+    exEn: "In this company, the investors call the shots on major decisions.",
+    exCn: "在这家公司里，重大决策由投资者说了算。"
+  },
+  {
+    word: "brand equity",
+    phonetic: "/ˌbrænd ˈekwəti/",
+    posCn: "n. 品牌价值",
+    exEn: "Years of quality products have built strong brand equity for the firm.",
+    exCn: "多年的优质产品为该公司积累了强大的品牌价值。"
+  },
+  {
+    word: "market share",
+    phonetic: "/ˈmɑːrkɪt ˌʃer/",
+    posCn: "n. 市场占有率，市场份额",
+    exEn: "The new product helped the company increase its market share by 10%.",
+    exCn: "新产品帮助公司将市场份额提升了 10%。"
+  },
+  {
+    word: "customer service",
+    phonetic: "/ˈkʌstəmər ˈsɜːrvɪs/",
+    posCn: "n. 客户服务",
+    exEn: "Excellent customer service is key to retaining loyal clients.",
+    exCn: "出色的客户服务是留住忠实客户的关键。"
+  },
+  {
+    word: "packaging",
+    phonetic: "/ˈpækɪdʒɪŋ/",
+    posCn: "n. 包装材料，外包装",
+    exEn: "Eye-catching packaging can significantly influence a buyer's decision.",
+    exCn: "引人注目的外包装能显著影响买家的购买决策。"
+  }
+];
+
+// 两遍朗读之间的停顿。快档故意收短，但还留得下跟读。
+const REPEAT_GAP = {
+  "0.6": 900,
+  "0.75": 760,
+  "0.9": 620,
+  "1.1": 420,
+  "1.3": 280
+};
+const NEXT_GAP = 80;
+const REPEAT_TIMES = 3;
+
+let current = 0;
+let paused = false;
+let engineBlocked = false;
+let voices = [];
+let preferredVoiceName = "";
+let phase = "idle";
+let activeIndex = 0;
+let pendingIndex = 0;
+let gen = 0;
+let hold = false;
+let currentUtter = null;
+let gapTimer = 0;
+let watchTimer = 0;
+let kickTimer = 0;
+let retryTimer = 0;
+let lastCancelAt = 0;
+let playbackStarted = false;
+let voiceRestarted = false;
+
+function displayWord(w) {
+  const letters = w.replace(/[^a-zA-Z]/g, "");
+  if (letters.length > 0 && letters === letters.toUpperCase() && letters.length <= 5) return w;
+  return w.toLowerCase();
+}
+
+function rateKey() {
+  return document.getElementById("rateSelect").value;
+}
+
+function repeatGap() {
+  return REPEAT_GAP[rateKey()] || 620;
+}
+
+function updateGapHint() {
+  const sec = (repeatGap() / 1000).toFixed(2);
+  document.getElementById("gapHint").textContent = "遍间停顿 " + sec + " 秒";
+}
+
+function getVoice() {
+  const sel = document.getElementById("voiceSelect");
+  const voice = voices[Number(sel.value)];
+  return voice || null;
+}
+
+function defaultVoiceIndex(list) {
+  const prefer = ["Google US English", "Microsoft Aria", "Microsoft Jenny", "Aria", "Jenny", "Zira", "Samantha", "Karen", "Allison"];
+  for (const name of prefer) {
+    const i = list.findIndex((v) => v.name.includes(name) && /en-US/i.test(v.lang));
+    if (i >= 0) return i;
+  }
+  for (const name of prefer) {
+    const i = list.findIndex((v) => v.name.includes(name));
+    if (i >= 0) return i;
+  }
+  const us = list.findIndex((v) => /en-US/i.test(v.lang));
+  return us >= 0 ? us : 0;
+}
+
+function loadVoices(fromEvent) {
+  const hadVoices = voices.length > 0;
+  const found = speechSynthesis.getVoices().filter((v) => /^en([-_]|$)/i.test(v.lang));
+  if (!found.length) return;
+  found.sort((a, b) => {
+    const rank = (v) => (/^en-US$/i.test(v.lang) ? 0 : 1);
+    return rank(a) - rank(b) || a.name.localeCompare(b.name);
+  });
+  voices = found;
+  const sel = document.getElementById("voiceSelect");
+  const keep = preferredVoiceName;
+  sel.innerHTML = "";
+  voices.forEach((v, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = v.name + "（" + v.lang + "）";
+    sel.appendChild(opt);
+  });
+  let pick = keep ? voices.findIndex((v) => v.name === keep) : -1;
+  if (pick < 0) pick = defaultVoiceIndex(voices);
+  sel.value = String(pick);
+  preferredVoiceName = voices[pick] ? voices[pick].name : "";
+  if (fromEvent && playbackStarted && !hadVoices && !voiceRestarted && !paused) {
+    voiceRestarted = true;
+    restartAt(phase === "gap" ? pendingIndex : activeIndex);
+  }
+}
+
+function clearTimers() {
+  clearTimeout(gapTimer);
+  clearTimeout(watchTimer);
+  clearTimeout(kickTimer);
+  clearTimeout(retryTimer);
+  gapTimer = 0;
+  watchTimer = 0;
+  kickTimer = 0;
+  retryTimer = 0;
+}
+
+function detachAndCancel(forceCancel) {
+  const utter = currentUtter;
+  currentUtter = null;
+  if (utter) {
+    utter.onend = null;
+    utter.onerror = null;
+    utter.onstart = null;
+  }
+  const busy = !!(speechSynthesis.speaking || speechSynthesis.pending || speechSynthesis.paused);
+  if (forceCancel || busy) {
+    try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    lastCancelAt = performance.now();
+    return true;
+  }
+  return false;
+}
+
+function waitAfterCancel() {
+  if (!lastCancelAt) return 30;
+  const since = performance.now() - lastCancelAt;
+  return since >= 130 ? 30 : Math.max(30, 140 - since);
+}
+
+// 打断后不要立刻 speak。Chrome / Edge 会把紧跟 cancel() 的朗读丢掉，听起来像没声音。
+function beginIndex(index) {
+  gen += 1;
+  const my = gen;
+  clearTimers();
+  const cancelled = detachAndCancel(false);
+  hold = true;
+  kickTimer = setTimeout(() => {
+    hold = false;
+    if (my !== gen || paused) return;
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+    playIndex(index, my);
+  }, cancelled ? 140 : waitAfterCancel());
+  return my;
+}
+
+function expectMs(text, rate) {
+  const chunks = text.trim().split(/\s+/).length;
+  const chars = text.replace(/\s+/g, "").length;
+  return Math.max(700, (chars * 80 + chunks * 180) / rate + 320);
+}
+
+function playIndex(index, my) {
+  if (paused || my !== gen) return;
+  phase = "speak";
+  activeIndex = index;
+  paintDots(index);
+
+  const text = words[current].word;
+  const rate = parseFloat(rateKey());
+  let settled = false;
+
+  const goNext = () => {
+    if (settled || my !== gen || paused) return;
+    settled = true;
+    clearTimeout(watchTimer);
+    clearTimeout(retryTimer);
+    phase = "gap";
+    if (index < REPEAT_TIMES - 1) {
+      pendingIndex = index + 1;
+      gapTimer = setTimeout(() => playIndex(index + 1, my), repeatGap());
+    } else {
+      pendingIndex = 0;
+      gapTimer = setTimeout(() => {
+        if (my !== gen || paused) return;
+        goTo(current + 1);
+      }, NEXT_GAP);
+    }
+  };
+
+  let started = false;
+  const startedAt = performance.now();
+
+  const bind = (utter) => {
+    utter.onstart = () => { started = true; };
+    utter.onend = () => goNext();
+    utter.onerror = (ev) => {
+      const err = (ev && ev.error) || "";
+      if (err === "interrupted" || err === "canceled" || err === "cancelled") return;
+      if (err === "not-allowed") {
+        settled = true;
+        clearTimeout(watchTimer);
+        clearTimeout(retryTimer);
+        engineBlocked = true;
+        paused = true;
+        updatePlayBtn();
+        return;
+      }
+      goNext();
+    };
+  };
+
+  const launch = () => {
+    if (settled || my !== gen || paused) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.rate = rate;
+    utter.pitch = 1;
+    utter.volume = 1;
+    utter.lang = "en-US";
+    const voice = getVoice();
+    if (voice) {
+      utter.voice = voice;
+      utter.lang = voice.lang || "en-US";
+    }
+    bind(utter);
+    currentUtter = utter;
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+    speechSynthesis.speak(utter);
+  };
+
+  launch();
+
+  // 第一次 speak 有时会被引擎丢掉，而且不触发 onend。稍等再补一次。
+  retryTimer = setTimeout(() => {
+    if (started || settled || my !== gen || paused) return;
+    if (speechSynthesis.speaking || speechSynthesis.pending) return;
+    if (currentUtter) {
+      currentUtter.onend = null;
+      currentUtter.onerror = null;
+      currentUtter.onstart = null;
+      currentUtter = null;
+    }
+    launch();
+  }, 300);
+
+  const limit = expectMs(text, rate) + 900;
+  const check = () => {
+    if (settled || my !== gen || paused) return;
+    if (performance.now() - startedAt >= limit) {
+      settled = true;
+      clearTimeout(watchTimer);
+      if (index < REPEAT_TIMES - 1) beginIndex(index + 1);
+      else goTo(current + 1);
+      return;
+    }
+    watchTimer = setTimeout(check, 150);
+  };
+  if (!settled) watchTimer = setTimeout(check, 280);
+}
+
+function goTo(index) {
+  current = (index + words.length) % words.length;
+  showCard(current);
+  if (!paused) beginIndex(0);
+}
+
+function showCard(index) {
+  const data = words[index];
+  document.getElementById("wordEl").textContent = displayWord(data.word);
+  document.getElementById("phoneticEl").textContent = data.phonetic;
+  document.getElementById("posCnEl").textContent = data.posCn;
+  document.getElementById("exEnEl").textContent = data.exEn;
+  document.getElementById("exCnEl").textContent = data.exCn;
+  document.getElementById("counter").textContent = (index + 1) + " / " + words.length;
+  document.getElementById("progressFill").style.width = (((index + 1) / words.length) * 100) + "%";
+  document.title = "Unit 1 · " + displayWord(data.word);
+  clearDots();
+  const card = document.getElementById("card");
+  card.style.animation = "none";
+  void card.offsetWidth;
+  card.style.animation = "";
+}
+
+function paintDots(index) {
+  for (let i = 0; i < REPEAT_TIMES; i += 1) {
+    const dot = document.getElementById("d" + i);
+    dot.classList.toggle("done", i < index);
+    dot.classList.toggle("current", i === index);
+  }
+}
+
+function clearDots() {
+  for (let i = 0; i < REPEAT_TIMES; i += 1) {
+    document.getElementById("d" + i).classList.remove("done", "current");
+  }
+}
+
+function updatePlayBtn() {
+  const btn = document.getElementById("playBtn");
+  if (paused) {
+    btn.textContent = engineBlocked ? "▶ 开始跟读" : "▶ 继续";
+    btn.classList.add("is-paused");
+  } else {
+    btn.textContent = "⏸ 暂停";
+    btn.classList.remove("is-paused");
+  }
+}
+
+function togglePause() {
+  if (!paused) {
+    paused = true;
+    engineBlocked = false;
+    updatePlayBtn();
+    gen += 1;
+    clearTimers();
+    detachAndCancel(true);
+    hold = false;
+    return;
+  }
+  paused = false;
+  engineBlocked = false;
+  updatePlayBtn();
+  const index = phase === "gap" ? pendingIndex : activeIndex;
+  beginIndex(index);
+}
+
+function restartAt(index) {
+  if (paused) return;
+  beginIndex(index);
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => goTo(current - 1));
+document.getElementById("nextBtn").addEventListener("click", () => goTo(current + 1));
+document.getElementById("playBtn").addEventListener("click", togglePause);
+
+document.getElementById("rateSelect").addEventListener("change", () => {
+  updateGapHint();
+  if (paused) return;
+  restartAt(phase === "gap" ? pendingIndex : activeIndex);
+});
+
+document.getElementById("voiceSelect").addEventListener("change", () => {
+  const voice = getVoice();
+  preferredVoiceName = voice ? voice.name : "";
+  if (paused) return;
+  restartAt(phase === "gap" ? pendingIndex : activeIndex);
+});
+
+document.addEventListener("keydown", (e) => {
+  const tag = document.activeElement && document.activeElement.tagName;
+  if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    goTo(current + 1);
+  } else if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    goTo(current - 1);
+  } else if (e.key === " ") {
+    e.preventDefault();
+    togglePause();
+  }
+});
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = () => loadVoices(true);
+}
+loadVoices(false);
+updateGapHint();
+
+// 点开语速菜单时，有的浏览器会把正在读的句子暂停住，结束事件也不再来。
+setInterval(() => {
+  if (paused || hold || !currentUtter) return;
+  if (speechSynthesis.paused) {
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+  }
+}, 250);
+
+window.addEventListener("beforeunload", () => {
+  try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+});
+
+let mediaRecorder = null;
+let recordedChunks = [];
+
+document.getElementById("recBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("recBtn");
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.stop();
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      video: { frameRate: 15 },
+      audio: true
+    });
+    recordedChunks = [];
+    const types = ["video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"];
+    const mime = types.find((t) => MediaRecorder.isTypeSupported(t)) || "";
+    mediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    };
+    mediaRecorder.onstop = () => {
+      stream.getTracks().forEach((t) => t.stop());
+      const blob = new Blob(recordedChunks, { type: mime || "video/webm" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Unit1-Brands-词汇跟读.webm";
+      a.click();
+      URL.revokeObjectURL(url);
+      btn.textContent = "⏺ 开始录制";
+      btn.classList.remove("recording");
+    };
+    mediaRecorder.start();
+    btn.textContent = "⏹ 停止录制";
+    btn.classList.add("recording");
+  } catch (err) {
+    if (err && err.name === "NotAllowedError") return;
+    alert("录制没有开始：" + err.message);
+  }
+});
+
+showCard(0);
+phase = "gap";
+pendingIndex = 0;
+playbackStarted = true;
+if (voices.length) voiceRestarted = true;
+beginIndex(0);
+</script>
+</body>
+</html>

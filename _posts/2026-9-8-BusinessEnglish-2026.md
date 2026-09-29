@@ -24,13 +24,13 @@ layout: post
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:80px;">单元</th>
     <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:100px;">课件</th>
-    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">词汇、课文</th>
+    <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">词汇</th>
     <th style="border:1px solid #e0e0e0; padding:8px 12px; min-width:120px;">Lead-in</th>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 1 Brands</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20词汇跟读.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20Brands%20·%20词汇跟读.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
