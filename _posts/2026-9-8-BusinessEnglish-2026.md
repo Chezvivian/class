@@ -29,7 +29,7 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 1 Brands</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/2026%E7%A7%8B_Unit1_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">课件</a></td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/2026%E7%A7%8B_Unit1_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">lesson 1</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20词汇跟读.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20Brands%20·%20词汇跟读.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit1_brands_introduction.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
