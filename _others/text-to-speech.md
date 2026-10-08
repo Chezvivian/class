@@ -42,7 +42,14 @@ permalink: /tools/text-to-speech/
    <div style="flex:0 0 32%; min-width:0;">
      <label for="languageSelect" style="display:block; font-weight:bold; margin-bottom:8px; color:#2d3a4a; white-space:nowrap;">语言：</label>
      <select id="languageSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
-       <option value="">正在加载...</option>
+       <option value="en-US" selected>English (United States)</option>
+       <option value="en-GB">English (United Kingdom)</option>
+       <option value="en-CA">English (Canada)</option>
+       <option value="en-AU">English (Australia)</option>
+       <option value="en-IE">English (Ireland)</option>
+       <option value="en-IN">English (India)</option>
+       <option value="en-NZ">English (New Zealand)</option>
+       <option value="en-ZA">English (South Africa)</option>
      </select>
    </div>
    
@@ -534,18 +541,24 @@ const PROXY_ENDPOINTS = {
 let currentProxyIndex = { voices: 0, tts: 0 };
 
 /**
- * 尝试使用指定端点获取数据，失败时自动切换到下一个端点
+ * 尝试使用指定端点获取数据，失败时自动切换到下一个端点。
+ * timeoutMs 有值时，每个端点单独计时，超时后立刻尝试下一个。
  */
-async function fetchWithFallback(urls, fetchOptions, endpointType) {
+async function fetchWithFallback(urls, fetchOptions, endpointType, timeoutMs) {
   const startIndex = currentProxyIndex[endpointType] || 0;
   
   for (let i = 0; i < urls.length; i++) {
     const index = (startIndex + i) % urls.length;
     const url = urls[index];
+    const controller = timeoutMs ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    const options = controller
+      ? Object.assign({}, fetchOptions, { signal: controller.signal })
+      : fetchOptions;
     
     try {
       console.log(`尝试使用端点 ${index + 1}/${urls.length}: ${url}`);
-      const response = await fetch(url, fetchOptions);
+      const response = await fetch(url, options);
       
       if (response.ok) {
         // 成功，记住当前使用的端点
@@ -567,11 +580,14 @@ async function fetchWithFallback(urls, fetchOptions, endpointType) {
         }
       }
     } catch (error) {
-      console.warn(`端点连接失败: ${url}，错误: ${error.message}，尝试下一个端点...`);
+      const timedOut = error.name === 'AbortError';
+      console.warn(`端点${timedOut ? '超时' : '连接失败'}: ${url}，错误: ${error.message}，尝试下一个端点...`);
       if (i === urls.length - 1) {
         // 所有端点都失败，抛出最后一个错误
         throw error;
       }
+    } finally {
+      if (timer) clearTimeout(timer);
     }
   }
   
@@ -579,155 +595,148 @@ async function fetchWithFallback(urls, fetchOptions, endpointType) {
   throw new Error('所有代理端点都不可用');
 }
 
-// 加载Azure语音列表
+// 页面自带的常用音色。第一次打开不依赖网络，远程列表返回后再替换。
+const BUILTIN_VOICES_DATA = {
+  languages: [
+    { code: 'en-US', name: 'English (United States)' },
+    { code: 'en-GB', name: 'English (United Kingdom)' },
+    { code: 'en-CA', name: 'English (Canada)' },
+    { code: 'en-AU', name: 'English (Australia)' },
+    { code: 'en-IE', name: 'English (Ireland)' },
+    { code: 'en-IN', name: 'English (India)' },
+    { code: 'en-NZ', name: 'English (New Zealand)' },
+    { code: 'en-ZA', name: 'English (South Africa)' }
+  ],
+  voices: {
+    'en-US': [
+      { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: ['chat', 'cheerful', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'narration-professional', 'newscast-casual', 'newscast-formal'], roles: [] },
+      { name: 'en-US-AriaNeural', displayName: 'Aria', gender: 'Female', styles: ['chat', 'cheerful', 'empathy', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] },
+      { name: 'en-US-AndrewNeural', displayName: 'Andrew', gender: 'Male', styles: [], roles: [] },
+      { name: 'en-US-DavisNeural', displayName: 'Davis', gender: 'Male', styles: ['chat', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'sad', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast-casual', 'newscast-formal', 'narration-relaxed'], roles: [] },
+      { name: 'en-US-GuyNeural', displayName: 'Guy', gender: 'Male', styles: ['newscast', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'disgruntled'], roles: [] },
+      { name: 'en-US-JaneNeural', displayName: 'Jane', gender: 'Female', styles: ['angry', 'cheerful', 'excited', 'friendly', 'hopeful', 'sad', 'scared', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical'], roles: [] },
+      { name: 'en-US-JasonNeural', displayName: 'Jason', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'nervous', 'scared', 'serious', 'whispering', 'affectionate', 'disgruntled'], roles: [] },
+      { name: 'en-US-NancyNeural', displayName: 'Nancy', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast'], roles: [] },
+      { name: 'en-US-SaraNeural', displayName: 'Sara', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast-casual'], roles: [] },
+      { name: 'en-US-TonyNeural', displayName: 'Tony', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] }
+    ],
+    'en-GB': [
+      { name: 'en-GB-RyanNeural', displayName: 'Ryan', gender: 'Male', styles: ['chat', 'cheerful', 'sad'], roles: [] },
+      { name: 'en-GB-SoniaNeural', displayName: 'Sonia', gender: 'Female', styles: ['cheerful', 'sad'], roles: [] }
+    ],
+    'en-CA': [
+      { name: 'en-CA-ClaraNeural', displayName: 'Clara', gender: 'Female', styles: [], roles: [] },
+      { name: 'en-CA-LiamNeural', displayName: 'Liam', gender: 'Male', styles: [], roles: [] }
+    ],
+    'en-AU': [
+      { name: 'en-AU-NatashaNeural', displayName: 'Natasha', gender: 'Female', styles: [], roles: [] },
+      { name: 'en-AU-WilliamNeural', displayName: 'William', gender: 'Male', styles: [], roles: [] }
+    ],
+    'en-IE': [
+      { name: 'en-IE-ConnorNeural', displayName: 'Connor', gender: 'Male', styles: [], roles: [] },
+      { name: 'en-IE-EmilyNeural', displayName: 'Emily', gender: 'Female', styles: [], roles: [] }
+    ],
+    'en-IN': [
+      { name: 'en-IN-NeerjaNeural', displayName: 'Neerja', gender: 'Female', styles: [], roles: [] },
+      { name: 'en-IN-PrabhatNeural', displayName: 'Prabhat', gender: 'Male', styles: [] }
+    ],
+    'en-NZ': [
+      { name: 'en-NZ-MitchellNeural', displayName: 'Mitchell', gender: 'Male', styles: [], roles: [] },
+      { name: 'en-NZ-MollyNeural', displayName: 'Molly', gender: 'Female', styles: [] }
+    ],
+    'en-ZA': [
+      { name: 'en-ZA-LeanneNeural', displayName: 'Leanne', gender: 'Female', styles: [], roles: [] },
+      { name: 'en-ZA-LukeNeural', displayName: 'Luke', gender: 'Male', styles: [] }
+    ]
+  }
+};
+
+function applyVoicesCatalog(data, preferredLanguage, preferredVoice) {
+  voicesData = data;
+  languageSelect.innerHTML = '';
+
+  data.languages.forEach(lang => {
+    const option = document.createElement('option');
+    option.value = lang.code;
+    option.textContent = lang.name;
+    languageSelect.appendChild(option);
+  });
+
+  let languageCode = 'en-US';
+  if (preferredLanguage && data.voices[preferredLanguage]) {
+    languageCode = preferredLanguage;
+  } else if (!data.voices['en-US'] && languageSelect.options.length > 0) {
+    languageCode = languageSelect.options[0].value;
+  }
+
+  const languageOption = Array.from(languageSelect.options).find(opt => opt.value === languageCode);
+  if (languageOption) {
+    languageSelect.value = languageCode;
+  } else if (languageSelect.options.length > 0) {
+    languageSelect.selectedIndex = 0;
+    languageCode = languageSelect.value;
+  }
+
+  updateVoicesByLanguage(languageCode, preferredVoice);
+}
+
+// 脚本执行到这里时下拉框已经在页面上，先填常用音色，不必等 DOMContentLoaded
+applyVoicesCatalog(BUILTIN_VOICES_DATA, languageSelect.value, voiceSelect.value);
+const voiceLoadingStatusEarly = document.getElementById('voiceLoadingStatus');
+if (voiceLoadingStatusEarly) {
+  voiceLoadingStatusEarly.style.color = '#666';
+  voiceLoadingStatusEarly.textContent = '已加载常用音色，正在获取完整列表…';
+}
+
+// 先填入页面自带的常用音色，再在后台拉取完整列表
 async function loadVoices() {
-  const languageSelect = document.getElementById('languageSelect');
   const voiceLoadingStatus = document.getElementById('voiceLoadingStatus');
-  
+
+  applyVoicesCatalog(BUILTIN_VOICES_DATA, languageSelect.value, voiceSelect.value);
+  if (voiceLoadingStatus) {
+    voiceLoadingStatus.style.color = '#666';
+    voiceLoadingStatus.textContent = '已加载常用音色，正在获取完整列表…';
+  }
+
   try {
-    voiceLoadingStatus.textContent = '正在加载语音列表...';
     const response = await fetchWithFallback(PROXY_ENDPOINTS.voices, {
       method: 'GET'
-    }, 'voices');
-    
+    }, 'voices', 5000);
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ error: '无法解析错误响应' }));
       throw new Error(`HTTP ${response.status}: ${JSON.stringify(errorData)}`);
     }
-    
+
     const data = await response.json();
     console.log('语音列表API响应:', data);
-    
-    if (data.success && data.voices && data.languages) {
-      // 存储语音数据供后续使用
-      voicesData = data;
-      
-      // 清空语言选择器
-      languageSelect.innerHTML = '';
-      
-      // 添加所有英语语言选项
-      data.languages.forEach(lang => {
-        const option = document.createElement('option');
-        option.value = lang.code;
-        option.textContent = lang.name;
-        // 设置English (United States)为默认选中
-        if (lang.code === 'en-US') {
-          option.selected = true;
-        }
-        languageSelect.appendChild(option);
-      });
-      
-      // 确保English (United States)被选中，如果没有则选择第一个
-      if (languageSelect.value !== 'en-US') {
-        const usOption = Array.from(languageSelect.options).find(opt => opt.value === 'en-US');
-        if (usOption) {
-          usOption.selected = true;
-        } else if (languageSelect.options.length > 0) {
-          languageSelect.selectedIndex = 0;
-        }
-      }
-      
-      // 更新音色列表
-      if (languageSelect.value) {
-        updateVoicesByLanguage(languageSelect.value);
-      }
-      
-      voiceLoadingStatus.textContent = `已加载 ${data.total} 个语音，${data.languages.length} 种英语语言`;
-      console.log('语音列表加载成功:', data);
-    } else {
+
+    if (!(data.success && data.voices && data.languages)) {
       throw new Error('无法获取语音列表');
     }
+
+    // 完整列表返回时保留学生已经选好的语言和音色
+    applyVoicesCatalog(data, languageSelect.value, voiceSelect.value);
+
+    if (voiceLoadingStatus) {
+      voiceLoadingStatus.style.color = '#666';
+      const total = data.total != null
+        ? data.total
+        : Object.values(data.voices).reduce((count, list) => count + list.length, 0);
+      voiceLoadingStatus.textContent = `已加载 ${total} 个语音，${data.languages.length} 种英语语言`;
+    }
+    console.log('语音列表加载成功:', data);
   } catch (error) {
     console.error('加载语音列表失败:', error);
-    
-    // 检测是否是网络连接问题
-    const isNetworkError = error.message.includes('NetworkError') || 
-                          error.message.includes('Failed to fetch') || 
-                          error.message.includes('fetch') ||
-                          error.name === 'TypeError';
-    
-    if (isNetworkError) {
-      voiceLoadingStatus.textContent = '网络连接失败，可能无法访问API服务器。已使用默认语音列表，您可以继续使用基本功能。';
-      voiceLoadingStatus.style.color = '#dc3545';
-    } else {
-      voiceLoadingStatus.textContent = `加载失败: ${error.message}`;
-      voiceLoadingStatus.style.color = '#dc3545';
+    if (voiceLoadingStatus) {
+      voiceLoadingStatus.style.color = '#856404';
+      voiceLoadingStatus.textContent = '当前为常用音色，完整列表暂时无法更新。';
     }
-    
-    // 使用默认值，确保用户仍可使用基本功能
-    languageSelect.innerHTML = `
-      <option value="en-US" selected>English (United States)</option>
-      <option value="en-GB">English (United Kingdom)</option>
-      <option value="en-CA">English (Canada)</option>
-      <option value="en-AU">English (Australia)</option>
-      <option value="en-IE">English (Ireland)</option>
-      <option value="en-IN">English (India)</option>
-      <option value="en-NZ">English (New Zealand)</option>
-      <option value="en-ZA">English (South Africa)</option>
-    `;
-    languageSelect.selectedIndex = 0;
-    
-    // 提供常用音色的默认列表
-    voicesData = {
-      languages: [
-        { code: 'en-US', name: 'English (United States)' },
-        { code: 'en-GB', name: 'English (United Kingdom)' },
-        { code: 'en-CA', name: 'English (Canada)' },
-        { code: 'en-AU', name: 'English (Australia)' },
-        { code: 'en-IE', name: 'English (Ireland)' },
-        { code: 'en-IN', name: 'English (India)' },
-        { code: 'en-NZ', name: 'English (New Zealand)' },
-        { code: 'en-ZA', name: 'English (South Africa)' }
-      ],
-      voices: {
-        'en-US': [
-          { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: ['chat', 'cheerful', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'narration-professional', 'newscast-casual', 'newscast-formal'], roles: [] },
-          { name: 'en-US-AriaNeural', displayName: 'Aria', gender: 'Female', styles: ['chat', 'cheerful', 'empathy', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] },
-          { name: 'en-US-AndrewNeural', displayName: 'Andrew', gender: 'Male', styles: [], roles: [] },
-          { name: 'en-US-DavisNeural', displayName: 'Davis', gender: 'Male', styles: ['chat', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'sad', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast-casual', 'newscast-formal', 'narration-relaxed'], roles: [] },
-          { name: 'en-US-GuyNeural', displayName: 'Guy', gender: 'Male', styles: ['newscast', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'disgruntled'], roles: [] },
-          { name: 'en-US-JaneNeural', displayName: 'Jane', gender: 'Female', styles: ['angry', 'cheerful', 'excited', 'friendly', 'hopeful', 'sad', 'scared', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical'], roles: [] },
-          { name: 'en-US-JasonNeural', displayName: 'Jason', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'nervous', 'scared', 'serious', 'whispering', 'affectionate', 'disgruntled'], roles: [] },
-          { name: 'en-US-NancyNeural', displayName: 'Nancy', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast'], roles: [] },
-          { name: 'en-US-SaraNeural', displayName: 'Sara', gender: 'Female', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'newscast-casual'], roles: [] },
-          { name: 'en-US-TonyNeural', displayName: 'Tony', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] }
-        ],
-        'en-GB': [
-          { name: 'en-GB-RyanNeural', displayName: 'Ryan', gender: 'Male', styles: ['chat', 'cheerful', 'sad'], roles: [] },
-          { name: 'en-GB-SoniaNeural', displayName: 'Sonia', gender: 'Female', styles: ['cheerful', 'sad'], roles: [] }
-        ],
-        'en-CA': [
-          { name: 'en-CA-ClaraNeural', displayName: 'Clara', gender: 'Female', styles: [], roles: [] },
-          { name: 'en-CA-LiamNeural', displayName: 'Liam', gender: 'Male', styles: [], roles: [] }
-        ],
-        'en-AU': [
-          { name: 'en-AU-NatashaNeural', displayName: 'Natasha', gender: 'Female', styles: [], roles: [] },
-          { name: 'en-AU-WilliamNeural', displayName: 'William', gender: 'Male', styles: [], roles: [] }
-        ],
-        'en-IE': [
-          { name: 'en-IE-ConnorNeural', displayName: 'Connor', gender: 'Male', styles: [], roles: [] },
-          { name: 'en-IE-EmilyNeural', displayName: 'Emily', gender: 'Female', styles: [], roles: [] }
-        ],
-        'en-IN': [
-          { name: 'en-IN-NeerjaNeural', displayName: 'Neerja', gender: 'Female', styles: [], roles: [] },
-          { name: 'en-IN-PrabhatNeural', displayName: 'Prabhat', gender: 'Male', styles: [] }
-        ],
-        'en-NZ': [
-          { name: 'en-NZ-MitchellNeural', displayName: 'Mitchell', gender: 'Male', styles: [], roles: [] },
-          { name: 'en-NZ-MollyNeural', displayName: 'Molly', gender: 'Female', styles: [] }
-        ],
-        'en-ZA': [
-          { name: 'en-ZA-LeanneNeural', displayName: 'Leanne', gender: 'Female', styles: [], roles: [] },
-          { name: 'en-ZA-LukeNeural', displayName: 'Luke', gender: 'Male', styles: [] }
-        ]
-      }
-    };
-    updateVoicesByLanguage('en-US');
   }
 }
 
 // 根据选择的语言更新音色列表
-function updateVoicesByLanguage(languageCode) {
+function updateVoicesByLanguage(languageCode, preferredVoice) {
   if (!languageCode || !voicesData || !voicesData.voices) {
     voiceSelect.innerHTML = '<option value="">请先选择语言</option>';
     voiceSelect.disabled = true;
@@ -759,9 +768,16 @@ function updateVoicesByLanguage(languageCode) {
     voiceSelect.appendChild(option);
   });
   
-  // 默认选中第一个
+  // 完整列表返回后尽量保留已选音色，否则选中第一个
   if (voiceSelect.options.length > 0) {
-    voiceSelect.selectedIndex = 0;
+    const matched = preferredVoice
+      ? Array.from(voiceSelect.options).find(opt => opt.value === preferredVoice)
+      : null;
+    if (matched) {
+      voiceSelect.value = preferredVoice;
+    } else {
+      voiceSelect.selectedIndex = 0;
+    }
     updateStyles(voiceSelect.value);
   }
 }
