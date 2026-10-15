@@ -117,7 +117,13 @@ function escapeXml(text) {
  * @param {string|null} pitch - Speech pitch（如果有）
  * @param {string|null} volume - Speech volume（如果有）
  */
-function buildSSML(text, voice, style, rate, pitch, volume) {
+function normalizeStyleDegree(styleDegree) {
+  const value = parseFloat(styleDegree);
+  if (!Number.isFinite(value)) return null;
+  return Math.min(2, Math.max(0.01, Math.round(value * 100) / 100));
+}
+
+function buildSSML(text, voice, style, rate, pitch, volume, styleDegree) {
   // voice参数应该是Azure语音名称（如：en-US-JennyNeural）
   const azureVoice = voice;
   
@@ -158,18 +164,20 @@ function buildSSML(text, voice, style, rate, pitch, volume) {
     prosodyAttrs.push(`volume="${escapeXml(volume)}"`);
   }
   const prosodyAttrsStr = prosodyAttrs.join(' ');
+  const degree = hasStyle ? normalizeStyleDegree(styleDegree) : null;
+  const expressOpen = `<mstts:express-as style="${escapeXml(style || '')}"${degree == null ? '' : ` styledegree="${degree}"`}>`;
   
   // 根据是否有Style和Prosody组合标签
   if (hasStyle && hasProsody) {
     // 同时有Style和Prosody，先使用mstts:express-as，再使用prosody
-    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += expressOpen;
     ssml += `<prosody ${prosodyAttrsStr}>`;
     ssml += escapeXml(text);
     ssml += `</prosody>`;
     ssml += `</mstts:express-as>`;
   } else if (hasStyle) {
     // 只有Style
-    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += expressOpen;
     ssml += escapeXml(text);
     ssml += `</mstts:express-as>`;
   } else if (hasProsody) {
@@ -207,7 +215,7 @@ module.exports = async function handler(req, res) {
   try {
     console.log('收到TTS请求:', req.body);
     
-    const { text, voice, style, rate, pitch, volume, sample_rate, format } = req.body;
+    const { text, voice, style, rate, pitch, volume, sample_rate, format, style_degree } = req.body;
     
     if (!text) {
       return res.status(400).json({ error: '缺少文本参数' });
@@ -238,7 +246,8 @@ module.exports = async function handler(req, res) {
       style || null,
       rate || null,
       pitch || null,
-      volume || null
+      volume || null,
+      style_degree
     );
     
     // 获取输出格式
@@ -249,6 +258,7 @@ module.exports = async function handler(req, res) {
       inputVoice: voice || 'en-US-JennyNeural',
       azureVoice: azureVoice,
       style: style || '无',
+      styleDegree: style_degree || '默认',
       rate: rate || 'medium',
       pitch: pitch || 'medium',
       volume: volume || 'medium',

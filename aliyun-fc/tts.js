@@ -51,7 +51,13 @@ function escapeXml(text) {
 /**
  * 构建SSML格式的请求体
  */
-function buildSSML(text, voice, style, rate, pitch, volume) {
+function normalizeStyleDegree(styleDegree) {
+  const value = parseFloat(styleDegree);
+  if (!Number.isFinite(value)) return null;
+  return Math.min(2, Math.max(0.01, Math.round(value * 100) / 100));
+}
+
+function buildSSML(text, voice, style, rate, pitch, volume, styleDegree) {
   const azureVoice = voice;
   
   // 根据语音名称确定语言
@@ -91,16 +97,18 @@ function buildSSML(text, voice, style, rate, pitch, volume) {
     prosodyAttrs.push(`volume="${escapeXml(volume)}"`);
   }
   const prosodyAttrsStr = prosodyAttrs.join(' ');
+  const degree = hasStyle ? normalizeStyleDegree(styleDegree) : null;
+  const expressOpen = `<mstts:express-as style="${escapeXml(style || '')}"${degree == null ? '' : ` styledegree="${degree}"`}>`;
   
   // 根据是否有Style和Prosody组合标签
   if (hasStyle && hasProsody) {
-    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += expressOpen;
     ssml += `<prosody ${prosodyAttrsStr}>`;
     ssml += escapeXml(text);
     ssml += `</prosody>`;
     ssml += `</mstts:express-as>`;
   } else if (hasStyle) {
-    ssml += `<mstts:express-as style="${escapeXml(style)}">`;
+    ssml += expressOpen;
     ssml += escapeXml(text);
     ssml += `</mstts:express-as>`;
   } else if (hasProsody) {
@@ -232,7 +240,7 @@ exports.handler = async (event, context, callback) => {
       }
     }
     
-    const { text, voice, style, rate, pitch, volume, sample_rate, format } = body;
+    const { text, voice, style, rate, pitch, volume, sample_rate, format, style_degree } = body;
     
     if (!text) {
       res.setStatusCode(400);
@@ -292,7 +300,8 @@ exports.handler = async (event, context, callback) => {
       style || null,
       rate || null,
       pitch || null,
-      volume || null
+      volume || null,
+      style_degree
     );
     
     // 获取输出格式

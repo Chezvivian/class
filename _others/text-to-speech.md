@@ -80,6 +80,12 @@ permalink: /tools/text-to-speech/
      <select id="styleSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;" disabled>
        <option value="">请先选择音色</option>
      </select>
+     <label for="styleDegreeSelect" style="display:block; font-weight:bold; margin:10px 0 8px; color:#2d3a4a; white-space:nowrap;">风格强度：</label>
+     <select id="styleDegreeSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
+       <option value="1">标准</option>
+       <option value="1.5">较强</option>
+       <option value="2" selected>很强</option>
+     </select>
    </div>
  </div>
 
@@ -187,7 +193,7 @@ permalink: /tools/text-to-speech/
   <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
   <div style="color:#666; font-size:14px; line-height:1.8;">
     <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。给孩子读绘本时，可点「绘本」载入短文，或套用温柔软读、活泼共读、韵文、男声讲故事等方案。</p>
-    <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
+    <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style）。风格强度可选标准、较强或很强；很强大约是 Azure 默认强度的两倍。对比时请选差别大的风格，例如耳语和喊叫，并重新点「开始合成」。</p>
     <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
   </div>
 </div>
@@ -311,6 +317,7 @@ const charCount = document.getElementById('charCount');
 const languageSelect = document.getElementById('languageSelect');
 const voiceSelect = document.getElementById('voiceSelect');
 const styleSelect = document.getElementById('styleSelect');
+const styleDegreeSelect = document.getElementById('styleDegreeSelect');
 const rateSelect = document.getElementById('rateSelect');
 const pitchSelect = document.getElementById('pitchSelect');
 const volumeSelect = document.getElementById('volumeSelect');
@@ -1137,11 +1144,13 @@ async function synthesizeSpeech(text) {
   try {
     const selectedVoice = voiceSelect.value;
     const selectedStyle = styleSelect.value || null;
+    const selectedStyleDegree = selectedStyle ? parseFloat(styleDegreeSelect.value) : null;
     
     console.log('调用Azure TTS API，参数:', {
       text: text.substring(0, 100) + '...',
       voice: selectedVoice,
       style: selectedStyle,
+      style_degree: selectedStyleDegree,
       rate: rateSelect.value,
       pitch: pitchSelect.value,
       volume: volumeSelect.value,
@@ -1159,6 +1168,7 @@ async function synthesizeSpeech(text) {
         text: text,
         voice: selectedVoice,
         style: selectedStyle,
+        style_degree: selectedStyleDegree,
         rate: rateSelect.value,
         pitch: pitchSelect.value,
         volume: volumeSelect.value,
