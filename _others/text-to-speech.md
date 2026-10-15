@@ -10,7 +10,7 @@ permalink: /tools/text-to-speech/
 <strong>工具名称：</strong>文字转语音工具<br>
 <strong>技术平台：</strong>微软 Azure AI Speech Service<br>
 <strong>功能特点：</strong>实时语音合成、在线播放、音频下载<br>
-<strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习<br>
+<strong>适用场景：</strong>教学音频制作、播客内容生成、多语言学习、儿童绘本朗读<br>
 <strong>推荐音色：</strong>如果想尝试多种说话风格，建议选择以下音色：Aria、Jenny、Davis、Guy、Jane、Jason、Nancy、Sara、Tony（这些音色提供10种以上的说话风格选项）<br>
 <strong>更新时间：</strong>2025年11月1日<br>
 <strong>制作人：</strong>黄婕（网站功能如有问题，欢迎联系 chezvivian@outlook.com）
@@ -26,9 +26,21 @@ permalink: /tools/text-to-speech/
 <div style="margin-bottom:24px;">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
     <label for="textInput" style="display:block; font-weight:bold; color:#2d3a4a;">输入文本：</label>
-    <button id="sampleTextBtn" style="background:#6f42c1; color:white; border:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
-      示例文本
-    </button>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button id="pictureBookBtn" type="button" aria-expanded="false" style="background:#e08a3c; color:white; border:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+        绘本
+      </button>
+      <button id="sampleTextBtn" type="button" style="background:#6f42c1; color:white; border:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.3s; box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+        示例文本
+      </button>
+    </div>
+  </div>
+  <div id="pictureBookPanel" style="display:none; background:#fff8f1; border:1px solid #f0d7bd; border-radius:8px; padding:14px 16px; margin-bottom:12px;">
+    <div style="font-size:13px; font-weight:600; color:#8a4b12; margin-bottom:8px;">绘本文档</div>
+    <div id="pictureBookDocs" style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;"></div>
+    <div style="font-size:13px; font-weight:600; color:#8a4b12; margin-bottom:8px;">朗读方案</div>
+    <div id="pictureBookSchemes" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+    <p style="margin:10px 0 0 0; font-size:12px; color:#8a6a45; line-height:1.6;">文档只填入文字，朗读方案只改语言、音色、说话风格和语速。两者可以分开选，选完后仍可再改下面的设置。</p>
   </div>
   <textarea id="textInput" placeholder="请输入要转换为语音的文字内容..." style="width:100%; height:180px; padding:16px; border:1px solid #ddd; border-radius:8px; font-size:18px; line-height:1.6; resize:vertical; font-family:inherit;"></textarea>
   <div style="margin-top:8px; font-size:12px; color:#666;">
@@ -173,7 +185,7 @@ permalink: /tools/text-to-speech/
 <div style="background:#f8f9fa; border:1px solid #e9ecef; border-radius:6px; padding:20px; margin-top:24px;">
   <h4 style="margin:0 0 16px 0; color:#2d3a4a; font-size:16px; font-weight:600;">使用说明</h4>
   <div style="color:#666; font-size:14px; line-height:1.8;">
-    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。</p>
+    <p style="margin:0 0 12px 0;">输入要转换的文字内容（最多5000字符），然后依次选择语言、音色和说话风格。给孩子读绘本时，可点「绘本」载入短文，或套用温柔软读、活泼共读、韵文、男声讲故事等方案。</p>
     <p style="margin:0 0 12px 0;">系统支持多种英语变体（美国、英国、加拿大、澳大利亚、印度等），每种语言提供多个音色选择。部分音色支持多种说话风格（Speaking Style），可根据文本内容选择合适的风格以获得更自然的语音效果。</p>
     <p style="margin:0;">选择合适的采样率和音频格式后，点击"开始合成"生成语音。合成完成后可在线播放或下载音频文件。</p>
   </div>
@@ -304,6 +316,10 @@ const volumeSelect = document.getElementById('volumeSelect');
 const sampleRateSelect = document.getElementById('sampleRateSelect');
 const formatSelect = document.getElementById('formatSelect');
 const sampleTextBtn = document.getElementById('sampleTextBtn');
+const pictureBookBtn = document.getElementById('pictureBookBtn');
+const pictureBookPanel = document.getElementById('pictureBookPanel');
+const pictureBookDocs = document.getElementById('pictureBookDocs');
+const pictureBookSchemes = document.getElementById('pictureBookSchemes');
 const synthesizeBtn = document.getElementById('synthesizeBtn');
 const playBtn = document.getElementById('playBtn');
 const downloadBtn = document.getElementById('downloadBtn');
@@ -351,8 +367,15 @@ sampleTextBtn.addEventListener('click', function() {
   loadSampleText();
 });
 
+pictureBookBtn.addEventListener('click', function() {
+  const open = pictureBookPanel.style.display === 'none';
+  pictureBookPanel.style.display = open ? 'block' : 'none';
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  this.style.background = open ? '#c56d22' : '#e08a3c';
+});
+
 // 按钮悬停效果
-const buttons = [sampleTextBtn, synthesizeBtn, playBtn, downloadBtn];
+const buttons = [pictureBookBtn, sampleTextBtn, synthesizeBtn, playBtn, downloadBtn];
 buttons.forEach(btn => {
   btn.addEventListener('mouseenter', function() {
     if (!this.disabled) {
@@ -677,7 +700,7 @@ function applyVoicesCatalog(data, preferredLanguage, preferredVoice) {
     languageCode = languageSelect.value;
   }
 
-  updateVoicesByLanguage(languageCode, preferredVoice);
+  updateVoicesByLanguage(languageCode, preferredVoice, styleSelect.value);
 }
 
 // 脚本执行到这里时下拉框已经在页面上，先填常用音色，不必等 DOMContentLoaded
@@ -736,7 +759,7 @@ async function loadVoices() {
 }
 
 // 根据选择的语言更新音色列表
-function updateVoicesByLanguage(languageCode, preferredVoice) {
+function updateVoicesByLanguage(languageCode, preferredVoice, preferredStyle) {
   if (!languageCode || !voicesData || !voicesData.voices) {
     voiceSelect.innerHTML = '<option value="">请先选择语言</option>';
     voiceSelect.disabled = true;
@@ -778,12 +801,12 @@ function updateVoicesByLanguage(languageCode, preferredVoice) {
     } else {
       voiceSelect.selectedIndex = 0;
     }
-    updateStyles(voiceSelect.value);
+    updateStyles(voiceSelect.value, preferredStyle);
   }
 }
 
 // 根据选择的音色更新Speaking styles
-function updateStyles(voiceName) {
+function updateStyles(voiceName, preferredStyle) {
   if (!voiceName || !voicesData || !voicesData.voices) {
     styleSelect.innerHTML = '<option value="">请先选择音色</option>';
     styleSelect.disabled = true;
@@ -818,6 +841,13 @@ function updateStyles(voiceName) {
     styleSelect.disabled = false;
   } else {
     styleSelect.disabled = false;
+  }
+
+  if (preferredStyle) {
+    const matchedStyle = Array.from(styleSelect.options).find(opt => opt.value === preferredStyle);
+    if (matchedStyle) {
+      styleSelect.value = preferredStyle;
+    }
   }
 }
 
@@ -885,6 +915,168 @@ function loadSampleText() {
   textInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
   textInput.focus();
 }
+
+const pictureBookDocuments = [
+  {
+    id: 'moon',
+    label: '月亮晚安',
+    suggestedScheme: 'gentle',
+    text: 'The moon is soft and round.\n"Good night, little star," said the moon.\n"Good night, little bird. Good night, little tree."\nThe bird tucked its head. The tree stood still.\n"Good night," whispered the moon. "I will watch you."'
+  },
+  {
+    id: 'boots',
+    label: '红靴子在哪里',
+    suggestedScheme: 'cheerful',
+    text: 'Look! A red boot.\nWhere is the other red boot?\nIs it under the bed? No.\nIs it behind the door? No.\nLook in the garden. There it is!\nOne boot. Two boots. Ready to splash!'
+  },
+  {
+    id: 'rain',
+    label: '小雨歌',
+    suggestedScheme: 'lyrical',
+    text: 'Pitter-patter, little rain.\nTap the window. Tap again.\nBoots on. Coat on. Out we go.\nPuddles waiting in a row.\nJump, splash, jump, splash — one, two, three.\nThe rain is singing just for me.'
+  },
+  {
+    id: 'hat',
+    label: '蓝帽子',
+    suggestedScheme: 'story',
+    text: 'Sam had a blue hat.\nThe wind took the hat up, up, up.\nA dog saw it. "Not mine," said the dog.\nA duck saw it. "Not mine," said the duck.\nSam called, "Blue hat, come back!"\nThe wind grew tired. Down came the hat, right onto Sam\'s head.'
+  }
+];
+
+const pictureBookSchemes = [
+  {
+    id: 'gentle',
+    label: '温柔软读',
+    detail: 'Jenny · 亲近 · 慢速',
+    language: 'en-US',
+    voice: 'en-US-JennyNeural',
+    voiceName: 'Jenny',
+    style: 'affectionate',
+    rate: 'slow',
+    pitch: 'medium',
+    volume: 'medium'
+  },
+  {
+    id: 'cheerful',
+    label: '活泼共读',
+    detail: 'Jane · 愉快 · 慢速',
+    language: 'en-US',
+    voice: 'en-US-JaneNeural',
+    voiceName: 'Jane',
+    style: 'cheerful',
+    rate: 'slow',
+    pitch: 'medium',
+    volume: 'medium'
+  },
+  {
+    id: 'lyrical',
+    label: '韵文绘本',
+    detail: 'Aria · 韵律 · 慢速',
+    language: 'en-US',
+    voice: 'en-US-AriaNeural',
+    voiceName: 'Aria',
+    style: 'lyrical',
+    rate: 'slow',
+    pitch: 'medium',
+    volume: 'medium'
+  },
+  {
+    id: 'story',
+    label: '男声讲故事',
+    detail: 'Davis · 放松叙述 · 慢速',
+    language: 'en-US',
+    voice: 'en-US-DavisNeural',
+    voiceName: 'Davis',
+    style: 'narration-relaxed',
+    rate: 'slow',
+    pitch: 'medium',
+    volume: 'medium'
+  }
+];
+
+let selectedPictureBookDoc = '';
+let selectedPictureBookScheme = '';
+
+function pictureBookChipStyle(active) {
+  return [
+    'border:1px solid ' + (active ? '#e08a3c' : '#f0d7bd'),
+    'background:' + (active ? '#e08a3c' : '#fff'),
+    'color:' + (active ? '#fff' : '#8a4b12'),
+    'border-radius:999px',
+    'padding:6px 12px',
+    'font-size:13px',
+    'cursor:pointer',
+    'line-height:1.4'
+  ].join(';');
+}
+
+function renderPictureBookOptions() {
+  pictureBookDocs.innerHTML = '';
+  pictureBookDocuments.forEach(doc => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = doc.label;
+    button.style.cssText = pictureBookChipStyle(doc.id === selectedPictureBookDoc);
+    button.addEventListener('click', function() {
+      loadPictureBookDocument(doc.id);
+    });
+    pictureBookDocs.appendChild(button);
+  });
+
+  pictureBookSchemes.innerHTML = '';
+  pictureBookSchemes.forEach(scheme => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = scheme.label + ' · ' + scheme.detail;
+    button.style.cssText = pictureBookChipStyle(scheme.id === selectedPictureBookScheme);
+    button.addEventListener('click', function() {
+      applyPictureBookScheme(scheme.id);
+    });
+    pictureBookSchemes.appendChild(button);
+  });
+}
+
+function loadPictureBookDocument(id) {
+  const doc = pictureBookDocuments.find(item => item.id === id);
+  if (!doc) return;
+
+  selectedPictureBookDoc = id;
+  textInput.value = doc.text;
+  textInput.dispatchEvent(new Event('input'));
+  const suggested = pictureBookSchemes.find(item => item.id === doc.suggestedScheme);
+  const suggestion = suggested ? `可再点「${suggested.label}」搭配朗读。` : '';
+  statusText.textContent = `已载入绘本文档：${doc.label}（${doc.text.length}字符）。${suggestion}`;
+  statusText.style.color = '#666';
+  renderPictureBookOptions();
+  textInput.focus();
+}
+
+function applyPictureBookScheme(id) {
+  const scheme = pictureBookSchemes.find(item => item.id === id);
+  if (!scheme) return;
+
+  const voices = voicesData && voicesData.voices && voicesData.voices[scheme.language];
+  const voice = voices && voices.find(item => item.name === scheme.voice);
+  const hasStyle = voice && Array.isArray(voice.styles) && voice.styles.includes(scheme.style);
+  if (!voice || !hasStyle) {
+    statusText.textContent = `当前列表里没有「${scheme.label}」需要的音色或风格，请等完整列表加载后再试。`;
+    statusText.style.color = '#856404';
+    return;
+  }
+
+  languageSelect.value = scheme.language;
+  updateVoicesByLanguage(scheme.language, scheme.voice, scheme.style);
+
+  rateSelect.value = scheme.rate;
+  pitchSelect.value = scheme.pitch;
+  volumeSelect.value = scheme.volume;
+  selectedPictureBookScheme = id;
+  statusText.textContent = `已套用朗读方案：${scheme.label}（${scheme.detail}）`;
+  statusText.style.color = '#666';
+  renderPictureBookOptions();
+}
+
+renderPictureBookOptions();
 
 // 页面加载完成后的初始化
 document.addEventListener('DOMContentLoaded', function() {
