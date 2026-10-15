@@ -943,7 +943,7 @@ const pictureBookDocuments = [
   }
 ];
 
-const pictureBookSchemes = [
+const pictureBookSchemeList = [
   {
     id: 'gentle',
     label: '温柔软读',
@@ -1024,7 +1024,7 @@ function renderPictureBookOptions() {
   });
 
   pictureBookSchemes.innerHTML = '';
-  pictureBookSchemes.forEach(scheme => {
+  pictureBookSchemeList.forEach(scheme => {
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = scheme.label + ' · ' + scheme.detail;
@@ -1043,7 +1043,7 @@ function loadPictureBookDocument(id) {
   selectedPictureBookDoc = id;
   textInput.value = doc.text;
   textInput.dispatchEvent(new Event('input'));
-  const suggested = pictureBookSchemes.find(item => item.id === doc.suggestedScheme);
+  const suggested = pictureBookSchemeList.find(item => item.id === doc.suggestedScheme);
   const suggestion = suggested ? `可再点「${suggested.label}」搭配朗读。` : '';
   statusText.textContent = `已载入绘本文档：${doc.label}（${doc.text.length}字符）。${suggestion}`;
   statusText.style.color = '#666';
@@ -1052,7 +1052,7 @@ function loadPictureBookDocument(id) {
 }
 
 function applyPictureBookScheme(id) {
-  const scheme = pictureBookSchemes.find(item => item.id === id);
+  const scheme = pictureBookSchemeList.find(item => item.id === id);
   if (!scheme) return;
 
   const voices = voicesData && voicesData.voices && voicesData.voices[scheme.language];
