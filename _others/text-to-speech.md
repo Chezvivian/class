@@ -90,6 +90,7 @@ permalink: /tools/text-to-speech/
      <select id="rateSelect" style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:6px; font-size:16px; box-sizing:border-box;">
        <option value="x-slow">很慢</option>
        <option value="slow">慢速</option>
+       <option value="0.85">稍慢</option>
        <option value="medium" selected>正常</option>
        <option value="fast">快速</option>
        <option value="x-fast">很快</option>
@@ -632,10 +633,10 @@ const BUILTIN_VOICES_DATA = {
   ],
   voices: {
     'en-US': [
-      { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: ['chat', 'cheerful', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'narration-professional', 'newscast-casual', 'newscast-formal'], roles: [] },
-      { name: 'en-US-AriaNeural', displayName: 'Aria', gender: 'Female', styles: ['chat', 'cheerful', 'empathy', 'sad', 'angry', 'fearful', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast'], roles: [] },
+      { name: 'en-US-JennyNeural', displayName: 'Jenny', gender: 'Female', styles: ['angry', 'assistant', 'chat', 'cheerful', 'customerservice', 'excited', 'friendly', 'hopeful', 'newscast', 'sad', 'shouting', 'terrified', 'unfriendly', 'whispering'], roles: [] },
+      { name: 'en-US-AriaNeural', displayName: 'Aria', gender: 'Female', styles: ['angry', 'chat', 'cheerful', 'customerservice', 'empathetic', 'excited', 'friendly', 'hopeful', 'narration-professional', 'newscast-casual', 'newscast-formal', 'sad', 'shouting', 'terrified', 'unfriendly', 'whispering'], roles: [] },
       { name: 'en-US-AndrewNeural', displayName: 'Andrew', gender: 'Male', styles: [], roles: [] },
-      { name: 'en-US-DavisNeural', displayName: 'Davis', gender: 'Male', styles: ['chat', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'hopeful', 'sad', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical', 'newscast-casual', 'newscast-formal', 'narration-relaxed'], roles: [] },
+      { name: 'en-US-DavisNeural', displayName: 'Davis', gender: 'Male', styles: ['angry', 'chat', 'cheerful', 'excited', 'friendly', 'hopeful', 'sad', 'shouting', 'terrified', 'unfriendly', 'whispering'], roles: [] },
       { name: 'en-US-GuyNeural', displayName: 'Guy', gender: 'Male', styles: ['newscast', 'angry', 'cheerful', 'sad', 'excited', 'friendly', 'terrified', 'whispering', 'disgruntled'], roles: [] },
       { name: 'en-US-JaneNeural', displayName: 'Jane', gender: 'Female', styles: ['angry', 'cheerful', 'excited', 'friendly', 'hopeful', 'sad', 'scared', 'disgruntled', 'serious', 'affectionate', 'gentle', 'lyrical'], roles: [] },
       { name: 'en-US-JasonNeural', displayName: 'Jason', gender: 'Male', styles: ['angry', 'cheerful', 'sad', 'excited', 'friendly', 'nervous', 'scared', 'serious', 'whispering', 'affectionate', 'disgruntled'], roles: [] },
@@ -947,48 +948,52 @@ const pictureBookSchemeList = [
   {
     id: 'gentle',
     label: '温柔软读',
-    detail: 'Jenny · 亲近 · 慢速',
+    detail: 'Jenny · 友好 · 稍慢',
     language: 'en-US',
     voice: 'en-US-JennyNeural',
     voiceName: 'Jenny',
-    style: 'affectionate',
-    rate: 'slow',
+    style: 'friendly',
+    styleFallbacks: ['chat', 'cheerful'],
+    rate: '0.85',
     pitch: 'medium',
     volume: 'medium'
   },
   {
     id: 'cheerful',
     label: '活泼共读',
-    detail: 'Jane · 愉快 · 慢速',
+    detail: 'Jane · 愉快 · 稍慢',
     language: 'en-US',
     voice: 'en-US-JaneNeural',
     voiceName: 'Jane',
     style: 'cheerful',
-    rate: 'slow',
+    styleFallbacks: ['friendly'],
+    rate: '0.85',
     pitch: 'medium',
     volume: 'medium'
   },
   {
     id: 'lyrical',
     label: '韵文绘本',
-    detail: 'Aria · 韵律 · 慢速',
+    detail: 'Aria · 讲述 · 稍慢',
     language: 'en-US',
     voice: 'en-US-AriaNeural',
     voiceName: 'Aria',
-    style: 'lyrical',
-    rate: 'slow',
+    style: 'narration-professional',
+    styleFallbacks: ['friendly', 'cheerful'],
+    rate: '0.85',
     pitch: 'medium',
     volume: 'medium'
   },
   {
     id: 'story',
     label: '男声讲故事',
-    detail: 'Davis · 放松叙述 · 慢速',
+    detail: 'Davis · 友好 · 稍慢',
     language: 'en-US',
     voice: 'en-US-DavisNeural',
     voiceName: 'Davis',
-    style: 'narration-relaxed',
-    rate: 'slow',
+    style: 'friendly',
+    styleFallbacks: ['chat', 'cheerful'],
+    rate: '0.85',
     pitch: 'medium',
     volume: 'medium'
   }
@@ -1057,15 +1062,18 @@ function applyPictureBookScheme(id) {
 
   const voices = voicesData && voicesData.voices && voicesData.voices[scheme.language];
   const voice = voices && voices.find(item => item.name === scheme.voice);
-  const hasStyle = voice && Array.isArray(voice.styles) && voice.styles.includes(scheme.style);
-  if (!voice || !hasStyle) {
-    statusText.textContent = `当前列表里没有「${scheme.label}」需要的音色或风格，请等完整列表加载后再试。`;
+  if (!voice) {
+    statusText.textContent = `当前列表里没有「${scheme.label}」需要的音色，请等完整列表加载后再试。`;
     statusText.style.color = '#856404';
     return;
   }
 
+  const availableStyles = Array.isArray(voice.styles) ? voice.styles : [];
+  const preferredStyles = [scheme.style].concat(scheme.styleFallbacks || []);
+  const style = preferredStyles.find(name => availableStyles.includes(name)) || '';
+
   languageSelect.value = scheme.language;
-  updateVoicesByLanguage(scheme.language, scheme.voice, scheme.style);
+  updateVoicesByLanguage(scheme.language, scheme.voice, style);
 
   rateSelect.value = scheme.rate;
   pitchSelect.value = scheme.pitch;
