@@ -29,51 +29,51 @@ layout: post
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 1 Brands</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/2026%E7%A7%8B_Unit1_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 1</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit1_lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 2</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit1-Lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 3</a></td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/2026%E7%A7%8B_Unit1_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 1</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit1_lesson2.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 2</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit1-Lesson3.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 3</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit1-Lesson4.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 4</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20词汇跟读.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%201%20Brands%20·%20词汇跟读.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit1_brands_introduction.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 2 Media</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit2_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 1</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit2_Lead_in_Video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit3_Lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 4 Advertising</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit4_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 5 Environment</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit5_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit6_lead_in.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 7 Job Hunting</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit7_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 8 Government policy</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit8_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#e3e8ef; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Summary</td>
