@@ -1,5 +1,5 @@
 /* 商务英语情境化模拟平台 - 共享样式 */
-.bsim { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #334155; line-height: 1.75; font-size: 16px; padding-bottom: 3rem; }
+.bsim { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: #334155; line-height: 1.75; font-size: 16px; padding-bottom: 51px; }
 .bsim * { box-sizing: border-box; }
 .bsim button { font-family: inherit; cursor: pointer; }
 .bsim .hidden { display: none; }
@@ -9,153 +9,160 @@
 .bsim .bs-crumb a { color: #1e40af; text-decoration: none; }
 .bsim .bs-crumb .sep { color: #cbd5e1; margin: 0 6px; }
 .bsim .bs-hero { background: #1e3a8a; color: #fff; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; }
-.bsim .bs-hero h2 { margin: 0 0 6px; color: #fff; font-size: 1.5rem; border: none; }
-.bsim .bs-hero p { margin: 0; color: #dbe5ff; font-size: 0.95rem; }
-.bsim .bs-hero .bs-tagline { display: inline-block; background: rgba(255,255,255,.16); border-radius: 14px; padding: 2px 12px; font-size: 0.78rem; margin-bottom: 10px; }
+.bsim .bs-hero h2 { margin: 0 0 6px; color: #fff; font-size: 25.5px; border: none; }
+.bsim .bs-hero p { margin: 0; color: #dbe5ff; font-size: 16.2px; }
+.bsim .bs-hero .bs-tagline { display: inline-block; background: rgba(255,255,255,.16); border-radius: 14px; padding: 2px 12px; font-size: 13.3px; margin-bottom: 10px; }
 
 /* 区块 */
 .bsim .bs-section { margin: 0 0 28px; }
-.bsim .bs-section > h3 { font-size: 1.15rem; margin: 0 0 12px; padding-left: 10px; border-left: 4px solid #2c6bac; color: #1e293b; }
-.bsim .bs-section p { margin: 0 0 10px; font-size: 0.95rem; }
-.bsim .bs-note { font-size: 0.85rem; color: #64748b; }
+.bsim .bs-section > h3 { font-size: 19.5px; margin: 0 0 12px; padding-left: 10px; border-left: 4px solid #2c6bac; color: #1e293b; }
+.bsim .bs-section p { margin: 0 0 10px; font-size: 16.2px; }
+.bsim .bs-note { font-size: 14.4px; color: #64748b; }
 .bsim .bs-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
 .bsim .bs-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; }
-.bsim .bs-box h4 { margin: 0 0 6px; font-size: 0.98rem; color: #1e293b; }
-.bsim .bs-box p, .bsim .bs-box li { font-size: 0.88rem; margin: 0 0 6px; }
-.bsim .bs-box ul { margin: 0; padding-left: 1.1rem; }
+.bsim .bs-box h4 { margin: 0 0 6px; font-size: 16.7px; color: #1e293b; }
+.bsim .bs-box p, .bsim .bs-box li { font-size: 15px; margin: 0 0 6px; }
+.bsim .bs-box ul { margin: 0; padding-left: 18.7px; }
 .bsim .bs-step { counter-increment: st; position: relative; padding-left: 38px; }
-.bsim .bs-step::before { content: counter(st); position: absolute; left: 0; top: 10px; width: 26px; height: 26px; border-radius: 50%; background: #2c6bac; color: #fff; font-weight: 700; font-size: 0.85rem; text-align: center; line-height: 26px; }
+.bsim .bs-step::before { content: counter(st); position: absolute; left: 0; top: 10px; width: 26px; height: 26px; border-radius: 50%; background: #2c6bac; color: #fff; font-weight: 700; font-size: 14.4px; text-align: center; line-height: 26px; }
 .bsim .bs-steps { counter-reset: st; display: grid; gap: 10px; }
 
 /* 入口大卡片 */
 .bsim .bs-topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
 .bsim a.bs-topic { display: block; text-decoration: none; color: inherit; background: #fff; border: 2px solid #e2e8f0; border-radius: 16px; overflow: hidden; transition: transform .15s, box-shadow .15s; }
 .bsim a.bs-topic:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(30,58,138,.18); border-color: #2c6bac; }
-.bsim .bs-topic-cover { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: linear-gradient(135deg, #2c6bac, #5b9bd5); }
+.bsim .bs-topic-cover { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 51px; background: linear-gradient(135deg, #2c6bac, #5b9bd5); }
 .bsim .bs-topic-body { padding: 16px 18px 18px; }
-.bsim .bs-topic-no { font-size: 0.72rem; font-weight: 700; letter-spacing: .6px; color: #2c6bac; text-transform: uppercase; }
-.bsim .bs-topic-title { font-size: 1.25rem; font-weight: 700; margin: 2px 0 6px; color: #1e293b; }
-.bsim .bs-topic-desc { font-size: 0.88rem; color: #64748b; margin-bottom: 10px; }
-.bsim .bs-topic-go { display: inline-block; background: #2c6bac; color: #fff; border-radius: 8px; padding: 6px 16px; font-size: 0.85rem; font-weight: 700; }
+.bsim .bs-topic-no { font-size: 12.2px; font-weight: 700; letter-spacing: .6px; color: #2c6bac; text-transform: uppercase; }
+.bsim .bs-topic-title { font-size: 21.2px; font-weight: 700; margin: 2px 0 6px; color: #1e293b; }
+.bsim .bs-topic-desc { font-size: 15px; color: #64748b; margin-bottom: 10px; }
+.bsim .bs-topic-go { display: inline-block; background: #2c6bac; color: #fff; border-radius: 8px; padding: 6px 16px; font-size: 14.4px; font-weight: 700; }
 .bsim .bs-topic.soon { border-style: dashed; opacity: .7; cursor: default; }
 .bsim .bs-topic.soon:hover { transform: none; box-shadow: none; border-color: #e2e8f0; }
 .bsim .bs-topic.soon .bs-topic-cover { background: #cbd5e1; }
 .bsim .bs-topic.soon .bs-topic-go { background: #94a3b8; }
 
 /* 表格 */
-.bsim table.bs-table { border-collapse: collapse; width: 100%; font-size: 0.86rem; margin: 0 0 8px; }
+.bsim table.bs-table { border-collapse: collapse; width: 100%; font-size: 14.6px; margin: 0 0 8px; }
 .bsim table.bs-table th, .bsim table.bs-table td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
 .bsim table.bs-table th { background: #f1f5f9; font-weight: 700; }
 
 /* 问题卡 */
 .bsim .bs-problem { background: #fffcf0; border: 1px solid #e8d47a; border-left: 5px solid #f0a500; border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 14px; }
-.bsim .bs-problem .q { font-size: 1.05rem; font-weight: 700; color: #7a5200; margin-bottom: 6px; }
+.bsim .bs-problem .q { font-size: 17.8px; font-weight: 700; color: #7a5200; margin-bottom: 6px; }
 .bsim .bs-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
 .bsim .bs-opt { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; background: #fff; }
 .bsim .bs-opt b { display: block; margin-bottom: 4px; }
-.bsim .bs-opt .pro { color: #2e7d4f; font-size: 0.84rem; }
-.bsim .bs-opt .con { color: #b3261e; font-size: 0.84rem; }
+.bsim .bs-opt .pro { color: #2e7d4f; font-size: 14.3px; }
+.bsim .bs-opt .con { color: #b3261e; font-size: 14.3px; }
 
 /* 团队协作链 */
 .bsim .bs-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.bsim .bs-team .bs-member { border-top: 5px solid var(--c); background: #fff; border: 1px solid #e2e8f0; border-top: 5px solid var(--c); border-radius: 10px; padding: 12px 14px; font-size: 0.88rem; }
+.bsim .bs-team .bs-member { border-top: 5px solid var(--c); background: #fff; border: 1px solid #e2e8f0; border-top: 5px solid var(--c); border-radius: 10px; padding: 12px 14px; font-size: 15px; }
 .bsim .bs-team .bs-member b { color: var(--c); }
 
 /* 角色卡 */
 .bsim .role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
 .bsim .role-card { background: #fff; border: 1.5px solid #e2e8f0; border-top: 6px solid var(--c); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; }
-.bsim .role-emoji { font-size: 1.8rem; }
-.bsim .role-name { font-weight: 700; font-size: 1.05rem; margin: 2px 0 0; color: #1e293b; }
-.bsim .role-zh { font-size: 0.78rem; color: #94a3b8; margin-bottom: 8px; }
-.bsim .role-line { font-size: 0.85rem; line-height: 1.6; margin: 3px 0; }
+.bsim .role-emoji { font-size: 30.6px; }
+.bsim .role-name { font-weight: 700; font-size: 17.8px; margin: 2px 0 0; color: #1e293b; }
+.bsim .role-zh { font-size: 13.3px; color: #94a3b8; margin-bottom: 8px; }
+.bsim .role-line { font-size: 14.4px; line-height: 1.6; margin: 3px 0; }
 .bsim .role-line b { color: var(--c); }
-.bsim .role-sub { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #94a3b8; margin: 10px 0 4px; }
+.bsim .role-sub { font-size: 12.6px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #94a3b8; margin: 10px 0 4px; }
 .bsim .role-words { display: flex; flex-wrap: wrap; gap: 5px; }
-.bsim .role-word { font-size: 0.78rem; background: #f1f5f9; border-radius: 12px; padding: 2px 9px; color: #334155; }
+.bsim .role-word { font-size: 13.3px; background: #f1f5f9; border-radius: 12px; padding: 2px 9px; color: #334155; }
 .bsim .role-word small { color: #94a3b8; margin-left: 3px; }
-.bsim .role-sents { margin: 0; padding-left: 1.05rem; font-size: 0.82rem; }
+.bsim .role-sents { margin: 0; padding-left: 17.8px; font-size: 13.9px; }
 .bsim .role-sents li { margin: 0 0 5px; }
-.bsim .role-sents .zh { display: block; color: #64748b; font-size: 0.78rem; }
+.bsim .role-sents .zh { display: block; color: #64748b; font-size: 13.3px; }
 .bsim .role-enter { margin-top: auto; padding-top: 12px; }
-.bsim .btn { border: none; border-radius: 8px; padding: 0.55rem 1.2rem; font-size: 0.88rem; font-weight: 700; }
+.bsim .btn { border: none; border-radius: 8px; padding: 9.4px 20.4px; font-size: 15px; font-weight: 700; }
 .bsim .btn-primary { background: var(--c, #2c6bac); color: #fff; }
 .bsim .btn-primary:disabled { opacity: .45; cursor: not-allowed; }
 .bsim .btn-ghost { background: #eef2f7; color: #456; }
 .bsim .btn-dl { background: #2e7d4f; color: #fff; }
 
 /* 角色思考界面 */
-.bsim .bsim-back { background: none; border: none; color: #2c6bac; font-size: 0.88rem; padding: 0; margin-bottom: 12px; }
+.bsim .bsim-back { background: none; border: none; color: #2c6bac; font-size: 15px; padding: 0; margin-bottom: 12px; }
 .bsim .rp-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
-.bsim .rp-badge { display: inline-block; padding: 4px 14px; border-radius: 16px; color: #fff; background: var(--c); font-size: 0.85rem; font-weight: 700; }
-.bsim .rp-round { font-size: 0.8rem; color: #888; }
-.bsim .rp-goal { font-size: 0.84rem; background: #f3f7fc; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; color: #456; }
+.bsim .rp-badge { display: inline-block; padding: 4px 14px; border-radius: 16px; color: #fff; background: var(--c); font-size: 14.4px; font-weight: 700; }
+.bsim .rp-round { font-size: 13.6px; color: #888; }
+.bsim .rp-goal { font-size: 14.3px; background: #f3f7fc; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; color: #456; }
 .bsim .chat-box { background: #f7f9fc; border: 1.5px solid #dce3ed; border-radius: 12px; padding: 14px; height: 440px; overflow-y: auto; margin-bottom: 14px; }
 .bsim .msg { margin-bottom: 14px; max-width: 88%; }
-.bsim .msg-who { font-size: 0.72rem; font-weight: 700; margin-bottom: 2px; color: var(--c); }
-.bsim .msg-bubble { background: #fff; border: 1px solid #e0e6f0; border-left: 4px solid var(--c); border-radius: 4px 12px 12px 12px; padding: 9px 14px; font-size: 0.92rem; line-height: 1.65; }
+.bsim .msg-who { font-size: 12.2px; font-weight: 700; margin-bottom: 2px; color: var(--c); }
+.bsim .msg-bubble { background: #fff; border: 1px solid #e0e6f0; border-left: 4px solid var(--c); border-radius: 4px 12px 12px 12px; padding: 9px 14px; font-size: 15.6px; line-height: 1.65; }
 .bsim .msg.me { margin-left: auto; }
 .bsim .msg.me .msg-who { text-align: right; }
 .bsim .msg.me .msg-bubble { background: #eaf3ff; border-left: 1px solid #e0e6f0; border-right: 4px solid var(--c); border-radius: 12px 4px 12px 12px; }
-.bsim .msg-sys { text-align: center; font-size: 0.78rem; color: #99a; margin: 10px 0; }
-.bsim .study { margin-top: 8px; background: #f4fbf6; border: 1px solid #cfe8d6; border-radius: 8px; padding: 9px 12px; font-size: 0.8rem; line-height: 1.6; }
-.bsim .study h4 { margin: 0 0 4px; font-size: 0.8rem; color: #2e7d4f; }
-.bsim .study ul { margin: 0 0 6px; padding-left: 1.1rem; }
+.bsim .msg-sys { text-align: center; font-size: 13.3px; color: #99a; margin: 10px 0; }
+.bsim .study { margin-top: 8px; background: #f4fbf6; border: 1px solid #cfe8d6; border-radius: 8px; padding: 9px 12px; font-size: 13.6px; line-height: 1.6; }
+.bsim .study h4 { margin: 0 0 4px; font-size: 13.6px; color: #2e7d4f; }
+.bsim .study ul { margin: 0 0 6px; padding-left: 18.7px; }
 .bsim .study li { margin: 2px 0; }
 .bsim .study .zh { color: #667; }
 .bsim .word-panel { border: 1.5px solid #e0e6f0; border-radius: 12px; padding: 14px 16px; background: #fff; }
 .bsim .word-group { margin-bottom: 12px; }
-.bsim .word-group-title { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #99a; margin-bottom: 5px; }
+.bsim .word-group-title { font-size: 12.6px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #99a; margin-bottom: 5px; }
 .bsim .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.bsim .chip { border: 1.5px solid #cfd8e6; background: #f5f8fc; border-radius: 16px; padding: 3px 12px; font-size: 0.82rem; color: #345; }
+.bsim .chip { border: 1.5px solid #cfd8e6; background: #f5f8fc; border-radius: 16px; padding: 3px 12px; font-size: 13.9px; color: #345; }
 .bsim .chip:hover { border-color: var(--c); }
 .bsim .chip.on { background: var(--c); border-color: var(--c); color: #fff; }
 .bsim .chip small { opacity: .7; margin-left: 4px; }
-.bsim .picked { margin: 10px 0; padding: 8px 12px; background: #fafbfd; border: 1px dashed #cfd8e6; border-radius: 8px; font-size: 0.83rem; color: #556; }
+.bsim .picked { margin: 10px 0; padding: 8px 12px; background: #fafbfd; border: 1px dashed #cfd8e6; border-radius: 8px; font-size: 14.1px; color: #556; }
 .bsim .rp-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-.bsim .rp-err { color: #b3261e; font-size: 0.83rem; margin-top: 8px; }
+.bsim .rp-err { color: #b3261e; font-size: 14.1px; margin-top: 8px; }
 /* 放大字号(覆盖前面的小字号) */
 .bsim { font-size: 18px; }
-.bsim .bs-big { font-size: 1.3rem; line-height: 1.6; color: #1e293b; margin: 4px 0 10px; }
-.bsim .bs-note { font-size: 0.95rem; font-weight: 400; color: #64748b; }
-.bsim .bs-hero h2 { font-size: 2rem; }
-.bsim .bs-hero p { font-size: 1.1rem; }
-.bsim .bs-section > h3 { font-size: 1.4rem; }
-.bsim .bs-section p { font-size: 1.1rem; }
-.bsim .bs-box h4 { font-size: 1.15rem; margin: 0; }
-.bsim .bs-topic-title { font-size: 1.6rem; }
-.bsim .bs-topic-desc { font-size: 1.05rem; }
-.bsim .bs-topic-go { font-size: 1rem; padding: 8px 20px; }
-.bsim .bs-problem .q { font-size: 1.15rem; }
-.bsim .bs-opt { font-size: 1.1rem; }
-.bsim .role-name { font-size: 1.3rem; }
-.bsim .role-zh { font-size: 0.95rem; }
-.bsim .role-line { font-size: 1.1rem; font-weight: 600; }
-.bsim .role-sub { font-size: 0.85rem; }
-.bsim .role-word { font-size: 1rem; padding: 3px 12px; }
-.bsim .role-sents { font-size: 1rem; }
-.bsim .btn { font-size: 1.05rem; padding: 0.65rem 1.4rem; }
-.bsim .rp-badge { font-size: 1rem; }
-.bsim .rp-round { font-size: 0.95rem; }
-.bsim .rp-goal { font-size: 1.05rem; }
-.bsim .msg-who { font-size: 0.9rem; }
-.bsim .msg-bubble { font-size: 1.1rem; }
-.bsim .study { font-size: 0.98rem; }
-.bsim .study h4 { font-size: 0.98rem; }
-.bsim .word-group-title { font-size: 0.85rem; }
-.bsim .chip { font-size: 1rem; padding: 4px 14px; }
-.bsim .picked { font-size: 1rem; }
-.bsim .rp-err { font-size: 1rem; }
-.bsim .bsim-back { font-size: 1rem; }
-.bsim .bs-crumb { font-size: 0.95rem; }
+.bsim .bs-big { font-size: 22.1px; line-height: 1.6; color: #1e293b; margin: 4px 0 10px; }
+.bsim .bs-note { font-size: 16.2px; font-weight: 400; color: #64748b; }
+.bsim .bs-hero h2 { font-size: 34px; }
+.bsim .bs-hero p { font-size: 18.7px; }
+.bsim .bs-section > h3 { font-size: 23.8px; }
+.bsim .bs-section p { font-size: 18.7px; }
+.bsim .bs-box h4 { font-size: 19.5px; margin: 0; }
+.bsim .bs-topic-title { font-size: 27.2px; }
+.bsim .bs-topic-desc { font-size: 17.8px; }
+.bsim .bs-topic-go { font-size: 17px; padding: 8px 20px; }
+.bsim .bs-problem .q { font-size: 19.5px; }
+.bsim .bs-opt { font-size: 18.7px; }
+.bsim .role-name { font-size: 22.1px; }
+.bsim .role-zh { font-size: 16.2px; }
+.bsim .role-line { font-size: 18.7px; font-weight: 600; }
+.bsim .role-sub { font-size: 14.4px; }
+.bsim .role-word { font-size: 17px; padding: 3px 12px; }
+.bsim .role-sents { font-size: 17px; }
+.bsim .btn { font-size: 17.8px; padding: 11px 23.8px; }
+.bsim .rp-badge { font-size: 17px; }
+.bsim .rp-round { font-size: 16.2px; }
+.bsim .rp-goal { font-size: 17.8px; }
+.bsim .msg-who { font-size: 15.3px; }
+.bsim .msg-bubble { font-size: 18.7px; }
+.bsim .study { font-size: 16.7px; }
+.bsim .study h4 { font-size: 16.7px; }
+.bsim .word-group-title { font-size: 14.4px; }
+.bsim .chip { font-size: 17px; padding: 4px 14px; }
+.bsim .picked { font-size: 17px; }
+.bsim .rp-err { font-size: 17px; }
+.bsim .bsim-back { font-size: 17px; }
+.bsim .bs-crumb { font-size: 16.2px; }
+/* 中文提示 */
+.bsim .role-line .zh { display: block; font-size: 16px; font-weight: 400; color: #64748b; }
+.bsim .role-word { display: inline-flex; flex-direction: column; border-radius: 10px; }
+.bsim .role-word small { display: block; margin: 0; font-size: 14px; }
+.bsim .role-sents .zh { font-size: 15px; }
+.bsim .bs-opt .bs-note { font-size: 15px; }
+.bsim .page-narrow { max-width: none; }
 /* 话术库 */
 .bsim details.pb { margin-top: 18px; border: 1.5px solid #e0e6f0; border-radius: 12px; padding: 12px 16px; background: #fff; }
-.bsim details.pb summary { cursor: pointer; font-weight: 700; font-size: 1.1rem; color: var(--c, #2c6bac); }
-.bsim .pb-title { margin: 16px 0 6px; font-size: 1rem; font-weight: 700; color: #fff; background: var(--c, #2c6bac); display: inline-block; padding: 2px 14px; border-radius: 14px; }
+.bsim details.pb summary { cursor: pointer; font-weight: 700; font-size: 18.7px; color: var(--c, #2c6bac); }
+.bsim .pb-title { margin: 16px 0 6px; font-size: 17px; font-weight: 700; color: #fff; background: var(--c, #2c6bac); display: inline-block; padding: 2px 14px; border-radius: 14px; }
 .bsim .pb-group { margin: 8px 0 12px; }
-.bsim .pb-gname { font-size: 0.95rem; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+.bsim .pb-gname { font-size: 16.2px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
 .bsim .pb-item { padding: 7px 12px; border-left: 4px solid #e2e8f0; border-radius: 0 8px 8px 0; margin-bottom: 5px; background: #f8fafc; cursor: pointer; transition: background .15s; }
 .bsim .pb-item:hover { background: #eef4fb; border-left-color: var(--c, #2c6bac); }
 .bsim .pb-item.copied { background: #dff3e5; border-left-color: #2e7d4f; }
-.bsim .pb-en { display: block; font-size: 1.05rem; color: #1e293b; }
-.bsim .pb-zh { display: block; font-size: 0.92rem; color: #64748b; }
+.bsim .pb-en { display: block; font-size: 17.8px; color: #1e293b; }
+.bsim .pb-zh { display: block; font-size: 15.6px; color: #64748b; }
 @media (max-width: 600px) { .bsim .chat-box { height: 340px; } .bsim .msg { max-width: 96%; } .bsim .bs-hero { padding: 18px; } }

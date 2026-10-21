@@ -21,21 +21,24 @@ permalink: /business-sim/media/
 <div class="bs-section">
   <h3>Scenario <span class="bs-note">情境</span></h3>
   <p class="bs-big">A new drink launches next week, but the budget is small. Three colleagues must decide how to spread the news.</p>
+  <p class="bs-note">Leaf 下周上新,但预算不多。三位同事要决定:怎么把消息传出去?</p>
 </div>
 
 <div class="bs-section">
   <div class="bs-problem">
     <div class="q">Problem <span class="bs-note">问题</span></div>
     <div class="bs-big">Post on our own channels, or get customers to post for us?</div>
-    <div class="bs-options">
-      <div class="bs-opt"><b>A</b> Owned media</div>
-      <div class="bs-opt"><b>B</b> Mass collaboration</div>
-      <div class="bs-opt"><b>C</b> Both</div>
+    <div class="bs-note">是自己发,还是发动顾客一起发?</div>
+    <div class="bs-options" style="margin-top:12px">
+      <div class="bs-opt"><b>A</b> Owned media<br><span class="bs-note">自有渠道,品牌自己发</span></div>
+      <div class="bs-opt"><b>B</b> Mass collaboration<br><span class="bs-note">大规模协作,顾客一起发</span></div>
+      <div class="bs-opt"><b>C</b> Both<br><span class="bs-note">两者结合</span></div>
     </div>
   </div>
   <div class="bs-problem" style="border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6">
     <div class="q" style="color:#1f5f3a">Goal <span class="bs-note">目标</span></div>
     <div class="bs-big">In 4 rounds, agree on one plan: channels, actions, reasons.</div>
+    <div class="bs-note">4 轮发言内,和同事达成一个方案:渠道、做法、理由。</div>
   </div>
 </div>
 
@@ -174,7 +177,7 @@ permalink: /business-sim/media/
     roles: {
       sales: {
         emoji: '💼', name: 'Sales Assistant', zh: '销售助理', color: '#c0602b',
-        view: 'I care about sales and budget.',
+        view: 'I care about sales and budget.', viewZh: '我关心销量和预算。',
         stance: '更关心销量转化与预算,倾向稳妥、可衡量的做法。',
         concern: '新品首周销量、每一分预算是否花得值。',
         resource: '门店与小程序的销售数据、少量促销预算。',
@@ -190,7 +193,7 @@ permalink: /business-sim/media/
       },
       social: {
         emoji: '📱', name: 'Social Media Specialist', zh: '社交媒体专员', color: '#2c6bac',
-        view: 'I care about brand and content.',
+        view: 'I care about brand and content.', viewZh: '我关心品牌和内容。',
         stance: '重视品牌形象与内容质量,倾向由品牌主导发布,但愿意尝试话题活动。',
         concern: '品牌调性是否统一、内容是否有传播力。',
         resource: '官方小红书/抖音/微信账号、内容制作能力。',
@@ -206,7 +209,7 @@ permalink: /business-sim/media/
       },
       community: {
         emoji: '🤝', name: 'Community Coordinator', zh: '社群运营', color: '#2e7d4f',
-        view: 'I believe in our customers.',
+        view: 'I believe in our customers.', viewZh: '我相信我们的顾客。',
         stance: '相信顾客的力量,倾向发动顾客一起发,实现 mass collaboration。',
         concern: '顾客是否愿意参与、社群是否活跃。',
         resource: '几个活跃的顾客微信群与会员体系。',
@@ -242,10 +245,10 @@ permalink: /business-sim/media/
   function renderRoleCards() {
     $('role-cards').innerHTML = Object.keys(GAME.roles).map(function (id) {
       var r = GAME.roles[id];
-      var words = r.extra.map(function (w) { return '<span class="role-word">' + esc(w[0]) + '</span>'; }).join('');
-      var sents = r.sentences.slice(0, 2).map(function (s) { return '<li>' + esc(s[0]) + '</li>'; }).join('');
+      var words = r.extra.map(function (w) { return '<span class="role-word">' + esc(w[0]) + '<small>' + esc(w[1]) + '</small></span>'; }).join('');
+      var sents = r.sentences.slice(0, 2).map(function (s) { return '<li>' + esc(s[0]) + '<span class="zh">' + esc(s[1]) + '</span></li>'; }).join('');
       return '<div class="role-card" style="--c:' + r.color + '"><div class="role-emoji">' + r.emoji + '</div><div class="role-name">' + esc(r.name) + '</div><div class="role-zh">' + esc(r.zh) + '</div>' +
-        '<p class="role-line">' + esc(r.view) + '</p>' +
+        '<p class="role-line">' + esc(r.view) + '<span class="zh">' + esc(r.viewZh) + '</span></p>' +
         '<div class="role-sub">Key words</div><div class="role-words">' + words + '</div>' +
         '<div class="role-sub">Useful sentences</div><ul class="role-sents">' + sents + '</ul>' +
         '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">Enter 进入 →</button></div></div>';
