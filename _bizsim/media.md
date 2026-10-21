@@ -77,6 +77,91 @@ permalink: /business-sim/media/
       ['independence', '独立'], ['persistence', '持久'], ['emergence', '涌现'] ] }
   ];
 
+  // ===== 话术库(无需 LLM,供学生备选;点击可复制)=====
+  var BANK_SHARED = [
+    { group: 'Opening & stating a view 开场与表态', items: [
+      ['Let me start by saying that…', '我先说一下…'],
+      ['From my point of view, …', '在我看来,…'],
+      ['In my experience, …', '根据我的经验,…'],
+      ["To be honest, I'm not fully convinced that…", '说实话,我不太相信…'] ] },
+    { group: 'Adding & giving reasons 补充与理由', items: [
+      ['The main reason is that…', '主要原因是…'],
+      ['On top of that, …', '除此之外,…'],
+      ['Not only will it …, but it will also …', '它不仅会…,还会…'],
+      ["That's why we should…", '所以我们应该…'] ] },
+    { group: 'Contrast & polite disagreement 转折与委婉反对', items: [
+      ["That's a good point; however, …", '有道理,不过…'],
+      ["I see where you're coming from, but …", '我理解你的想法,但是…'],
+      ['On the other hand, …', '另一方面,…'],
+      ["I'm afraid I can't fully agree, because …", '恐怕我不能完全同意,因为…'] ] },
+    { group: 'Softening your tone 委婉表达', items: [
+      ['Perhaps we could…', '也许我们可以…'],
+      ['It seems to me that…', '在我看来似乎…'],
+      ['We might want to consider…', '我们或许可以考虑…'],
+      ['It might be worth trying…', '也许值得尝试…'] ] },
+    { group: 'Asking & responding 提问与回应', items: [
+      ['Could you explain how that would work?', '你能解释一下这怎么操作吗?'],
+      ['How would we measure the results?', '我们如何衡量效果?'],
+      ["If I understand correctly, you're suggesting…", '如果我没理解错,你的建议是…'],
+      ['Building on what you said, …', '顺着你刚才说的,…'] ] },
+    { group: 'Compromise & closing 折中与收尾', items: [
+      ['How about we combine … and …?', '我们把…和…结合起来怎么样?'],
+      ["Let's start with … and review it after …", '我们先从…开始,…之后再复盘。'],
+      ['So, to sum up, …', '那么,总结一下,…'],
+      ["Shall we agree on…? / Then it's settled: …", '我们就定为…吧?/ 那就这么定了:…'] ] },
+    { group: 'Speaking tips 表达技巧', items: [
+      ['Claim → Reason → Example: "I suggest A, because B. For example, C."', '观点→理由→例子,让发言有说服力'],
+      ['Concede, then counter: "That is true, but …"', '先肯定对方,再提出自己的看法'],
+      ['Use numbers: "20 loyal customers", "within one week"', '用具体数字让建议更可信'],
+      ["Link to a colleague's point: \"As [name] said, …\"", '呼应同事的发言,体现团队合作'] ] }
+  ];
+
+  var BANK_ROLE = {
+    sales: [
+      { group: 'Budget & cost 预算与成本', items: [
+        ['We have to make every yuan count.', '每一分钱都要花得值。'],
+        ["What's the cost per customer we'd be paying?", '每获取一位顾客要花多少钱?'],
+        ['Free exposure is great, but it must lead to sales.', '免费曝光很好,但必须带来销量。'],
+        ["I'd like to see the numbers before we decide.", '做决定前我想先看数据。'] ] },
+      { group: 'Measuring results 衡量效果', items: [
+        ['We can use a coupon code to track which channel brings orders.', '我们可以用优惠码追踪哪个渠道带来订单。'],
+        ["Let's compare first-week sales with our last launch.", '把首周销量和上次上新做对比。'],
+        ['If the pilot works, we can scale it up.', '如果试点有效,我们再扩大规模。'] ] },
+      { group: 'Responding to colleagues 回应同事', items: [
+        ['I like the creativity, but how does it turn into orders?', '创意不错,但怎么转化成订单?'],
+        ['If customers post for us, that would really cut our costs.', '如果顾客帮我们发,能大大降低成本。'],
+        ['Fine, as long as we stay within budget.', '可以,只要不超预算。'] ] }
+    ],
+    social: [
+      { group: 'Brand & content 品牌与内容', items: [
+        ['A consistent look builds brand recognition.', '统一的风格有助于建立品牌认知。'],
+        ['A 15-second video can showcase the new drink very well.', '15 秒短视频就能很好地展示新品。'],
+        ['Good content is what makes people want to share.', '好内容才会让人想分享。'] ] },
+      { group: 'Channels 渠道', items: [
+        ['Xiaohongshu is ideal for lifestyle sharing and shopping guides.', '小红书适合生活分享和种草。'],
+        ['Douyin gives us viral potential through short videos and live streaming.', '抖音凭短视频和直播有爆款潜力。'],
+        ['WeChat lets us reach our existing customers directly.', '微信能直接触达现有顾客。'] ] },
+      { group: 'Managing the risk of UGC 应对 UGC 风险', items: [
+        ['The risk with user-generated content is losing control of the message.', '用户生成内容的风险是我们无法控制信息。'],
+        ['We could set simple guidelines and a hashtag to guide customers.', '我们可以设置简单指引和话题标签来引导顾客。'],
+        ["Let's repost the best customer content on our official account.", '把最好的顾客内容转发到官方账号。'] ] }
+    ],
+    community: [
+      { group: 'Mobilizing customers 动员顾客', items: [
+        ['People enjoy being part of a brand with a lively community.', '人们喜欢成为活跃社群品牌的一员。'],
+        ['A small reward, like a free upgrade, can motivate people to post.', '免费升级之类的小奖励能激励大家发帖。'],
+        ["Let's invite our regulars to try the new drink first.", '邀请老顾客优先试喝新品。'] ] },
+      { group: 'Principles in action 原则的应用', items: [
+        ['Participation: anyone can contribute without asking permission.', '参与:任何人无需许可都能贡献内容。'],
+        ['Persistence: customer posts stay online for others to see and share.', '持久:顾客的帖子会留存,供他人查看分享。'],
+        ['Transparency: let customers vote for their favorite flavor.', '透明:让顾客投票选出最爱口味。'] ] },
+      { group: 'Answering concerns 回应顾虑', items: [
+        ['I understand the worry about control, but listening to our audience also improves customer service.', '我理解对失控的担心,但倾听受众也能改善客户服务。'],
+        ['We can start with 20 loyal customers as a pilot.', '我们可以先找 20 位忠实顾客试点。'],
+        ['Their feedback will help us improve the product too.', '他们的反馈也有助于改进产品。'] ] }
+    ]
+  };
+
   var GAME = {
     id: GAME_ID,
     title: 'Leaf 新品上市晨会',
@@ -203,6 +288,9 @@ permalink: /business-sim/media/
       '<div class="chat-box" id="chat"></div>' +
       '<div id="composer"><div class="word-panel">' + panel + '<div class="picked" id="picked"></div>' +
       '<div class="rp-actions"><button class="btn btn-primary" id="gen" disabled>生成沟通话术 Generate</button><button class="btn btn-ghost" id="clear">清空选择</button><button class="btn btn-ghost" id="end">结束会议</button></div><div class="rp-err" id="err"></div></div></div>' +
+      '<details class="pb" open><summary>话术库 Phrasebank · 点击句子可复制 Click to copy</summary>' +
+      '<div class="pb-title">For your role 本角色</div>' + bankHtml(BANK_ROLE[state.roleId]) +
+      '<div class="pb-title">For everyone 通用衔接与技巧</div>' + bankHtml(BANK_SHARED) + '</details>' +
       '<div class="rp-actions" style="margin-top:16px"><button class="btn btn-dl" id="dl">⬇ 下载全部话术与学习资料</button><button class="btn btn-ghost" id="reset">重新开始</button></div>';
     $('back-topic').onclick = function () { show('topic'); };
     Array.prototype.forEach.call($('v-role').querySelectorAll('.chip'), function (c) {
@@ -212,12 +300,27 @@ permalink: /business-sim/media/
         syncPicked();
       };
     });
+    Array.prototype.forEach.call($('v-role').querySelectorAll('.pb-item'), function (el) {
+      el.onclick = function () {
+        var txt = el.dataset.en;
+        var done = function () { el.classList.add('copied'); setTimeout(function () { el.classList.remove('copied'); }, 900); };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, done); else done();
+      };
+    });
     $('gen').onclick = generate;
     $('clear').onclick = function () { state.picked = []; syncPicked(); };
     $('end').onclick = endMeeting;
     $('dl').onclick = download;
     $('reset').onclick = function () { if (confirm('确定清除本角色的所有记录并重新开始?')) { localStorage.removeItem(key()); enterRole(state.roleId); } };
     renderChat(); syncPicked();
+  }
+
+  function bankHtml(groups) {
+    return groups.map(function (g) {
+      return '<div class="pb-group"><div class="pb-gname">' + esc(g.group) + '</div>' + g.items.map(function (it) {
+        return '<div class="pb-item" data-en="' + esc(it[0]) + '"><span class="pb-en">' + esc(it[0]) + '</span><span class="pb-zh">' + esc(it[1]) + '</span></div>';
+      }).join('') + '</div>';
+    }).join('');
   }
 
   function indexOfPick(en) { for (var i = 0; i < state.picked.length; i++) if (state.picked[i].en === en) return i; return -1; }
@@ -344,6 +447,12 @@ permalink: /business-sim/media/
       L.push('## Round ' + t.round, '', '所选关键词 Chosen keywords: ' + t.picked.map(function (p) { return p.en; }).join(' | '), '', '**You (' + me.name + '):** ' + t.speech, '');
       if (t.keyPhrases.length) { L.push('关键词 Key phrases:'); t.keyPhrases.forEach(function (k) { L.push('- ' + k.en + ' — ' + k.zh + (k.note ? '(' + k.note + ')' : '')); }); L.push(''); }
       if (t.patterns.length) { L.push('句式 Sentence patterns:'); t.patterns.forEach(function (k) { L.push('- ' + k.en + ' — ' + k.zh); }); L.push(''); }
+    });
+    L.push('---', '', '# 话术库 Phrasebank', '');
+    BANK_ROLE[state.roleId].concat(BANK_SHARED).forEach(function (g) {
+      L.push('## ' + g.group, '');
+      g.items.forEach(function (it) { L.push('- ' + it[0] + ' — ' + it[1]); });
+      L.push('');
     });
     var blob = new Blob(['\ufeff' + L.join('\n')], { type: 'text/markdown;charset=utf-8' });
     var a = document.createElement('a');

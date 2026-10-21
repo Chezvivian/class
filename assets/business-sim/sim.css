@@ -147,4 +147,15 @@
 .bsim .rp-err { font-size: 1rem; }
 .bsim .bsim-back { font-size: 1rem; }
 .bsim .bs-crumb { font-size: 0.95rem; }
+/* 话术库 */
+.bsim details.pb { margin-top: 18px; border: 1.5px solid #e0e6f0; border-radius: 12px; padding: 12px 16px; background: #fff; }
+.bsim details.pb summary { cursor: pointer; font-weight: 700; font-size: 1.1rem; color: var(--c, #2c6bac); }
+.bsim .pb-title { margin: 16px 0 6px; font-size: 1rem; font-weight: 700; color: #fff; background: var(--c, #2c6bac); display: inline-block; padding: 2px 14px; border-radius: 14px; }
+.bsim .pb-group { margin: 8px 0 12px; }
+.bsim .pb-gname { font-size: 0.95rem; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+.bsim .pb-item { padding: 7px 12px; border-left: 4px solid #e2e8f0; border-radius: 0 8px 8px 0; margin-bottom: 5px; background: #f8fafc; cursor: pointer; transition: background .15s; }
+.bsim .pb-item:hover { background: #eef4fb; border-left-color: var(--c, #2c6bac); }
+.bsim .pb-item.copied { background: #dff3e5; border-left-color: #2e7d4f; }
+.bsim .pb-en { display: block; font-size: 1.05rem; color: #1e293b; }
+.bsim .pb-zh { display: block; font-size: 0.92rem; color: #64748b; }
 @media (max-width: 600px) { .bsim .chat-box { height: 340px; } .bsim .msg { max-width: 96%; } .bsim .bs-hero { padding: 18px; } }
