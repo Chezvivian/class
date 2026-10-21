@@ -65,6 +65,10 @@ collections:
   sims:
     output: true
     permalink: /:collection/:path/
+  # 商务英语情境化模拟平台主题页(不进侧栏;入口页在 others)
+  bizsim:
+    output: true
+    permalink: /business-sim/:path/
   # MTI 培养指导平台子页（不进侧栏；总览仍在 others）
   mentor:
     output: true

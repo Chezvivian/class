@@ -94,6 +94,14 @@ const proxyEndpoints = [
 3. **内存不足**: 增加函数内存配置
 4. **CORS问题**: 检查HTTP触发器的CORS设置
 
+## LLM 代理(商务英语情境化模拟平台)
+
+`llm-proxy.js` 为"沟通话术生成"提供 LLM 代理,部署方式同上(函数名如 `llm-proxy`,Node.js 18,入口 `index.handler`,上传时重命名为 `index.js`,无需 axios)。
+
+环境变量:`LLM_API_KEY`(必填)、`LLM_BASE_URL`(默认 DeepSeek)、`LLM_MODEL`、`ALLOW_ORIGIN`。
+
+请求:`POST {system, user}`,返回 `{content}`(content 为 LLM 返回的 JSON 字符串)。部署后把 HTTP 触发器地址填入 `_others/business-sim-platform.md` 里的 `LLM_ENDPOINT`。
+
 ## 费用估算
 
 - **免费额度**: 每月100万次函数调用，40万GB-秒
