@@ -1,5 +1,5 @@
 ---
-title: "Topic 1 Media:Leaf 市场部晨会"
+title: "Topic 1 Media"
 author: Huang Jie
 layout: post
 permalink: /business-sim/media/
@@ -11,91 +11,36 @@ permalink: /business-sim/media/
 
 <div id="v-topic">
 
-<div class="bs-crumb"><a href="{{ site.baseurl }}/business-sim-platform/">商务英语情境化模拟平台</a><span class="sep">/</span>Topic 1 Media</div>
+<div class="bs-crumb"><a href="{{ site.baseurl }}/business-sim-platform/">商务英语情境化模拟平台</a><span class="sep">/</span>Media</div>
 
 <div class="bs-hero">
-  <span class="bs-tagline">Topic 1 · Media · Team Collaboration</span>
-  <h2>🍃 Leaf 新品上市晨会</h2>
-  <p>三个人、一笔不多的预算、一周的时间:团队要一起决定,怎么用媒体把新品的消息传出去。</p>
+  <h2>🍃 Leaf Morning Meeting</h2>
+  <p>Marketing team · launch next week · small budget</p>
 </div>
 
 <div class="bs-section">
-  <h3>Scenario 情境</h3>
-  <p style="font-size:1.02rem">It is Wednesday morning, and the marketing team at <b>Leaf</b>, a new tea-drink brand, is holding its morning meeting. A new drink launches next week, but the budget for this quarter is small, so heavy advertising is not an option. Around the table are a <b>Sales Assistant</b>, a <b>Social Media Specialist</b> and a <b>Community Coordinator</b>. Each of them controls different resources and has a different view on how to spread the news.</p>
+  <h3>Scenario <span class="bs-note">情境</span></h3>
+  <p class="bs-big">A new drink launches next week, but the budget is small. Three colleagues must decide how to spread the news.</p>
 </div>
 
 <div class="bs-section">
-  <h3>The Problem 要解决的问题</h3>
   <div class="bs-problem">
-    <div class="q" style="font-size:1.2rem">How do we get the word out about our new drink on a small budget?</div>
-    <div style="font-size:1rem">Do we post on our own channels (<b>owned media</b>), get our customers to post for us (<b>mass collaboration / user-generated content</b>), or do both?</div>
-    <div class="bs-note" style="margin-top:4px">核心抉择:自己发,还是发动顾客一起发,或两者结合?</div>
+    <div class="q">Problem <span class="bs-note">问题</span></div>
+    <div class="bs-big">Post on our own channels, or get customers to post for us?</div>
+    <div class="bs-options">
+      <div class="bs-opt"><b>A</b> Owned media</div>
+      <div class="bs-opt"><b>B</b> Mass collaboration</div>
+      <div class="bs-opt"><b>C</b> Both</div>
+    </div>
   </div>
-  <div class="bs-options">
-    <div class="bs-opt"><b>方案 A 品牌自己发 Owned media</b><div class="pro">+ 品牌调性可控、内容质量稳定</div><div class="con">− 触达范围有限,依赖现有粉丝</div></div>
-    <div class="bs-opt"><b>方案 B 发动顾客一起发 Mass collaboration</b><div class="pro">+ 成本低、覆盖广、增强社群归属</div><div class="con">− 内容不可控,需要激励与引导</div></div>
-    <div class="bs-opt"><b>方案 C 两者结合 Hybrid</b><div class="pro">+ 兼顾可控与规模</div><div class="con">− 需要明确分工与节奏</div></div>
-  </div>
-  <div class="bs-problem" style="margin:14px 0 0;border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6">
-    <div class="q" style="color:#1f5f3a">Your Goal 目标</div>
-    <div style="font-size:1rem">Within <b>4 rounds</b> of discussion, persuade your colleagues and agree on <b>one concrete plan</b>: which channels to use, what to do, and why.</div>
-    <div class="bs-note" style="margin-top:4px">4 轮发言内说服同事,达成具体方案:渠道、做法、理由。</div>
+  <div class="bs-problem" style="border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6">
+    <div class="q" style="color:#1f5f3a">Goal <span class="bs-note">目标</span></div>
+    <div class="bs-big">In 4 rounds, agree on one plan: channels, actions, reasons.</div>
   </div>
 </div>
 
 <div class="bs-section">
-  <h3>团队如何合作 How the Team Works Together</h3>
-  <p>三个角色的信息互补,谁也无法单独做出好决定。你需要把自己的专业视角带上桌,同时回应同事的关切:</p>
-  <div class="bs-team">
-    <div class="bs-member" style="--c:#c0602b"><b>💼 Sales Assistant</b><br>提出预算与销量的"硬约束":钱花在哪里、怎么衡量效果。</div>
-    <div class="bs-member" style="--c:#2c6bac"><b>📱 Social Media Specialist</b><br>提出内容与渠道的"专业判断":什么内容、发在哪个平台最有传播力。</div>
-    <div class="bs-member" style="--c:#2e7d4f"><b>🤝 Community Coordinator</b><br>提出顾客参与的"群众基础":顾客愿不愿意帮我们传、怎么调动。</div>
-  </div>
-  <p class="bs-note" style="margin-top:8px">合作要点:表明立场(stance) → 陈述理由(reason) → 回应并折中(compromise) → 形成共识(agreement)。</p>
-</div>
-
-<div class="bs-section">
-  <h3>课文依据 Language & Concepts from Unit 2</h3>
-  <div class="bs-cols">
-    <div class="bs-box">
-      <h4>社交媒体对企业的价值</h4>
-      <ul>
-        <li>showcase your brand 展示品牌</li>
-        <li>develop a loyal community 培养忠实社群</li>
-        <li>improve customer service 改善客户服务</li>
-        <li>increase digital exposure 提升线上曝光</li>
-        <li>boost traffic in search engine rating 提升搜索排名与流量</li>
-        <li>expand sales and reach a new audience 扩大销售、触达新受众</li>
-        <li>cut marketing costs 降低营销成本</li>
-      </ul>
-    </div>
-    <div class="bs-box">
-      <h4>Mass collaboration 六原则</h4>
-      <ul>
-        <li><b>Participation</b> 参与:动员大众贡献内容</li>
-        <li><b>Collective</b> 集体:人们群聚(swarm)而来</li>
-        <li><b>Transparency</b> 透明:社区验证与整理内容</li>
-        <li><b>Independence</b> 独立:无需事先协调即可参与</li>
-        <li><b>Persistence</b> 持久:贡献被留存、可分享</li>
-        <li><b>Emergence</b> 涌现:社区自我引导产生新办法</li>
-      </ul>
-    </div>
-    <div class="bs-box">
-      <h4>相关术语</h4>
-      <ul>
-        <li>umbrella term 统称</li>
-        <li>tap into 利用、挖掘</li>
-        <li>user-generated content (UGC) 用户生成内容</li>
-        <li>so-what 真正的价值所在</li>
-        <li>weak-tie 弱关系</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="bs-section">
-  <h3>角色卡 Role Cards:选一个角色进入</h3>
-  <p>每张角色卡列出了这个角色常用的词和句式。浏览后,点击"进入角色",开始你的发言。</p>
+  <h3>Choose your role <span class="bs-note">选择角色</span></h3>
   <div class="role-grid" id="role-cards"></div>
 </div>
 
@@ -144,6 +89,7 @@ permalink: /business-sim/media/
     roles: {
       sales: {
         emoji: '💼', name: 'Sales Assistant', zh: '销售助理', color: '#c0602b',
+        view: 'I care about sales and budget.',
         stance: '更关心销量转化与预算,倾向稳妥、可衡量的做法。',
         concern: '新品首周销量、每一分预算是否花得值。',
         resource: '门店与小程序的销售数据、少量促销预算。',
@@ -159,6 +105,7 @@ permalink: /business-sim/media/
       },
       social: {
         emoji: '📱', name: 'Social Media Specialist', zh: '社交媒体专员', color: '#2c6bac',
+        view: 'I care about brand and content.',
         stance: '重视品牌形象与内容质量,倾向由品牌主导发布,但愿意尝试话题活动。',
         concern: '品牌调性是否统一、内容是否有传播力。',
         resource: '官方小红书/抖音/微信账号、内容制作能力。',
@@ -174,6 +121,7 @@ permalink: /business-sim/media/
       },
       community: {
         emoji: '🤝', name: 'Community Coordinator', zh: '社群运营', color: '#2e7d4f',
+        view: 'I believe in our customers.',
         stance: '相信顾客的力量,倾向发动顾客一起发,实现 mass collaboration。',
         concern: '顾客是否愿意参与、社群是否活跃。',
         resource: '几个活跃的顾客微信群与会员体系。',
@@ -209,13 +157,13 @@ permalink: /business-sim/media/
   function renderRoleCards() {
     $('role-cards').innerHTML = Object.keys(GAME.roles).map(function (id) {
       var r = GAME.roles[id];
-      var words = COMMON_WORDS.length ? r.extra.map(function (w) { return '<span class="role-word">' + esc(w[0]) + '<small>' + esc(w[1]) + '</small></span>'; }).join('') : '';
-      var sents = r.sentences.map(function (s) { return '<li>' + esc(s[0]) + '<span class="zh">' + esc(s[1]) + '</span></li>'; }).join('');
+      var words = r.extra.map(function (w) { return '<span class="role-word">' + esc(w[0]) + '</span>'; }).join('');
+      var sents = r.sentences.slice(0, 2).map(function (s) { return '<li>' + esc(s[0]) + '</li>'; }).join('');
       return '<div class="role-card" style="--c:' + r.color + '"><div class="role-emoji">' + r.emoji + '</div><div class="role-name">' + esc(r.name) + '</div><div class="role-zh">' + esc(r.zh) + '</div>' +
-        '<p class="role-line"><b>立场</b> ' + esc(r.stance) + '</p><p class="role-line"><b>关注</b> ' + esc(r.concern) + '</p><p class="role-line"><b>资源</b> ' + esc(r.resource) + '</p><p class="role-line"><b>任务</b> ' + esc(r.task) + '</p>' +
-        '<div class="role-sub">专属词 Key words</div><div class="role-words">' + words + '</div>' +
-        '<div class="role-sub">常用句式 Useful sentences</div><ul class="role-sents">' + sents + '</ul>' +
-        '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">进入角色 →</button></div></div>';
+        '<p class="role-line">' + esc(r.view) + '</p>' +
+        '<div class="role-sub">Key words</div><div class="role-words">' + words + '</div>' +
+        '<div class="role-sub">Useful sentences</div><ul class="role-sents">' + sents + '</ul>' +
+        '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">Enter 进入 →</button></div></div>';
     }).join('');
     Array.prototype.forEach.call($('role-cards').querySelectorAll('button'), function (b) { b.onclick = function () { enterRole(b.dataset.role); }; });
   }
