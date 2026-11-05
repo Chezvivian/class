@@ -681,6 +681,24 @@ function expectMs(text, rate) {
   return Math.max(700, (chars * 80 + chunks * 180) / rate + 320);
 }
 
+function startLimit() {
+  const voice = getVoice();
+  // 本机语音很快开口。在线语音留出正常取回音频的时间，但不再把卡住的 pending 当成健康等待。
+  if (voice && voice.localService === true) return 400;
+  return 800;
+}
+
+function dropUtterance() {
+  if (currentUtter) {
+    currentUtter.onend = null;
+    currentUtter.onerror = null;
+    currentUtter.onstart = null;
+    currentUtter = null;
+  }
+  try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+  lastCancelAt = performance.now();
+}
+
 function playIndex(index, my) {
   if (paused || my !== gen) return;
   phase = "speak";
@@ -690,12 +708,15 @@ function playIndex(index, my) {
   const text = words[current].word;
   const rate = parseFloat(rateKey());
   let settled = false;
+  let tries = 0;
+  const maxTries = 2;
 
   const goNext = () => {
     if (settled || my !== gen || paused) return;
     settled = true;
     clearTimeout(watchTimer);
     clearTimeout(retryTimer);
+    clearTimeout(kickTimer);
     phase = "gap";
     if (index < REPEAT_TIMES - 1) {
       pendingIndex = index + 1;
@@ -709,30 +730,50 @@ function playIndex(index, my) {
     }
   };
 
-  let started = false;
-  const startedAt = performance.now();
-
-  const bind = (utter) => {
-    utter.onstart = () => { started = true; };
-    utter.onend = () => goNext();
-    utter.onerror = (ev) => {
-      const err = (ev && ev.error) || "";
-      if (err === "interrupted" || err === "canceled" || err === "cancelled") return;
-      if (err === "not-allowed") {
-        settled = true;
-        clearTimeout(watchTimer);
-        clearTimeout(retryTimer);
-        engineBlocked = true;
-        paused = true;
-        updatePlayBtn();
-        return;
-      }
-      goNext();
-    };
+  const blockEngine = () => {
+    settled = true;
+    clearTimeout(watchTimer);
+    clearTimeout(retryTimer);
+    clearTimeout(kickTimer);
+    engineBlocked = true;
+    paused = true;
+    updatePlayBtn();
   };
 
-  const launch = () => {
+  const armEndWatch = () => {
+    clearTimeout(watchTimer);
+    const startedAt = performance.now();
+    const limit = expectMs(text, rate) + 350;
+    const check = () => {
+      if (settled || my !== gen || paused) return;
+      if (performance.now() - startedAt >= limit) {
+        dropUtterance();
+        goNext();
+        return;
+      }
+      watchTimer = setTimeout(check, 120);
+    };
+    watchTimer = setTimeout(check, 200);
+  };
+
+  const retryLater = () => {
+    dropUtterance();
+    if (tries >= maxTries) {
+      goNext();
+      return;
+    }
+    kickTimer = setTimeout(() => {
+      if (settled || my !== gen || paused) return;
+      try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+      speakOnce();
+    }, 120);
+  };
+
+  const speakOnce = () => {
     if (settled || my !== gen || paused) return;
+    tries += 1;
+    const attempt = tries;
+    let started = false;
     const utter = new SpeechSynthesisUtterance(text);
     utter.rate = rate;
     utter.pitch = 1;
@@ -743,40 +784,43 @@ function playIndex(index, my) {
       utter.voice = voice;
       utter.lang = voice.lang || "en-US";
     }
-    bind(utter);
+    utter.onstart = () => {
+      if (attempt !== tries || settled || my !== gen) return;
+      started = true;
+      clearTimeout(retryTimer);
+      armEndWatch();
+    };
+    utter.onend = () => {
+      if (attempt !== tries || settled || my !== gen) return;
+      goNext();
+    };
+    utter.onerror = (ev) => {
+      if (attempt !== tries || settled || my !== gen) return;
+      clearTimeout(retryTimer);
+      const err = (ev && ev.error) || "";
+      if (err === "interrupted" || err === "canceled" || err === "cancelled") return;
+      if (err === "not-allowed") {
+        blockEngine();
+        return;
+      }
+      if (!started && tries < maxTries) {
+        retryLater();
+        return;
+      }
+      goNext();
+    };
     currentUtter = utter;
     try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
     speechSynthesis.speak(utter);
+
+    // pending 却一直不开口时，取消这次并立刻重读，不再干等数秒。
+    retryTimer = setTimeout(() => {
+      if (started || settled || my !== gen || paused || attempt !== tries) return;
+      retryLater();
+    }, startLimit());
   };
 
-  launch();
-
-  // 第一次 speak 有时会被引擎丢掉，而且不触发 onend。稍等再补一次。
-  retryTimer = setTimeout(() => {
-    if (started || settled || my !== gen || paused) return;
-    if (speechSynthesis.speaking || speechSynthesis.pending) return;
-    if (currentUtter) {
-      currentUtter.onend = null;
-      currentUtter.onerror = null;
-      currentUtter.onstart = null;
-      currentUtter = null;
-    }
-    launch();
-  }, 300);
-
-  const limit = expectMs(text, rate) + 900;
-  const check = () => {
-    if (settled || my !== gen || paused) return;
-    if (performance.now() - startedAt >= limit) {
-      settled = true;
-      clearTimeout(watchTimer);
-      if (index < REPEAT_TIMES - 1) beginIndex(index + 1);
-      else goTo(current + 1);
-      return;
-    }
-    watchTimer = setTimeout(check, 150);
-  };
-  if (!settled) watchTimer = setTimeout(check, 280);
+  speakOnce();
 }
 
 function goTo(index) {

@@ -1,3 +1,27 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "BE_pdf/2026autumn/*词汇跟读.html"
+        ],
+        "createdAt": "2026-11-05T12:49:41.817Z",
+        "reason": "Existing Unit 1 classroom progress bar animates a 4px width fill. This edit only changes speech timing and keeps that bar."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "BE_pdf/2026autumn/*词汇跟读.html"
+        ],
+        "createdAt": "2026-11-05T12:49:41.893Z",
+        "reason": "Existing Unit 1 white card uses a faint blue elevation shadow at 8% opacity, not a dark-background glow. This edit does not restyle the card."
+      }
+    ]
+  }
 }
