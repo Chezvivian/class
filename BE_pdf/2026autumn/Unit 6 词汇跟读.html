@@ -597,10 +597,16 @@ function expectMs(text, rate) {
   return Math.max(700, (chars * 80 + chunks * 180) / rate + 320);
 }
 
+function isEdge() {
+  return /Edg\//.test(navigator.userAgent);
+}
+
 function startLimit() {
   const voice = getVoice();
-  // 本机语音很快开口。在线语音留出正常取回音频的时间，但不再把卡住的 pending 当成健康等待。
-  if (voice && voice.localService === true) return 400;
+  const local = !!(voice && voice.localService === true);
+  // Edge 经常不发 onstart。这里只用来判断「朗读有没有被丢掉」，不能拿来提前 cancel。
+  if (isEdge()) return local ? 900 : 1200;
+  if (local) return 400;
   return 800;
 }
 
@@ -656,10 +662,10 @@ function playIndex(index, my) {
     updatePlayBtn();
   };
 
-  const armEndWatch = () => {
+  const armEndWatch = (from) => {
     clearTimeout(watchTimer);
-    const startedAt = performance.now();
-    const limit = expectMs(text, rate) + 350;
+    const startedAt = typeof from === "number" ? from : performance.now();
+    const limit = expectMs(text, rate) + (isEdge() ? 800 : 350);
     const check = () => {
       if (settled || my !== gen || paused) return;
       if (performance.now() - startedAt >= limit) {
@@ -682,7 +688,7 @@ function playIndex(index, my) {
       if (settled || my !== gen || paused) return;
       try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
       speakOnce();
-    }, 120);
+    }, isEdge() ? 280 : 120);
   };
 
   const speakOnce = () => {
@@ -728,10 +734,18 @@ function playIndex(index, my) {
     currentUtter = utter;
     try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
     speechSynthesis.speak(utter);
+    const spokenAt = performance.now();
 
-    // pending 却一直不开口时，取消这次并立刻重读，不再干等数秒。
+    // Chrome：pending 却一直没有 onstart，就取消并重读。
+    // Edge：没有 onstart 但引擎仍在读时不能 cancel，否则这次和紧接着的下一次都会没声。
     retryTimer = setTimeout(() => {
       if (started || settled || my !== gen || paused || attempt !== tries) return;
+      const busy = !!(speechSynthesis.speaking || speechSynthesis.pending || speechSynthesis.paused);
+      if (isEdge() && busy) {
+        try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+        armEndWatch(spokenAt);
+        return;
+      }
       retryLater();
     }, startLimit());
   };
