@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 7 · Job Hunting 词汇跟读</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .toolbar {
+    background: #fff;
+    border-bottom: 1px solid #dde3ef;
+    border-top: 4px solid #1f3f86;
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .course-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f3f86;
+    letter-spacing: 0.2px;
+  }
+  .course-sub {
+    font-size: 13px;
+    color: #7b879c;
+    margin-top: 2px;
+  }
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .field label {
+    font-size: 15px;
+    color: #445;
+  }
+  .field select {
+    font-size: 15px;
+    padding: 6px 10px;
+    border: 1px solid #c5cde0;
+    border-radius: 8px;
+    background: #f9fafc;
+    color: #1a1a2e;
+    cursor: pointer;
+  }
+  .gap-hint {
+    font-size: 13px;
+    color: #8a94a8;
+  }
+  .counter {
+    margin-left: auto;
+    font-size: 15px;
+    color: #6b7590;
+    font-variant-numeric: tabular-nums;
+  }
+  .rec-btn, .btn {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .rec-btn {
+    padding: 7px 14px;
+    font-size: 14px;
+    background: #e8edf5;
+    color: #1a1a2e;
+  }
+  .rec-btn.recording {
+    background: #e05252;
+    color: #fff;
+    animation: pulse 1.2s infinite;
+  }
+  .progress-bar {
+    height: 4px;
+    background: #e8edf5;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #3a5a9e;
+    width: 0;
+    transition: width 0.25s ease;
+  }
+  .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px 20px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 28px rgba(31, 63, 134, 0.08);
+    padding: 42px 64px 36px;
+    max-width: 980px;
+    width: min(980px, 100%);
+    max-height: calc(100vh - 168px);
+    overflow: auto;
+    text-align: center;
+    animation: fadeIn 0.28s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+  .word {
+    font-size: clamp(40px, 4.6vw, 72px);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.12;
+    color: #1a1a2e;
+  }
+  .phonetic {
+    margin-top: 10px;
+    font-size: 32px;
+    color: #3a5a9e;
+    font-style: italic;
+    letter-spacing: 0.4px;
+  }
+  .pos-cn {
+    margin-top: 14px;
+    font-size: 28px;
+    color: #2a4a88;
+    font-weight: 600;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #e8edf5;
+    margin: 22px 0 18px;
+  }
+  .example-en {
+    font-size: 26px;
+    line-height: 1.55;
+    color: #243044;
+    font-style: italic;
+  }
+  .example-cn {
+    margin-top: 8px;
+    font-size: 22px;
+    line-height: 1.55;
+    color: #6d7585;
+  }
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 26px;
+  }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d5dced;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .dot.done { background: #8eabd8; }
+  .dot.current {
+    background: #1f3f86;
+    transform: scale(1.35);
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px 18px;
+    background: #fff;
+    border-top: 1px solid #dde3ef;
+  }
+  .btn {
+    padding: 10px 22px;
+    font-size: 16px;
+    background: #e8edf5;
+    color: #1a1a2e;
+  }
+  .btn:hover, .rec-btn:hover { background: #d5deef; }
+  .btn.primary { background: #1f3f86; color: #fff; }
+  .btn.primary:hover { background: #18336d; }
+  .btn.is-paused { background: #3d8b55; color: #fff; }
+  .keys {
+    font-size: 13px;
+    color: #97a0b3;
+    margin-left: 8px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    .dot, .progress-fill, .rec-btn.recording { transition: none; animation: none; }
+  }
+  @media (max-width: 800px) {
+    .card { padding: 28px 22px 24px; }
+    .phonetic { font-size: 24px; }
+    .pos-cn, .example-en { font-size: 20px; }
+    .example-cn { font-size: 18px; }
+    .counter { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <div>
+    <div class="course-title">Unit 7 · Job Hunting</div>
+    <div class="course-sub">词汇跟读 · 每词朗读 3 遍</div>
+  </div>
+  <div class="field">
+    <label for="voiceSelect">语音</label>
+    <select id="voiceSelect"><option>正在加载语音…</option></select>
+  </div>
+  <div class="field">
+    <label for="rateSelect">语速</label>
+    <select id="rateSelect" title="语速越快，两遍之间的停顿越短">
+      <option value="0.6">很慢</option>
+      <option value="0.75">慢</option>
+      <option value="0.9" selected>正常</option>
+      <option value="1.1">快</option>
+      <option value="1.3">很快</option>
+    </select>
+    <span class="gap-hint" id="gapHint"></span>
+  </div>
+  <span class="counter" id="counter">1 / 37</span>
+  <button class="rec-btn" id="recBtn" type="button">⏺ 开始录制</button>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="main">
+  <div class="card" id="card">
+    <div class="word" id="wordEl" lang="en"></div>
+    <div class="phonetic" id="phoneticEl" lang="en"></div>
+    <div class="pos-cn" id="posCnEl"></div>
+    <hr class="divider">
+    <div class="example-en" id="exEnEl" lang="en"></div>
+    <div class="example-cn" id="exCnEl"></div>
+    <div class="dots" id="dots" aria-label="朗读遍数">
+      <div class="dot" id="d0"></div>
+      <div class="dot" id="d1"></div>
+      <div class="dot" id="d2"></div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn" id="prevBtn" type="button">⬅ 上一个</button>
+  <button class="btn primary" id="playBtn" type="button">⏸ 暂停</button>
+  <button class="btn" id="nextBtn" type="button">下一个 ➡</button>
+  <span class="keys">空格暂停 · ← → 换词</span>
+</div>
+
+<script>
+const words = [
+  {
+    "word": "allegiance",
+    "phonetic": "/əˈliːdʒəns/",
+    "posCn": "n. 拥护",
+    "exEn": "The firm expects allegiance, but young employees also expect fair pay.",
+    "exCn": "公司期望员工拥护它，但年轻员工同样期望合理的薪酬。"
+  },
+  {
+    "word": "occasionally",
+    "phonetic": "/əˈkeɪʒnəli/",
+    "posCn": "adv. 偶尔",
+    "exEn": "Even loyal staff occasionally look at jobs outside the company.",
+    "exCn": "即使是忠诚的员工，偶尔也会看看公司以外的职位。"
+  },
+  {
+    "word": "glimpse",
+    "phonetic": "/ɡlɪmps/",
+    "posCn": "n. 初步的感受",
+    "exEn": "An internship offers a glimpse of what the industry is really like.",
+    "exCn": "实习能让人对这个行业的真实情况有一个初步感受。"
+  },
+  {
+    "word": "forge",
+    "phonetic": "/fɔːrdʒ/",
+    "posCn": "v. 努力缔造",
+    "exEn": "She forged a strong working relationship with her first manager.",
+    "exCn": "她与第一位上司努力建立起牢固的工作关系。"
+  },
+  {
+    "word": "virtue",
+    "phonetic": "/ˈvɜːrtʃuː/",
+    "posCn": "n. 美德",
+    "exEn": "Patience is a useful virtue during a long job search.",
+    "exCn": "在漫长的求职过程中，耐心是一种有用的美德。"
+  },
+  {
+    "word": "complex",
+    "phonetic": "/kəmˈpleks/",
+    "posCn": "adj. 复杂的",
+    "exEn": "A modern career is more complex than one lifelong job.",
+    "exCn": "现代职业生涯比一份干一辈子的工作更为复杂。"
+  },
+  {
+    "word": "transactional",
+    "phonetic": "/trænˈzækʃənl/",
+    "posCn": "adj. 交易型的",
+    "exEn": "A purely transactional relationship rarely keeps talented people.",
+    "exCn": "纯粹交易型的关系很难留住有才华的人。"
+  },
+  {
+    "word": "reciprocal",
+    "phonetic": "/rɪˈsɪprəkl/",
+    "posCn": "adj. 相互的；互惠的",
+    "exEn": "Loyalty should be reciprocal: the employer invests, and the employee stays.",
+    "exCn": "忠诚应当是相互的：雇主投入，员工留下。"
+  },
+  {
+    "word": "impose",
+    "phonetic": "/ɪmˈpoʊz/",
+    "posCn": "v. 使承受（令人不快之事物）",
+    "exEn": "A long commute imposes extra strain on people with young children.",
+    "exCn": "漫长的通勤给有幼童的员工带来额外压力。"
+  },
+  {
+    "word": "bump",
+    "phonetic": "/bʌmp/",
+    "posCn": "n. 增长",
+    "exEn": "She received a pay bump after two strong years in the role.",
+    "exCn": "她在这个岗位上表现出色两年后，获得了一次加薪。"
+  },
+  {
+    "word": "job-hopping",
+    "phonetic": "/ˈdʒɑːb ˌhɑːpɪŋ/",
+    "posCn": "n. 跳槽",
+    "exEn": "Frequent job-hopping can raise pay, but it may worry some employers.",
+    "exCn": "频繁跳槽可以提高薪酬，但也可能让一些雇主担心。"
+  },
+  {
+    "word": "bargaining power",
+    "phonetic": "/ˈbɑːrɡənɪŋ ˌpaʊər/",
+    "posCn": "n. （谈判中一方）讨价还价的能力",
+    "exEn": "A scarce skill gives a candidate more bargaining power.",
+    "exCn": "稀缺技能会给求职者带来更强的讨价还价能力。"
+  },
+  {
+    "word": "fictional",
+    "phonetic": "/ˈfɪkʃənl/",
+    "posCn": "adj. 虚构的",
+    "exEn": "The case study uses a fictional company to discuss staff loyalty.",
+    "exCn": "这个案例用一家虚构的公司来讨论员工忠诚。"
+  },
+  {
+    "word": "dump",
+    "phonetic": "/dʌmp/",
+    "posCn": "v. 丢下；抛弃；推卸",
+    "exEn": "Managers should not dump unfinished work on a new hire.",
+    "exCn": "管理者不应当把未完成的工作丢给新员工。"
+  },
+  {
+    "word": "admission",
+    "phonetic": "/ədˈmɪʃn/",
+    "posCn": "n. 进入许可；加入许可；进入",
+    "exEn": "Admission to the leadership program is limited to twenty people.",
+    "exCn": "该领导力项目的加入名额仅限二十人。"
+  },
+  {
+    "word": "nudge",
+    "phonetic": "/nʌdʒ/",
+    "posCn": "n. 轻推",
+    "exEn": "A gentle nudge from a mentor can help you apply for a harder role.",
+    "exCn": "导师轻轻推一把，就能帮你去申请一个更有挑战的职位。"
+  },
+  {
+    "word": "retention bonus",
+    "phonetic": "/rɪˈtenʃn ˌboʊnəs/",
+    "posCn": "n. 保留奖金（旨在说服员工不离开公司）",
+    "exEn": "The company offered a retention bonus to keep its key engineers.",
+    "exCn": "公司提供保留奖金，以留住关键工程师。"
+  },
+  {
+    "word": "counter-offer",
+    "phonetic": "/ˈkaʊntər ˌɔːfər/",
+    "posCn": "n. 还价",
+    "exEn": "After she resigned, her employer made a counter-offer.",
+    "exCn": "她辞职后，雇主提出了一个还价。"
+  },
+  {
+    "word": "nonetheless",
+    "phonetic": "/ˌnʌnðəˈles/",
+    "posCn": "adv. 然而",
+    "exEn": "The offer was generous; nonetheless, she chose the smaller firm.",
+    "exCn": "这份录用条件很优厚；然而，她还是选择了那家较小的公司。"
+  },
+  {
+    "word": "unfaithful",
+    "phonetic": "/ʌnˈfeɪθfl/",
+    "posCn": "adj. 不忠诚的",
+    "exEn": "He was unfaithful to his partner, and the trust between them broke.",
+    "exCn": "他对伴侣不忠诚，两人之间的信任因此破裂。"
+  },
+  {
+    "word": "prevail",
+    "phonetic": "/prɪˈveɪl/",
+    "posCn": "v. 盛行；普遍存在",
+    "exEn": "A short-term view of careers still prevails in some industries.",
+    "exCn": "在一些行业中，短期的职业观仍然盛行。"
+  },
+  {
+    "word": "treachery",
+    "phonetic": "/ˈtretʃəri/",
+    "posCn": "n. 背叛",
+    "exEn": "Passing a former employer's secrets to a rival would be treachery.",
+    "exCn": "把前雇主的秘密交给竞争对手，是一种背叛。"
+  },
+  {
+    "word": "blend",
+    "phonetic": "/blend/",
+    "posCn": "n. 调配；美妙的结合",
+    "exEn": "The best teams are a blend of experienced staff and new graduates.",
+    "exCn": "最好的团队是经验丰富的员工与应届毕业生的结合。"
+  },
+  {
+    "word": "co-author",
+    "phonetic": "/ˌkoʊ ˈɔːθər/",
+    "posCn": "n. 合著者",
+    "exEn": "She is the co-author of a report on why employees leave.",
+    "exCn": "她是一份关于员工离职原因的报告的合著者。"
+  },
+  {
+    "word": "wrongdoing",
+    "phonetic": "/ˈrɔːŋˌduːɪŋ/",
+    "posCn": "n. 违法行为；不道德行为",
+    "exEn": "Staff need a safe way to report wrongdoing.",
+    "exCn": "员工需要一种安全的方式来报告不道德行为。"
+  },
+  {
+    "word": "whistleblowing",
+    "phonetic": "/ˈwɪslˌbloʊɪŋ/",
+    "posCn": "n. 揭发",
+    "exEn": "Whistleblowing can protect the public, but it also puts the reporter at risk.",
+    "exCn": "揭发可以保护公众，但也会让举报人面临风险。"
+  },
+  {
+    "word": "committed",
+    "phonetic": "/kəˈmɪtɪd/",
+    "posCn": "adj. 尽心尽力的；坚信的；坚定的",
+    "exEn": "A committed mentor spends time helping a new colleague settle in.",
+    "exCn": "一位尽心尽力的导师会花时间帮助新同事适应工作。"
+  },
+  {
+    "word": "stay put",
+    "phonetic": "/ˌsteɪ ˈpʊt/",
+    "posCn": "习语 不动；待在原地",
+    "exEn": "Some employees stay put because leaving would cost them their bonus.",
+    "exCn": "一些员工待在原地，因为离开会让他们失去奖金。"
+  },
+  {
+    "word": "contingent",
+    "phonetic": "/kənˈtɪndʒənt/",
+    "posCn": "adj. 依情况而定的",
+    "exEn": "The job offer is contingent on a successful background check.",
+    "exCn": "这份录用取决于背景调查是否通过。"
+  },
+  {
+    "word": "immoral",
+    "phonetic": "/ɪˈmɔːrəl/",
+    "posCn": "adj. 不道德的",
+    "exEn": "Hiding a safety problem from the public would be immoral.",
+    "exCn": "向公众隐瞒安全问题是不道德的。"
+  },
+  {
+    "word": "warrant",
+    "phonetic": "/ˈwɔːrənt/",
+    "posCn": "v. 使……显得必要；使……显得适当",
+    "exEn": "A sudden drop in morale may warrant a review of pay and workload.",
+    "exCn": "士气突然下降，可能有必要重新审视薪酬和工作量。"
+  },
+  {
+    "word": "chunk",
+    "phonetic": "/tʃʌŋk/",
+    "posCn": "n. 相当大的量",
+    "exEn": "Training takes a large chunk of a new manager's first year.",
+    "exCn": "培训会占去新经理第一年里相当大的一部分时间。"
+  },
+  {
+    "word": "respondent",
+    "phonetic": "/rɪˈspɑːndənt/",
+    "posCn": "n. 受访者；（尤指）调查对象",
+    "exEn": "Most respondents said they would leave for a clearer promotion path.",
+    "exCn": "大多数受访者表示，如果晋升路径更清晰，他们就会离开。"
+  },
+  {
+    "word": "gatekeeper",
+    "phonetic": "/ˈɡeɪtˌkiːpər/",
+    "posCn": "n. 看门人；把关系统",
+    "exEn": "A recruiter often acts as the gatekeeper for the first interview.",
+    "exCn": "招聘人员常常是第一轮面试的把关人。"
+  },
+  {
+    "word": "streamline",
+    "phonetic": "/ˈstriːmlaɪn/",
+    "posCn": "v. 使（系统、机构等）效率更高；（尤指）使增产节约",
+    "exEn": "The firm streamlined hiring and cut the process from six weeks to three.",
+    "exCn": "公司精简了招聘流程，把周期从六周缩短到三周。"
+  },
+  {
+    "word": "outreach",
+    "phonetic": "/ˈaʊtˌriːtʃ/",
+    "posCn": "n. 提供帮助、支持；主动联系",
+    "exEn": "Campus outreach helps the company meet students before they graduate.",
+    "exCn": "走进校园、主动联系，能帮助公司在学生毕业前就认识他们。"
+  },
+  {
+    "word": "personnel",
+    "phonetic": "/ˌpɜːrsəˈnel/",
+    "posCn": "n. 人员",
+    "exEn": "The personnel department handles contracts, pay, and leave.",
+    "exCn": "人事部门负责合同、薪酬和休假。"
+  }
+];
+
+// 两遍朗读之间的停顿。快档故意收短，但还留得下跟读。
+const REPEAT_GAP = {
+  "0.6": 900,
+  "0.75": 760,
+  "0.9": 620,
+  "1.1": 420,
+  "1.3": 280
+};
+const NEXT_GAP = 80;
+const REPEAT_TIMES = 3;
+
+let current = 0;
+let paused = false;
+let engineBlocked = false;
+let voices = [];
+let preferredVoiceName = "";
+let phase = "idle";
+let activeIndex = 0;
+let pendingIndex = 0;
+let gen = 0;
+let hold = false;
+let currentUtter = null;
+let gapTimer = 0;
+let watchTimer = 0;
+let kickTimer = 0;
+let retryTimer = 0;
+let lastCancelAt = 0;
+let playbackStarted = false;
+let voiceRestarted = false;
+
+function displayWord(w) {
+  const letters = w.replace(/[^a-zA-Z]/g, "");
+  if (letters.length > 0 && letters === letters.toUpperCase() && letters.length <= 5) return w;
+  return w.toLowerCase();
+}
+
+function rateKey() {
+  return document.getElementById("rateSelect").value;
+}
+
+function repeatGap() {
+  return REPEAT_GAP[rateKey()] || 620;
+}
+
+function updateGapHint() {
+  const sec = (repeatGap() / 1000).toFixed(2);
+  document.getElementById("gapHint").textContent = "遍间停顿 " + sec + " 秒";
+}
+
+function getVoice() {
+  const sel = document.getElementById("voiceSelect");
+  const voice = voices[Number(sel.value)];
+  return voice || null;
+}
+
+function defaultVoiceIndex(list) {
+  const prefer = ["Google US English", "Microsoft Aria", "Microsoft Jenny", "Aria", "Jenny", "Zira", "Samantha", "Karen", "Allison"];
+  for (const name of prefer) {
+    const i = list.findIndex((v) => v.name.includes(name) && /en-US/i.test(v.lang));
+    if (i >= 0) return i;
+  }
+  for (const name of prefer) {
+    const i = list.findIndex((v) => v.name.includes(name));
+    if (i >= 0) return i;
+  }
+  const us = list.findIndex((v) => /en-US/i.test(v.lang));
+  return us >= 0 ? us : 0;
+}
+
+function loadVoices(fromEvent) {
+  const hadVoices = voices.length > 0;
+  const found = speechSynthesis.getVoices().filter((v) => /^en([-_]|$)/i.test(v.lang));
+  if (!found.length) return;
+  found.sort((a, b) => {
+    const rank = (v) => (/^en-US$/i.test(v.lang) ? 0 : 1);
+    return rank(a) - rank(b) || a.name.localeCompare(b.name);
+  });
+  voices = found;
+  const sel = document.getElementById("voiceSelect");
+  const keep = preferredVoiceName;
+  sel.innerHTML = "";
+  voices.forEach((v, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = v.name + "（" + v.lang + "）";
+    sel.appendChild(opt);
+  });
+  let pick = keep ? voices.findIndex((v) => v.name === keep) : -1;
+  if (pick < 0) pick = defaultVoiceIndex(voices);
+  sel.value = String(pick);
+  preferredVoiceName = voices[pick] ? voices[pick].name : "";
+  if (fromEvent && playbackStarted && !hadVoices && !voiceRestarted && !paused) {
+    voiceRestarted = true;
+    restartAt(phase === "gap" ? pendingIndex : activeIndex);
+  }
+}
+
+function clearTimers() {
+  clearTimeout(gapTimer);
+  clearTimeout(watchTimer);
+  clearTimeout(kickTimer);
+  clearTimeout(retryTimer);
+  gapTimer = 0;
+  watchTimer = 0;
+  kickTimer = 0;
+  retryTimer = 0;
+}
+
+function detachAndCancel(forceCancel) {
+  const utter = currentUtter;
+  currentUtter = null;
+  if (utter) {
+    utter.onend = null;
+    utter.onerror = null;
+    utter.onstart = null;
+  }
+  const busy = !!(speechSynthesis.speaking || speechSynthesis.pending || speechSynthesis.paused);
+  if (forceCancel || busy) {
+    try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    lastCancelAt = performance.now();
+    return true;
+  }
+  return false;
+}
+
+function waitAfterCancel() {
+  if (!lastCancelAt) return 30;
+  const since = performance.now() - lastCancelAt;
+  return since >= 130 ? 30 : Math.max(30, 140 - since);
+}
+
+// 打断后不要立刻 speak。Chrome / Edge 会把紧跟 cancel() 的朗读丢掉，听起来像没声音。
+function beginIndex(index) {
+  gen += 1;
+  const my = gen;
+  clearTimers();
+  const cancelled = detachAndCancel(false);
+  hold = true;
+  kickTimer = setTimeout(() => {
+    hold = false;
+    if (my !== gen || paused) return;
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+    playIndex(index, my);
+  }, cancelled ? 140 : waitAfterCancel());
+  return my;
+}
+
+function expectMs(text, rate) {
+  const chunks = text.trim().split(/\s+/).length;
+  const chars = text.replace(/\s+/g, "").length;
+  return Math.max(700, (chars * 80 + chunks * 180) / rate + 320);
+}
+
+function playIndex(index, my) {
+  if (paused || my !== gen) return;
+  phase = "speak";
+  activeIndex = index;
+  paintDots(index);
+
+  const text = words[current].word;
+  const rate = parseFloat(rateKey());
+  let settled = false;
+
+  const goNext = () => {
+    if (settled || my !== gen || paused) return;
+    settled = true;
+    clearTimeout(watchTimer);
+    clearTimeout(retryTimer);
+    phase = "gap";
+    if (index < REPEAT_TIMES - 1) {
+      pendingIndex = index + 1;
+      gapTimer = setTimeout(() => playIndex(index + 1, my), repeatGap());
+    } else {
+      pendingIndex = 0;
+      gapTimer = setTimeout(() => {
+        if (my !== gen || paused) return;
+        goTo(current + 1);
+      }, NEXT_GAP);
+    }
+  };
+
+  let started = false;
+  const startedAt = performance.now();
+
+  const bind = (utter) => {
+    utter.onstart = () => { started = true; };
+    utter.onend = () => goNext();
+    utter.onerror = (ev) => {
+      const err = (ev && ev.error) || "";
+      if (err === "interrupted" || err === "canceled" || err === "cancelled") return;
+      if (err === "not-allowed") {
+        settled = true;
+        clearTimeout(watchTimer);
+        clearTimeout(retryTimer);
+        engineBlocked = true;
+        paused = true;
+        updatePlayBtn();
+        return;
+      }
+      goNext();
+    };
+  };
+
+  const launch = () => {
+    if (settled || my !== gen || paused) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.rate = rate;
+    utter.pitch = 1;
+    utter.volume = 1;
+    utter.lang = "en-US";
+    const voice = getVoice();
+    if (voice) {
+      utter.voice = voice;
+      utter.lang = voice.lang || "en-US";
+    }
+    bind(utter);
+    currentUtter = utter;
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+    speechSynthesis.speak(utter);
+  };
+
+  launch();
+
+  // 第一次 speak 有时会被引擎丢掉，而且不触发 onend。稍等再补一次。
+  retryTimer = setTimeout(() => {
+    if (started || settled || my !== gen || paused) return;
+    if (speechSynthesis.speaking || speechSynthesis.pending) return;
+    if (currentUtter) {
+      currentUtter.onend = null;
+      currentUtter.onerror = null;
+      currentUtter.onstart = null;
+      currentUtter = null;
+    }
+    launch();
+  }, 300);
+
+  const limit = expectMs(text, rate) + 900;
+  const check = () => {
+    if (settled || my !== gen || paused) return;
+    if (performance.now() - startedAt >= limit) {
+      settled = true;
+      clearTimeout(watchTimer);
+      if (index < REPEAT_TIMES - 1) beginIndex(index + 1);
+      else goTo(current + 1);
+      return;
+    }
+    watchTimer = setTimeout(check, 150);
+  };
+  if (!settled) watchTimer = setTimeout(check, 280);
+}
+
+function goTo(index) {
+  current = (index + words.length) % words.length;
+  showCard(current);
+  if (!paused) beginIndex(0);
+}
+
+function showCard(index) {
+  const data = words[index];
+  document.getElementById("wordEl").textContent = displayWord(data.word);
+  document.getElementById("phoneticEl").textContent = data.phonetic;
+  document.getElementById("posCnEl").textContent = data.posCn;
+  document.getElementById("exEnEl").textContent = data.exEn;
+  document.getElementById("exCnEl").textContent = data.exCn;
+  document.getElementById("counter").textContent = (index + 1) + " / " + words.length;
+  document.getElementById("progressFill").style.width = (((index + 1) / words.length) * 100) + "%";
+  document.title = "Unit 7 · " + displayWord(data.word);
+  clearDots();
+  const card = document.getElementById("card");
+  card.style.animation = "none";
+  void card.offsetWidth;
+  card.style.animation = "";
+}
+
+function paintDots(index) {
+  for (let i = 0; i < REPEAT_TIMES; i += 1) {
+    const dot = document.getElementById("d" + i);
+    dot.classList.toggle("done", i < index);
+    dot.classList.toggle("current", i === index);
+  }
+}
+
+function clearDots() {
+  for (let i = 0; i < REPEAT_TIMES; i += 1) {
+    document.getElementById("d" + i).classList.remove("done", "current");
+  }
+}
+
+function updatePlayBtn() {
+  const btn = document.getElementById("playBtn");
+  if (paused) {
+    btn.textContent = engineBlocked ? "▶ 开始跟读" : "▶ 继续";
+    btn.classList.add("is-paused");
+  } else {
+    btn.textContent = "⏸ 暂停";
+    btn.classList.remove("is-paused");
+  }
+}
+
+function togglePause() {
+  if (!paused) {
+    paused = true;
+    engineBlocked = false;
+    updatePlayBtn();
+    gen += 1;
+    clearTimers();
+    detachAndCancel(true);
+    hold = false;
+    return;
+  }
+  paused = false;
+  engineBlocked = false;
+  updatePlayBtn();
+  const index = phase === "gap" ? pendingIndex : activeIndex;
+  beginIndex(index);
+}
+
+function restartAt(index) {
+  if (paused) return;
+  beginIndex(index);
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => goTo(current - 1));
+document.getElementById("nextBtn").addEventListener("click", () => goTo(current + 1));
+document.getElementById("playBtn").addEventListener("click", togglePause);
+
+document.getElementById("rateSelect").addEventListener("change", () => {
+  updateGapHint();
+  if (paused) return;
+  restartAt(phase === "gap" ? pendingIndex : activeIndex);
+});
+
+document.getElementById("voiceSelect").addEventListener("change", () => {
+  const voice = getVoice();
+  preferredVoiceName = voice ? voice.name : "";
+  if (paused) return;
+  restartAt(phase === "gap" ? pendingIndex : activeIndex);
+});
+
+document.addEventListener("keydown", (e) => {
+  const tag = document.activeElement && document.activeElement.tagName;
+  if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    goTo(current + 1);
+  } else if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    goTo(current - 1);
+  } else if (e.key === " ") {
+    e.preventDefault();
+    togglePause();
+  }
+});
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = () => loadVoices(true);
+}
+loadVoices(false);
+updateGapHint();
+
+// 点开语速菜单时，有的浏览器会把正在读的句子暂停住，结束事件也不再来。
+setInterval(() => {
+  if (paused || hold || !currentUtter) return;
+  if (speechSynthesis.paused) {
+    try { speechSynthesis.resume(); } catch (e) { /* ignore */ }
+  }
+}, 250);
+
+window.addEventListener("beforeunload", () => {
+  try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+});
+
+let mediaRecorder = null;
+let recordedChunks = [];
+
+document.getElementById("recBtn").addEventListener("click", async () => {
+  const btn = document.getElementById("recBtn");
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.stop();
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      video: { frameRate: 15 },
+      audio: true
+    });
+    recordedChunks = [];
+    const types = ["video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"];
+    const mime = types.find((t) => MediaRecorder.isTypeSupported(t)) || "";
+    mediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+    mediaRecorder.ondataavailable = (e) => {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    };
+    mediaRecorder.onstop = () => {
+      stream.getTracks().forEach((t) => t.stop());
+      const blob = new Blob(recordedChunks, { type: mime || "video/webm" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Unit7-Job-Hunting-词汇跟读.webm";
+      a.click();
+      URL.revokeObjectURL(url);
+      btn.textContent = "⏺ 开始录制";
+      btn.classList.remove("recording");
+    };
+    mediaRecorder.start();
+    btn.textContent = "⏹ 停止录制";
+    btn.classList.add("recording");
+  } catch (err) {
+    if (err && err.name === "NotAllowedError") return;
+    alert("录制没有开始：" + err.message);
+  }
+});
+
+showCard(0);
+phase = "gap";
+pendingIndex = 0;
+playbackStarted = true;
+if (voices.length) voiceRestarted = true;
+beginIndex(0);
+</script>
+</body>
+</html>

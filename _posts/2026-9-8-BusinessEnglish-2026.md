@@ -36,13 +36,13 @@ layout: post
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 2 Media</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit2_lesson1.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lesson 1</a></td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%202%20%E8%AF%8D%E6%B1%87%E8%B7%9F%E8%AF%BB.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit2-media-vocab.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit2_Lead_in_Video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 3 Innovation</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%203%20%E8%AF%8D%E6%B1%87%E8%B7%9F%E8%AF%BB.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit3-innovation-vocab.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit3_Lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
@@ -60,13 +60,13 @@ layout: post
   <tr style="background:#f1f4f7; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 6 Digital Economy</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%206%20%E8%AF%8D%E6%B1%87%E8%B7%9F%E8%AF%BB.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit6-digital-economy.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit6_lead_in.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f9fafb; color:#2d3a4a;">
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">Unit 7 Job Hunting</td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
-    <td style="border:1px solid #e0e0e0; padding:8px 12px;">To be uploaded.</td>
+    <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit%207%20%E8%AF%8D%E6%B1%87%E8%B7%9F%E8%AF%BB.html" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读</a> | <a href="https://chezvivian.github.io/class/BE_pdf/2026autumn/Unit7-job-hunting-vocab.pdf" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">词汇跟读 PDF</a></td>
     <td style="border:1px solid #e0e0e0; padding:8px 12px;"><a href="https://pub-f74b9fb442714a7b82a0ca9fd7337260.r2.dev/chezvivian_github/2025-business-english/Unit7_lead_in_video.mp4" target="_blank" style="color:#0066cc; text-decoration:underline; font-size:0.85em;">Lead-in video</a></td>
   </tr>
   <tr style="background:#f1f4f7; color:#2d3a4a;">
