@@ -75,7 +75,7 @@ exports.handler = async (event, context) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(25000)
+      signal: AbortSignal.timeout(50000)
     });
     const data = await r.json().catch(function () { return {}; });
     return { ok: r.ok, status: r.status, data: data };
@@ -94,7 +94,7 @@ exports.handler = async (event, context) => {
     const detail = cause ? (cause.code || cause.name || '') + ' ' + (cause.message || '') : '';
     const timedOut = e && (e.name === 'TimeoutError' || e.name === 'AbortError');
     const msg = timedOut
-      ? 'api.x.ai 在 15 秒内没有响应。请确认允许默认网卡访问公网，且函数没有放进专有网络。'
+      ? 'Grok 这次回复超过了 50 秒。请把函数的执行超时时间保持在 60 秒或更长，然后再试一次。'
       : (String(e.message || e) + (detail ? ' (' + detail.trim() + ')' : ''));
     return reply(500, { error: msg });
   }
