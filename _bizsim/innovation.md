@@ -21,6 +21,13 @@ permalink: /business-sim/innovation/
 .bsim .coach-note { display: block; margin-top: 6px; font-size: 15.5px; color: #475569; }
 .bsim .coach-ask { display: block; margin-top: 8px; font-weight: 700; }
 .bsim .msg-bubble { white-space: pre-line; }
+.bsim .msg.coach-row, .bsim .msg.you-row { display: flex; gap: 10px; align-items: flex-start; max-width: 100%; }
+.bsim .msg.you-row { flex-direction: row-reverse; margin-left: auto; }
+.bsim .coach-avatar, .bsim .you-avatar { width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+.bsim .coach-avatar { background: #d1fae5; }
+.bsim .you-avatar { background: #dbeafe; }
+.bsim .coach-avatar svg, .bsim .you-avatar svg { width: 34px; height: 34px; }
+.bsim .coach-row .msg-bubble, .bsim .you-row .msg-bubble { flex: 1; }
 .bsim .mic-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
 .bsim .mic-btn { width: 56px; height: 56px; border: none; border-radius: 50%; background: var(--c, #2c6bac); color: #fff; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
 .bsim .mic-btn:disabled { opacity: .45; }
@@ -93,12 +100,12 @@ permalink: /business-sim/innovation/
   var STORE_KEY = 'bsim_v2_' + GAME_ID + '_';
 
   var STAGES = [
-    { en: '1 View', ask: 'To what extent do you agree with Huang, and why?', need: 'State to what extent you agree, and give one reason from the case.',
-      guide: 'Huang says AI stays a tool under human control. Ethical use depends on rules and society. Nvidia\'s systems process data. They do not develop consciousness.\nHow far do you agree, and what is one reason? An incomplete sentence is fine. I will help with the logic and the wording.' },
-    { en: '2 Action', ask: 'Which concern will you name, and what should Nvidia do?', need: 'Name one concern and one company action.',
-      guide: 'Calling AI a tool does not answer the public. They worry about privacy, job displacement, and autonomous decision-making.\nName one concern and one thing Nvidia should do. Say it in English. I will help you complete the sentence.' },
-    { en: '3 Your lines', ask: 'Can you give your view in two or three English sentences?', need: 'Two or three sentences a classmate can hear, including the role boundary.',
-      guide: 'Give two or three sentences a classmate can hear.\nKeep this limit: {boundary}' }
+    { en: '1 View', ask: 'Do you agree? Please use “I agree” or “I partly agree,” and give one reason.', need: 'Say how much you agree, and give one reason from the case.',
+      guide: 'Jensen Huang says that AI is a tool, and people still control it. Nvidia reads data. The system does not think.\nTry these words: agree, partly agree, a tool, people control it, rules.\nYou can build the sentence like this: “I agree that ___, because ___.” Or: “I partly agree. AI is a tool, but ___.”' },
+    { en: '2 Action', ask: 'Please choose one worry and say what Nvidia should do.', need: 'Name one concern and one thing the company should do.',
+      guide: 'Please choose one worry. Then say one action.\nPrivacy: personal data. What data does the system read?\nJobs: job displacement means some jobs change. Workers may need new skills. A person still makes the decision.\nDecisions: the final decision. A person should make it, not the machine.\nYou can say: “Nvidia should ___ by ___.” For jobs, try: “On job displacement, the company should admit that ___.”' },
+    { en: '3 Your lines', ask: 'Can you say your idea in two or three sentences?', need: 'Say two or three complete sentences, and keep the role limit.',
+      guide: 'Now join your ideas. A classmate should understand you.\nUse this order: “I agree / I partly agree that ___. Nvidia should ___. People still ___.”\nPlease also keep this limit: {limit}' }
   ];
 
   var BANK = [
@@ -124,6 +131,7 @@ permalink: /business-sim/innovation/
       emoji: '🎙️', name: 'Jensen Huang', zh: '首席执行官', color: '#1e3a8a',
       view: 'AI is a tool. Humans stay in control.', viewZh: 'AI 是工具。人保持控制。',
       boundary: 'Do not describe AI as an independent mind. A company action is acceptable only if humans remain in control.',
+      limit: 'People must stay in control. Do not say that AI can think by itself.',
       task: 'Say how far you agree with the tool view, then accept one practical action that still keeps humans in control.',
       taskZh: '说明你在多大程度上同意“工具”这个看法，再接受一件仍然由人控制的具体做法。',
       words: [['a tool under human control', '由人控制的工具'], ['like any widely used tool', '像任何普及的工具'], ['no consciousness', '不会产生意识']]
@@ -132,6 +140,7 @@ permalink: /business-sim/innovation/
       emoji: '🔎', name: 'Industry Expert', zh: '受邀行业专家', color: '#b45309',
       view: 'Name the three concerns in concrete words.', viewZh: '把三件忧虑说具体。',
       boundary: 'Privacy, job displacement, and autonomous decision-making must be answered one by one. A comparison with appliances is not a full answer.',
+      limit: 'Name one real worry: privacy, jobs, or machines that decide alone. A comparison with home appliances is not enough.',
       task: 'Say which part of Huang\'s view you accept, then require one company action for a named concern.',
       taskZh: '说明你接受黄仁勋看法的哪一部分，再要求公司对一件点名的忧虑做出行动。',
       words: [['privacy', '隐私'], ['job displacement', '岗位被取代'], ['autonomous decision-making', '自主决策']]
@@ -140,6 +149,7 @@ permalink: /business-sim/innovation/
       emoji: '🖥️', name: 'GPU Business Lead', zh: '业务负责人', color: '#2e7d4f',
       view: 'The reply must match what the chips actually do.', viewZh: '回应必须和芯片真正做的事一致。',
       boundary: 'Systems process data. They do not make independent decisions. The answer must not shut down the AI business.',
+      limit: 'The system only reads data. It does not decide by itself. Nvidia can still sell this technology.',
       task: 'Give one accurate technical limit, and one action the company can still sell.',
       taskZh: '给出一条准确的技术边界，以及一件公司仍能继续开展 AI 业务的做法。',
       words: [['process data, not independent decisions', '处理数据，不自行决策'], ['parallel computation', '并行计算'], ['protect the AI business', '保住 AI 业务']]
@@ -175,7 +185,7 @@ permalink: /business-sim/innovation/
   function stageGuide(i) {
     var r = ROLES[state.roleId];
     var g = STAGES[i];
-    return { type: 'coach', logic: g.guide.replace('{boundary}', r.boundary), ask: g.ask };
+    return { type: 'coach', logic: g.guide.replace('{limit}', r.limit), ask: g.ask };
   }
 
   function freshChat() {
@@ -277,10 +287,10 @@ permalink: /business-sim/innovation/
     var me = ROLES[state.roleId];
     $('chat').innerHTML = state.chat.map(function (m) {
       if (m.type === 'sys') return '<div class="msg-sys">' + esc(m.text) + '</div>';
-      if (m.type === 'me') return '<div class="msg me" style="--c:' + me.color + '"><div class="msg-who">You</div><div class="msg-bubble">' + esc(m.text) + '</div></div>';
+      if (m.type === 'me') return '<div class="msg you-row" style="--c:' + me.color + '"><div class="you-avatar" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="28" r="14" fill="#fbcfe8"/><path d="M18 26c2-12 26-12 28 0v6H18z" fill="#1e3a8a"/><circle cx="27" cy="29" r="1.8" fill="#1e293b"/><circle cx="37" cy="29" r="1.8" fill="#1e293b"/><path d="M28 35c1.4 2 6.6 2 8 0" fill="none" stroke="#1e293b" stroke-width="1.8" stroke-linecap="round"/><path d="M16 58c2-12 30-12 32 0" fill="#93c5fd"/></svg></div><div><div class="msg-who">You</div><div class="msg-bubble">' + esc(m.text) + '</div></div></div>';
       var word = (m.word && m.word.try) ? '<span class="coach-note">Try: ' + esc(m.word.try) + '</span>' : '';
       var ask = m.ask ? '<span class="coach-ask">' + esc(m.ask) + '</span>' : '';
-      return '<div class="msg" style="--c:#0f766e"><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div>';
+      return '<div class="msg coach-row" style="--c:#0f766e"><div class="coach-avatar" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="18" fill="#fde68a"/><circle cx="18" cy="30" r="7" fill="#fde68a"/><circle cx="46" cy="30" r="7" fill="#fde68a"/><circle cx="25" cy="33" r="2.2" fill="#1e293b"/><circle cx="39" cy="33" r="2.2" fill="#1e293b"/><path d="M26 40c2 3 10 3 12 0" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M32 16c2-6 8-6 10-1" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/></svg></div><div><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div></div>';
     }).join('');
     $('chat').scrollTop = $('chat').scrollHeight;
   }
@@ -294,10 +304,10 @@ permalink: /business-sim/innovation/
       'The student plays ' + me.name + ' (' + me.zh + '). Role boundary: ' + me.boundary + ' ' +
       'Do not role-play other people. Do not write the full speech for the student. ' +
       'Return ONLY JSON with keys logic, word, keep, ask, stageClear. ' +
-      'logic: two or three short English sentences. Tie the comment to this Nvidia case: a tool under human control, privacy, job displacement, or autonomous decisions. Tell the student that an incomplete English sentence is welcome, and that you will help with logic and wording. Do not reply in Chinese. ' +
-      'word: {"instead":"a short phrase they used or empty","try":"one better English phrase or empty"}. ' +
+      'logic: two or three complete sentences in plain English. First say what is already clear. Then give two or three useful words and one sentence frame with a blank, for example “Nvidia should ___ by ___.” Include a business term when the student talks about jobs, such as job displacement, new skills, or the final decision. Do not write the full speech. Do not use idioms. Do not reply in Chinese. ' +
+      'word: {"instead":"a short phrase they used or empty","try":"one clearer complete English sentence or empty"}. ' +
       'keep: their usable English sentence with only a light grammar fix, or "" if they did not say English. ' +
-      'ask: one English question under 22 words about the missing Nvidia point. ' +
+      'ask: one simple complete question in English, under 18 words. ' +
       'stageClear: true only if their own latest words meet the stage requirement. ' +
       'If they write Chinese, ask them to try the same idea in English and put a usable English phrase in word.try.';
   }
