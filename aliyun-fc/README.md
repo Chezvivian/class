@@ -100,7 +100,9 @@ const proxyEndpoints = [
 
 环境变量:`LLM_API_KEY`(必填)、`LLM_BASE_URL`(默认 DeepSeek)、`LLM_MODEL`、`ALLOW_ORIGIN`。
 
-请求:`POST {system, user}`,返回 `{content}`(content 为 LLM 返回的 JSON 字符串)。部署后把 HTTP 触发器地址填入 `_others/business-sim-platform.md` 里的 `LLM_ENDPOINT`。
+接 Grok 时改为:`LLM_BASE_URL=https://api.x.ai/v1`,`LLM_MODEL=grok-4.7`,`LLM_API_KEY` 填 xAI 控制台的密钥。密钥只放在函数环境变量里。
+
+请求:`POST {system, user}`,返回 `{content}`(content 为 LLM 返回的 JSON 字符串)。部署后把 HTTP 触发器地址填入 Innovation 页脚本里的 `LLM_ENDPOINT`。Media 页仍使用同一个地址。
 
 ## 费用估算
 
