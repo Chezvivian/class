@@ -332,11 +332,14 @@ permalink: /business-sim/innovation/
   }
 
   function parseLLM(raw) {
-    var s = String(raw).replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
-    var o = JSON.parse(s);
-    if (!o || typeof o !== 'object') throw new Error('bad format');
+    var s = String(raw == null ? '' : raw).replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+    var o = null;
+    try { o = JSON.parse(s); } catch (e) { o = null; }
+    if (!o || typeof o !== 'object') {
+      return { logic: s || 'The coach returned an empty reply.', word: {}, keep: '', ask: '', stageClear: false };
+    }
     return {
-      logic: o.logic || '',
+      logic: o.logic || s,
       word: o.word || {},
       keep: typeof o.keep === 'string' ? o.keep.trim() : '',
       ask: o.ask || '',

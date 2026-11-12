@@ -61,7 +61,7 @@ exports.handler = async (event, context) => {
     return (msg && msg.content) || '';
   }
 
-  async function complete(jsonMode) {
+  async function complete() {
     const payload = {
       model: model,
       temperature: 0.7,
@@ -70,20 +70,17 @@ exports.handler = async (event, context) => {
         { role: 'user', content: user }
       ]
     };
-    if (jsonMode) payload.text = { format: { type: 'json_object' } };
     const r = await fetch(base + '/responses', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(50000)
+      body: JSON.stringify(payload)
     });
     const data = await r.json().catch(function () { return {}; });
     return { ok: r.ok, status: r.status, data: data };
   }
 
   try {
-    let result = await complete(true);
-    if (!result.ok && result.status === 400) result = await complete(false);
+    const result = await complete();
     if (!result.ok) {
       const msg = (result.data.error && (result.data.error.message || result.data.error)) || 'LLM error';
       return reply(502, { error: typeof msg === 'string' ? msg : JSON.stringify(msg) });
@@ -92,10 +89,6 @@ exports.handler = async (event, context) => {
   } catch (e) {
     const cause = e && e.cause;
     const detail = cause ? (cause.code || cause.name || '') + ' ' + (cause.message || '') : '';
-    const timedOut = e && (e.name === 'TimeoutError' || e.name === 'AbortError');
-    const msg = timedOut
-      ? 'Grok 这次回复超过了 50 秒。请把函数的执行超时时间保持在 60 秒或更长，然后再试一次。'
-      : (String(e.message || e) + (detail ? ' (' + detail.trim() + ')' : ''));
-    return reply(500, { error: msg });
+    return reply(500, { error: String(e.message || e) + (detail ? ' (' + detail.trim() + ')' : '') });
   }
 };
