@@ -33,46 +33,49 @@ permalink: /business-sim/innovation/
 .bsim .mic-bars i { display: block; flex: 1; height: 100%; background: #cbd5e1; border-radius: 2px; transform: scaleY(.12); transform-origin: bottom; }
 .bsim .mic-bars.on i { background: var(--c, #2c6bac); }
 .bsim .mic-live { font-size: 15px; color: #64748b; line-height: 1.4; }
-@media (max-width: 800px) { .bsim .coach-grid { grid-template-columns: 1fr; } }
+.bsim .go-btn { display: block; width: 100%; min-height: 56px; margin-top: 18px; font-size: 18px; }
+.bsim .role-enter .btn { width: 100%; min-height: 52px; }
+.bsim .bsim-back { min-height: 44px; }
+@media (max-width: 800px) {
+  .bsim .coach-grid { grid-template-columns: 1fr; }
+  .bsim .bs-hero { padding: 16px 18px; }
+  .bsim .bs-hero h2 { font-size: 28px; }
+  .bsim .chat-box { height: 38vh; min-height: 200px; }
+  .bsim .rp-actions .btn { min-height: 48px; }
+}
 </style>
 
 <div class="bsim">
 
-<div id="v-topic">
+<div id="v-scene">
 
-<div class="bs-crumb"><a href="{{ site.baseurl }}/business-sim-platform/">商务英语情境化模拟平台</a><span class="sep">/</span>Innovation</div>
+<div class="bs-crumb"><a href="{{ site.baseurl }}/business-sim-platform/">Business English</a><span class="sep">/</span>Innovation</div>
 
 <div class="bs-hero">
   <h2>Nvidia: A Tool in Human Hands</h2>
-  <p>Jensen Huang · AI as a tool · three public concerns</p>
+  <p>Jensen Huang on AI</p>
 </div>
 
 <div class="bs-section">
-  <h3>Scenario <span class="bs-note">情境</span></h3>
-  <p class="bs-big">Nvidia must answer public concerns about AI without giving up Huang's view: AI stays a tool under human control.</p>
-  <p class="bs-note">Nvidia 要回应公众对 AI 的忧虑，同时守住黄仁勋的看法：AI 仍是由人控制的工具。案例只点名了 Jensen Huang。另外两个角色是案例里的两方压力，不是另编的公司人物。入场白按课文改写，不是原话。</p>
+  <p class="bs-big">Huang says AI stays a tool under human control. Like any widely used tool, ethical use depends on rules and society.</p>
+  <p>Nvidia's technology processes data. It does not make independent decisions, and it does not develop consciousness.</p>
 </div>
 
 <div class="bs-section">
   <div class="bs-problem">
-    <div class="q">Problem <span class="bs-note">问题</span></div>
-    <div class="bs-big">How should Nvidia address privacy, job displacement, and autonomous decision-making?</div>
-    <div class="bs-note">公司怎样回应隐私、岗位被取代，以及机器自主决策？</div>
-    <div class="bs-options" style="margin-top:12px">
-      <div class="bs-opt"><b>A Speak</b>Keep Huang's view, and point to rules and society.<br><span class="bs-note">坚持他的说法，把伦理交给监管和社会</span></div>
-      <div class="bs-opt"><b>B Build</b>State the product limit: systems process data; people decide.<br><span class="bs-note">说清产品边界：系统处理数据，人做决定</span></div>
-      <div class="bs-opt"><b>C Both</b>One public line, plus one action for each concern.<br><span class="bs-note">一句公开口径，再加针对每件忧虑的做法</span></div>
-    </div>
+    <div class="q">The question</div>
+    <div class="bs-big">What should Nvidia do about privacy, job displacement, and autonomous decision-making?</div>
   </div>
-  <div class="bs-problem" style="border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6">
-    <div class="q" style="color:#1f5f3a">Goal <span class="bs-note">目标</span></div>
-    <div class="bs-big">Practice your own three sentences with the AI coach. Then close the page and say them to your group.</div>
-    <div class="bs-note">先和 AI 助手练自己的三句。练完后合上网页，用这些句子和小组讨论。时间够可以换一个角色再练。</div>
-  </div>
+  <button type="button" class="btn btn-primary go-btn" id="to-roles">Choose a role</button>
 </div>
 
+</div>
+
+<div id="v-roles" class="hidden">
+
+<div class="bs-crumb"><button type="button" class="bsim-back" id="back-scene">← Scene</button></div>
 <div class="bs-section">
-  <h3>Choose your role <span class="bs-note">选择角色</span></h3>
+  <h3>Choose a role</h3>
   <div class="role-grid" id="role-cards"></div>
 </div>
 
@@ -90,31 +93,30 @@ permalink: /business-sim/innovation/
   var STORE_KEY = 'bsim_v2_' + GAME_ID + '_';
 
   var STAGES = [
-    { en: '1 Your view', ask: 'To what extent do you agree with Huang, and why?', need: 'State to what extent you agree, and give one reason from the case.',
-      guide: '黄仁勋认为，AI 像已经普及的工具，仍由人控制。用得是否合乎伦理，取决于监管和社会。Nvidia 的技术用来处理数据，不是为了产生意识。\nHuang says AI stays a tool under human control. In English, how far do you agree, and what is one reason from the case? 句子不完整也可以。我会帮你理清逻辑，并换成更准确的英文。' },
-    { en: '2 One action', ask: 'Which concern will you name, and what should Nvidia do?', need: 'Name one concern and one company action.',
-      guide: '只说“AI 是工具”还没有回答公众。他们担心三件具体的事：privacy 隐私、job displacement 岗位被取代、autonomous decision-making 机器自主决策。\nPick one concern and say one thing Nvidia should do. 先用英语说出你的想法，我再帮你把理由和句子补完整。' },
+    { en: '1 View', ask: 'To what extent do you agree with Huang, and why?', need: 'State to what extent you agree, and give one reason from the case.',
+      guide: 'Huang says AI stays a tool under human control. Ethical use depends on rules and society. Nvidia\'s systems process data. They do not develop consciousness.\nHow far do you agree, and what is one reason? An incomplete sentence is fine. I will help with the logic and the wording.' },
+    { en: '2 Action', ask: 'Which concern will you name, and what should Nvidia do?', need: 'Name one concern and one company action.',
+      guide: 'Calling AI a tool does not answer the public. They worry about privacy, job displacement, and autonomous decision-making.\nName one concern and one thing Nvidia should do. Say it in English. I will help you complete the sentence.' },
     { en: '3 Your lines', ask: 'Can you give your view in two or three English sentences?', need: 'Two or three sentences a classmate can hear, including the role boundary.',
-      guide: '把你的看法收成两三句，让同学能听完。你这个角色要守住的边界是：{boundary}\nSay your view, one company action, and that limit. 我会帮你看这几句的逻辑是否前后一致。' }
+      guide: 'Give two or three sentences a classmate can hear.\nKeep this limit: {boundary}' }
   ];
 
   var BANK = [
-    { group: 'Taking a position 表态', items: [
-      ['To a large extent, I agree that AI should stay under human control.', '我在很大程度上同意，AI 应处于人的控制之下。'],
-      ['I partly agree. AI is a tool, but the appliance comparison is not enough.', '我部分同意。AI 是工具，但家电类比不够。'],
-      ['I have reservations about how relaxed this sounds.', '我对这种轻松的口气有保留。'] ] },
-    { group: 'Using the case 用上案例', items: [
-      ['GPUs accelerate AI because they handle parallel computation.', 'GPU 能加速 AI，因为它们处理并行计算。'],
-      ['Ethical use depends on regulatory and societal frameworks.', '合乎伦理的使用取决于监管和社会框架。'],
-      ['The system is designed to process data, not to develop consciousness.', '系统设计来处理数据，不是为了产生意识。'] ] },
-    { group: 'Proposing an action 提出做法', items: [
-      ['Nvidia should address privacy by saying what data the system processes.', 'Nvidia 应说明系统处理哪些数据，以此回应隐私问题。'],
-      ['On job displacement, we should admit that some work will change.', '关于岗位被取代，我们应承认有些工作会变化。'],
-      ['For autonomous decisions, a person should make the final call.', '对于自主决策，应由人做出最后决定。'] ] },
-    { group: 'Closing 收束', items: [
-      ['So our public line is: AI stays a tool under human control.', '所以我们的公开口径是：AI 仍是由人控制的工具。'],
-      ['Shall we agree on one action for each concern?', '我们为每件忧虑定一件做法，好吗？'],
-      ['Then it is settled.', '那就这么定了。'] ] }
+    { group: 'Your view', items: [
+      ['To a large extent, I agree that AI should stay under human control.'],
+      ['I partly agree. AI is a tool, but the appliance comparison is not enough.'],
+      ['I have reservations about how relaxed this sounds.'] ] },
+    { group: 'The case', items: [
+      ['GPUs accelerate AI because they handle parallel computation.'],
+      ['Ethical use depends on regulatory and societal frameworks.'],
+      ['The system is designed to process data, not to develop consciousness.'] ] },
+    { group: 'One action', items: [
+      ['Nvidia should address privacy by saying what data the system processes.'],
+      ['On job displacement, we should admit that some work will change.'],
+      ['For autonomous decisions, a person should make the final call.'] ] },
+    { group: 'Close', items: [
+      ['So our public line is: AI stays a tool under human control.'],
+      ['Shall we agree on one action for each concern?'] ] }
   ];
 
   var ROLES = {
@@ -151,20 +153,19 @@ permalink: /business-sim/innovation/
   var isMock = function () { return !LLM_ENDPOINT || /[?&]mock=1/.test(location.search); };
 
   function show(v) {
-    $('v-topic').classList.toggle('hidden', v !== 'topic');
+    $('v-scene').classList.toggle('hidden', v !== 'scene');
+    $('v-roles').classList.toggle('hidden', v !== 'roles');
     $('v-role').classList.toggle('hidden', v !== 'role');
     window.scrollTo(0, 0);
+    requestAnimationFrame(function () { window.scrollTo(0, 0); });
   }
 
   function renderRoleCards() {
     $('role-cards').innerHTML = Object.keys(ROLES).map(function (id) {
       var r = ROLES[id];
-      var words = r.words.map(function (w) { return '<span class="role-word">' + esc(w[0]) + '<small>' + esc(w[1]) + '</small></span>'; }).join('');
-      return '<div class="role-card" style="--c:' + r.color + '"><div class="role-emoji">' + r.emoji + '</div><div class="role-name">' + esc(r.name) + '</div><div class="role-zh">' + esc(r.zh) + '</div>' +
-        '<p class="role-line">' + esc(r.view) + '<span class="zh">' + esc(r.viewZh) + '</span></p>' +
-        '<p class="role-line">' + esc(r.task) + '<span class="zh">' + esc(r.taskZh) + '</span></p>' +
-        '<div class="role-sub">Words to try</div><div class="role-words">' + words + '</div>' +
-        '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">Practice 开始练习 →</button></div></div>';
+      return '<div class="role-card" style="--c:' + r.color + '"><div class="role-emoji">' + r.emoji + '</div><div class="role-name">' + esc(r.name) + '</div>' +
+        '<p class="role-line">' + esc(r.view) + '</p>' +
+        '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">Practice</button></div></div>';
     }).join('');
     Array.prototype.forEach.call($('role-cards').querySelectorAll('button'), function (b) {
       b.onclick = function () { enterRole(b.dataset.role); };
@@ -179,7 +180,7 @@ permalink: /business-sim/innovation/
 
   function freshChat() {
     return [
-      { type: 'sys', text: '第 1 轮 · 你在多大程度上同意黄仁勋' },
+      { type: 'sys', text: 'Round 1 · Your view' },
       stageGuide(0)
     ];
   }
@@ -217,7 +218,7 @@ permalink: /business-sim/innovation/
   function bankHtml() {
     return BANK.map(function (g) {
       return '<div class="pb-group"><div class="pb-gname">' + esc(g.group) + '</div>' + g.items.map(function (it) {
-        return '<div class="pb-item" data-en="' + esc(it[0]) + '"><span class="pb-en">' + esc(it[0]) + '</span><span class="pb-zh">' + esc(it[1]) + '</span></div>';
+        return '<div class="pb-item" data-en="' + esc(it[0]) + '"><span class="pb-en">' + esc(it[0]) + '</span></div>';
       }).join('') + '</div>';
     }).join('');
   }
@@ -225,21 +226,21 @@ permalink: /business-sim/innovation/
   function renderRole() {
     var me = ROLES[state.roleId];
     $('v-role').style.setProperty('--c', me.color);
-    $('v-role').innerHTML = '<button class="bsim-back" id="back-topic">← 返回情境与角色</button>' +
-      '<div class="rp-head"><span class="rp-badge">' + me.emoji + ' ' + esc(me.name) + ' · ' + esc(me.zh) + '</span><span class="rp-round" id="rp-round"></span></div>' +
-      '<div class="rp-goal">' + esc(me.task) + ' ' + esc(me.taskZh) + '</div>' +
+    $('v-role').innerHTML = '<button type="button" class="bsim-back" id="back-topic">← Roles</button>' +
+      '<div class="rp-head"><span class="rp-badge">' + me.emoji + ' ' + esc(me.name) + '</span><span class="rp-round" id="rp-round"></span></div>' +
+      '<div class="rp-goal">' + esc(me.task) + '</div>' +
       '<div class="stage-pills" id="pills"></div>' +
       '<div class="coach-grid"><div><div class="chat-box" id="chat"></div>' +
       '<div id="composer"><div class="mic-row">' +
-      '<button type="button" class="mic-btn" id="mic" aria-label="录音"><svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg><svg class="stop-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg></button>' +
+      '<button type="button" class="mic-btn" id="mic" aria-label="Record"><svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg><svg class="stop-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg></button>' +
       '<div class="mic-bars" id="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
-      '<div class="mic-live" id="live">点麦克风开始说。说完再点一次，这句话会直接发给助手。<br>Click the mic and speak. Click again to send.</div></div>' +
-      '<textarea class="say-box" id="say" placeholder="也可以在这里打字，按 Enter 发送。"></textarea>' +
+      '<div class="mic-live" id="live">Tap the mic. Tap again to send.</div></div>' +
+      '<textarea class="say-box" id="say" placeholder="Or type, then press Enter."></textarea>' +
       '<div class="rp-err" id="err"></div></div></div>' +
-      '<aside class="speech-card"><h4>Your lines 带走的句子</h4><ol id="lines"></ol><p class="bs-note" id="lines-empty">你自己说清的句子会留在这里。</p></aside></div>' +
-      '<details class="pb" open><summary>可选表达 Expressions you can use · 点击放进输入框</summary>' + bankHtml() + '</details>' +
-      '<div class="rp-actions" style="margin-top:16px"><button class="btn btn-dl" id="dl">⬇ 下载我的句子</button><button class="btn btn-ghost" id="reset">重新练习</button></div>';
-    $('back-topic').onclick = function () { show('topic'); };
+      '<aside class="speech-card"><h4>Lines to say</h4><ol id="lines"></ol><p class="bs-note" id="lines-empty">Your own sentences stay here.</p></aside></div>' +
+      '<details class="pb"><summary>Expressions you can use</summary>' + bankHtml() + '</details>' +
+      '<div class="rp-actions" style="margin-top:16px"><button class="btn btn-dl" id="dl">Download</button><button class="btn btn-ghost" id="reset">Start again</button></div>';
+    $('back-topic').onclick = function () { show('roles'); };
     Array.prototype.forEach.call($('v-role').querySelectorAll('.pb-item'), function (el) {
       el.onclick = function () {
         var box = $('say');
@@ -252,7 +253,7 @@ permalink: /business-sim/innovation/
     $('say').onkeydown = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } };
     $('dl').onclick = download;
     $('reset').onclick = function () {
-      if (!confirm('确定清除这个角色的练习记录？')) return;
+      if (!confirm('Clear this practice and start again?')) return;
       localStorage.removeItem(STORE_KEY + state.roleId);
       enterRole(state.roleId);
     };
@@ -266,7 +267,7 @@ permalink: /business-sim/innovation/
       var cls = i === state.stage && !state.finished ? ' on' : (i < state.stage || state.finished ? ' done' : '');
       return '<span class="stage-pill' + cls + '">' + esc(s.en) + '</span>';
     }).join('');
-    $('rp-round').textContent = state.finished ? '三轮已完成' : ('第 ' + (state.stage + 1) + ' / 3 轮 · 本轮第 ' + (state.attempts + 1) + ' 次') + (isMock() ? ' · 模拟' : '');
+    $('rp-round').textContent = state.finished ? 'Done' : ('Round ' + (state.stage + 1) + ' of 3') + (isMock() ? ' · preview' : '');
     $('lines').innerHTML = state.lines.map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('');
     $('lines-empty').style.display = state.lines.length ? 'none' : '';
     $('composer').classList.toggle('hidden', state.finished);
@@ -277,9 +278,9 @@ permalink: /business-sim/innovation/
     $('chat').innerHTML = state.chat.map(function (m) {
       if (m.type === 'sys') return '<div class="msg-sys">' + esc(m.text) + '</div>';
       if (m.type === 'me') return '<div class="msg me" style="--c:' + me.color + '"><div class="msg-who">You</div><div class="msg-bubble">' + esc(m.text) + '</div></div>';
-      var word = (m.word && m.word.try) ? '<span class="coach-note">用词：' + esc(m.word.instead || '…') + ' → ' + esc(m.word.try) + '</span>' : '';
+      var word = (m.word && m.word.try) ? '<span class="coach-note">Try: ' + esc(m.word.try) + '</span>' : '';
       var ask = m.ask ? '<span class="coach-ask">' + esc(m.ask) + '</span>' : '';
-      return '<div class="msg" style="--c:#0f766e"><div class="msg-who">Coach 助手</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div>';
+      return '<div class="msg" style="--c:#0f766e"><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div>';
     }).join('');
     $('chat').scrollTop = $('chat').scrollHeight;
   }
@@ -293,7 +294,7 @@ permalink: /business-sim/innovation/
       'The student plays ' + me.name + ' (' + me.zh + '). Role boundary: ' + me.boundary + ' ' +
       'Do not role-play other people. Do not write the full speech for the student. ' +
       'Return ONLY JSON with keys logic, word, keep, ask, stageClear. ' +
-      'logic: two or three sentences. Start in Chinese, then give one short English cue. Tie the comment to this Nvidia case: a tool under human control, privacy, job displacement, or autonomous decisions. Tell the student that an incomplete English sentence is welcome, and that you will help with logic and wording. ' +
+      'logic: two or three short English sentences. Tie the comment to this Nvidia case: a tool under human control, privacy, job displacement, or autonomous decisions. Tell the student that an incomplete English sentence is welcome, and that you will help with logic and wording. Do not reply in Chinese. ' +
       'word: {"instead":"a short phrase they used or empty","try":"one better English phrase or empty"}. ' +
       'keep: their usable English sentence with only a light grammar fix, or "" if they did not say English. ' +
       'ask: one English question under 22 words about the missing Nvidia point. ' +
@@ -316,13 +317,13 @@ permalink: /business-sim/innovation/
     var stage = state.stage;
     var clear = false;
     if (!english) {
-      return { logic: '这句主要是中文。先把同一个意思说成英语。', word: { instead: '', try: 'I partly agree that AI should stay under human control.' }, keep: '', ask: 'Can you say that in one English sentence?', stageClear: false };
+      return { logic: 'That was Chinese. Try the same idea in one English sentence. I will help with the wording.', word: { instead: '', try: 'I partly agree that AI should stay under human control.' }, keep: '', ask: 'Can you say that in one English sentence?', stageClear: false };
     }
     if (stage === 0) clear = /(agree|extent|reservation|partly|largely|limited)/.test(t) && text.length > 35;
     if (stage === 1) clear = /(privacy|job|autonom)/.test(t) && /(should|address|human|process|framework|support|limit)/.test(t);
     if (stage === 2) clear = text.length > 80;
     return {
-      logic: clear ? '这句已经盖住了这一轮要说的内容。' : '意思有了，这一轮还缺一块，看下面的问题。',
+      logic: clear ? 'That covers this round.' : 'One piece is still missing. Use the question below.',
       word: { instead: '', try: stage === 1 ? 'Nvidia should address this by keeping a human decision.' : '' },
       keep: text.replace(/\s+/g, ' ').trim(),
       ask: clear ? 'Good. Add one more precise word if you want.' : STAGES[stage].ask,
@@ -359,12 +360,13 @@ permalink: /business-sim/innovation/
   function advance(fromModel) {
     if (state.stage >= 2) {
       state.finished = true;
-      state.chat.push({ type: 'sys', text: '三轮完成。请只用左边这些句子，合上网页，和同学当面说。' });
+      state.chat.push({ type: 'sys', text: 'Say these lines to your group. You can close this page.' });
       return;
     }
     state.stage += 1;
     state.attempts = 0;
-    state.chat.push({ type: 'sys', text: fromModel ? ('进入第 ' + (state.stage + 1) + ' 轮') : ('这一轮先到这里。进入第 ' + (state.stage + 1) + ' 轮') });
+    var names = ['Round 2 · One action', 'Round 3 · Your lines'];
+    state.chat.push({ type: 'sys', text: names[state.stage - 1] || ('Round ' + (state.stage + 1)) });
     state.chat.push(stageGuide(state.stage));
   }
 
@@ -378,11 +380,11 @@ permalink: /business-sim/innovation/
     var box = $('say');
     var err = $('err');
     var text = String(preset == null ? (box ? box.value : '') : preset).replace(/\s+/g, ' ').trim();
-    if (!text) { if (err) err.textContent = '还没有听到话。请再说一次，或在下面打字后按 Enter。'; return; }
+    if (!text) { if (err) err.textContent = 'No speech yet. Try again, or type and press Enter.'; return; }
     if (err) err.textContent = '';
     if (box) box.value = '';
     var live = $('live');
-    if (live) live.innerHTML = '助手正在看你的句子…<br>The coach is reading your line.';
+    if (live) live.textContent = 'The coach is reading your line.';
     state.sending = true;
     setMicBusy(true);
     state.chat.push({ type: 'me', text: text });
@@ -396,13 +398,13 @@ permalink: /business-sim/innovation/
       save();
       state.sending = false;
       setMicBusy(false);
-      if (live && !state.finished) live.innerHTML = '点麦克风开始说。说完再点一次，这句话会直接发给助手。<br>Click the mic and speak. Click again to send.';
+      if (live && !state.finished) live.textContent = 'Tap the mic. Tap again to send.';
       renderChat();
       renderSide();
     }).catch(function (e) {
       state.sending = false;
       setMicBusy(false);
-      if (err) err.textContent = '没有连上助手：' + (e.message || e) + '。可以在地址后加 ?mock=1 先试流程。';
+      if (err) err.textContent = 'The coach did not connect. Add ?mock=1 to preview the steps.';
     });
   }
 
@@ -418,7 +420,7 @@ permalink: /business-sim/innovation/
     var err = $('err');
     if (state.sending) return;
     if (!Rec || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      if (err) err.textContent = '这台浏览器不能语音输入。请用 Chrome，或在下面打字后按 Enter。';
+      if (err) err.textContent = 'Voice input needs Chrome. Or type below and press Enter.';
       return;
     }
     var session = { stopped: false, finalText: '', rec: null, stream: null, audioCtx: null, raf: 0 };
@@ -439,11 +441,11 @@ permalink: /business-sim/innovation/
       session.finalText = finalText.replace(/\s+/g, ' ').trim();
       var shown = (finalText + interim).replace(/\s+/g, ' ').trim();
       if ($('say')) $('say').value = shown;
-      if ($('live')) $('live').textContent = shown || '正在听…';
+      if ($('live')) $('live').textContent = shown || 'Listening…';
     };
     rec.onerror = function (ev) {
       if (!ev || ev.error === 'no-speech' || ev.error === 'aborted') return;
-      if (err) err.textContent = '没有听清。请再点一次麦克风。';
+      if (err) err.textContent = 'I missed that. Tap the mic again.';
     };
     rec.onend = function () {
       if (!session.stopped && recSession === session) {
@@ -475,10 +477,10 @@ permalink: /business-sim/innovation/
         session.raf = requestAnimationFrame(tick);
       }
       tick();
-      try { rec.start(); } catch (e3) { if (err) err.textContent = '麦克风没有开始录音。'; stopRecording(false); }
+      try { rec.start(); } catch (e3) { if (err) err.textContent = 'Recording did not start.'; stopRecording(false); }
     }).catch(function () {
       recSession = null;
-      if (err) err.textContent = '浏览器没有允许使用麦克风。';
+      if (err) err.textContent = 'Allow the microphone, then tap again.';
     });
   }
 
@@ -500,7 +502,7 @@ permalink: /business-sim/innovation/
   function download() {
     var me = ROLES[state.roleId];
     var L = ['# Nvidia: A Tool in Human Hands', '', 'Role: ' + me.name + ' (' + me.zh + ')', 'Date: ' + new Date().toLocaleString(), '', '## Lines to say', ''];
-    if (!state.lines.length) L.push('(还没有留下句子)', '');
+    if (!state.lines.length) L.push('(No lines yet)', '');
     state.lines.forEach(function (line, i) { L.push((i + 1) + '. ' + line); });
     L.push('', '## Practice', '');
     state.chat.forEach(function (m) {
@@ -518,7 +520,9 @@ permalink: /business-sim/innovation/
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
   }
 
+  $('to-roles').onclick = function () { show('roles'); };
+  $('back-scene').onclick = function () { show('scene'); };
   renderRoleCards();
-  show('topic');
+  show('scene');
 })();
 </script>
