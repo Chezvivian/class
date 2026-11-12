@@ -72,7 +72,7 @@ permalink: /business-sim/innovation/
 <script>
 (function () {
   // 阿里云 llm-proxy 的 HTTP 触发器地址。留空，或地址加 ?mock=1，则使用本地模拟，不调用 Grok。
-  var LLM_ENDPOINT = 'https://llm-proxy-ranjernycj.cn-shanghai.fcapp.run';
+  var LLM_ENDPOINT = 'https://llm-proxy-ranjernycj.cn-hongkong.fcapp.run';
   var GAME_ID = 'nvidia-tool';
   var STORE_KEY = 'bsim_v2_' + GAME_ID + '_';
 

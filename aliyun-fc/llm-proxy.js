@@ -2,10 +2,8 @@
 // 入口: index.handler(将本文件作为 index.js 上传),Node.js 18,HTTP 触发器
 // 环境变量:
 //   LLM_API_KEY   必填  LLM 服务的 API Key。Grok 用 xAI 控制台的密钥，不要写进网页
-//   LLM_BASE_URL  选填  默认 https://api.deepseek.com
-//                        Grok: https://api.x.ai/v1
-//                        通义: https://dashscope.aliyuncs.com/compatible-mode/v1
-//   LLM_MODEL     选填  默认 deepseek-chat。Grok: grok-4.7
+//   LLM_BASE_URL  选填  默认 https://api.x.ai/v1
+//   LLM_MODEL     选填  默认 grok-4.6。调用的是 /v1/responses，不是 /chat/completions
 //   ALLOW_ORIGIN  选填  默认 *,建议改为你的站点域名
 
 const CORS = () => ({
@@ -32,10 +30,12 @@ function parseEvent(event) {
   return { method: String(method).toUpperCase(), body: body || {} };
 }
 
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
+  if (context) context.callbackWaitsForEmptyEventLoop = false;
   const { method, body } = parseEvent(event);
   if (method === 'OPTIONS') return { statusCode: 204, headers: CORS(), body: '' };
   if (method !== 'POST') return reply(405, { error: 'Method not allowed' });
+  if (body && body.ping) return reply(200, { content: 'pong' });
 
   const key = process.env.LLM_API_KEY;
   if (!key) return reply(500, { error: 'LLM_API_KEY not configured' });
@@ -44,21 +44,38 @@ exports.handler = async (event) => {
   if (typeof system !== 'string' || typeof user !== 'string') return reply(400, { error: 'system and user are required' });
   if (system.length + user.length > 16000) return reply(400, { error: 'prompt too long' });
 
-  const base = (process.env.LLM_BASE_URL || 'https://api.deepseek.com').replace(/\/$/, '');
-  const model = process.env.LLM_MODEL || 'deepseek-chat';
+  const base = (process.env.LLM_BASE_URL || 'https://api.x.ai/v1').replace(/\/$/, '');
+  const model = process.env.LLM_MODEL || 'grok-4.6';
+
+  function extractText(data) {
+    if (!data) return '';
+    if (typeof data.output_text === 'string') return data.output_text;
+    const parts = [];
+    (data.output || []).forEach(function (item) {
+      (item.content || []).forEach(function (part) {
+        if (part && typeof part.text === 'string') parts.push(part.text);
+      });
+    });
+    if (parts.length) return parts.join('');
+    const msg = data.choices && data.choices[0] && data.choices[0].message;
+    return (msg && msg.content) || '';
+  }
 
   async function complete(jsonMode) {
     const payload = {
       model: model,
       temperature: 0.7,
-      max_tokens: 1200,
-      messages: [{ role: 'system', content: system }, { role: 'user', content: user }]
+      input: [
+        { role: 'system', content: system },
+        { role: 'user', content: user }
+      ]
     };
-    if (jsonMode) payload.response_format = { type: 'json_object' };
-    const r = await fetch(base + '/chat/completions', {
+    if (jsonMode) payload.text = { format: { type: 'json_object' } };
+    const r = await fetch(base + '/responses', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(25000)
     });
     const data = await r.json().catch(function () { return {}; });
     return { ok: r.ok, status: r.status, data: data };
@@ -71,9 +88,14 @@ exports.handler = async (event) => {
       const msg = (result.data.error && (result.data.error.message || result.data.error)) || 'LLM error';
       return reply(502, { error: typeof msg === 'string' ? msg : JSON.stringify(msg) });
     }
-    const content = result.data.choices && result.data.choices[0] && result.data.choices[0].message.content;
-    return reply(200, { content: content || '' });
+    return reply(200, { content: extractText(result.data) });
   } catch (e) {
-    return reply(500, { error: String(e.message || e) });
+    const cause = e && e.cause;
+    const detail = cause ? (cause.code || cause.name || '') + ' ' + (cause.message || '') : '';
+    const timedOut = e && (e.name === 'TimeoutError' || e.name === 'AbortError');
+    const msg = timedOut
+      ? 'api.x.ai 在 15 秒内没有响应。请确认允许默认网卡访问公网，且函数没有放进专有网络。'
+      : (String(e.message || e) + (detail ? ' (' + detail.trim() + ')' : ''));
+    return reply(500, { error: msg });
   }
 };
