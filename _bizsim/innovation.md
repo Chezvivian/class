@@ -17,9 +17,22 @@ permalink: /business-sim/innovation/
 .bsim .speech-card h4 { margin: 0 0 8px; font-size: 17px; color: #1f5f3a; }
 .bsim .speech-card ol { margin: 0; padding-left: 20px; }
 .bsim .speech-card li { font-size: 17px; margin: 0 0 8px; color: #1e293b; }
-.bsim .say-box { width: 100%; min-height: 96px; border: 1.5px solid #cfd8e6; border-radius: 10px; padding: 12px 14px; font-size: 18px; line-height: 1.55; font-family: inherit; resize: vertical; }
+.bsim .say-box { width: 100%; min-height: 72px; border: 1.5px solid #cfd8e6; border-radius: 10px; padding: 12px 14px; font-size: 18px; line-height: 1.55; font-family: inherit; resize: vertical; }
 .bsim .coach-note { display: block; margin-top: 6px; font-size: 15.5px; color: #475569; }
-.bsim .coach-ask { display: block; margin-top: 6px; font-weight: 700; }
+.bsim .coach-ask { display: block; margin-top: 8px; font-weight: 700; }
+.bsim .msg-bubble { white-space: pre-line; }
+.bsim .mic-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.bsim .mic-btn { width: 56px; height: 56px; border: none; border-radius: 50%; background: var(--c, #2c6bac); color: #fff; display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.bsim .mic-btn:disabled { opacity: .45; }
+.bsim .mic-btn.on { background: #b42318; }
+.bsim .mic-btn svg { width: 26px; height: 26px; fill: currentColor; }
+.bsim .mic-btn .stop-icon { display: none; }
+.bsim .mic-btn.on .mic-icon { display: none; }
+.bsim .mic-btn.on .stop-icon { display: block; }
+.bsim .mic-bars { display: flex; align-items: flex-end; gap: 3px; height: 36px; width: 92px; }
+.bsim .mic-bars i { display: block; flex: 1; height: 100%; background: #cbd5e1; border-radius: 2px; transform: scaleY(.12); transform-origin: bottom; }
+.bsim .mic-bars.on i { background: var(--c, #2c6bac); }
+.bsim .mic-live { font-size: 15px; color: #64748b; line-height: 1.4; }
 @media (max-width: 800px) { .bsim .coach-grid { grid-template-columns: 1fr; } }
 </style>
 
@@ -77,23 +90,12 @@ permalink: /business-sim/innovation/
   var STORE_KEY = 'bsim_v2_' + GAME_ID + '_';
 
   var STAGES = [
-    { en: '1 Your view', zh: '你的态度', ask: 'To what extent do you agree with Huang?', need: 'State to what extent you agree, and give one reason from the case.' },
-    { en: '2 One action', zh: '一件做法', ask: 'Name one concern — privacy, jobs, or autonomous decisions — and say what Nvidia should do about it.', need: 'Name one concern and one company action.' },
-    { en: '3 Your lines', zh: '三句发言', ask: 'Say your point in two or three sentences. Include your role boundary.', need: 'Two or three sentences a classmate can hear, including the role boundary.' }
-  ];
-
-  var NOTES = [
-    { group: 'Extent 同意到什么程度', items: [
-      ['I largely agree', '我大体同意'], ['I partly agree', '我部分同意'], ['To a limited extent', '在有限程度上'],
-      ['I have reservations about', '我对…有保留'], ['I see your point, but', '我理解，但是'] ] },
-    { group: 'Action 公司做法', items: [
-      ['keep humans in control', '人保持控制'], ['rely on regulatory frameworks', '依靠监管框架'],
-      ['set a clear privacy line', '划定隐私界线'], ['support people whose jobs change', '支持岗位会变化的人'],
-      ['limit autonomous decisions', '限制自主决策'] ] },
-    { group: 'Case language 案例用语', items: [
-      ['a tool under human control', '由人控制的工具'], ['process data', '处理数据'],
-      ['parallel computation', '并行计算'], ['job displacement', '岗位被取代'],
-      ['no consciousness', '不会产生意识'] ] }
+    { en: '1 Your view', ask: 'To what extent do you agree with Huang, and why?', need: 'State to what extent you agree, and give one reason from the case.',
+      guide: '黄仁勋认为，AI 像已经普及的工具，仍由人控制。用得是否合乎伦理，取决于监管和社会。Nvidia 的技术用来处理数据，不是为了产生意识。\nHuang says AI stays a tool under human control. In English, how far do you agree, and what is one reason from the case? 句子不完整也可以。我会帮你理清逻辑，并换成更准确的英文。' },
+    { en: '2 One action', ask: 'Which concern will you name, and what should Nvidia do?', need: 'Name one concern and one company action.',
+      guide: '只说“AI 是工具”还没有回答公众。他们担心三件具体的事：privacy 隐私、job displacement 岗位被取代、autonomous decision-making 机器自主决策。\nPick one concern and say one thing Nvidia should do. 先用英语说出你的想法，我再帮你把理由和句子补完整。' },
+    { en: '3 Your lines', ask: 'Can you give your view in two or three English sentences?', need: 'Two or three sentences a classmate can hear, including the role boundary.',
+      guide: '把你的看法收成两三句，让同学能听完。你这个角色要守住的边界是：{boundary}\nSay your view, one company action, and that limit. 我会帮你看这几句的逻辑是否前后一致。' }
   ];
 
   var BANK = [
@@ -142,7 +144,8 @@ permalink: /business-sim/innovation/
     }
   };
 
-  var state = { roleId: null, stage: 0, attempts: 0, lines: [], chat: [], notes: [], finished: false };
+  var state = { roleId: null, stage: 0, attempts: 0, lines: [], chat: [], finished: false };
+  var recSession = null;
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var isMock = function () { return !LLM_ENDPOINT || /[?&]mock=1/.test(location.search); };
@@ -168,16 +171,22 @@ permalink: /business-sim/innovation/
     });
   }
 
+  function stageGuide(i) {
+    var r = ROLES[state.roleId];
+    var g = STAGES[i];
+    return { type: 'coach', logic: g.guide.replace('{boundary}', r.boundary), ask: g.ask };
+  }
+
   function freshChat() {
     return [
-      { type: 'sys', text: '第 1 轮 · 只说你的态度和一条理由' },
-      { type: 'coach', logic: '用英语说一句即可。助手会点评逻辑和用词，然后请你补下一句。', ask: STAGES[0].ask }
+      { type: 'sys', text: '第 1 轮 · 你在多大程度上同意黄仁勋' },
+      stageGuide(0)
     ];
   }
 
   function enterRole(roleId) {
+    stopRecording(false);
     state.roleId = roleId;
-    state.notes = [];
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORE_KEY + roleId)); } catch (e) {}
     if (saved && saved.chat && saved.chat.length) {
@@ -215,32 +224,22 @@ permalink: /business-sim/innovation/
 
   function renderRole() {
     var me = ROLES[state.roleId];
-    var notes = NOTES.map(function (grp) {
-      return '<div class="word-group"><div class="word-group-title">' + esc(grp.group) + '</div><div class="chips">' + grp.items.map(function (it) {
-        return '<button type="button" class="chip" data-en="' + esc(it[0]) + '">' + esc(it[0]) + '<small>' + esc(it[1]) + '</small></button>';
-      }).join('') + '</div></div>';
-    }).join('');
     $('v-role').style.setProperty('--c', me.color);
     $('v-role').innerHTML = '<button class="bsim-back" id="back-topic">← 返回情境与角色</button>' +
       '<div class="rp-head"><span class="rp-badge">' + me.emoji + ' ' + esc(me.name) + ' · ' + esc(me.zh) + '</span><span class="rp-round" id="rp-round"></span></div>' +
       '<div class="rp-goal">' + esc(me.task) + ' ' + esc(me.taskZh) + '</div>' +
       '<div class="stage-pills" id="pills"></div>' +
       '<div class="coach-grid"><div><div class="chat-box" id="chat"></div>' +
-      '<div id="composer"><div class="word-panel">' + notes +
-      '<textarea class="say-box" id="say" placeholder="说一句英语，或打出来。Say one English sentence."></textarea>' +
-      '<div class="rp-actions" style="margin-top:10px"><button class="btn btn-primary" id="send">发送给助手 Send</button><button class="btn btn-ghost" id="mic">语音输入 Speak</button></div>' +
-      '<div class="rp-err" id="err"></div></div></div></div>' +
+      '<div id="composer"><div class="mic-row">' +
+      '<button type="button" class="mic-btn" id="mic" aria-label="录音"><svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg><svg class="stop-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg></button>' +
+      '<div class="mic-bars" id="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
+      '<div class="mic-live" id="live">点麦克风开始说。说完再点一次，这句话会直接发给助手。<br>Click the mic and speak. Click again to send.</div></div>' +
+      '<textarea class="say-box" id="say" placeholder="也可以在这里打字，按 Enter 发送。"></textarea>' +
+      '<div class="rp-err" id="err"></div></div></div>' +
       '<aside class="speech-card"><h4>Your lines 带走的句子</h4><ol id="lines"></ol><p class="bs-note" id="lines-empty">你自己说清的句子会留在这里。</p></aside></div>' +
-      '<details class="pb"><summary>句库 Phrasebank · 点击加到输入框</summary>' + bankHtml() + '</details>' +
+      '<details class="pb" open><summary>可选表达 Expressions you can use · 点击放进输入框</summary>' + bankHtml() + '</details>' +
       '<div class="rp-actions" style="margin-top:16px"><button class="btn btn-dl" id="dl">⬇ 下载我的句子</button><button class="btn btn-ghost" id="reset">重新练习</button></div>';
     $('back-topic').onclick = function () { show('topic'); };
-    Array.prototype.forEach.call($('v-role').querySelectorAll('.chip'), function (c) {
-      c.onclick = function () {
-        var i = state.notes.indexOf(c.dataset.en);
-        if (i >= 0) state.notes.splice(i, 1); else state.notes.push(c.dataset.en);
-        c.classList.toggle('on', i < 0);
-      };
-    });
     Array.prototype.forEach.call($('v-role').querySelectorAll('.pb-item'), function (el) {
       el.onclick = function () {
         var box = $('say');
@@ -249,9 +248,8 @@ permalink: /business-sim/innovation/
         box.focus();
       };
     });
-    $('send').onclick = send;
-    $('mic').onclick = listen;
-    $('say').onkeydown = function (e) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) send(); };
+    $('mic').onclick = function () { if (recSession) stopRecording(true); else startRecording(); };
+    $('say').onkeydown = function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } };
     $('dl').onclick = download;
     $('reset').onclick = function () {
       if (!confirm('确定清除这个角色的练习记录？')) return;
@@ -295,10 +293,10 @@ permalink: /business-sim/innovation/
       'The student plays ' + me.name + ' (' + me.zh + '). Role boundary: ' + me.boundary + ' ' +
       'Do not role-play other people. Do not write the full speech for the student. ' +
       'Return ONLY JSON with keys logic, word, keep, ask, stageClear. ' +
-      'logic: one short Chinese sentence on what is clear and what is missing. ' +
+      'logic: two or three sentences. Start in Chinese, then give one short English cue. Tie the comment to this Nvidia case: a tool under human control, privacy, job displacement, or autonomous decisions. Tell the student that an incomplete English sentence is welcome, and that you will help with logic and wording. ' +
       'word: {"instead":"a short phrase they used or empty","try":"one better English phrase or empty"}. ' +
       'keep: their usable English sentence with only a light grammar fix, or "" if they did not say English. ' +
-      'ask: one English question under 18 words that asks them to say the missing piece. ' +
+      'ask: one English question under 22 words about the missing Nvidia point. ' +
       'stageClear: true only if their own latest words meet the stage requirement. ' +
       'If they write Chinese, ask them to try the same idea in English and put a usable English phrase in word.try.';
   }
@@ -309,7 +307,7 @@ permalink: /business-sim/innovation/
     var hist = state.chat.filter(function (m) { return m.type === 'me' || m.type === 'coach'; }).slice(-6).map(function (m) {
       return m.type === 'me' ? ('Student: ' + m.text) : ('Coach ask: ' + (m.ask || ''));
     }).join('\n');
-    return 'Role: ' + me.name + '\nStage ' + (state.stage + 1) + ' of 3. Requirement: ' + stage.need + '\nAttempt ' + (state.attempts + 1) + ' of 3 on this stage.\nNotes the student clicked: ' + (state.notes.join('; ') || 'none') + '\nRecent talk:\n' + hist + '\n\nStudent just said:\n' + text;
+    return 'Role: ' + me.name + '\nStage ' + (state.stage + 1) + ' of 3. Requirement: ' + stage.need + '\nAttempt ' + (state.attempts + 1) + ' of 3 on this stage.\nRecent talk:\n' + hist + '\n\nStudent just said:\n' + text;
   }
 
   function mockReply(text) {
@@ -367,22 +365,28 @@ permalink: /business-sim/innovation/
     state.stage += 1;
     state.attempts = 0;
     state.chat.push({ type: 'sys', text: fromModel ? ('进入第 ' + (state.stage + 1) + ' 轮') : ('这一轮先到这里。进入第 ' + (state.stage + 1) + ' 轮') });
-    state.chat.push({ type: 'coach', logic: STAGES[state.stage].zh, ask: STAGES[state.stage].ask });
+    state.chat.push(stageGuide(state.stage));
   }
 
-  function send() {
-    if (state.finished) return;
+  function setMicBusy(busy) {
+    var mic = $('mic');
+    if (mic) mic.disabled = busy;
+  }
+
+  function send(preset) {
+    if (state.finished || state.sending) return;
     var box = $('say');
     var err = $('err');
-    var text = box.value.replace(/\s+/g, ' ').trim();
-    if (!text) { err.textContent = '先说一句，或打一句。'; return; }
-    err.textContent = '';
-    box.value = '';
+    var text = String(preset == null ? (box ? box.value : '') : preset).replace(/\s+/g, ' ').trim();
+    if (!text) { if (err) err.textContent = '还没有听到话。请再说一次，或在下面打字后按 Enter。'; return; }
+    if (err) err.textContent = '';
+    if (box) box.value = '';
+    var live = $('live');
+    if (live) live.innerHTML = '助手正在看你的句子…<br>The coach is reading your line.';
+    state.sending = true;
+    setMicBusy(true);
     state.chat.push({ type: 'me', text: text });
     renderChat();
-    var btn = $('send');
-    btn.disabled = true;
-    btn.textContent = '思考中…';
     var job = isMock() ? Promise.resolve(mockReply(text)) : callLLM(text);
     job.then(function (res) {
       state.attempts += 1;
@@ -390,32 +394,107 @@ permalink: /business-sim/innovation/
       if (res.keep && state.lines.indexOf(res.keep) < 0) state.lines.push(res.keep);
       if (res.stageClear || state.attempts >= 3) advance(!!res.stageClear);
       save();
-      btn.disabled = false;
-      btn.textContent = '发送给助手 Send';
+      state.sending = false;
+      setMicBusy(false);
+      if (live && !state.finished) live.innerHTML = '点麦克风开始说。说完再点一次，这句话会直接发给助手。<br>Click the mic and speak. Click again to send.';
       renderChat();
       renderSide();
     }).catch(function (e) {
-      err.textContent = '没有连上助手：' + (e.message || e) + '。可以在地址后加 ?mock=1 先试流程。';
-      btn.disabled = false;
-      btn.textContent = '发送给助手 Send';
+      state.sending = false;
+      setMicBusy(false);
+      if (err) err.textContent = '没有连上助手：' + (e.message || e) + '。可以在地址后加 ?mock=1 先试流程。';
     });
   }
 
-  function listen() {
+  function resetBars() {
+    var bars = $('bars');
+    if (!bars) return;
+    bars.classList.remove('on');
+    Array.prototype.forEach.call(bars.children, function (n) { n.style.transform = 'scaleY(.12)'; });
+  }
+
+  function startRecording() {
     var Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
     var err = $('err');
-    if (!Rec) { err.textContent = '这台浏览器不能语音输入，请直接打字。'; return; }
+    if (state.sending) return;
+    if (!Rec || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (err) err.textContent = '这台浏览器不能语音输入。请用 Chrome，或在下面打字后按 Enter。';
+      return;
+    }
+    var session = { stopped: false, finalText: '', rec: null, stream: null, audioCtx: null, raf: 0 };
+    recSession = session;
     var rec = new Rec();
+    session.rec = rec;
     rec.lang = 'en-US';
-    err.textContent = '正在听…说完会填进输入框，你确认后再发送。';
+    rec.continuous = true;
+    rec.interimResults = true;
     rec.onresult = function (e) {
-      var said = e.results[0][0].transcript;
-      var box = $('say');
-      box.value = (box.value ? box.value.replace(/\s+$/, '') + ' ' : '') + said;
-      err.textContent = '';
+      var finalText = '';
+      var interim = '';
+      for (var i = 0; i < e.results.length; i++) {
+        var piece = e.results[i][0].transcript;
+        if (e.results[i].isFinal) finalText += piece + ' ';
+        else interim += piece;
+      }
+      session.finalText = finalText.replace(/\s+/g, ' ').trim();
+      var shown = (finalText + interim).replace(/\s+/g, ' ').trim();
+      if ($('say')) $('say').value = shown;
+      if ($('live')) $('live').textContent = shown || '正在听…';
     };
-    rec.onerror = function () { err.textContent = '没有听清。请再试一次，或直接打字。'; };
-    try { rec.start(); } catch (e) { err.textContent = '麦克风没有打开。请直接打字。'; }
+    rec.onerror = function (ev) {
+      if (!ev || ev.error === 'no-speech' || ev.error === 'aborted') return;
+      if (err) err.textContent = '没有听清。请再点一次麦克风。';
+    };
+    rec.onend = function () {
+      if (!session.stopped && recSession === session) {
+        try { rec.start(); } catch (e2) {}
+      }
+    };
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      if (recSession !== session) { stream.getTracks().forEach(function (t) { t.stop(); }); return; }
+      session.stream = stream;
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      var ctx = new Ctx();
+      session.audioCtx = ctx;
+      var analyser = ctx.createAnalyser();
+      analyser.fftSize = 64;
+      ctx.createMediaStreamSource(stream).connect(analyser);
+      var data = new Uint8Array(analyser.frequencyBinCount);
+      var bars = $('bars');
+      if (bars) bars.classList.add('on');
+      if ($('mic')) $('mic').classList.add('on');
+      if (err) err.textContent = '';
+      function tick() {
+        if (recSession !== session) return;
+        analyser.getByteFrequencyData(data);
+        if (bars) {
+          for (var i = 0; i < bars.children.length; i++) {
+            bars.children[i].style.transform = 'scaleY(' + Math.max(0.12, (data[i] || 0) / 255) + ')';
+          }
+        }
+        session.raf = requestAnimationFrame(tick);
+      }
+      tick();
+      try { rec.start(); } catch (e3) { if (err) err.textContent = '麦克风没有开始录音。'; stopRecording(false); }
+    }).catch(function () {
+      recSession = null;
+      if (err) err.textContent = '浏览器没有允许使用麦克风。';
+    });
+  }
+
+  function stopRecording(sendAfter) {
+    var session = recSession;
+    if (!session) return;
+    session.stopped = true;
+    recSession = null;
+    try { session.rec.stop(); } catch (e) {}
+    if (session.raf) cancelAnimationFrame(session.raf);
+    if (session.stream) session.stream.getTracks().forEach(function (t) { t.stop(); });
+    if (session.audioCtx) session.audioCtx.close();
+    if ($('mic')) $('mic').classList.remove('on');
+    resetBars();
+    var text = (($('say') && $('say').value) || session.finalText || '').replace(/\s+/g, ' ').trim();
+    if (sendAfter) send(text);
   }
 
   function download() {
