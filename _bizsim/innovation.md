@@ -52,6 +52,7 @@ permalink: /business-sim/innovation/
 .bsim .rp-goal h4 { margin: 12px 0 4px; font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #64748b; }
 .bsim .rp-goal ul { margin: 0; padding-left: 1.2em; }
 .bsim .rp-goal li { margin: 0 0 7px; font-weight: 500; }
+.bsim details.pb .rp-goal { background: transparent; padding: 4px 0 0; margin: 0; }
 .bsim .speech-card .line-text { display: block; }
 .bsim .speech-card .better-block { margin-top: 14px; padding-top: 10px; border-top: 1px solid #d7efe0; }
 .bsim .speech-card .better-block h4 { color: #1e4f8a; }
@@ -309,17 +310,17 @@ permalink: /business-sim/innovation/
         return '<li>' + esc(it[0]) + '<span class="zh">' + esc(it[1]) + '</span></li>';
       }).join('') + '</ul>';
     }).join('');
-    return '<div class="rp-goal"><p class="orient-goal">' + esc(r.task) + '<span class="zh">' + esc(r.taskZh) + '</span></p>' + blocks + '</div>';
+    return blocks ? '<div class="rp-goal">' + blocks + '</div>' : '';
   }
 
   function renderRoleCards() {
     $('role-cards').innerHTML = Object.keys(ROLES).map(function (id) {
       var r = ROLES[id];
       var kpis = (r.cardKpis || []).map(function (it) {
-        return '<li>' + esc(it[0]) + '<span class="zh">' + esc(it[1]) + '</span></li>';
+        return '<li>' + esc(it[0]) + '</li>';
       }).join('');
       return '<div class="role-card" style="--c:' + r.color + '"><div class="role-emoji">' + r.emoji + '</div><div class="role-name">' + esc(r.name) + '</div><div class="role-zh">' + esc(r.zh) + '</div>' +
-        '<div class="role-kicker">Goal</div><p class="role-goal">' + esc(r.cardGoal) + '<span class="zh">' + esc(r.cardGoalZh) + '</span></p>' +
+        '<div class="role-kicker">Goal</div><p class="role-goal">' + esc(r.cardGoal) + '</p>' +
         '<div class="role-kicker">KPIs</div><ul class="role-brief">' + kpis + '</ul>' +
         '<div class="role-enter"><button class="btn btn-primary" data-role="' + id + '">Practice</button></div></div>';
     }).join('');
@@ -388,7 +389,7 @@ permalink: /business-sim/innovation/
     $('v-role').style.setProperty('--c', me.color);
     $('v-role').innerHTML = '<button type="button" class="bsim-back" id="back-topic">← Roles</button>' +
       '<div class="rp-head"><span class="rp-badge">' + me.emoji + ' ' + esc(me.name) + '</span><span class="rp-round" id="rp-round"></span></div>' +
-      orientHtml(me) +
+      '<div class="rp-goal"><p class="orient-goal">' + esc(me.task) + '</p></div>' +
       '<div class="stage-pills" id="pills"></div>' +
       '<div class="coach-grid"><div><div class="chat-box" id="chat"></div>' +
       '<div id="composer"><div class="mic-row">' +
@@ -400,6 +401,7 @@ permalink: /business-sim/innovation/
       '<aside class="speech-card" id="speech-side"><h4>Lines to say</h4><ol id="lines"></ol><p class="bs-note" id="lines-empty">Your own sentences stay here.</p>' +
       '<div class="better-block" id="better-wrap"><h4>You could better say</h4><p class="bs-note">Listen, then compare it with your recording.<span class="zh">先听这一句，再和自己的录音比一比。</span></p><ol id="better-lines"></ol></div></aside></div>' +
       '<details class="pb"><summary>Expressions you can use</summary>' + bankHtml() + '</details>' +
+      '<details class="pb"><summary>Your role and KPIs</summary>' + orientHtml(me) + '</details>' +
       '<div class="rp-actions" style="margin-top:16px"><button class="btn btn-dl" id="dl">Download</button><button class="btn btn-ghost" id="reset">Start again</button></div>';
     $('back-topic').onclick = function () { show('roles'); };
     Array.prototype.forEach.call($('v-role').querySelectorAll('.pb-item'), function (el) {
