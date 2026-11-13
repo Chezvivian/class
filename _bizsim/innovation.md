@@ -28,7 +28,7 @@ permalink: /business-sim/innovation/
 .bsim .msg-bubble { white-space: pre-line; }
 .bsim .msg.coach-row, .bsim .msg.you-row { display: flex; gap: 10px; align-items: flex-start; max-width: 100%; }
 .bsim .msg.you-row { flex-direction: row-reverse; margin-left: auto; }
-.bsim .coach-avatar, .bsim .you-avatar { width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+.bsim .coach-avatar, .bsim .you-avatar { width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 28px; line-height: 1; }
 .bsim .coach-avatar { background: #d1fae5; }
 .bsim .you-avatar { background: #dbeafe; }
 .bsim .coach-avatar svg, .bsim .you-avatar svg { width: 34px; height: 34px; }
@@ -132,11 +132,11 @@ permalink: /business-sim/innovation/
 
   var STAGES = [
     { en: '1 View', ask: 'Do you agree? Please use “I agree” or “I partly agree,” and give one reason.', need: 'Say how much you agree, and give one reason from the case.',
-      guide: 'Jensen Huang says that AI is a tool, and people still control it. Nvidia reads data. The system does not think.\nTry these words: agree, partly agree, a tool, people control it, rules.\nYou can build the sentence like this: “I agree that ___, because ___.” Or: “I partly agree. AI is a tool, but ___.”' },
+      guide: 'Nice to meet you.\n• AI is a tool. People still control it.\n• Nvidia reads data. The system does not think.\n• Try these words: agree, partly agree, a tool, rules.\n• You can say: “I agree that ___, because ___.”\n• Or: “I partly agree. AI is a tool, but ___.”' },
     { en: '2 Action', ask: 'Please choose one worry and say what Nvidia should do.', need: 'Name one concern and one thing the company should do.',
-      guide: 'Please choose one worry. Then say one action.\nPrivacy: personal data. What data does the system read?\nJobs: job displacement means some jobs change. Workers may need new skills. A person still makes the decision.\nDecisions: the final decision. A person should make it, not the machine.\nYou can say: “Nvidia should ___ by ___.” For jobs, try: “On job displacement, the company should admit that ___.”' },
+      guide: 'Good. Now pick one worry, and one action.\n• Privacy: whose data does the system read?\n• Jobs: some work will change. Workers may need new skills.\n• Decisions: a person makes the final call, not the machine.\n• You can say: “Nvidia should ___ by ___.”' },
     { en: '3 Your lines', ask: 'Can you say your idea in two or three sentences?', need: 'Say two or three complete sentences, and keep the role limit.',
-      guide: 'Now join your ideas. A classmate should understand you.\nUse this order: “I agree / I partly agree that ___. Nvidia should ___. People still ___.”\nPlease also keep this limit: {limit}' }
+      guide: 'Excellent. Now join your ideas in two or three sentences.\n• “I agree / I partly agree that ___.”\n• “Nvidia should ___.”\n• “People still ___.”\n• Keep this limit: {limit}' }
   ];
 
   var BANK = [
@@ -297,7 +297,13 @@ permalink: /business-sim/innovation/
     }
   };
 
-  var state = { roleId: null, stage: 0, attempts: 0, lines: [], chat: [], finished: false };
+  var ANIMALS = ['🦊', '🐼', '🐨', '🐸', '🐧', '🦉', '🐰', '🐻', '🐯', '🦁', '🐵', '🐹', '🐤', '🦄', '🐱', '🐶'];
+  function pickAnimal(except) {
+    var pool = ANIMALS.filter(function (a) { return a !== except; });
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  var state = { roleId: null, stage: 0, attempts: 0, lines: [], chat: [], finished: false, youAnimal: '🐰', coachAnimal: '🦊' };
   var recSession = null;
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
@@ -364,13 +370,18 @@ permalink: /business-sim/innovation/
       }).filter(function (line) { return line.text; });
       state.chat = saved.chat;
       state.finished = !!saved.finished;
+      state.youAnimal = saved.youAnimal || pickAnimal();
+      state.coachAnimal = saved.coachAnimal || pickAnimal(state.youAnimal);
     } else {
       state.stage = 0;
       state.attempts = 0;
       state.lines = [];
       state.chat = freshChat();
       state.finished = false;
+      state.youAnimal = pickAnimal();
+      state.coachAnimal = pickAnimal(state.youAnimal);
     }
+    if (!saved || !saved.youAnimal || !saved.coachAnimal) save();
     renderRole();
     show('role');
   }
@@ -378,7 +389,7 @@ permalink: /business-sim/innovation/
   function save() {
     try {
       localStorage.setItem(STORE_KEY + state.roleId, JSON.stringify({
-        stage: state.stage, attempts: state.attempts, lines: state.lines, chat: state.chat, finished: state.finished
+        stage: state.stage, attempts: state.attempts, lines: state.lines, chat: state.chat, finished: state.finished, youAnimal: state.youAnimal, coachAnimal: state.coachAnimal
       }));
     } catch (e) {}
   }
@@ -466,10 +477,10 @@ permalink: /business-sim/innovation/
     var me = ROLES[state.roleId];
     $('chat').innerHTML = state.chat.map(function (m) {
       if (m.type === 'sys') return '<div class="msg-sys">' + esc(m.text) + '</div>';
-      if (m.type === 'me') return '<div class="msg you-row" style="--c:' + me.color + '"><div class="you-avatar" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="28" r="14" fill="#fbcfe8"/><path d="M18 26c2-12 26-12 28 0v6H18z" fill="#1e3a8a"/><circle cx="27" cy="29" r="1.8" fill="#1e293b"/><circle cx="37" cy="29" r="1.8" fill="#1e293b"/><path d="M28 35c1.4 2 6.6 2 8 0" fill="none" stroke="#1e293b" stroke-width="1.8" stroke-linecap="round"/><path d="M16 58c2-12 30-12 32 0" fill="#93c5fd"/></svg></div><div><div class="msg-who">You</div><div class="msg-bubble">' + esc(m.text) + '</div></div></div>';
+      if (m.type === 'me') return '<div class="msg you-row" style="--c:' + me.color + '"><div class="you-avatar" aria-hidden="true">' + state.youAnimal + '</div><div><div class="msg-who">You</div><div class="msg-bubble">' + esc(m.text) + '</div></div></div>';
       var word = (m.word && m.word.try) ? '<span class="coach-note">Try: ' + esc(m.word.try) + '</span>' : '';
       var ask = m.ask ? '<span class="coach-ask">' + esc(m.ask) + '</span>' : '';
-      return '<div class="msg coach-row" style="--c:#0f766e"><div class="coach-avatar" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="18" fill="#fde68a"/><circle cx="18" cy="30" r="7" fill="#fde68a"/><circle cx="46" cy="30" r="7" fill="#fde68a"/><circle cx="25" cy="33" r="2.2" fill="#1e293b"/><circle cx="39" cy="33" r="2.2" fill="#1e293b"/><path d="M26 40c2 3 10 3 12 0" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M32 16c2-6 8-6 10-1" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/></svg></div><div><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div></div>';
+      return '<div class="msg coach-row" style="--c:#0f766e"><div class="coach-avatar" aria-hidden="true">' + state.coachAnimal + '</div><div><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div></div>';
     }).join('');
     if (!reveal) return;
     var last = $('chat').lastElementChild;
@@ -486,12 +497,16 @@ permalink: /business-sim/innovation/
       'Case facts only: Nvidia was founded in 1993 by Jensen Huang and colleagues and first known for gaming GPUs. Around 2013 Huang shifted the company toward AI because GPUs handle parallel computation and can accelerate AI. ' +
       'His public view is pragmatic: AI is a tool under human control, as widely used as household appliances; ethical use depends on regulatory and societal frameworks. Nvidia technology is designed to process data, not to make independent decisions or develop consciousness. ' +
       'Concerns: privacy, job displacement, autonomous decision-making. Do not invent quotations or extra executives. ' +
-      'The student plays ' + me.name + ' (' + me.zh + '). Role boundary: ' + me.boundary + ' ' +
+      'The learner is playing ' + me.name + ' (' + me.zh + '). Speak to them as "you". Never say "the student". Role boundary: ' + me.boundary + ' ' +
       'What this role controls: ' + me.controls + ' KPIs: ' + me.kpiLine + ' ' +
-      'Use the role\'s KPIs when you coach. If the student speaks outside this job, point them back to one KPI in plain English. ' +
-      'Do not role-play other people. Do not write the full speech for the student. ' +
+      'Use the role\'s KPIs when you coach. If they speak outside this job, point them back to one KPI in plain English. ' +
+      'Do not role-play other people. Do not write the full speech for them. ' +
       'Return ONLY JSON with keys logic, word, keep, better, ask, stageClear. ' +
-      'logic: two or three complete sentences in plain English. First say what is already clear. Then give two or three useful words and one sentence frame with a blank, for example “Nvidia should ___ by ___.” Include a business term when the student talks about jobs, such as job displacement, new skills, or the final decision. Do not write the full speech. Do not use idioms. Do not reply in Chinese. Do not put the model sentence in logic. ' +
+      'logic: plain B1 English, spoken to "you". No idioms. No Chinese. Do not write their full speech. Do not put the model sentence here. ' +
+      'Start with one short line that fits the answer: "Excellent!", "Nice try.", "Good point.", or "Almost." Do not say Excellent when the idea is missing. ' +
+      'Then two or three bullet lines. Each bullet starts with "• " and uses its own line. ' +
+      'One bullet says what is already clear. One bullet gives two or three useful words. One bullet gives one sentence frame with a blank, for example "Nvidia should ___ by ___." ' +
+      'If they talk about jobs, include a business term such as job displacement, new skills, or the final decision. ' +
       'word: {"instead":"a short phrase they used or empty","try":"one clearer complete English sentence or empty"}. ' +
       'keep: their usable English sentence with only a light grammar fix, or "" if they did not say English. ' +
       'better: one complete B1 sentence they could say instead. Keep their meaning and this role. Use one clearer business word and a fuller sentence. One sentence only. No idioms. Empty string if they did not say English. ' +
@@ -521,7 +536,9 @@ permalink: /business-sim/innovation/
     if (stage === 1) clear = /(privacy|job|autonom)/.test(t) && /(should|address|human|process|framework|support|limit)/.test(t);
     if (stage === 2) clear = text.length > 80;
     return {
-      logic: clear ? 'That covers this round.' : 'One piece is still missing. Use the question below.',
+      logic: clear
+        ? 'Excellent!\n• That covers this round.\n• You can add one more precise word if you want.'
+        : 'Nice try.\n• One piece is still missing.\n• Use the question below.',
       word: { instead: '', try: stage === 1 ? 'Nvidia should address this by keeping a human decision.' : '' },
       keep: text.replace(/\s+/g, ' ').trim(),
       better: stage === 1
