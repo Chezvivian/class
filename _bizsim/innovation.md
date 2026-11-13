@@ -13,6 +13,11 @@ permalink: /business-sim/innovation/
 .bsim .stage-pill.on { background: var(--c, #2c6bac); color: #fff; }
 .bsim .stage-pill.done { color: #2e7d4f; border-color: #b7dfc4; }
 .bsim .coach-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .8fr); gap: 14px; align-items: start; }
+.bsim .talk { min-width: 0; }
+.bsim .chat-box { height: auto; max-height: none; overflow: visible; background: transparent; border: none; padding: 0; margin: 0; }
+.bsim .composer { position: sticky; bottom: 0; z-index: 5; margin-top: 10px; background: #fff; border: 1.5px solid #dbe3ef; border-radius: 14px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 18px rgba(15, 23, 42, .08); }
+.bsim .composer .say-box { min-height: 46px; max-height: 88px; margin-top: 8px; }
+.bsim .composer .mic-row { margin-top: 0; }
 .bsim .speech-card { background: #f4fbf6; border: 1.5px solid #cfe8d6; border-radius: 12px; padding: 12px 14px; }
 .bsim .speech-card h4 { margin: 0 0 8px; font-size: 17px; color: #1f5f3a; }
 .bsim .speech-card ol { margin: 0; padding-left: 20px; }
@@ -64,10 +69,12 @@ permalink: /business-sim/innovation/
 .bsim .play-btn:disabled { opacity: .55; }
 .bsim .bsim-back { min-height: 44px; }
 @media (max-width: 800px) {
-  .bsim .coach-grid { grid-template-columns: 1fr; }
+  .bsim .coach-grid { display: flex; flex-direction: column; }
+  .bsim .speech-card { order: -1; }
+  .bsim #v-role { padding-bottom: 158px; }
+  .bsim .composer { position: fixed; left: 0; right: 0; bottom: 0; margin: 0; border-radius: 14px 14px 0 0; z-index: 30; }
   .bsim .bs-hero { padding: 16px 18px; }
   .bsim .bs-hero h2 { font-size: 28px; }
-  .bsim .chat-box { height: 38vh; min-height: 200px; }
   .bsim .rp-actions .btn { min-height: 48px; }
 }
 </style>
@@ -391,8 +398,8 @@ permalink: /business-sim/innovation/
       '<div class="rp-head"><span class="rp-badge">' + me.emoji + ' ' + esc(me.name) + '</span><span class="rp-round" id="rp-round"></span></div>' +
       '<div class="rp-goal"><p class="orient-goal">' + esc(me.task) + '</p></div>' +
       '<div class="stage-pills" id="pills"></div>' +
-      '<div class="coach-grid"><div><div class="chat-box" id="chat"></div>' +
-      '<div id="composer"><div class="mic-row">' +
+      '<div class="coach-grid"><div class="talk"><div class="chat-box" id="chat"></div>' +
+      '<div class="composer" id="composer"><div class="mic-row">' +
       '<button type="button" class="mic-btn" id="mic" aria-label="Record"><svg class="mic-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg><svg class="stop-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg></button>' +
       '<div class="mic-bars" id="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
       '<div class="mic-live" id="live">Tap the mic. Tap again to send.</div></div>' +
@@ -430,7 +437,7 @@ permalink: /business-sim/innovation/
       deleteRoleClips(roleId);
       enterRole(roleId);
     };
-    renderChat();
+    renderChat(false);
     renderSide();
   }
 
@@ -455,7 +462,7 @@ permalink: /business-sim/innovation/
     $('composer').classList.toggle('hidden', state.finished);
   }
 
-  function renderChat() {
+  function renderChat(reveal) {
     var me = ROLES[state.roleId];
     $('chat').innerHTML = state.chat.map(function (m) {
       if (m.type === 'sys') return '<div class="msg-sys">' + esc(m.text) + '</div>';
@@ -464,7 +471,13 @@ permalink: /business-sim/innovation/
       var ask = m.ask ? '<span class="coach-ask">' + esc(m.ask) + '</span>' : '';
       return '<div class="msg coach-row" style="--c:#0f766e"><div class="coach-avatar" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="18" fill="#fde68a"/><circle cx="18" cy="30" r="7" fill="#fde68a"/><circle cx="46" cy="30" r="7" fill="#fde68a"/><circle cx="25" cy="33" r="2.2" fill="#1e293b"/><circle cx="39" cy="33" r="2.2" fill="#1e293b"/><path d="M26 40c2 3 10 3 12 0" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round"/><path d="M32 16c2-6 8-6 10-1" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/></svg></div><div><div class="msg-who">Coach</div><div class="msg-bubble">' + esc(m.logic || '') + word + ask + '</div></div></div>';
     }).join('');
-    $('chat').scrollTop = $('chat').scrollHeight;
+    if (!reveal) return;
+    var last = $('chat').lastElementChild;
+    if (last && last.scrollIntoView) {
+      requestAnimationFrame(function () {
+        last.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      });
+    }
   }
 
   function systemPrompt() {
@@ -601,7 +614,7 @@ permalink: /business-sim/innovation/
     state.sending = true;
     setMicBusy(true);
     state.chat.push({ type: 'me', text: text });
-    renderChat();
+    renderChat(true);
     var clipKey = (blob && blob.size > 500) ? (state.roleId + ':' + Date.now() + ':' + Math.random().toString(36).slice(2, 8)) : '';
     var clipJob = clipKey ? saveClip(clipKey, blob).then(function () { return clipKey; }).catch(function () { return ''; }) : Promise.resolve('');
     var job = isMock() ? Promise.resolve(mockReply(text)) : callLLM(text);
@@ -616,7 +629,7 @@ permalink: /business-sim/innovation/
       state.sending = false;
       setMicBusy(false);
       if (live && !state.finished) live.textContent = 'Tap the mic. Tap again to send.';
-      renderChat();
+      renderChat(true);
       renderSide();
     }).catch(function () {
       clipJob.then(function (k) { if (k) deleteClip(k); });
@@ -912,6 +925,20 @@ permalink: /business-sim/innovation/
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  function pinComposer() {
+    var bar = $('composer');
+    if (!bar) return;
+    var narrow = window.matchMedia && window.matchMedia('(max-width: 800px)').matches;
+    if (!narrow || !window.visualViewport) { bar.style.bottom = ''; return; }
+    var vv = window.visualViewport;
+    var offset = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    bar.style.bottom = offset + 'px';
+  }
+  if (window.visualViewport) {
+    visualViewport.addEventListener('resize', pinComposer);
+    visualViewport.addEventListener('scroll', pinComposer);
   }
 
   $('to-roles').onclick = function () { show('roles'); };
