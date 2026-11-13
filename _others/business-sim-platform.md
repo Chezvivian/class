@@ -1,5 +1,5 @@
 ---
-title: Business simulation
+title: 商务英语情境化模拟平台
 author: Huang Jie
 layout: post
 permalink: /business-sim-platform/
@@ -8,21 +8,19 @@ permalink: /business-sim-platform/
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/business-sim/sim.css">
 
 <style>
-.bsim .bs-hero { padding: 14px 16px; margin-bottom: 14px; }
+.markdown-section > h1 { display: none; }
+.bsim .bs-hero { padding: 16px 18px; margin-bottom: 16px; }
 .bsim .bs-hero h2 { font-size: 26px; }
 .bsim .bs-hero p { font-size: 16px; }
 .bsim .bs-section { margin-bottom: 16px; }
 .bsim .bs-section > h3 { font-size: 18px; margin-bottom: 8px; }
-.bsim .bs-section p { font-size: 16px; margin-bottom: 8px; }
-.bsim .bs-topic-grid { grid-template-columns: 1fr; gap: 8px; }
-.bsim .bs-topic { display: flex; align-items: center; border-radius: 12px; border-width: 1.5px; }
-.bsim a.bs-topic:hover { transform: none; box-shadow: none; }
-.bsim .bs-topic-cover { width: 48px; height: 48px; flex: 0 0 48px; margin: 8px 10px; font-size: 24px; border-radius: 10px; }
-.bsim .bs-topic-body { padding: 8px 28px 8px 0; position: relative; }
-.bsim .bs-topic-title { font-size: 18px; margin: 0; line-height: 1.3; }
-.bsim .bs-topic-desc { font-size: 14.5px; margin: 0; line-height: 1.35; }
+.bsim .bs-topic-grid { grid-template-columns: 1fr; gap: 12px; }
+.bsim .bs-topic { display: block; border-radius: 12px; }
+.bsim .bs-topic-cover { width: auto; height: 84px; flex: none; margin: 0; font-size: 40px; border-radius: 0; background: linear-gradient(135deg, #2c6bac, #5b9bd5); }
+.bsim .bs-topic-body { padding: 10px 14px 12px; }
+.bsim .bs-topic-title { font-size: 20px; margin: 0 0 2px; line-height: 1.3; }
+.bsim .bs-topic-desc { font-size: 15px; margin: 0; line-height: 1.4; }
 .bsim .bs-topic-go { display: none; }
-.bsim a.bs-topic .bs-topic-body::after { content: "→"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #2c6bac; font-weight: 700; }
 .bsim .bs-step { padding: 8px 12px 8px 38px; }
 .bsim .bs-step h4 { font-size: 16px; margin: 0; line-height: 1.35; }
 .bsim .bs-step .zh { margin-left: 6px; font-weight: 400; color: #64748b; }
@@ -36,7 +34,7 @@ permalink: /business-sim-platform/
 <div class="bsim">
 
 <div class="bs-hero">
-  <h2>Business simulation</h2>
+  <h2>商务英语情境化模拟平台</h2>
   <p>Take a role. Solve a problem. Speak in English.</p>
 </div>
 
@@ -71,13 +69,6 @@ permalink: /business-sim-platform/
       </div>
     </div>
   </div>
-</div>
-
-<div class="bs-section">
-  <h3>What is it?</h3>
-  <p>Each unit gives you a business scene and a role.</p>
-  <p><b>Media</b>: choose keywords. AI turns them into a speech for the meeting.</p>
-  <p><b>Innovation</b>: say the line yourself. The coach comments on your logic and wording, then asks you to continue. After that, close the page and talk with classmates.</p>
 </div>
 
 <div class="bs-section">
