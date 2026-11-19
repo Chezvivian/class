@@ -4,8 +4,8 @@ window.BSIM_CONFIG = {
   LLM_ENDPOINT: 'https://llm-proxy-ranjernycj.cn-hongkong.fcapp.run',
   // 'free' 教学测试:所有关卡可进; 'rpg' 闯关:按 unlock 条件解锁
   PROGRESSION_MODE: 'free',
-  // 默认语言档位: 'zh' = EN+中, 'en' = EN(中文点开), 'only' = EN only
-  DEFAULT_LANG: 'en',
+  // 默认语言档位: 'zh' = EN+中, 'only' = EN only(界面不显示中文)
+  DEFAULT_LANG: 'only',
   COMPANY: 'Nova Bridge Consulting',
   TITLE: 'Junior Business Associate',
   RANDOM_NAMES: ['Alex', 'Jamie', 'Taylor', 'Sam', 'Chris', 'Jordan', 'Casey', 'Riley', 'Morgan', 'Robin', 'Nina', 'Leo', 'Mia', 'Ethan', 'Lily', 'Kevin']

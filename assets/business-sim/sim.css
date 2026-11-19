@@ -224,9 +224,11 @@
 .bsim .bi-zh { color: #64748b; font-size: .82em; font-weight: 400; }
 .bsim .cp.lang-zh .bi-zh { display: block; }
 .bsim .cp.lang-only .bi-zh { display: none; }
-.bsim .cp.lang-en .bi { cursor: pointer; }
-.bsim .cp.lang-en .bi-zh { display: none; }
-.bsim .cp.lang-en .bi.open .bi-zh { display: block; }
-.bsim .cp.lang-en .bi:not(.open) .bi-en::after { content: "中"; display: inline-block; margin-left: 6px; font-size: .55em; vertical-align: middle; color: #2c6bac; border: 1px solid #9db8d9; border-radius: 4px; padding: 0 4px; line-height: 1.4; }
-.bsim .cp.lang-only .study .zh, .bsim .cp.lang-only .pb-zh { display: none; }
+.bsim .zhx { color: #64748b; font-weight: 400; font-size: .85em; }
+.bsim .cp.lang-only .zhx, .bsim .cp.lang-only .study .zh, .bsim .cp.lang-only .pb-zh, .bsim .cp.lang-only .chip small, .bsim .cp.lang-only .role-zh { display: none; }
+/* 标题改用 div(不用 h1-h4,避免站点侧栏自动生成二三级目录) */
+.bsim .bs-h { font-size: 23.8px; font-weight: 700; line-height: 1.4; margin: 0 0 12px; padding-left: 10px; border-left: 4px solid #2c6bac; color: #1e293b; }
+.bsim .bs-title { font-size: 34px; font-weight: 700; line-height: 1.3; margin: 0 0 6px; color: #fff; }
+.bsim .study-h { font-size: 16.7px; font-weight: 700; color: #2e7d4f; margin: 0 0 4px; }
+.bsim .bs-box .bs-sh { font-size: 19.5px; font-weight: 700; color: #1e293b; margin: 0; line-height: 1.35; }
 @media (max-width: 600px) { .bsim .cp-ns { font-size: 14px; } .bsim .cp-ne { font-size: 28px; } }
