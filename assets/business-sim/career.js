@@ -1,4 +1,4 @@
-/* Career Path 引擎:存档、视图、决策、口语练习(沿用 llm-proxy)、结果、下载
+﻿/* Career Path 引擎:存档、视图、决策、口语练习(沿用 llm-proxy)、结果、下载
    语言档位只有两档: 'zh' = EN+中, 'only' = EN only(界面中的中文全部隐藏)。
    约定: 界面文案写成 "English 中文",bil() 会把第一个中文字符起的部分包进 .zhx(EN only 下隐藏)。
    页面内不使用 h1-h4 标签,避免站点左侧导航自动生成二、三级标题。 */
@@ -186,7 +186,8 @@
     if (finished) {
       html += '<div class="rp-actions"><button class="btn btn-primary" data-act="result">See result' + Z('查看结果') + ' →</button></div>';
     } else {
-      html += '<div class="word-panel">' + sp.wordGroups.map(function (g) {
+      var rw = (sp.roundWords && sp.roundWords[r.round]) || [];
+      html += '<div class="word-panel">' + rw.concat(sp.wordGroups).map(function (g) {
         return '<div class="word-group"><div class="word-group-title">' + bil(g.group) + '</div><div class="chips">' + g.items.map(function (it) {
           return '<button class="chip' + (idxPick(it[0]) >= 0 ? ' on' : '') + '" data-act="chip" data-type="' + g.type + '" data-en="' + esc(it[0]) + '" data-zh="' + esc(it[1]) + '">' + esc(it[0]) + '<small>' + esc(it[1]) + '</small></button>';
         }).join('') + '</div></div>';
@@ -225,7 +226,8 @@
       'The student plays ' + P.name + ', a ' + C.TITLE + '. The AI plays ' + n.name + ' (' + m.npcStance + ').\n' +
       'The student chose this strategy: "' + (opt ? opt.en : '') + '". Their speech should stay consistent with it.\n' +
       'Task this round: ' + m.speak.rounds[r.round] + '\n' +
-      'Turn the student\'s chosen phrases into a natural first-person spoken line (1-3 short sentences, MUST use ALL chosen phrases, stay in the scene). Then reply as ' + n.name + ' in 1-2 sentences, keeping character and moving the conversation forward' + (last ? ' (final round: bring the conversation to a natural close)' : '') + '.\n' +
+      (m.speak.roundNpc && m.speak.roundNpc[r.round] ? 'NPC requirement this round: ' + m.speak.roundNpc[r.round] + '\n' : '') +
+      'Turn the student\'s chosen phrases into a natural first-person spoken line (1-3 short sentences, MUST use ALL chosen phrases, stay in the scene). Then reply as ' + n.name + ' in 1-2 short sentences (2-3 if the NPC requirement needs it), keeping character and moving the conversation forward' + (last ? ' (final round: bring the conversation to a natural close)' : '') + '.\n' +
       'Return ONLY JSON: {"speech": string, "keyPhrases": [{"en": string, "zh": string, "note": string}], "patterns": [{"en": string, "zh": string}], "colleagueReplies": [{"role": "npc", "text": string}], "toneFeedback": string (optional, one short Chinese sentence), "politeUpgrade": [{"from": string, "to": string, "why": string}] (optional, max 2, why in Chinese)}. keyPhrases = chosen phrases with Chinese meaning and a short Chinese usage tip; patterns = reusable sentence frames with ___ and Chinese explanation.';
     var hist = r.chat.filter(function (x) { return x.type !== 'sys'; }).slice(-6).map(function (x) { return (x.type === 'me' ? P.name + ' (student)' : n.name) + ': ' + x.text; }).join('\n');
     var user = 'Round ' + (r.round + 1) + ' of ' + m.speak.maxRounds + '.\nConversation so far:\n' + hist + '\n\nStudent chosen phrases:\n' + S.picked.map(function (p) { return '[' + p.type + '] ' + p.en; }).join('\n');

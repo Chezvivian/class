@@ -44,8 +44,21 @@ window.BSIM_MISSIONS = [
     },
     speak: {
       maxRounds: 3,
-      rounds: ['Greet Daniel and introduce yourself.', 'Answer his small talk and ask him one question.', 'End the chat politely.'],
-      roundsZh: ['问候 Daniel 并自我介绍。', '回应闲聊并问他一个问题。', '礼貌地结束对话。'],
+      rounds: ['Answer his coffee offer, greet him and introduce yourself.', 'Answer his questions, then ask him one question.', 'End the chat politely.'],
+      roundsZh: ['回应他的咖啡邀请,问候并自我介绍。', '回答他的问题,再问他一个问题。', '礼貌地结束对话。'],
+      // 每轮专属回应词库(显示在最上面):对应 NPC 上一句话
+      roundWords: [
+        [{ group: 'Reply to the coffee offer 回应咖啡邀请', type: 'respond', items: [['Yes, please. Thank you!', '好的,谢谢!'], ["I'd love one, thanks", '我很想来一杯,谢谢'], ["No, thanks. I'm fine", '不用了,谢谢'], ['Just water, please', '我喝水就行']] }],
+        [{ group: 'Reply to "Milk or sugar?" 回应"加奶还是糖?"', type: 'respond', items: [['Just milk, please', '加点奶就好'], ['Black is fine, thanks', '黑咖啡就行,谢谢'], ['A little sugar, please', '加一点糖,谢谢'], ['No milk or sugar for me', '我不加奶和糖']] },
+         { group: 'Reply about your first day 回答入职感受', type: 'respond', items: [["It's going well so far", '目前很顺利'], ["I'm a little nervous, but excited", '有点紧张但很期待'], ['Everyone has been very kind', '大家都很友善']] }],
+        [{ group: 'Reply to his invitation 回应他的话', type: 'respond', items: [["Sure, I'll see you there", '好的,会议室见'], ['Thanks for the coffee', '谢谢你的咖啡'], ['Thanks for your help', '谢谢你的帮助']] }]
+      ],
+      // 每轮要求 NPC 回应时必须说的内容,让下一轮的回应词库对得上
+      roundNpc: [
+        'After the student replies, say a short welcome, pour the coffee, and ask exactly: "Milk or sugar?" Then ask how the first day is going.',
+        'React to the answers in one short sentence, ask one easy small-talk question (e.g. how they came to work), and mention the meeting starts soon in Room 5.',
+        'Say a friendly goodbye and that you will see them in Room 5.'
+      ],
       targetTypes: ['greeting', 'ask', 'closing'], starTypes: ['ask'],
       wordGroups: [
         { group: 'Greeting 问候', type: 'greeting', items: [['Good morning', '早上好'], ['Nice to meet you', '很高兴认识你'], ["How's your morning going?", '早上过得怎样?']] },
@@ -60,7 +73,7 @@ window.BSIM_MISSIONS = [
         { group: 'Ending politely 礼貌收尾', items: [['I should get going. The meeting is about to start.', '我该走了,会议快开始了。'], ['Nice talking to you. See you later!', '很高兴聊天,回头见!']] }
       ]
     },
-    mockReplies: ["Nice to meet you! I've been here about three years. How are you finding it so far?", 'Sounds good. The coffee here is not bad, by the way. Did you come by metro today?', 'Of course, no problem. The meeting is in Room 5. See you there!'],
+    mockReplies: ["Nice to meet you! Here's your coffee. Milk or sugar? And how's your first day going?", 'Got it. Did you come by metro today? The meeting is in Room 5 in ten minutes.', 'Of course, no problem. See you in Room 5!'],
     offline: {
       en: 'Pair task (5 min): A is you, B is Daniel. Chat for 30 seconds, then end the chat naturally.',
       zh: '双人任务(5 分钟):A 扮演你,B 扮演 Daniel。闲聊 30 秒后自然收尾。',
