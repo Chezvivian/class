@@ -197,6 +197,7 @@
 .bsim .cp-nb { flex: 1; display: block; }
 .bsim .cp-nb b { display: block; font-size: 19px; color: #1e293b; }
 .bsim .cp-nb em { font-style: normal; font-size: 12px; background: #f0a500; color: #fff; border-radius: 8px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
+.bsim .cp-nb em.opt { background: #64748b; }
 .bsim .cp-nb small { display: block; font-size: 14.5px; color: #64748b; }
 .bsim .cp-ns { font-size: 17px; font-weight: 700; color: #2c6bac; white-space: nowrap; }
 .bsim .cp-node.done .cp-ns { color: #f0a500; letter-spacing: 2px; }

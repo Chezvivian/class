@@ -13,6 +13,8 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var isMock = function () { return !C.LLM_ENDPOINT || /[?&]mock=1/.test(location.search); };
   function mById(id) { for (var i = 0; i < MS.length; i++) if (MS[i].id === id) return MS[i]; return null; }
+  function tag(m) { return 'M' + m.chapter + '.' + m.order; }
+  function roleTitle() { var m = S.mid && mById(S.mid); return (m && m.chapter >= 2) ? 'Associate' : C.TITLE; }
   function clamp(n) { return Math.max(0, Math.min(100, n)); }
 
   // ===== 语言工具 =====
@@ -72,7 +74,7 @@
   // ===== 顶栏 =====
   function topbar() {
     var langs = [['zh', 'EN+中'], ['only', 'EN only']];
-    var id = P ? '<div class="cp-id"><span class="cp-av" style="background:hsl(' + hue(P.name) + ',55%,45%)">' + esc(initial(P.name)) + '</span><div><b>' + esc(P.name) + '</b><small>' + esc(C.TITLE) + ' · ' + esc(C.COMPANY) + '</small></div></div>' : '<div class="cp-id"><b>Career Path</b></div>';
+    var id = P ? '<div class="cp-id"><span class="cp-av" style="background:hsl(' + hue(P.name) + ',55%,45%)">' + esc(initial(P.name)) + '</span><div><b>' + esc(P.name) + '</b><small>' + esc(roleTitle()) + ' · ' + esc(C.COMPANY) + '</small></div></div>' : '<div class="cp-id"><b>Career Path</b></div>';
     return '<div class="cp-top">' + id + '<div class="cp-lang" title="Language">' + langs.map(function (l) { return '<button data-act="lang" data-v="' + l[0] + '" class="' + (lang === l[0] ? 'on' : '') + '">' + l[1] + '</button>'; }).join('') + '</div></div>';
   }
   function crumb() { return '<div class="bs-crumb"><a href="' + BASE + '/business-sim-platform/">' + bil('Business English Simulation 商务英语情境化模拟平台') + '</a><span class="sep">/</span>Career Path</div>'; }
@@ -134,12 +136,13 @@
       '<div class="bs-section">' + H('Your progress' + Z('你的指标')) + metersHtml() + '</div>';
     CH.forEach(function (c) {
       var ms = MS.filter(function (m) { return m.chapter === c.id; });
-      html += '<div class="bs-section">' + H(esc(c.title) + Z(c.zh)) + '<p class="bs-note">Milestone: ' + esc(c.milestone) + Z(c.milestoneZh) + '</p>';
+      html += '<div class="bs-section">' + H(esc(c.title) + Z(c.zh)) + '<p class="bs-note">Milestone: ' + esc(c.milestone) + Z(c.milestoneZh) + '</p>' + (c.note ? '<p class="bs-note">' + bil(c.note) + '</p>' : '');
       if (!c.ready) { html += '<div class="cp-locked">🔒 Coming soon' + Z('敬请期待') + '</div></div>'; return; }
       html += '<div class="cp-nodes">' + ms.map(function (m) {
         var r = P.progress[m.id], ok = unlocked(m), st = r && r.done ? 'done' : (r && r.decided ? 'doing' : 'new');
         var label = !ok ? '🔒 Locked' : (st === 'done' ? stars(r.stars) : (st === 'doing' ? 'Continue' + Z('继续') : 'Start' + Z('开始')));
-        return '<button class="cp-node ' + st + (ok ? '' : ' lock') + '" ' + (ok ? 'data-act="open" data-id="' + m.id + '"' : 'disabled') + '><span class="cp-ne">' + m.emoji + '</span><span class="cp-nb"><b>M1.' + m.order + ' ' + esc(m.title) + (m.milestone ? ' <em>Milestone</em>' : '') + '</b><small>' + esc(m.time) + ' · ~' + m.minutes + ' min' + Z(' · ' + m.zh) + '</small><small>' + esc(m.skill) + '</small></span><span class="cp-ns">' + label + '</span></button>';
+        var badge = m.optional ? ' <em class="opt">Optional</em>' : (m.milestone ? ' <em>Milestone</em>' : '');
+        return '<button class="cp-node ' + st + (ok ? '' : ' lock') + '" ' + (ok ? 'data-act="open" data-id="' + m.id + '"' : 'disabled') + '><span class="cp-ne">' + m.emoji + '</span><span class="cp-nb"><b>' + tag(m) + ' ' + esc(m.title) + badge + '</b><small>' + esc(m.time) + ' · ~' + m.minutes + ' min' + Z(' · ' + m.zh) + '</small><small>' + esc(m.skill) + '</small></span><span class="cp-ns">' + label + '</span></button>';
       }).join('') + '</div></div>';
     });
     html += '<div class="bs-section">' + H('More' + Z('更多')) + '<div class="rp-actions"><button class="btn btn-ghost" data-act="profile">📁 Career Profile' + Z('职业档案') + '</button>' +
@@ -151,13 +154,13 @@
   function vBrief() {
     var m = mById(S.mid), n = NPC[m.npc];
     return '<button class="bsim-back" data-act="map">← Map' + Z('返回地图') + '</button>' +
-      '<div class="bs-hero"><div class="bs-title">M1.' + m.order + ' ' + esc(m.title) + '</div><p>' + esc(m.time) + Z(' · ' + m.zh) + '</p></div>' +
+      '<div class="bs-hero"><div class="bs-title">' + tag(m) + ' ' + esc(m.title) + (m.optional ? ' · Optional' : '') + '</div><p>' + esc(m.time) + Z(' · ' + m.zh) + '</p></div>' +
       '<div class="bs-section">' + H('Scene' + Z('情境')) + '<p class="bs-big">' + bi(m.briefing.en, m.briefing.zh) + '</p>' +
       '<div class="cp-npc" style="--c:' + n.color + '"><span class="role-emoji">' + n.emoji + '</span><div><b>' + esc(n.name) + '</b><small>' + esc(npcRole(m.npc)) + Z(' · ' + n.zh) + '</small></div></div></div>' +
       '<div class="bs-section"><div class="bs-problem" style="border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6"><div class="q" style="color:#1f5f3a">Your goal' + Z('你的目标') + '</div><div class="bs-big">' + bi(m.briefing.goalEn, m.briefing.goalZh) + '</div></div></div>' +
       '<div class="rp-actions"><button class="btn btn-primary" data-act="decide">Next: Decide' + Z('做决定') + ' →</button></div>';
   }
-  function npcRole(id) { return { daniel: 'Senior colleague', chen: 'Your manager', patel: 'Client manager' }[id] || ''; }
+  function npcRole(id) { return { daniel: 'Senior colleague', chen: 'Your manager', patel: 'Client manager', rivera: 'PrintRight contact', tom: 'Operations' }[id] || ''; }
 
   // ===== 决策卡 =====
   function vDecide() {
@@ -273,7 +276,7 @@
     var system = 'You are a business English coach running a short workplace role-play for Chinese university students (CEFR B1-B2). Keep language simple and natural.\n' +
       'Company: ' + C.COMPANY + ' (international consulting). Project: Greenleaf for Sunrise Cafe Group. Do not use specialist industry knowledge.\n' +
       'Scene: ' + m.briefing.en + ' Time: ' + m.time + '.\n' +
-      'The student plays ' + P.name + ', a ' + C.TITLE + '. The AI plays ' + n.name + ' (' + m.npcStance + ').\n' +
+      'The student plays ' + P.name + ', a ' + roleTitle() + '. The AI plays ' + n.name + ' (' + m.npcStance + ').\n' +
       'The student chose this strategy: "' + (opt ? opt.en : '') + '".\n' +
       'Task this round: ' + m.speak.rounds[r.round] + '\n' +
       (m.speak.roundNpc && m.speak.roundNpc[r.round] ? 'NPC requirement this round: ' + m.speak.roundNpc[r.round] + '\n' : '') +
@@ -434,7 +437,7 @@
   function vResult() {
     var m = mById(S.mid), r = rec(m.id), o = optOf(m, r.choice);
     r.stars = calcStars(m, r); r.done = true; save();
-    var html = '<div class="bs-hero"><div class="bs-title">' + stars(r.stars) + ' &nbsp;M1.' + m.order + ' ' + esc(m.title) + '</div><p>Mission complete' + Z('关卡完成') + '</p></div>' +
+    var html = '<div class="bs-hero"><div class="bs-title">' + stars(r.stars) + ' &nbsp;' + tag(m) + ' ' + esc(m.title) + '</div><p>' + (m.optional ? 'Optional debrief done' + Z('可选复盘已完成') : 'Mission complete' + Z('关卡完成')) + '</p></div>' +
       '<div class="bs-section">' + H('What happened' + Z('发生了什么')) +
       '<div class="cp-outcome"><div class="q">Now' + Z('即时') + '</div><div class="bs-big">' + bi(o.now.en, o.now.zh) + '</div>' + deltaHtml(o.meters) + '</div>' +
       '<div class="cp-outcome later"><div class="q">Later' + Z('延迟后果') + '</div><div class="bs-big">' + bi(o.later.en, o.later.zh) + '</div></div>' +
@@ -451,7 +454,7 @@
 
   // ===== 档案 =====
   function vProfile() {
-    var rows = MS.map(function (m) { var r = P.progress[m.id]; return '<tr><td>M1.' + m.order + ' ' + esc(m.title) + '</td><td>' + (r && r.done ? stars(r.stars) : '—') + '</td><td>' + (r && r.decided ? esc(r.choice) : '—') + '</td><td>' + (r && r.done ? (r.zhMode ? 'Yes' : 'No') : '—') + '</td></tr>'; }).join('');
+    var rows = MS.map(function (m) { var r = P.progress[m.id]; return '<tr><td>' + tag(m) + ' ' + esc(m.title) + (m.optional ? ' (optional)' : '') + '</td><td>' + (r && r.done ? stars(r.stars) : '—') + '</td><td>' + (r && r.decided ? esc(r.choice) : '—') + '</td><td>' + (r && r.done ? (r.zhMode ? 'Yes' : 'No') : '—') + '</td></tr>'; }).join('');
     return '<button class="bsim-back" data-act="map">← Map' + Z('返回地图') + '</button><div class="bs-section">' + H('Career Profile' + Z('职业档案')) +
       '<div class="cp-card"><span class="cp-av" style="background:hsl(' + hue(P.name) + ',55%,45%)">' + esc(initial(P.name)) + '</span><div><b>' + esc(P.name) + '</b><br><small>' + esc(C.TITLE) + ' · ' + esc(C.COMPANY) + '</small></div></div>' + metersHtml() +
       '<table class="bs-table"><tr><th>Mission</th><th>Stars</th><th>Choice</th><th>EN+中 used</th></tr>' + rows + '</table>' +
@@ -461,11 +464,11 @@
   // ===== 下载 / 摘要 =====
   function summary(m, r) {
     var o = optOf(m, r.choice);
-    return 'Career Path · ' + m.title + ' (M1.' + m.order + ')\nPlayer: ' + P.name + ' | Stars: ' + stars(r.stars) + ' | Choice: ' + r.choice + ' (' + (o ? o.en : '') + ')\nEN+中 used: ' + (r.zhMode ? 'yes' : 'no') + '\nMy lines:\n' + r.turns.map(function (t) { return '  R' + t.round + ': ' + t.speech + (t.improved && t.improved.text ? '\n      Improved: ' + t.improved.text : ''); }).join('\n');
+    return 'Career Path · ' + m.title + ' (' + tag(m) + ')\nPlayer: ' + P.name + ' | Stars: ' + stars(r.stars) + ' | Choice: ' + r.choice + ' (' + (o ? o.en : '') + ')\nEN+中 used: ' + (r.zhMode ? 'yes' : 'no') + '\nMy lines:\n' + r.turns.map(function (t) { return '  R' + t.round + ': ' + t.speech + (t.improved && t.improved.text ? '\n      Improved: ' + t.improved.text : ''); }).join('\n');
   }
   function download() {
     var m = mById(S.mid), r = rec(m.id), o = optOf(m, r.choice), n = NPC[m.npc], L_ = [];
-    L_.push('# Career Path - M1.' + m.order + ' ' + m.title + ' ' + m.zh, '', 'Player: ' + P.name + ' (' + C.TITLE + ', ' + C.COMPANY + ')', 'Date: ' + new Date().toLocaleString(), 'Stars: ' + stars(r.stars), 'EN+中 used: ' + (r.zhMode ? 'yes' : 'no'), '', '## Scene', m.briefing.en, m.briefing.zh, '', '## Decision', 'You chose ' + r.choice + ': ' + (o ? o.en + ' / ' + o.zh : ''), 'Now: ' + (o ? o.now.en : ''), 'Later: ' + (o ? o.later.en : ''), 'Why: ' + (o ? o.strategy.en + ' / ' + o.strategy.zh : ''), '', '## Conversation', '');
+    L_.push('# Career Path - ' + tag(m) + ' ' + m.title + ' ' + m.zh, '', 'Player: ' + P.name + ' (' + roleTitle() + ', ' + C.COMPANY + ')', 'Date: ' + new Date().toLocaleString(), 'Stars: ' + stars(r.stars), 'EN+中 used: ' + (r.zhMode ? 'yes' : 'no'), '', '## Scene', m.briefing.en, m.briefing.zh, '', '## Decision', 'You chose ' + r.choice + ': ' + (o ? o.en + ' / ' + o.zh : ''), 'Now: ' + (o ? o.now.en : ''), 'Later: ' + (o ? o.later.en : ''), 'Why: ' + (o ? o.strategy.en + ' / ' + o.strategy.zh : ''), '', '## Conversation', '');
     var ti = 0;
     r.chat.forEach(function (x) {
       if (x.type === 'sys') return;

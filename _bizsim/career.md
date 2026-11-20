@@ -5,13 +5,14 @@ layout: post
 permalink: /business-sim/career/
 ---
 
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/business-sim/sim.css?v=3">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/business-sim/sim.css?v=4">
 
 <div class="bsim">
 <span id="career-base" data-base="{{ site.baseurl }}" style="display:none"></span>
 <div id="career" class="cp"></div>
 </div>
 
-<script src="{{ site.baseurl }}/assets/business-sim/config.js?v=3"></script>
-<script src="{{ site.baseurl }}/assets/business-sim/missions-ch1.js?v=3"></script>
-<script src="{{ site.baseurl }}/assets/business-sim/career.js?v=3"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/config.js?v=4"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/missions-ch1.js?v=4"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/missions-ch2.js?v=4"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/career.js?v=4"></script>
