@@ -57,7 +57,10 @@
   }
   function metersHtml() {
     var m = meters();
-    return '<div class="cp-meters">' + METERS.map(function (k) { return '<div class="cp-meter"><div class="cp-mn">' + k[1] + Z(k[2]) + '</div><div class="cp-bar-bg"><div class="cp-bar-fg" style="width:' + m[k[0]] + '%"></div></div><div class="cp-mv">' + m[k[0]] + '</div></div>'; }).join('') + '</div>';
+    return '<div class="cp-meters">' + METERS.map(function (k) {
+      var d = m[k[0]] - 50, cls = d > 0 ? 'up' : (d < 0 ? 'dn' : ''), shown = d > 0 ? '+' + d : (d < 0 ? String(d) : '—');
+      return '<div class="cp-meter"><div class="cp-mn">' + k[1] + Z(k[2]) + '</div><div class="cp-md ' + cls + '">' + shown + '</div><div class="cp-mv">now ' + m[k[0]] + '</div></div>';
+    }).join('') + '</div>';
   }
   function unlocked(m) {
     if (C.PROGRESSION_MODE === 'free') return true;
@@ -197,29 +200,30 @@
     var m = mById(S.mid), r = rec(m.id), n = NPC[m.npc], sp = m.speak;
     if (!r.chat.length) { r.chat = [{ type: 'sys', text: 'Conversation starts' }, { type: 'ai', text: m.opener.en, zh: m.opener.zh }]; save(); }
     var finished = r.ended || r.round >= sp.maxRounds;
+    var roundNow = Math.min(r.round, sp.maxRounds - 1);
     var html = '<button class="bsim-back" data-act="map">← Map' + Z('返回地图') + '</button><div style="--c:' + n.color + '">' +
       '<div class="rp-head"><span class="rp-badge">' + n.emoji + ' Talk with ' + esc(n.name) + '</span><span class="rp-round">' + (finished ? 'Done' + Z('已完成') : 'Round ' + Math.min(r.round + 1, sp.maxRounds) + ' / ' + sp.maxRounds) + (isMock() ? ' (mock' + Z('模拟') + ')' : '') +
-      (!finished && r.round >= 2 ? ' · <button class="cp-link" data-act="endearly">End now' + Z('结束') + '</button>' : '') + '</span></div>';
-    if (!finished) html += '<div class="rp-goal"><b>Task:</b> ' + bi(sp.rounds[r.round], sp.roundsZh[r.round]) + '</div>';
-    html += '<div class="cp-chat" id="chat">' + chatHtml(m, r) + '</div>';
+      (!finished && r.round >= 2 ? ' · <button class="cp-link" data-act="endearly">End now' + Z('结束') + '</button>' : '') + '</span></div>' +
+      '<div class="cp-brief"><div class="cp-brief-line"><b>Goal' + Z('目标') + '</b> ' + bi(m.briefing.goalEn, m.briefing.goalZh) + '</div>' +
+      (finished ? '' : '<div class="cp-brief-line"><b>This round' + Z('本轮') + '</b> ' + bi(sp.rounds[roundNow], sp.roundsZh[roundNow]) + '</div>') +
+      '<details class="cp-bg"><summary>Background' + Z('背景') + '</summary><p>' + bi(m.briefing.en, m.briefing.zh) + '</p></details></div>' +
+      '<div class="cp-chat" id="chat">' + chatHtml(m, r) + '</div>';
     if (finished) {
       html += '<div class="rp-actions"><button class="btn btn-primary" data-act="result">See result' + Z('查看结果') + ' →</button></div>';
     } else {
-      var rw = (sp.roundWords && sp.roundWords[r.round]) || [], groups = rw.concat(sp.wordGroups);
-      html += '<div class="cp-phr' + (S.phrOpen ? ' open' : '') + '" id="phr"><div class="cp-phr-t">Phrases to help you' + Z('辅助词库') + ' <span class="bs-note">· pick, then insert into the box' + Z('选好后放入输入框') + '</span></div>' +
-        groups.map(function (g, gi) {
-          return '<details class="cp-grp"' + (gi === 0 ? ' open' : '') + '><summary>' + bil(g.group) + '</summary><div class="chips">' + g.items.map(function (it) {
+      var rw = (sp.roundWords && sp.roundWords[r.round]) || [];
+      if (!rw.length && sp.wordGroups && sp.wordGroups[0]) rw = [sp.wordGroups[0]];
+      html += '<div class="cp-phr' + (S.phrOpen ? ' open' : '') + '" id="phr">' +
+        rw.map(function (g) {
+          return '<div class="cp-phr-t">' + bil(g.group) + '</div><div class="chips">' + g.items.map(function (it) {
             return '<button class="chip' + (idxPick(it[0]) >= 0 ? ' on' : '') + '" data-act="chip" data-type="' + g.type + '" data-en="' + esc(it[0]) + '" data-zh="' + esc(it[1]) + '">' + esc(it[0]) + '<small>' + esc(it[1]) + '</small></button>';
-          }).join('') + '</div></details>';
+          }).join('') + '</div>';
         }).join('') +
-        '<div class="rp-actions" style="margin-top:8px"><button class="btn btn-ghost" data-act="insert">Insert into box' + Z('放入输入框') + ' <span id="pcount">' + (S.picked.length ? '(' + S.picked.length + ')' : '') + '</span></button><button class="btn btn-ghost" data-act="clear">Clear' + Z('清空') + '</button></div>' +
-        '<details class="pb"><summary>Phrasebank' + Z('话术库') + ' · click to copy' + Z('点击复制') + '</summary>' + sp.phrasebank.map(function (g) {
-          return '<div class="pb-group"><div class="pb-gname">' + bil(g.group) + '</div>' + g.items.map(function (it) { return '<div class="pb-item" data-act="copy" data-en="' + esc(it[0]) + '"><span class="pb-en">' + esc(it[0]) + '</span><span class="pb-zh">' + esc(it[1]) + '</span></div>'; }).join('') + '</div>';
-        }).join('') + '</details></div>' +
+        '<div class="rp-actions" style="margin-top:8px"><button class="btn btn-ghost" data-act="clear">Clear' + Z('清空') + '</button></div></div>' +
         '<div class="cp-dock"><div class="cp-hint" id="cp-hint">' + hintText() + '</div><div class="cp-dockrow">' +
-        '<button class="cp-ib" data-act="phr" title="Phrases">🧩</button>' +
+        '<button class="cp-help" data-act="phr" title="Phrases you can use">Need help?<small>Phrases you can use' + Z('可用句子') + '</small></button>' +
         '<textarea id="say" rows="2" placeholder="' + esc(L('Type or tap the mic… 输入文字,或点麦克风说话')) + '">' + esc(S.draft) + '</textarea>' +
-        '<button class="cp-ib mic' + (micOK() ? '' : ' off') + (S.recState === 'rec' ? ' on' : '') + '" id="mic" data-act="mic" title="Speak">' + micLabel() + '</button>' +
+        '<button class="cp-ib mic' + (micOK() ? '' : ' off') + (S.recState === 'rec' ? ' on' : '') + '" id="mic" data-act="mic" title="Speak" aria-label="Speak">' + micIcon() + '</button>' +
         '<button class="cp-send" id="send" data-act="gen"' + (S.busy ? ' disabled' : '') + '>' + (S.busy ? '…' : 'Send') + '</button></div></div>';
     }
     return html + '</div><p class="bs-note" style="margin-top:12px">Say it in your own words. The coach will show a better version.' + Z('用自己的话说,助手会给出更自然的说法。') + '</p>';
@@ -231,7 +235,9 @@
     return S.hint || '';
   }
   function setHint(t) { S.hint = t; S.err = ''; var el = document.getElementById('cp-hint'); if (el) el.innerHTML = hintText(); }
-  function micLabel() { return S.recState === 'rec' ? '⏹' : '🎤'; }
+  var MIC_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>';
+  var STOP_SVG = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect fill="currentColor" x="7" y="7" width="10" height="10" rx="1.5"/></svg>';
+  function micIcon() { return S.recState === 'rec' ? STOP_SVG : MIC_SVG; }
 
   function chatHtml(m, r) {
     var lastMe = -1;
@@ -249,7 +255,8 @@
     var n = NPC[m.npc];
     if (x.type === 'sys') return '<div class="msg-sys">' + esc(x.text) + '</div>';
     if (x.type === 'ai') return '<div class="msg" style="--c:' + n.color + '"><div class="msg-who">' + n.emoji + ' ' + esc(n.name) + ' ' + sayBtn(x.text, voiceOf(m.npc)) + '</div><div class="msg-bubble">' + (x.zh ? bi(x.text, x.zh) : esc(x.text)) + '</div></div>';
-    return '<div class="cp-pair"' + (isLast ? ' id="cp-last"' : '') + '><div class="msg me" style="--c:#2c6bac"><div class="msg-who">You · ' + esc(P.name) + '</div><div class="msg-bubble">' + esc(x.text) + '</div></div>' +
+    var replay = tr && clipUrls[m.id + '#' + tr.round] ? '<button class="cp-say" data-act="replay" data-key="' + m.id + '#' + tr.round + '" title="Play your recording">▶</button>' : '';
+    return '<div class="cp-pair"' + (isLast ? ' id="cp-last"' : '') + '><div class="msg me" style="--c:#2c6bac"><div class="msg-who">You · ' + esc(P.name) + ' ' + replay + '</div><div class="msg-bubble">' + esc(x.text) + '</div></div>' +
       (tr && tr.improved && tr.improved.text ? impHtml(tr.improved) : '') + '</div>' + (tr ? studyHtml(tr) : '');
   }
   function impHtml(im) {
@@ -327,7 +334,15 @@
       (res.checks || []).forEach(function (k) { types[k] = 1; });
       var low = text.toLowerCase();
       S.picked.forEach(function (p) { if (low.indexOf(p.en.toLowerCase().replace(/[?.!,]/g, '').slice(0, 12)) >= 0) types[p.type] = 1; });
-      r.turns.push({ round: r.round + 1, picked: S.picked.slice(), speech: text, improved: im, keyPhrases: res.keyPhrases || [], patterns: res.patterns || [], toneFeedback: res.toneFeedback || '', types: Object.keys(types) });
+      var turnNo = r.round + 1;
+      if (!S.pendingClip && S.lastChunks && S.lastChunks.length) S.pendingClip = new Blob(S.lastChunks, { type: S.lastMime || 'audio/webm' });
+      if (S.pendingClip) {
+        var ck = m.id + '#' + turnNo;
+        if (clipUrls[ck]) URL.revokeObjectURL(clipUrls[ck]);
+        clipUrls[ck] = URL.createObjectURL(S.pendingClip);
+        S.pendingClip = null; S.lastChunks = null;
+      }
+      r.turns.push({ round: turnNo, picked: S.picked.slice(), speech: text, improved: im, keyPhrases: res.keyPhrases || [], patterns: res.patterns || [], toneFeedback: res.toneFeedback || '', types: Object.keys(types) });
       r.chat.push({ type: 'me', text: text });
       if (reply) r.chat.push({ type: 'ai', text: reply });
       r.round++; S.picked = []; S.draft = ''; S.busy = false; S.hint = ''; S.scrollLast = true;
@@ -339,13 +354,14 @@
   }
 
   // ===== 朗读(沿用 tts 代理;点击才播放,不自动播放) =====
+  var clipUrls = {};
   var SILENT = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
   var player = { audio: null, btn: null, url: null }, ttsCache = {};
   function stopPlayer() {
     if (player.audio) { player.audio.onended = null; try { player.audio.pause(); } catch (e) {} }
-    if (player.url) URL.revokeObjectURL(player.url);
+    if (player.url && !player.keep) URL.revokeObjectURL(player.url);
     if (player.btn) player.btn.classList.remove('on');
-    player.audio = null; player.btn = null; player.url = null;
+    player.audio = null; player.btn = null; player.url = null; player.keep = false;
   }
   function fetchTts(text, voice) {
     var body = JSON.stringify({ text: text, voice: voice, rate: '0.9', format: 'mp3', sample_rate: 16000 });
@@ -379,6 +395,16 @@
     fetchTts(text, voice).then(function (blob) { ttsCache[key] = blob; btn.textContent = label; play(blob); })
       .catch(function () { btn.textContent = label; stopPlayer(); setHint('The voice did not play. Try again.' + Z('声音没有播放出来,请重试。')); });
   }
+  function playReplay(key, btn) {
+    var url = clipUrls[key];
+    if (!url) return;
+    if (player.btn === btn) { stopPlayer(); return; }
+    stopPlayer();
+    var audio = new Audio(url);
+    player.audio = audio; player.btn = btn; player.keep = true; btn.classList.add('on');
+    audio.onended = function () { stopPlayer(); };
+    audio.play().catch(function () { stopPlayer(); setHint('Tap play again.' + Z('请再点一次播放。')); });
+  }
 
   // ===== 语音输入:沿用旧版做法,用浏览器自带的 SpeechRecognition(不调用任何接口,不保存录音) =====
   var recSess = null;
@@ -387,14 +413,29 @@
   function setRecState(s) {
     S.recState = s;
     var mic = document.getElementById('mic');
-    if (mic) { mic.textContent = micLabel(); mic.classList.toggle('on', s === 'rec'); }
+    if (mic) { mic.innerHTML = micIcon(); mic.classList.toggle('on', s === 'rec'); }
     var h = document.getElementById('cp-hint'); if (h) h.innerHTML = hintText();
   }
   function startRec() {
     if (S.busy || S.recState) return;
     if (!micOK()) { setHint('Voice input needs Chrome. Or type your answer.' + Z('语音输入需要 Chrome 等浏览器;也可以直接打字。')); return; }
     stopPlayer();
-    var rec = new SR(), base = S.draft ? S.draft.trim() + ' ' : '', sess = { rec: rec, stopped: false, timer: null };
+    var rec = new SR(), base = S.draft ? S.draft.trim() + ' ' : '', sess = { rec: rec, stopped: false, timer: null, mr: null, stream: null, chunks: [] };
+    function armRecorder(stream) {
+      if (!stream || !window.MediaRecorder) { if (stream) stream.getTracks().forEach(function (t) { t.stop(); }); return; }
+      try {
+        var mr = new MediaRecorder(stream);
+        sess.mr = mr; sess.stream = stream;
+        mr.ondataavailable = function (ev) { if (ev.data && ev.data.size) sess.chunks.push(ev.data); };
+        mr.onstop = function () {
+          S.lastMime = mr.mimeType || 'audio/webm';
+          if (sess.chunks.length) S.pendingClip = new Blob(sess.chunks, { type: S.lastMime });
+          stream.getTracks().forEach(function (t) { t.stop(); });
+        };
+        mr.start(250);
+        S.lastChunks = sess.chunks; S.lastMime = '';
+      } catch (eRec) { stream.getTracks().forEach(function (t) { t.stop(); }); }
+    }
     rec.lang = 'en-US'; rec.continuous = true; rec.interimResults = true;
     rec.onresult = function (e) {
       var fin = '', interim = '';
@@ -408,14 +449,21 @@
       setHint((ev.error === 'not-allowed' ? 'Please allow the microphone, or type your answer.' : 'Voice did not work (' + esc(ev.error) + '). Please type your answer.') + Z('语音不可用,请允许麦克风或直接打字。'));
     };
     rec.onend = function () { if (!sess.stopped && recSess === sess) { try { rec.start(); } catch (e2) {} } };
-    try { rec.start(); } catch (e3) { setHint('Voice did not start. Please type your answer.' + Z('语音没有启动,请直接打字。')); return; }
-    recSess = sess; setRecState('rec');
+    function goRec() {
+      try { rec.start(); } catch (e3) { setHint('Voice did not start. Please type your answer.' + Z('语音没有启动,请直接打字。')); return; }
+      recSess = sess; setRecState('rec');
+    }
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) { armRecorder(stream); goRec(); }).catch(function () { goRec(); });
+    } else goRec();
     sess.timer = setTimeout(function () { if (recSess === sess) stopRec(false); }, 60000);
   }
   function stopRec(silent) {
     var sess = recSess; if (!sess) return;
     recSess = null; clearTimeout(sess.timer); sess.stopped = true;
     try { sess.rec.stop(); } catch (e0) {}
+    if (sess.mr && sess.mr.state !== 'inactive') { try { sess.mr.stop(); } catch (e1) {} }
+    else if (silent && sess.stream) { sess.stream.getTracks().forEach(function (t) { t.stop(); }); if (silent) S.pendingClip = null; }
     S.recState = null;
     if (silent) return;
     setRecState(null);
@@ -442,10 +490,11 @@
       '<div class="cp-outcome"><div class="q">Now' + Z('即时') + '</div><div class="bs-big">' + bi(o.now.en, o.now.zh) + '</div>' + deltaHtml(o.meters) + '</div>' +
       '<div class="cp-outcome later"><div class="q">Later' + Z('延迟后果') + '</div><div class="bs-big">' + bi(o.later.en, o.later.zh) + '</div></div>' +
       '<div class="cp-outcome strat"><div class="q">Why' + Z('策略反馈') + '</div><div class="bs-big">' + bi(o.strategy.en, o.strategy.zh) + '</div></div></div>' +
-      '<div class="bs-section">' + H('Your lines' + Z('你的发言')) + r.turns.map(function (t) { return '<div class="msg me" style="--c:#2c6bac;max-width:100%"><div class="msg-who">Round ' + t.round + '</div><div class="msg-bubble">' + esc(t.speech) + '</div></div>' + (t.improved && t.improved.text ? '<div class="cp-imp"><div class="cp-imp-h">Improved answer' + Z('更自然的说法') + ' ' + sayBtn(t.improved.text, voiceOf('coach'), '▶') + '</div><div class="cp-imp-t">' + esc(t.improved.text) + '</div></div>' : ''); }).join('') + '</div>' +
+      '<div class="bs-section">' + H('Your lines' + Z('你的发言')) + r.turns.map(function (t) { return '<div class="msg me" style="--c:#2c6bac;max-width:100%"><div class="msg-who">Round ' + t.round + (clipUrls[m.id + '#' + t.round] ? ' <button class="cp-say" data-act="replay" data-key="' + m.id + '#' + t.round + '" title="Play your recording">▶</button>' : '') + '</div><div class="msg-bubble">' + esc(t.speech) + '</div></div>' + (t.improved && t.improved.text ? '<div class="cp-imp"><div class="cp-imp-h">Improved answer' + Z('更自然的说法') + ' ' + sayBtn(t.improved.text, voiceOf('coach'), '▶') + '</div><div class="cp-imp-t">' + esc(t.improved.text) + '</div></div>' : ''); }).join('') + '</div>' +
       '<div class="bs-section">' + H('Language support' + Z('语言支持')) + '<p>' + (r.zhMode ? 'Chinese support used (EN+中)' + Z('本关用过中文支持') : '🏅 <b>Full English</b>' + Z('全英文通关')) + '</p></div>' +
       '<div class="bs-section">' + H('Team Lab · offline task' + Z('线下任务')) + '<div class="bs-box"><p>' + bi(m.offline.en, m.offline.zh) + '</p><p class="bs-note">Observe: ' + esc(m.offline.watch) + '</p><p class="bs-note">Discuss: ' + esc(m.offline.discuss) + '</p></div></div>' +
-      '<div class="bs-section">' + H('Your meters' + Z('指标')) + metersHtml() + '</div>';
+      '<div class="bs-section">' + H('This mission' + Z('本关变化')) + deltaHtml(o.meters) + '</div>' +
+      '<div class="bs-section">' + H('Your meters' + Z('累计指标')) + metersHtml() + '</div>';
     var nx = MS.filter(function (x) { return x.order === m.order + 1 && x.chapter === m.chapter; })[0];
     html += '<div class="rp-actions"><button class="btn btn-dl" data-act="dl">⬇ Download' + Z('下载学习资料') + '</button><button class="btn btn-ghost" data-act="copysum">📋 Copy summary' + Z('复制摘要') + '</button><button class="btn btn-ghost" data-act="retry">↻ Replay' + Z('重玩本关') + '</button>' +
       (nx && unlocked(nx) ? '<button class="btn btn-primary" data-act="open" data-id="' + nx.id + '">Next mission' + Z('下一关') + ' →</button>' : '') + '<button class="btn btn-primary" data-act="map">Map' + Z('地图') + '</button></div><div class="rp-err" id="cpmsg"></div>';
@@ -504,17 +553,19 @@
       case 'choose': var r1 = rec(m.id); r1.decided = true; r1.choice = id; save(); render(); break;
       case 'speak': S.picked = []; go('speak'); break;
       case 'chip':
-        var en = el.getAttribute('data-en'), i = idxPick(en);
-        if (i >= 0) S.picked.splice(i, 1); else S.picked.push({ type: el.getAttribute('data-type'), en: en, zh: el.getAttribute('data-zh') });
-        el.classList.toggle('on', i < 0); updPicked(); break;
-      case 'clear': S.picked = []; Array.prototype.forEach.call(root.querySelectorAll('.chip.on'), function (c) { c.classList.remove('on'); }); updPicked(); break;
-      case 'insert':
-        if (!S.picked.length) { setHint('Pick a phrase first.' + Z('先选一个表达。')); break; }
-        S.draft = ((S.draft ? S.draft.trim() + ' ' : '') + S.picked.map(function (p) { return p.en.replace(/\s*\.\.\.$/, ''); }).join(' ')).trim();
-        var ta0 = document.getElementById('say'); if (ta0) { ta0.value = S.draft; ta0.focus(); }
+        var en = el.getAttribute('data-en'), piece = en.replace(/\s*\.\.\.$/, ''), i = idxPick(en);
+        if (i >= 0) { S.picked.splice(i, 1); S.draft = S.draft.replace(piece, '').replace(/\s+/g, ' ').trim(); }
+        else { S.picked.push({ type: el.getAttribute('data-type'), en: en, zh: el.getAttribute('data-zh') }); S.draft = ((S.draft ? S.draft.trim() + ' ' : '') + piece).trim(); }
+        el.classList.toggle('on', i < 0);
+        var ta1 = document.getElementById('say'); if (ta1) { ta1.value = S.draft; ta1.focus(); }
+        break;
+      case 'clear':
+        S.picked = []; S.draft = '';
         Array.prototype.forEach.call(root.querySelectorAll('.chip.on'), function (c) { c.classList.remove('on'); });
-        S.picked = []; updPicked(); setHint('Edit it into your own words, then tap Send.' + Z('改成你自己的话,再点 Send。')); break;
+        var ta2 = document.getElementById('say'); if (ta2) ta2.value = '';
+        break;
       case 'phr': S.phrOpen = !S.phrOpen; var ph = document.getElementById('phr'); if (ph) ph.classList.toggle('open', S.phrOpen); break;
+      case 'replay': playReplay(el.getAttribute('data-key'), el); break;
       case 'mic': if (S.recState === 'rec') stopRec(false); else startRec(); break;
       case 'say': sayText(el.getAttribute('data-text'), el.getAttribute('data-voice'), el); break;
       case 'gen': generate(); break;
