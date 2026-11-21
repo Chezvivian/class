@@ -21,6 +21,33 @@
         ],
         "createdAt": "2026-11-05T12:49:41.893Z",
         "reason": "Existing Unit 1 white card uses a faint blue elevation shadow at 8% opacity, not a dark-background glow. This edit does not restyle the card."
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "D:\\GitHub\\class\\assets\\business-sim\\sim.css"
+        ],
+        "createdAt": "2026-11-19T14:00:45.134Z",
+        "reason": "user confirmed: asked to keep the existing page look unchanged; side-border cards/headings are the established style of this site (pre-existing in sim.css)"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "assets/business-sim/sim.css"
+        ],
+        "createdAt": "2026-11-19T14:01:01.622Z",
+        "reason": "user confirmed: asked to keep the existing page look unchanged; side-border headings/cards are the established style of this site (pre-existing in sim.css)"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "assets/business-sim/sim.css"
+        ],
+        "createdAt": "2026-11-19T14:01:11.989Z",
+        "reason": "user confirmed: asked to keep the existing page look unchanged; the top-accent role/team cards are pre-existing styles in sim.css, not touched by this edit"
       }
     ]
   }

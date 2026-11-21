@@ -166,3 +166,116 @@
 .bsim .pb-en { display: block; font-size: 17.8px; color: #1e293b; }
 .bsim .pb-zh { display: block; font-size: 15.6px; color: #64748b; }
 @media (max-width: 600px) { .bsim .chat-box { height: 340px; } .bsim .msg { max-width: 96%; } .bsim .bs-hero { padding: 18px; } }
+
+/* ===== Career Path V2 ===== */
+.bsim .cp-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.bsim .cp-id { display: flex; align-items: center; gap: 10px; }
+.bsim .cp-id small, .bsim .cp-card small, .bsim .cp-npc small { display: block; color: #64748b; font-size: 14px; line-height: 1.3; }
+.bsim .cp-av { width: 40px; height: 40px; border-radius: 50%; color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex: none; font-size: 20px; }
+.bsim .cp-lang { display: inline-flex; border: 1.5px solid #cfd8e6; border-radius: 10px; overflow: hidden; }
+.bsim .cp-lang button { border: none; background: #fff; padding: 6px 12px; font-size: 14.5px; color: #456; }
+.bsim .cp-lang button.on { background: #2c6bac; color: #fff; font-weight: 700; }
+.bsim .cp-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
+.bsim .cp-input { flex: 1; min-width: 200px; font-size: 20px; padding: 10px 14px; border: 2px solid #cfd8e6; border-radius: 10px; font-family: inherit; }
+.bsim .cp-input:focus { outline: none; border-color: #2c6bac; }
+.bsim .cp-card { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 12px; background: #fff; margin: 8px 0; }
+.bsim .cp-mail { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; }
+.bsim .cp-mail-h { font-size: 15px; color: #64748b; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 10px; }
+.bsim .cp-meters { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin: 8px 0; }
+.bsim .cp-meter { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 12px; }
+.bsim .cp-mn { font-size: 15px; font-weight: 700; color: #1e293b; }
+.bsim .cp-mn small { color: #94a3b8; font-weight: 400; }
+.bsim .cp-bar-bg { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin: 4px 0; }
+.bsim .cp-bar-fg { height: 100%; background: #2c6bac; }
+.bsim .cp-mv { font-size: 13px; color: #94a3b8; }
+.bsim .cp-md { font-size: 28px; font-weight: 800; line-height: 1.1; color: #94a3b8; }
+.bsim .cp-md.up { color: #1f5f3a; }
+.bsim .cp-md.dn { color: #b3261e; }
+.bsim .cp-nodes { display: grid; gap: 12px; }
+.bsim .cp-node { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: #fff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 12px 16px; transition: transform .12s, box-shadow .12s; }
+.bsim .cp-node:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(30,58,138,.15); border-color: #2c6bac; }
+.bsim .cp-node.done { border-color: #2e7d4f; background: #f4fbf6; }
+.bsim .cp-node.lock { opacity: .55; cursor: not-allowed; }
+.bsim .cp-ne { font-size: 34px; }
+.bsim .cp-nb { flex: 1; display: block; }
+.bsim .cp-nb b { display: block; font-size: 19px; color: #1e293b; }
+.bsim .cp-nb em { font-style: normal; font-size: 12px; background: #f0a500; color: #fff; border-radius: 8px; padding: 1px 8px; margin-left: 6px; vertical-align: middle; }
+.bsim .cp-nb em.opt { background: #64748b; }
+.bsim .cp-nb small { display: block; font-size: 14.5px; color: #64748b; }
+.bsim .cp-ns { font-size: 17px; font-weight: 700; color: #2c6bac; white-space: nowrap; }
+.bsim .cp-node.done .cp-ns { color: #f0a500; letter-spacing: 2px; }
+.bsim .cp-locked { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 14px; color: #94a3b8; text-align: center; }
+.bsim .cp-npc { display: flex; align-items: center; gap: 12px; border-left: 5px solid var(--c); background: #fff; border-radius: 0 10px 10px 0; padding: 8px 14px; margin-top: 10px; }
+.bsim .cp-opts { display: grid; gap: 10px; margin: 12px 0; }
+.bsim .cp-opt { display: flex; gap: 12px; align-items: flex-start; text-align: left; background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; font-size: 19px; color: #1e293b; }
+.bsim .cp-opt:hover:not(:disabled) { border-color: #2c6bac; background: #f3f7fc; }
+.bsim .cp-opt.sel { border-color: #2c6bac; background: #eaf3ff; }
+.bsim .cp-opt:disabled:not(.sel) { opacity: .5; cursor: default; }
+.bsim .cp-opt b { width: 30px; height: 30px; border-radius: 50%; background: #2c6bac; color: #fff; text-align: center; line-height: 30px; flex: none; font-size: 16px; }
+.bsim .cp-outcome { background: #fffcf0; border: 1px solid #e8d47a; border-left: 5px solid #f0a500; border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 12px; }
+.bsim .cp-outcome.later { background: #f3f7fc; border-color: #c9d8ec; border-left-color: #2c6bac; }
+.bsim .cp-outcome.strat { background: #f4fbf6; border-color: #cfe8d6; border-left-color: #2e7d4f; }
+.bsim .cp-outcome .q { font-weight: 700; color: #7a5200; font-size: 16px; }
+.bsim .cp-outcome.later .q { color: #1e3a8a; }
+.bsim .cp-outcome.strat .q { color: #1f5f3a; }
+.bsim .cp-outcome .bs-big { font-size: 20px; }
+.bsim .cp-deltas { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.bsim .cp-delta { font-size: 14.5px; font-weight: 700; border-radius: 12px; padding: 2px 10px; }
+.bsim .cp-delta.up { background: #dff3e5; color: #1f5f3a; }
+.bsim .cp-delta.dn { background: #fde4e1; color: #b3261e; }
+/* 双语折叠:EN+中 直接显示; EN 点击展开; EN only 不显示 */
+.bsim .bi { display: inline; }
+.bsim .bi-zh { color: #64748b; font-size: .82em; font-weight: 400; }
+.bsim .cp.lang-zh .bi-zh { display: block; }
+.bsim .cp.lang-only .bi-zh { display: none; }
+.bsim .zhx { color: #64748b; font-weight: 400; font-size: .85em; }
+.bsim .cp.lang-only .zhx, .bsim .cp.lang-only .study .zh, .bsim .cp.lang-only .pb-zh, .bsim .cp.lang-only .chip small, .bsim .cp.lang-only .role-zh { display: none; }
+/* 标题改用 div(不用 h1-h4,避免站点侧栏自动生成二三级目录) */
+.bsim .bs-h { font-size: 23.8px; font-weight: 700; line-height: 1.4; margin: 0 0 12px; padding-left: 10px; border-left: 4px solid #2c6bac; color: #1e293b; }
+.bsim .bs-title { font-size: 34px; font-weight: 700; line-height: 1.3; margin: 0 0 6px; color: #fff; }
+.bsim .study-h { font-size: 16.7px; font-weight: 700; color: #2e7d4f; margin: 0 0 4px; }
+.bsim .bs-box .bs-sh { font-size: 19.5px; font-weight: 700; color: #1e293b; margin: 0; line-height: 1.35; }
+@media (max-width: 600px) { .bsim .cp-ns { font-size: 14px; } .bsim .cp-ne { font-size: 28px; } }
+
+/* ===== 口语练习:无内部滚动、底部窄操作栏、改进答案 ===== */
+.bsim .cp-chat { margin: 6px 0 14px; }
+.bsim .cp-chat .msg { max-width: 100%; }
+.bsim .cp-chat .msg-bubble { font-size: 19px; }
+.bsim .cp-say { border: 1.5px solid #cfd8e6; background: #fff; border-radius: 14px; font-size: 14px; line-height: 1; padding: 3px 9px; margin-left: 6px; vertical-align: middle; color: #2c6bac; }
+.bsim .cp-say.on { background: #2c6bac; color: #fff; border-color: #2c6bac; }
+.bsim .cp-pair { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 14px; }
+.bsim .cp-pair .msg { margin-bottom: 0; }
+.bsim .cp-imp { background: #f4fbf6; border: 1.5px solid #cfe8d6; border-radius: 12px; padding: 10px 14px; }
+.bsim .cp-imp-h { font-size: 15px; font-weight: 700; color: #1f5f3a; }
+.bsim .cp-imp-t { font-size: 19px; color: #1e293b; margin: 4px 0; }
+.bsim .cp-imp-n { font-size: 15px; color: #475569; }
+@media (min-width: 800px) { .bsim .cp-pair { grid-template-columns: 1fr 1fr; align-items: start; } }
+.bsim details.cp-earlier { margin-bottom: 12px; }
+.bsim details.cp-earlier > summary, .bsim details.study-d > summary { cursor: pointer; color: #64748b; font-size: 15px; margin-bottom: 8px; }
+.bsim details.study-d { margin: -6px 0 14px; }
+.bsim .cp-link { border: none; background: none; color: #2c6bac; text-decoration: underline; font-size: inherit; padding: 0; }
+.bsim .cp-brief { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; }
+.bsim .cp-brief-line { font-size: 16px; margin: 2px 0; }
+.bsim .cp-brief-line b { color: #1e3a8a; margin-right: 6px; }
+.bsim details.cp-bg { margin-top: 4px; }
+.bsim details.cp-bg > summary { cursor: pointer; color: #64748b; font-size: 14px; }
+.bsim details.cp-bg p { margin: 6px 0 0; font-size: 15px; }
+.bsim .cp-phr { display: none; background: #fff; border: 1.5px solid #e0e6f0; border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; max-height: 9.5rem; overflow: auto; }
+.bsim .cp-phr.open { display: block; }
+.bsim .cp-help { flex: none; border: 1.5px solid #cfd8e6; background: #f5f8fc; border-radius: 10px; padding: 4px 8px; line-height: 1.15; color: #1e3a8a; font-weight: 700; font-size: 13px; }
+.bsim .cp-help small { display: block; font-weight: 400; color: #64748b; font-size: 11px; }
+.bsim .cp-ib svg { display: block; margin: 0 auto; }
+.bsim .cp-phr-t { font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+.bsim details.cp-grp { margin-bottom: 6px; }
+.bsim details.cp-grp > summary { cursor: pointer; font-size: 15px; font-weight: 700; color: #64748b; margin-bottom: 4px; }
+.bsim .cp-dock { position: sticky; bottom: 0; z-index: 20; background: #fff; border-top: 1.5px solid #dce3ed; box-shadow: 0 -4px 12px rgba(15,23,42,.08); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); margin: 0 -4px; }
+.bsim .cp-hint { min-height: 20px; font-size: 14.5px; color: #64748b; padding: 0 4px 4px; line-height: 1.4; }
+.bsim .cp-err { color: #b3261e; }
+.bsim .cp-dockrow { display: flex; gap: 6px; align-items: stretch; }
+.bsim .cp-dockrow textarea { flex: 1; min-width: 0; resize: none; font: inherit; font-size: 17px; line-height: 1.4; padding: 6px 10px; border: 1.5px solid #cfd8e6; border-radius: 10px; }
+.bsim .cp-dockrow textarea:focus { outline: none; border-color: #2c6bac; }
+.bsim .cp-ib { flex: none; width: 44px; border: 1.5px solid #cfd8e6; background: #f5f8fc; border-radius: 10px; font-size: 20px; padding: 0; }
+.bsim .cp-ib.mic.on { background: #d93025; border-color: #d93025; color: #fff; }
+.bsim .cp-ib.off { opacity: .5; }
+.bsim .cp-send { flex: none; border: none; background: #2c6bac; color: #fff; border-radius: 10px; padding: 0 16px; font-size: 17px; font-weight: 700; }
+.bsim .cp-send:disabled { opacity: .5; }
