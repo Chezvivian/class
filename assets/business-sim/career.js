@@ -14,7 +14,7 @@
   var isMock = function () { return !C.LLM_ENDPOINT || /[?&]mock=1/.test(location.search); };
   function mById(id) { for (var i = 0; i < MS.length; i++) if (MS[i].id === id) return MS[i]; return null; }
   function tag(m) { return 'M' + m.chapter + '.' + m.order; }
-  function roleTitle() { var m = S.mid && mById(S.mid); return (m && m.chapter >= 2) ? 'Associate' : C.TITLE; }
+  function roleTitle() { var m = S.mid && mById(S.mid); return (m && m.chapter >= 3) ? 'Project Coordinator' : ((m && m.chapter >= 2) ? 'Associate' : C.TITLE); }
   function clamp(n) { return Math.max(0, Math.min(100, n)); }
 
   // ===== 语言工具 =====
@@ -163,7 +163,7 @@
       '<div class="bs-section"><div class="bs-problem" style="border-left-color:#2e7d4f;background:#f4fbf6;border-color:#cfe8d6"><div class="q" style="color:#1f5f3a">Your goal' + Z('你的目标') + '</div><div class="bs-big">' + bi(m.briefing.goalEn, m.briefing.goalZh) + '</div></div></div>' +
       '<div class="rp-actions"><button class="btn btn-primary" data-act="decide">Next: Decide' + Z('做决定') + ' →</button></div>';
   }
-  function npcRole(id) { return { daniel: 'Senior colleague', chen: 'Your manager', patel: 'Client manager', rivera: 'PrintRight contact', tom: 'Operations' }[id] || ''; }
+  function npcRole(id) { return { daniel: 'Senior colleague', chen: 'Your manager', patel: 'Client manager', rivera: 'PrintRight contact', tom: 'Operations', aiko: 'Head of Operations' }[id] || ''; }
 
   // ===== 决策卡 =====
   function vDecide() {
@@ -191,7 +191,8 @@
   var TYPE_DESC = {
     greeting: 'greets the other person', intro: 'introduces themselves', ask: 'asks the other person a question', respond: 'answers the other person\'s question or offer',
     closing: 'ends the conversation politely', open: 'opens politely / gets attention', confirm: 'confirms or repeats key details', clarify: 'asks to clarify',
-    thank: 'says thank you', explain: 'explains a conflict or reason', offer: 'offers alternatives or options', followup: 'states a follow-up action', positive: 'says something positive', soft: 'uses softening language'
+    thank: 'says thank you', explain: 'explains a conflict or reason', offer: 'offers alternatives or options', followup: 'states a follow-up action', positive: 'says something positive', soft: 'uses softening language',
+    interrupt: 'interrupts the other person politely (short, polite expression, one clear point)', hold: 'politely keeps the floor when interrupted (asks to finish or to discuss later)', accept: 'accepts a correction graciously', return: 'steers the conversation back to the main point'
   };
   var GREET_RE = /\b(hello|hi|hey|good (morning|afternoon)|nice to meet)\b/i, CLOSE_RE = /\b(bye|see you|get going|catch up|have a (good|great|nice)|talk (to you )?later|nice (talking|chatting))\b/i;
   function idxPick(en) { for (var i = 0; i < S.picked.length; i++) if (S.picked[i].en === en) return i; return -1; }

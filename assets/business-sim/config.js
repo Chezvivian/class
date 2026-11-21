@@ -5,7 +5,7 @@ window.BSIM_CONFIG = {
   // TTS 代理(与 Innovation 页相同,依次尝试)
   TTS_ENDPOINTS: ['https://tts-update-jeicusdbgk.cn-shanghai.fcapp.run', 'https://vercel-tts.vercel.app/api/tts'],
   // 各角色的朗读声音(Azure 语音名)
-  VOICES: { daniel: 'en-US-GuyNeural', chen: 'en-GB-SoniaNeural', patel: 'en-IN-PrabhatNeural', coach: 'en-US-JennyNeural' },
+  VOICES: { daniel: 'en-US-GuyNeural', chen: 'en-GB-SoniaNeural', patel: 'en-IN-PrabhatNeural', aiko: 'en-US-AriaNeural', coach: 'en-US-JennyNeural' },
   // 'free' 教学测试:所有关卡可进; 'rpg' 闯关:按 unlock 条件解锁
   PROGRESSION_MODE: 'free',
   // 默认语言档位: 'zh' = EN+中, 'only' = EN only(界面不显示中文)

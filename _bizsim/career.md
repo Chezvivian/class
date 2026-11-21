@@ -12,7 +12,8 @@ permalink: /business-sim/career/
 <div id="career" class="cp"></div>
 </div>
 
-<script src="{{ site.baseurl }}/assets/business-sim/config.js?v=5"></script>
-<script src="{{ site.baseurl }}/assets/business-sim/missions-ch1.js?v=5"></script>
-<script src="{{ site.baseurl }}/assets/business-sim/missions-ch2.js?v=5"></script>
-<script src="{{ site.baseurl }}/assets/business-sim/career.js?v=5"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/config.js?v=6"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/missions-ch1.js?v=6"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/missions-ch2.js?v=6"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/missions-ch3.js?v=6"></script>
+<script src="{{ site.baseurl }}/assets/business-sim/career.js?v=6"></script>

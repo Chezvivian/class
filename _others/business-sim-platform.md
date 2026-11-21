@@ -47,7 +47,7 @@ permalink: /business-sim-platform/
     <div class="bs-topic-cover">🚀</div>
     <div class="bs-topic-body">
       <div class="bs-topic-title">Career Path <span class="bs-note">职业之路</span></div>
-      <div class="bs-topic-desc">Join Nova Bridge Consulting. Chapter 1: onboarding and small talk. Chapter 2: external and internal complaints on Project Greenleaf.</div>
+      <div class="bs-topic-desc">Join Nova Bridge Consulting. Chapter 1: onboarding and small talk. Chapter 2: external and internal complaints on Project Greenleaf. Chapter 3: chairing a cross-team meeting, interrupting politely and handling interruptions.</div>
       <span class="go">Start 开始 →</span>
     </div>
   </a>
